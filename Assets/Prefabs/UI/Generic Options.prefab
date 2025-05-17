@@ -436,8 +436,9 @@ MonoBehaviour:
   _audioCanvas: {fileID: 0}
   _closeMenuButton: {fileID: 3192234045929693820}
   _quitPrompt: {fileID: 470633676751983664}
-  _quitGameButton: {fileID: 619665848892066194}
-  _currentTimeScale: 1
+  _cancelQuitButton: {fileID: 0}
+  _quitPromptButton: {fileID: 0}
+  _audioButton: {fileID: 0}
 --- !u!1 &3038584010812582542
 GameObject:
   m_ObjectHideFlags: 0
