@@ -4,13 +4,25 @@ using System.Collections.Generic;
 public class RandomEncounter : MonoBehaviour
 {
     [SerializeField] List<Enemy> _enemies = new();
+    [SerializeField] protected GameObject _mapIcon;
 
+    Vector2 _coordinates = new();
     Enemy _enemy;
 
     void OnEnable()
     {
         _enemy = Instantiate(_enemies[Random.Range(0, _enemies.Count)], transform);
         _enemy.transform.Rotate(0, Random.Range(0f, 359f), 0);
+    }
+
+    void Start()
+    {
+        MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
+    }
+
+    void OnDestroy()
+    {
+        MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
     }
 
     void OnTriggerEnter(Collider other)
@@ -34,5 +46,19 @@ public class RandomEncounter : MonoBehaviour
             _enemy.SetInBattle(false);
         }
         gameObject.SetActive(false);
+    }
+
+    public void SetCoordinates(int x, int z)
+    {
+        _coordinates = new(x, z);
+    }
+
+    void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
+    {
+        if(!gameObject.activeSelf) { return; }
+
+        if(coordinates != _coordinates) { return; }
+
+        _mapIcon.SetActive(true);
     }
 }

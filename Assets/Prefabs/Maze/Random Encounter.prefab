@@ -73,6 +73,7 @@ MonoBehaviour:
   - {fileID: 6976274375982262919, guid: 627f073e3c3d6084e9b4e229c578918e, type: 3}
   - {fileID: 3072797985729650234, guid: acbab0f7ba544814ca3880b921b50524, type: 3}
   - {fileID: 7680241156815145991, guid: 51eed07da4a577a47810ada12495f44b, type: 3}
+  _mapIcon: {fileID: 4010301159153291716}
 --- !u!1 &4010301159153291716
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,13 +85,13 @@ GameObject:
   - component: {fileID: 3846853964648390596}
   - component: {fileID: 3286926698431628140}
   - component: {fileID: 8478083872695828627}
-  m_Layer: 0
-  m_Name: Icon
+  m_Layer: 6
+  m_Name: Map Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3846853964648390596
 Transform:
   m_ObjectHideFlags: 0

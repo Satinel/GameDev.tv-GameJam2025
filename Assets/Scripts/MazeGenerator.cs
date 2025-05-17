@@ -1,14 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
+    public static event Action<Vector2> OnMazeUnitRevealed;
+
     [SerializeField] [Range(0, 100)] int _encounterChancePercentage = 20;
     [SerializeField] int _width = 30, _depth = 30;
     [SerializeField] byte[,] _map;
     [SerializeField] int _scale = 6;
-    [SerializeField] GameObject _floorPiece, _wallPiece;
-    [SerializeField] GameObject _randomEncounter, _goal;
+    [SerializeField] MazeUnit _mazeSpacePrefab, _mazeWallPrefab;
+    [SerializeField] RandomEncounter _randomEncounterPrefab;
+    [SerializeField] Goal _goalPrefab;
     [SerializeField] Transform _mazeParent, _encountersParent;
     GameObject _player;
 
@@ -21,6 +25,16 @@ public class MazeGenerator : MonoBehaviour
     };
 
     List<Vector2> _openSpaces = new();
+
+    void OnEnable()
+    {
+        MazeSpace.OnAnySpaceEntered += MazeSpace_OnAnySpaceEntered;
+    }
+
+    void OnDisable()
+    {
+        MazeSpace.OnAnySpaceEntered -= MazeSpace_OnAnySpaceEntered;
+    }
 
     void Start()
     {
@@ -48,7 +62,7 @@ public class MazeGenerator : MonoBehaviour
 
     void Generate()
     {
-        Generate(Random.Range(1, _width - 1), Random.Range(1, _depth - 1));
+        Generate(UnityEngine.Random.Range(1, _width - 1), UnityEngine.Random.Range(1, _depth - 1));
     }
 
     void Generate(int x, int z)
@@ -73,14 +87,16 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(_map[x,z] == 1)
                 {
-                    GameObject wall = Instantiate(_wallPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                    MazeUnit wall = Instantiate(_mazeWallPrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                    wall.SetCoordinates(x, z);
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = $"Wall {x} {z}";
                 }
                 else
                 {
-                    GameObject floor = Instantiate(_floorPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
-                    floor.name = $"Floor {x} {z}";
+                    MazeUnit space = Instantiate(_mazeSpacePrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                    space.SetCoordinates(x, z);
+                    space.name = $"Floor {x} {z}";
                     _openSpaces.Add(new(x, z));
                 }
             }
@@ -115,15 +131,32 @@ public class MazeGenerator : MonoBehaviour
             }
             if(space == _openSpaces[_openSpaces.Count - 1])
             {
-                Instantiate(_goal, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
+                Goal goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
+                goal.SetCoordinates((int)space.x, (int)space.y);
                 return;
             }
-            if(Random.Range(0, 100) < _encounterChancePercentage)
+            if(UnityEngine.Random.Range(0, 100) < _encounterChancePercentage)
             {
-                GameObject randomEnc = Instantiate(_randomEncounter, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _encountersParent);
+                RandomEncounter randomEnc = Instantiate(_randomEncounterPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _encountersParent);
+                randomEnc.SetCoordinates((int)space.x, (int)space.y);
 
                 randomEnc.name = $"Random Encounter {space.x} {space.y}";
             }
         }
+    }
+
+    void MazeSpace_OnAnySpaceEntered(Vector2 coordinates)
+    {
+        // OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x, coordinates.y));
+        // Squares
+        OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x, coordinates.y - 1));
+        OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x - 1, coordinates.y));
+        OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x + 1 , coordinates.y));
+        OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x, coordinates.y + 1));
+        // Diagonals
+        // OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x - 1, coordinates.y - 1));
+        // OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x + 1, coordinates.y - 1));
+        // OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x - 1, coordinates.y + 1));
+        // OnMazeUnitRevealed?.Invoke(new Vector2(coordinates.x + 1, coordinates.y + 1));
     }
 }
