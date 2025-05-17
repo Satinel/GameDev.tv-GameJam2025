@@ -1,0 +1,59 @@
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    [SerializeField] int _maxHealth = 25;
+    [SerializeField] int _health;
+    bool _inBattle, _isDead;
+
+    Animator _animator;
+    RandomEncounter _parent;
+
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        _health = _maxHealth;
+    }
+
+    void Start()
+    {
+        _parent = GetComponentInParent<RandomEncounter>();
+    }
+
+    public void SetInBattle(bool inBattle)
+    {
+        _inBattle = inBattle;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if(!_inBattle || _isDead) { return; }
+
+        _health -= amount;
+
+        if(_health <= 0)
+        {
+            AnimateDeath();
+        }
+        else
+        {
+            AnimateHurt();
+        }
+    }
+
+    public void HandleDeath() // Animation Trigger
+    {
+        _parent.EnemyDead();
+    }
+
+    void AnimateDeath()
+    {
+        _isDead = true;
+        _animator.SetTrigger("Death");
+    }
+
+    void AnimateHurt()
+    {
+        _animator.SetTrigger("Hurt");
+    }
+}
