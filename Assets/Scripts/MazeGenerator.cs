@@ -65,13 +65,13 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(_map[x,z] == 1)
                 {
-                    GameObject wall = Instantiate(_wallPiece, new(x * _scale, 0, z * _scale), Quaternion.identity);
+                    GameObject wall = Instantiate(_wallPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, transform);
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = "Wall";
                 }
                 else
                 {
-                    GameObject floor = Instantiate(_floorPiece, new(x * _scale, 0, z * _scale), Quaternion.identity);
+                    GameObject floor = Instantiate(_floorPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, transform);
                     floor.name = "Floor";
                 }
             }
