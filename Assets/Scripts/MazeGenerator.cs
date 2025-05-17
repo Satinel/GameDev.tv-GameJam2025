@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
+    [SerializeField] [Range(0, 100)] int _encounterChancePercentage = 20;
     [SerializeField] int _width = 30, _depth = 30;
     [SerializeField] byte[,] _map;
     [SerializeField] int _scale = 6;
     [SerializeField] GameObject _floorPiece, _wallPiece;
-    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _randomEncounter, _goal;
+    [SerializeField] Transform _mazeParent, _encountersParent;
+    GameObject _player;
 
-    protected List<Vector2> _directions = new()
+    List<Vector2> _directions = new()
     {
         new Vector2(1, 0),
         new Vector2(0, 1),
@@ -17,12 +20,17 @@ public class MazeGenerator : MonoBehaviour
         new Vector2(0, -1),
     };
 
+    List<Vector2> _openSpaces = new();
+
     void Start()
     {
+        _player = FindFirstObjectByType<PlayerHealth>().gameObject;
+        // if(!_player) { return; }
+
         InitializeMap();
         Generate();
         DrawMap();
-        PlacePlayer();
+        PopulateMap();
     }
 
     void InitializeMap()
@@ -65,20 +73,21 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(_map[x,z] == 1)
                 {
-                    GameObject wall = Instantiate(_wallPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, transform);
+                    GameObject wall = Instantiate(_wallPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
                     wall.transform.position = new(x * _scale, 0, z * _scale);
-                    wall.name = "Wall";
+                    wall.name = $"Wall {x} {z}";
                 }
                 else
                 {
-                    GameObject floor = Instantiate(_floorPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, transform);
-                    floor.name = "Floor";
+                    GameObject floor = Instantiate(_floorPiece, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                    floor.name = $"Floor {x} {z}";
+                    _openSpaces.Add(new(x, z));
                 }
             }
         }
     }
 
-    public int CountSquareNeighbours(int x, int z)
+    int CountSquareNeighbours(int x, int z)
     {
         if(x <= 0 || x >= _width -1 || z <= 0 || z >= _depth - 1)
         {
@@ -95,19 +104,25 @@ public class MazeGenerator : MonoBehaviour
         return count;
     }
 
-    void PlacePlayer()
+    void PopulateMap()
     {
-        if(!_player) { return; }
-
-        for(int z = 1; z <= _depth - 1; z++)
+        foreach(var space in _openSpaces)
         {
-            for(int x = 1; x <= _width - 1; x++)
+            if(space == _openSpaces[0])
             {
-                if(_map[x, z] == 0)
-                {
-                    _player.transform.position = new(x * _scale, 0, z * _scale);
-                    return;
-                }
+                _player.transform.position = new(space.x * _scale, 0, space.y * _scale);
+                continue;
+            }
+            if(space == _openSpaces[_openSpaces.Count - 1])
+            {
+                Instantiate(_goal, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
+                return;
+            }
+            if(Random.Range(0, 100) < _encounterChancePercentage)
+            {
+                GameObject randomEnc = Instantiate(_randomEncounter, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _encountersParent);
+
+                randomEnc.name = $"Random Encounter {space.x} {space.y}";
             }
         }
     }
