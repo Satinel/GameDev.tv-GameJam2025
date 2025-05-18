@@ -19,13 +19,18 @@ public class Enemy : MonoBehaviour
         _health = _maxHealth;
     }
 
-    public void StartBattle(bool inBattle)
+    public void StartBattle()
     {
-        _inBattle = inBattle;
+        _inBattle = true;
         OnFightStarted?.Invoke(this);
     }
 
-    public void Attack() // This would be a great the time use a delegate?
+    public void EndBattle()
+    {
+        _inBattle = false;
+    }
+
+    public void Attack() // This would be a great time to use a delegate?
     {
         // TODO Select at random from a list of attacks
         // TODO Calculate success/failure of attack
