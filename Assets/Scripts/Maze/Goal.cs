@@ -23,9 +23,9 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(!other.gameObject.GetComponentInParent<PlayerInventory>()) { return; }
+        if(!other.gameObject.TryGetComponent(out PlayerInventory playerInventory)) { return; }
 
-        other.gameObject.GetComponentInParent<PlayerInventory>().GetKey();
+        playerInventory.GetKey();
         OnKeyClaimed?.Invoke();
     }
 

@@ -168,6 +168,7 @@ public class MazeGenerator : MonoBehaviour
                 bossEncounter.name = $"Final Boss {end.x} {end.y}";
                 return;
             }
+            // TODO Create a store at _deadEnds[0] (Note that this won't conflict with bossEncounter since in the case of 1 DeadEnd it would happen first and exit the foreach)
 
             DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
             deadEnd.SetCoordinates((int)end.x, (int)end.y);

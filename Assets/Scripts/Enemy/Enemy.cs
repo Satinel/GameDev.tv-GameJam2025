@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action OnFightStarted;
     public static event Action<Enemy> OnAnyEnemyKilled;
 
     [SerializeField] int _maxHealth = 25;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     public void SetInBattle(bool inBattle)
     {
         _inBattle = inBattle;
+        OnFightStarted?.Invoke();
     }
 
     public void TakeDamage(int amount)

@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class OptionsMenu : MonoBehaviour
 {
+    public static event Action OnOptionsOpened;
+    public static event Action OnOptionsClosed;
+
     [SerializeField] Canvas _optionsCanvas, _audioCanvas;
     [SerializeField] GameObject _closeMenuButton;
     [SerializeField] GameObject _quitPrompt;
@@ -48,12 +52,14 @@ public class OptionsMenu : MonoBehaviour
         _optionsCanvas.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_closeMenuButton);
+        OnOptionsOpened?.Invoke();
     }
 
     public void DisableOptionsCanvas()
     {
         _optionsCanvas.enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
+        OnOptionsClosed?.Invoke();
     }
 
     public void EnableAudioCanvas()

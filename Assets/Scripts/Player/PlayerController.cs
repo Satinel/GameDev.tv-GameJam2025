@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _lookSpeed = 2.5f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
+    bool _isFighting, _optionsOpen;
     Rigidbody _rigidbody;
 
     void Awake()
@@ -14,8 +14,24 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    void OnEnable()
+    {
+        Enemy.OnFightStarted += Enemy_OnFightStarted;
+        OptionsMenu.OnOptionsOpened += MenuOptions_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
+    }
+
+    void OnDisable()
+    {
+        Enemy.OnFightStarted -= Enemy_OnFightStarted;
+        OptionsMenu.OnOptionsOpened -= MenuOptions_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed -= MenuOptions_OnOptionsClosed;
+    }
+
     void Update()
     {
+        if(_isFighting || _optionsOpen) { return;}
+
         if(Input.GetKey(KeyCode.W))
         {
             _moveForward = true;
@@ -57,6 +73,8 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.linearVelocity = Vector3.zero;
 
+        if(_isFighting || _optionsOpen) { return;}
+
         if(_moveForward)
         {
             _rigidbody.linearVelocity += _moveSpeed * Time.deltaTime * transform.forward;
@@ -73,5 +91,20 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.linearVelocity += _moveSpeed * .75f * Time.deltaTime * transform.right;
         }
+    }
+
+    void Enemy_OnFightStarted()
+    {
+        _isFighting = true;
+    }
+
+    void MenuOptions_OnOptionsOpened()
+    {
+        _optionsOpen = true;
+    }
+
+    void MenuOptions_OnOptionsClosed()
+    {
+        _optionsOpen = false;
     }
 }
