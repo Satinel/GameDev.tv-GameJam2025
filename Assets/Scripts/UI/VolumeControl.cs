@@ -11,7 +11,6 @@ public class VolumeControl : MonoBehaviour
     [SerializeField] Slider _masterVolumeSlider;
     [SerializeField] Slider _musicVolumeSlider;
     [SerializeField] Slider _sfxVolumeSlider;
-    [SerializeField] OptionsMenu _optionsMenu;
 
     void Start()
     {
