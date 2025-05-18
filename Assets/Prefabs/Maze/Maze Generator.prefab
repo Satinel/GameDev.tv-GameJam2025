@@ -146,6 +146,7 @@ MonoBehaviour:
   _scale: 6
   _mazeSpacePrefab: {fileID: 6154276949408704129, guid: a85601564d2abcb49a285857ec8338d4, type: 3}
   _mazeWallPrefab: {fileID: 7701632342779744159, guid: bb5c967bf62254e40ac416c2389f5530, type: 3}
+  _mazeWall2Prefab: {fileID: 7701632342779744159, guid: fee7b96b673ba5b448c289444df985a7, type: 3}
   _randomEncounterPrefab: {fileID: 7299582708336988687, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
   _deadEndPrefab: {fileID: -5267923260892102690, guid: ee2e27a19b1eb984fa77639524810540, type: 3}
   _goalPrefab: {fileID: 3716734212774446492, guid: aca9b0f1a9969d748bea654acdd19525, type: 3}

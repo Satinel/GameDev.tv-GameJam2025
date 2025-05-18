@@ -10,7 +10,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] int _width = 30, _depth = 30;
     [SerializeField] byte[,] _map;
     [SerializeField] int _scale = 6;
-    [SerializeField] MazeUnit _mazeSpacePrefab, _mazeWallPrefab;
+    [SerializeField] MazeUnit _mazeSpacePrefab, _mazeWallPrefab, _mazeWall2Prefab;
     [SerializeField] RandomEncounter _randomEncounterPrefab;
     [SerializeField] DeadEnd _deadEndPrefab;
     [SerializeField] Goal _goalPrefab;
@@ -91,7 +91,29 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(_map[x,z] == 1)
                 {
-                    MazeUnit wall = Instantiate(_mazeWallPrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                    MazeUnit wall;
+                    if(z % 2 == 0)
+                    {
+                        if(x % 2 == 0)
+                        {
+                            wall = Instantiate(_mazeWall2Prefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                        }
+                        else
+                        {
+                            wall = Instantiate(_mazeWallPrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                        }
+                    }
+                    else
+                    {
+                        if(x % 2 == 0)
+                        {
+                            wall = Instantiate(_mazeWallPrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                        }
+                        else
+                        {
+                            wall = Instantiate(_mazeWall2Prefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
+                        }
+                    }
                     wall.SetCoordinates(x, z);
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = $"Wall {x} {z}";
