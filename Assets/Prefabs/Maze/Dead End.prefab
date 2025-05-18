@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ce3a00b36c779468fb366faf0f75a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemies:
+  - {fileID: 1966919089452940214, guid: 20b6355d433acce429e58923b9c5a717, type: 3}
   _mapIcon: {fileID: 4010301159153291716}
 --- !u!1 &4010301159153291716
 GameObject:

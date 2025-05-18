@@ -11,17 +11,11 @@ public class Enemy : MonoBehaviour
     bool _inBattle, _isDead;
 
     Animator _animator;
-    RandomEncounter _parent;
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
         _health = _maxHealth;
-    }
-
-    void Start()
-    {
-        _parent = GetComponentInParent<RandomEncounter>();
     }
 
     public void SetInBattle(bool inBattle)

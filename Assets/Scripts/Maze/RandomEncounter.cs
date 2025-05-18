@@ -32,7 +32,7 @@ public class RandomEncounter : MonoBehaviour
     {
         if(!_enemy) { return; }
 
-        if(other.gameObject.GetComponentInParent<PlayerHealth>())
+        if(other.gameObject.GetComponent<PlayerHealth>())
         {
             Debug.Log("Start Battle!");
             Vector3 lookAtTarget = new(other.transform.position.x, _enemy.transform.position.y, other.transform.position.z);

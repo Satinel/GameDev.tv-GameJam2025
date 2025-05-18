@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _lookSpeed = 2.5f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
-    bool _isFighting, _optionsOpen;
+    bool _isFighting, _eventStarted, _optionsOpen;
     Rigidbody _rigidbody;
 
     void Awake()
@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         Enemy.OnFightStarted += Enemy_OnFightStarted;
+        // TODO Set _isFighting to false
         OptionsMenu.OnOptionsOpened += MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
+        DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
+        // TODO Set _eventStarted to false
     }
 
     void OnDisable()
@@ -26,11 +29,12 @@ public class PlayerController : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         OptionsMenu.OnOptionsOpened -= MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= MenuOptions_OnOptionsClosed;
+        DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
     }
 
     void Update()
     {
-        if(_isFighting || _optionsOpen) { return;}
+        if(_isFighting || _eventStarted || _optionsOpen) { return;}
 
         if(Input.GetKey(KeyCode.W))
         {
@@ -106,5 +110,10 @@ public class PlayerController : MonoBehaviour
     void MenuOptions_OnOptionsClosed()
     {
         _optionsOpen = false;
+    }
+
+    void DeadEnd_OnAnyDeadEndEvent()
+    {
+        _eventStarted = true;
     }
 }

@@ -35,7 +35,7 @@ public class BossEncounter : MonoBehaviour
         _door.SetActive(false);
         if(!_boss) { return; }
 
-        if(other.gameObject.GetComponentInParent<PlayerHealth>())
+        if(other.gameObject.GetComponent<PlayerHealth>())
         {
             Debug.Log("Fight Final Boss!");
             Vector3 lookAtTarget = new(other.transform.position.x, _boss.transform.position.y, other.transform.position.z);

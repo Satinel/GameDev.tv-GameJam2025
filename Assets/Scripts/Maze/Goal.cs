@@ -9,7 +9,7 @@ public class Goal : MonoBehaviour
 
     Vector2 _coordinates = new();
 
-    bool _isRevealed;
+    bool _isRevealed, _keyClaimed;
 
     void OnEnable()
     {
@@ -23,10 +23,17 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(_keyClaimed) { return; }
+
         if(!other.gameObject.TryGetComponent(out PlayerInventory playerInventory)) { return; }
 
+        _keyClaimed = true;
         playerInventory.GetKey();
         OnKeyClaimed?.Invoke();
+        _mapIcon.SetActive(false);
+        // TODO Play a sound
+        // TODO Show a real message
+        Debug.Log("Key Claimed!");
     }
 
     public void SetCoordinates(int x, int z)
