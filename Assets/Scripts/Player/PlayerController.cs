@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         Enemy.OnFightStarted += Enemy_OnFightStarted;
-        // TODO Set _isFighting to false
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened += MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
         DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened -= MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= MenuOptions_OnOptionsClosed;
         DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
@@ -97,9 +98,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Enemy_OnFightStarted()
+    void Enemy_OnFightStarted(Enemy _)
     {
         _isFighting = true;
+    }
+
+    void PlayerCombat_OnCombatResolved()
+    {
+        _isFighting = false;
     }
 
     void MenuOptions_OnOptionsOpened()

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action OnFightStarted;
+    public static event Action<Enemy> OnFightStarted;
+    public static event Action OnEnemyTurnEnd;
     public static event Action<Enemy> OnAnyEnemyKilled;
 
     [SerializeField] int _maxHealth = 25;
@@ -18,10 +19,24 @@ public class Enemy : MonoBehaviour
         _health = _maxHealth;
     }
 
-    public void SetInBattle(bool inBattle)
+    public void StartBattle(bool inBattle)
     {
         _inBattle = inBattle;
-        OnFightStarted?.Invoke();
+        OnFightStarted?.Invoke(this);
+    }
+
+    public void Attack() // This would be a great the time use a delegate?
+    {
+        // TODO Select at random from a list of attacks
+        // TODO Calculate success/failure of attack
+        // TODO Handle results of attack
+        Debug.Log("Pretend the enemy did something!");
+        Invoke(nameof(EndEnemyTurn), 2f);
+    }
+
+    void EndEnemyTurn()
+    {
+        OnEnemyTurnEnd?.Invoke();
     }
 
     public void TakeDamage(int amount)

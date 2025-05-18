@@ -40,7 +40,7 @@ public class BossEncounter : MonoBehaviour
             Debug.Log("Fight Final Boss!");
             Vector3 lookAtTarget = new(other.transform.position.x, _boss.transform.position.y, other.transform.position.z);
             _boss.transform.LookAt(lookAtTarget);
-            _boss.SetInBattle(true);
+            _boss.StartBattle(true);
         }
     }
 
@@ -54,7 +54,7 @@ public class BossEncounter : MonoBehaviour
         if(enemy == _boss)
         {
             Debug.Log("Boss Defeated!");
-            _boss.SetInBattle(false);
+            _boss.StartBattle(false);
             gameObject.SetActive(false);
             // TODO Go to next level of dungeon or show a results screen or whatever!
         }

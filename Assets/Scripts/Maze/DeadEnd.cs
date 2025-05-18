@@ -41,7 +41,7 @@ public class DeadEnd : MonoBehaviour
             Debug.Log("Start Battle!");
             Vector3 lookAtTarget = new(other.transform.position.x, _enemy.transform.position.y, other.transform.position.z);
             _enemy.transform.LookAt(lookAtTarget);
-            _enemy.SetInBattle(true);
+            _enemy.StartBattle(true);
             return;
         }
         else
@@ -71,7 +71,7 @@ public class DeadEnd : MonoBehaviour
         {
             // TODO Give special reward
             Debug.Log("End Battle!");
-            _enemy.SetInBattle(false);
+            _enemy.StartBattle(false);
             gameObject.SetActive(false);
         }
     }

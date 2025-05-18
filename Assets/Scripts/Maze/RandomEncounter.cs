@@ -37,7 +37,7 @@ public class RandomEncounter : MonoBehaviour
             Debug.Log("Start Battle!");
             Vector3 lookAtTarget = new(other.transform.position.x, _enemy.transform.position.y, other.transform.position.z);
             _enemy.transform.LookAt(lookAtTarget);
-            _enemy.SetInBattle(true);
+            _enemy.StartBattle(true);
         }
     }
 
@@ -51,7 +51,7 @@ public class RandomEncounter : MonoBehaviour
         if(enemy == _enemy)
         {
             Debug.Log("End Battle!");
-            _enemy.SetInBattle(false);
+            _enemy.StartBattle(false);
             gameObject.SetActive(false);
         }
     }
