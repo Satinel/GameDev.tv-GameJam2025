@@ -6,6 +6,7 @@ public class RandomEncounter : MonoBehaviour
     [SerializeField] List<Enemy> _enemies = new();
     [SerializeField] protected GameObject _mapIcon;
 
+    bool _isRevealed;
     Vector2 _coordinates = new();
     Enemy _enemy;
 
@@ -17,11 +18,13 @@ public class RandomEncounter : MonoBehaviour
 
     void Start()
     {
+        Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
         MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
     }
 
     void OnDestroy()
     {
+        Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
     }
 
@@ -38,27 +41,33 @@ public class RandomEncounter : MonoBehaviour
         }
     }
 
-    public void EnemyDead()
-    {
-        Debug.Log("End Battle!");
-        if(_enemy)
-        {
-            _enemy.SetInBattle(false);
-        }
-        gameObject.SetActive(false);
-    }
-
     public void SetCoordinates(int x, int z)
     {
         _coordinates = new(x, z);
     }
 
+    void Enemy_OnAnyEnemyKilled(Enemy enemy)
+    {
+        if(enemy == _enemy)
+        {
+            Debug.Log("End Battle!");
+            _enemy.SetInBattle(false);
+            gameObject.SetActive(false);
+        }
+    }
+
     void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
     {
         if(!gameObject.activeSelf) { return; }
-
+        if(_isRevealed) { return; }
         if(coordinates != _coordinates) { return; }
 
+        Reveal();
+    }
+
+    public void Reveal()
+    {
         _mapIcon.SetActive(true);
+        _isRevealed = true;
     }
 }

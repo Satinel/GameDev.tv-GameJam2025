@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-public  static class Extensions
+public static class Extensions
 {
     // https://stackoverflow.com/questions/273313/randomize-a-listt
     static Random rng = new();

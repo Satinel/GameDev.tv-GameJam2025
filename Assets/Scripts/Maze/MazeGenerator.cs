@@ -12,8 +12,10 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] int _scale = 6;
     [SerializeField] MazeUnit _mazeSpacePrefab, _mazeWallPrefab;
     [SerializeField] RandomEncounter _randomEncounterPrefab;
+    [SerializeField] DeadEnd _deadEndPrefab;
     [SerializeField] Goal _goalPrefab;
-    [SerializeField] Transform _mazeParent, _encountersParent;
+    [SerializeField] BossEncounter _bossEncounterPrefab;
+    [SerializeField] Transform _mazeParent, _encountersParent, _endsParent;
     GameObject _player;
 
     List<Vector2> _directions = new()
@@ -25,6 +27,7 @@ public class MazeGenerator : MonoBehaviour
     };
 
     List<Vector2> _openSpaces = new();
+    List<Vector2> _deadEnds = new();
 
     void OnEnable()
     {
@@ -45,6 +48,7 @@ public class MazeGenerator : MonoBehaviour
         Generate();
         DrawMap();
         PopulateMap();
+        FillDeadEnds();
     }
 
     void InitializeMap()
@@ -129,19 +133,45 @@ public class MazeGenerator : MonoBehaviour
                 _player.transform.position = new(space.x * _scale, 0, space.y * _scale);
                 continue;
             }
+
             if(space == _openSpaces[_openSpaces.Count - 1])
             {
                 Goal goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
                 goal.SetCoordinates((int)space.x, (int)space.y);
                 return;
             }
-            if(UnityEngine.Random.Range(0, 100) < _encounterChancePercentage)
+
+            if(CountSquareNeighbours((int)space.x, (int)space.y) == 1)
+            {
+                _deadEnds.Add(space);
+            }
+            else if(UnityEngine.Random.Range(0, 100) < _encounterChancePercentage)
             {
                 RandomEncounter randomEnc = Instantiate(_randomEncounterPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _encountersParent);
                 randomEnc.SetCoordinates((int)space.x, (int)space.y);
 
                 randomEnc.name = $"Random Encounter {space.x} {space.y}";
             }
+        }
+    }
+
+    void FillDeadEnds()
+    {
+        _deadEnds.Shuffle();
+
+        foreach(var end in _deadEnds)
+        {
+            if(end == _deadEnds[_deadEnds.Count - 1])
+            {
+                BossEncounter bossEncounter = Instantiate(_bossEncounterPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                bossEncounter.SetCoordinates((int)end.x, (int)end.y);
+                bossEncounter.name = $"Final Boss {end.x} {end.y}";
+                return;
+            }
+
+            DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+            deadEnd.SetCoordinates((int)end.x, (int)end.y);
+            deadEnd.name = $"Dead End {end.x} {end.y}";
         }
     }
 

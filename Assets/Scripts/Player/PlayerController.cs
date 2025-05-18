@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _lookSpeed = 2.5f;
 
-    bool _moveForward, _moveLeft, _moveRight;
+    bool _moveForward, _moveBackward, _moveLeft, _moveRight;
     Rigidbody _rigidbody;
 
     void Awake()
@@ -20,9 +20,15 @@ public class PlayerController : MonoBehaviour
         {
             _moveForward = true;
         }
+        else if(Input.GetKey(KeyCode.S))
+        {
+            _moveBackward = true;
+            _moveForward = false;
+        }
         else
         {
             _moveForward = false;
+            _moveBackward = false;
         }
 
         if(Input.GetKey(KeyCode.A))
@@ -49,21 +55,23 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        _rigidbody.linearVelocity = Vector3.zero;
+
         if(_moveForward)
         {
-            _rigidbody.linearVelocity = _moveSpeed * Time.deltaTime * transform.forward;
+            _rigidbody.linearVelocity += _moveSpeed * Time.deltaTime * transform.forward;
         }
-        else if(_moveLeft)
+        if(_moveBackward)
         {
-            _rigidbody.linearVelocity = _moveSpeed * .35f * Time.deltaTime * -transform.right;
+            _rigidbody.linearVelocity += _moveSpeed * 0.45f * Time.deltaTime * -transform.forward;
         }
-        else if(_moveRight)
+        if(_moveLeft)
         {
-            _rigidbody.linearVelocity = _moveSpeed * .35f * Time.deltaTime * transform.right;
+            _rigidbody.linearVelocity += _moveSpeed * .75f * Time.deltaTime * -transform.right;
         }
-        else
+        if(_moveRight)
         {
-            _rigidbody.linearVelocity = Vector3.zero;
+            _rigidbody.linearVelocity += _moveSpeed * .75f * Time.deltaTime * transform.right;
         }
     }
 }

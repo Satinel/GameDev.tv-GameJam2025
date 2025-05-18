@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
-public class MazeUnit : MonoBehaviour
+public class Goal : MonoBehaviour
 {
-    [SerializeField] protected GameObject _mapIcon;
+    public static event Action OnKeyClaimed;
 
-    protected Vector2 _coordinates = new();
+    [SerializeField] GameObject _mapIcon;
+
+    Vector2 _coordinates = new();
 
     bool _isRevealed;
 
@@ -18,6 +21,14 @@ public class MazeUnit : MonoBehaviour
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(!other.gameObject.GetComponentInParent<PlayerInventory>()) { return; }
+
+        other.gameObject.GetComponentInParent<PlayerInventory>().GetKey();
+        OnKeyClaimed?.Invoke();
+    }
+
     public void SetCoordinates(int x, int z)
     {
         _coordinates = new(x, z);
@@ -25,13 +36,13 @@ public class MazeUnit : MonoBehaviour
 
     void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
     {
-        if (_isRevealed) { return; }
-        if (coordinates != _coordinates) { return; }
+        if(_isRevealed) { return; }
+        if(coordinates != _coordinates) { return; }
 
         Reveal();
     }
 
-    protected void Reveal()
+    public void Reveal()
     {
         _mapIcon.SetActive(true);
         _isRevealed = true;

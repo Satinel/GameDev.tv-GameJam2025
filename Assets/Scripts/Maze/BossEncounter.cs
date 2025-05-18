@@ -1,0 +1,82 @@
+using UnityEngine;
+
+public class BossEncounter : MonoBehaviour
+{
+    [SerializeField] Enemy _bossPrefab;
+    [SerializeField] GameObject _mapIcon, _door;
+    [SerializeField] BoxCollider _collider;
+
+    Enemy _boss;
+    bool _isRevealed;
+    Vector2 _coordinates = new();
+
+    void OnEnable()
+    {
+        _boss = Instantiate(_bossPrefab, transform);
+        _boss.transform.Rotate(0, Random.Range(0f, 359f), 0);
+    }
+
+    void Start()
+    {
+        MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
+        Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
+        Goal.OnKeyClaimed += Goal_OnKeyClaimed;
+    }
+
+    void OnDestroy()
+    {
+        MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
+        Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        Goal.OnKeyClaimed -= Goal_OnKeyClaimed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        _door.SetActive(false);
+        if(!_boss) { return; }
+
+        if(other.gameObject.GetComponentInParent<PlayerHealth>())
+        {
+            Debug.Log("Fight Final Boss!");
+            Vector3 lookAtTarget = new(other.transform.position.x, _boss.transform.position.y, other.transform.position.z);
+            _boss.transform.LookAt(lookAtTarget);
+            _boss.SetInBattle(true);
+        }
+    }
+
+    public void SetCoordinates(int x, int z)
+    {
+        _coordinates = new(x, z);
+    }
+
+    void Enemy_OnAnyEnemyKilled(Enemy enemy)
+    {
+        if(enemy == _boss)
+        {
+            Debug.Log("Boss Defeated!");
+            _boss.SetInBattle(false);
+            gameObject.SetActive(false);
+            // TODO Go to next level of dungeon or show a results screen or whatever!
+        }
+    }
+
+    void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
+    {
+        if(_isRevealed) { return; }
+        if(coordinates != _coordinates) { return; }
+
+        Reveal();
+    }
+
+    void Goal_OnKeyClaimed()
+    {
+        Reveal();
+        _collider.isTrigger = true;
+    }
+
+    public void Reveal()
+    {
+        _mapIcon.SetActive(true);
+        _isRevealed = true;
+    }
+}

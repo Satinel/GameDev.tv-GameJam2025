@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class MazeUnit : MonoBehaviour
 {
     [SerializeField] protected GameObject _mapIcon;
 
@@ -25,9 +25,14 @@ public class Goal : MonoBehaviour
 
     void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
     {
-        if(_isRevealed) { return; }
-        if(coordinates != _coordinates) { return; }
+        if (_isRevealed) { return; }
+        if (coordinates != _coordinates) { return; }
 
+        Reveal();
+    }
+
+    public void Reveal()
+    {
         _mapIcon.SetActive(true);
         _isRevealed = true;
     }

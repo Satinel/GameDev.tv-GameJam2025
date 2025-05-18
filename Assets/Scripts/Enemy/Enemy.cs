@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action<Enemy> OnAnyEnemyKilled;
+
     [SerializeField] int _maxHealth = 25;
     [SerializeField] int _health;
     bool _inBattle, _isDead;
@@ -43,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     public void HandleDeath() // Animation Trigger
     {
-        _parent.EnemyDead();
+        OnAnyEnemyKilled?.Invoke(this);
     }
 
     void AnimateDeath()
