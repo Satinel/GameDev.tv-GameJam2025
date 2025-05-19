@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e101ff26e8b2d4bb2935813e770c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossPrefab: {fileID: 6976274375982262919, guid: 627f073e3c3d6084e9b4e229c578918e, type: 3}
+  _bossPrefab: {fileID: 1966919089452940214, guid: 20b6355d433acce429e58923b9c5a717, type: 3}
   _mapIcon: {fileID: 4010301159153291716}
   _door: {fileID: 398171499909963339}
   _collider: {fileID: 3636826354036201719}

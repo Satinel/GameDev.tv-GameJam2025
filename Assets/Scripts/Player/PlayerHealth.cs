@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static event Action OnPlayerDeath;
+
     [SerializeField] int _maxHealth;
 
     int _currentHealth;
@@ -26,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     void HandleDeath()
     {
-        Debug.Log("Player died! (That's bad)");
+        OnPlayerDeath?.Invoke();
+        // TODO Some UI Somewhere shows final stats of the run
     }
 }

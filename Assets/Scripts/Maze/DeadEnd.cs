@@ -16,13 +16,13 @@ public class DeadEnd : MonoBehaviour
     void OnEnable()
     {
         MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
     }
 
     void OnDisable()
     {
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
     }
 
     void Start()

@@ -19,14 +19,14 @@ public class BossEncounter : MonoBehaviour
     void Start()
     {
         MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
         Goal.OnKeyClaimed += Goal_OnKeyClaimed;
     }
 
     void OnDestroy()
     {
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
         Goal.OnKeyClaimed -= Goal_OnKeyClaimed;
     }
 

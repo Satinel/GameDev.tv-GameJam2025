@@ -19,13 +19,13 @@ public class RandomEncounter : MonoBehaviour
 
     void Start()
     {
-        Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
         MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
     }
 
     void OnDestroy()
     {
-        Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
     }
 
