@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 using System;
 
 public class OptionsMenu : MonoBehaviour
@@ -76,11 +76,11 @@ public class OptionsMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_audioButton);
     }
 
-    public void ReloadScene()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    // public void ReloadScene()
+    // {
+    //     Time.timeScale = 1;
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    // }
 
     public void PromptQuit()
     {

@@ -44,20 +44,23 @@ public class Enemy : MonoBehaviour
         OnEnemyTurnEnd?.Invoke();
     }
 
-    public void TakeDamage(int amount)
+    public bool TakeDamage(int amount)
     {
-        if(!_inBattle || _isDead) { return; }
+        if(!_inBattle || _isDead) { return _isDead; }
 
         _health -= amount;
 
         if(_health <= 0)
         {
+            _isDead = true;
             AnimateDeath();
         }
         else
         {
             AnimateHurt();
         }
+
+        return _isDead;
     }
 
     public void HandleDeath() // Animation Trigger
@@ -67,7 +70,6 @@ public class Enemy : MonoBehaviour
 
     void AnimateDeath()
     {
-        _isDead = true;
         _animator.SetTrigger("Death");
     }
 

@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results;
     [SerializeField] GameObject[] _attackButtons;
     [SerializeField] Button[] _buttons;
+    [SerializeField] GameObject _closeResultsButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText;
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
@@ -20,12 +22,15 @@ public class PlayerCombat : MonoBehaviour
     // TODO EventSystems setting of buttons to be selected for controller support everywhere
 
     Enemy _currentEnemy;
+    bool _isPlayerTurn, _optionsOpen;
 
     void Start()
     {
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd += Enemy_OnEnemyTurnEnd;
         Enemy.OnAnyEnemyKilled += Enemy_OnAnyEnemyKilled;
+        OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
     }
 
     void OnDestroy()
@@ -33,6 +38,8 @@ public class PlayerCombat : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd -= Enemy_OnEnemyTurnEnd;
         Enemy.OnAnyEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
@@ -51,10 +58,36 @@ public class PlayerCombat : MonoBehaviour
 
     void Enemy_OnAnyEnemyKilled(Enemy enemy)
     {
+        HideAttackButtons();
         _combatButtonsParent.SetActive(false);
         _results.SetActive(true);
         _combatLog.text += $"\n{_currentEnemy.name} Was Defeated!";
         // TODO Message about gaining xp/money/item (also shown in _resultsText)
+        if(!_optionsOpen)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_closeResultsButton);
+        }
+    }
+
+    void OptionsMenu_OnOptionsOpened()
+    {
+        _optionsOpen = true;
+    }
+
+    void OptionsMenu_OnOptionsClosed()
+    {
+        _optionsOpen = false;
+        if(!_isPlayerTurn) { return; }
+        if(_results.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_closeResultsButton);
+        }
+        else
+        {
+            SelectFirstInteractableButton();
+        }
     }
 
     public void CloseCombatMenu() // UI Button
@@ -64,13 +97,7 @@ public class PlayerCombat : MonoBehaviour
         _combatMenu.SetActive(false);
     }
 
-    // public void ShowAttacks(GameObject attack1, GameObject attack2) // UI Button
-    // {
-    //     attack1.SetActive(true);
-    //     attack2.SetActive(true);
-    // }
-
-    void HideAttackButtons()
+    public void HideAttackButtons()
     {
         foreach(GameObject attackButton in _attackButtons)
         {
@@ -80,15 +107,40 @@ public class PlayerCombat : MonoBehaviour
 
     public void UseAttack(int index) // UI Button
     {
+        EventSystem.current.SetSelectedGameObject(null);
         HideAttackButtons();
         // TODO To-Hit Role/Damage/Status/etc. aka actual combat
         int damageDealt = 5 * index; // TODO use index to call attacks from player equipment (or whatever)
-        _currentEnemy.TakeDamage(damageDealt); // Remember to fix this!
+        bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Remember to fix this!
         _combatLog.text += $"\n{_currentEnemy.name} took {damageDealt} Damage!";
+        if(!enemyDead)
+        {
+            SelectFirstInteractableButton();
+        }
+    }
+
+    public void SelectFirstInteractableButton()
+    {
+        if(_optionsOpen) { return; }
+
+        foreach(Button button in _buttons)
+        {
+            if(button.interactable)
+            {
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
+                break;
+            }
+        }
     }
 
     public void EndPlayerTurn() // UI Button
     {
+        _isPlayerTurn = false;
+        if(!_optionsOpen)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        HideAttackButtons();
         foreach(Button button in _buttons)
         {
             button.interactable = false;
@@ -98,10 +150,16 @@ public class PlayerCombat : MonoBehaviour
 
     void StartPlayerTurn()
     {
+        _isPlayerTurn = true;
         foreach(Button button in _buttons)
         {
             button.gameObject.SetActive(true);
             button.interactable = true;
+        }
+        if(!_optionsOpen)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_buttons[0].gameObject);
         }
     }
 }
