@@ -140,6 +140,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9141103999270008839, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6171306028162383816}
+    - target: {fileID: 9141103999270008839, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 6171306028162383816}
@@ -1146,6 +1150,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9141103999270008839, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6171306028162383816}
     - target: {fileID: 9141103999270008839, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
