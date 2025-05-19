@@ -1180,6 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Frog
+  <Initiative>k__BackingField: 10
   _maxHealth: 25
   _attacksPerTurn: 1
 --- !u!1 &6462050082117188000

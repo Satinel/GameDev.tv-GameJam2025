@@ -655,7 +655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa345083f2449140a4f6235041f1ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Elite Snake
+  <Name>k__BackingField: Serpent
+  <Initiative>k__BackingField: 9
   _maxHealth: 45
   _attacksPerTurn: 1
 --- !u!1 &7504824489953900419

@@ -630,6 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Snake
+  <Initiative>k__BackingField: 4
   _maxHealth: 25
   _attacksPerTurn: 1
 --- !u!1 &6998419104650283478

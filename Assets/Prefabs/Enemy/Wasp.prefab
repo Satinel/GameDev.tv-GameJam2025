@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wasp
+  <Initiative>k__BackingField: 6
   _maxHealth: 25
   _attacksPerTurn: 1
 --- !u!1 &1255383751626257826

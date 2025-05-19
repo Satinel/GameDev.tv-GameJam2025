@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> OnEnemyKilled;
 
     [field:SerializeField] public string Name { get; set; }
+    [field:SerializeField] public int Initiative { get; set; } = 5;
     [SerializeField] int _maxHealth = 25;
     [SerializeField] int _attacksPerTurn = 1;
 

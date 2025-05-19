@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -357,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71846968967603230}
   - component: {fileID: 10618241700530724}
+  - component: {fileID: 1823800360448992166}
   m_Layer: 5
   m_Name: Health Slider
   m_TagString: Untagged
@@ -437,6 +438,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1823800360448992166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898565997711823269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c410aff914baf14abd67f4bc41e3701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 7683730684360550462}
 --- !u!1 &8517774753926729102
 GameObject:
   m_ObjectHideFlags: 0

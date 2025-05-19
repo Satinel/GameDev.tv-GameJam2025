@@ -1192,6 +1192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rat
+  <Initiative>k__BackingField: 7
   _maxHealth: 25
   _attacksPerTurn: 1
 --- !u!1 &7117876630732946922

@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 8361965815965367409}
   - component: {fileID: 8287712847053111603}
   - component: {fileID: 4907908710258672733}
+  - component: {fileID: 4643666014486381817}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -480,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0fe75d842ff634f90dbd6326c78f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 250
 --- !u!114 &4907908710258672733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,3 +494,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d47fcb9340be84796015fe8033fc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4643666014486381817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442926962721528397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f52772d2772804388f01cbe6a5ccee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Strength>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  <Fortitude>k__BackingField: 0
+  <Evasion>k__BackingField: 0
+  <Tenacity>k__BackingField: 0
+  <Initiative>k__BackingField: 2

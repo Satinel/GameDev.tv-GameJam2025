@@ -21,6 +21,7 @@ public class PlayerCombat : MonoBehaviour
     // TODO Set/Get equipped items in claws if any
 
     PlayerHealth _playerHealth;
+    PlayerStats _playerStats;
     Enemy _currentEnemy;
     bool _isPlayerTurn, _optionsOpen;
 
@@ -30,6 +31,11 @@ public class PlayerCombat : MonoBehaviour
     }
 
     void Start()
+    {
+        _playerStats = _playerHealth.GetComponent<PlayerStats>();
+    }
+
+    void OnEnable()
     {
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
@@ -41,7 +47,7 @@ public class PlayerCombat : MonoBehaviour
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
@@ -76,8 +82,19 @@ public class PlayerCombat : MonoBehaviour
         _combatButtonsParent.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
-        // TODO Initiative Role?
-        StartPlayerTurn();
+        // TODO Initiative Role:
+        int playerRoll = UnityEngine.Random.Range(0, 20);
+        _combatLog.text += $"\nYou Roll Initiative!\n{playerRoll + _playerStats.Initiative} ({playerRoll} + {_playerStats.Initiative})\n";
+        int enemyRoll = UnityEngine.Random.Range(0, 20);
+        _combatLog.text += $"\n{_currentEnemy.Name} Rolls Initiative!\n{enemyRoll + _currentEnemy.Initiative} ({_currentEnemy.Initiative} + {enemyRoll})\n";
+        if(playerRoll + _playerStats.Initiative >= enemyRoll + _currentEnemy.Initiative)
+        {
+            StartPlayerTurn();
+        }
+        else
+        {
+            EndPlayerTurn();
+        }
     }
 
     void Enemy_OnEnemyTurnEnd()
@@ -106,12 +123,13 @@ public class PlayerCombat : MonoBehaviour
 
     void EnemyAbility_OnEnemyAbilityUsed(EnemyAbility ability)
     {
-        if(ability.AlwaysHits || UnityEngine.Random.Range(0, 100) + ability.HitChance >= 100)
+        if(ability.AlwaysHits || UnityEngine.Random.Range(0, 100) + ability.HitChance >= 100) // TODO Take _playerStats.Evasion into account
         {
             ability.Hit(); // TODO Effects other than Damage
             _combatLog.text += $"\nHit!\n";
             if(ability.DealsDamage)
             {
+                 // TODO Take _playerStats.SomeDefenseStat into account ie. int damageDealt = ability.Damage - _playerStats.Fortitude (if damageDealt < 0) damageDealt = 0;
                 _combatLog.text += $"\nYou Take {ability.Damage} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(ability.Damage);
             }
@@ -144,7 +162,7 @@ public class PlayerCombat : MonoBehaviour
             SelectFirstInteractableButton();
         }
     }
-    
+
     public void EndPlayerTurn() // UI Button
     {
         _isPlayerTurn = false;
@@ -157,6 +175,7 @@ public class PlayerCombat : MonoBehaviour
         {
             button.interactable = false;
         }
+        _combatLog.text += $"\n{_currentEnemy.Name}'s Turn Begins!\n";
         _currentEnemy.AttackStarted();
     }
 
@@ -216,5 +235,6 @@ public class PlayerCombat : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_buttons[0].gameObject);
         }
+        _combatLog.text += $"\nYour Turn Begins!\n";
     }
 }
