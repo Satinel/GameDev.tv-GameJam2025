@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -9,6 +10,25 @@ public class PlayerInventory : MonoBehaviour
     [field:SerializeField] public Equipable RightClawWeapon { get; private set; }
 
     public bool HasKey { get; private set; }
+
+    [SerializeField] Transform _trinketsParent, _weaponsParent;
+    [SerializeField] Equipable _unarmedLeft, _unarmedRight;
+
+    List<Equipable> _weapons = new();
+    List<Trinket> _trinkets = new();
+
+    void Start()
+    {
+        foreach(Equipable weapon in _weaponsParent.GetComponentsInChildren<Equipable>())
+        {
+            _weapons.Add(weapon);
+        }
+
+        foreach(Trinket trinket in _trinketsParent.GetComponentsInChildren<Trinket>())
+        {
+            _trinkets.Add(trinket);
+        }
+    }
 
     public PlayerAbility GetAbility(int index)
     {
@@ -38,8 +58,35 @@ public class PlayerInventory : MonoBehaviour
         OnWeaponEquipped?.Invoke(weapon, isLeft);
     }
 
+    public void RemoveWeapon(bool isLeft)
+    {
+        if(isLeft)
+        {
+            LeftClawWeapon = _unarmedLeft;
+        }
+        else
+        {
+            RightClawWeapon = _unarmedRight;
+        }
+    }
+
     public void GetKey()
     {
         HasKey = true;
+    }
+
+    public void AddTrinket(Trinket newTrinket)
+    {
+        foreach(Trinket trinket in _trinkets)
+        {
+            if(trinket.GetType() == newTrinket.GetType()) // If Player already has this exact type of trinket, upgrade it
+            {
+                trinket.LevelUp();
+                return;
+            }
+        }
+
+        Trinket addedTrinket = Instantiate(newTrinket, _trinketsParent);
+        _trinkets.Add(addedTrinket);
     }
 }

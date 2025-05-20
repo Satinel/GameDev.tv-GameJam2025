@@ -127,15 +127,19 @@ public class PlayerCombat : MonoBehaviour
 
     void EnemyAbility_OnEnemyAbilityUsed(EnemyAbility ability)
     {
-        if(ability.AlwaysHits || UnityEngine.Random.Range(0, 100) + ability.HitChance >= 100) // TODO Take _playerStats.CurrentEvasion into account
+        if(ability.AlwaysHits || UnityEngine.Random.Range(0, 100) + ability.HitChance + _currentEnemy.Accuracy - _playerStats.CurrentEvasion >= 100)
         {
             _combatLog.text += $"\nHit!\n";
-            ability.Hit(); // TODO Effects other than Damage
+            ability.Hit();
             if(ability.DealsDamage)
             {
-                 // TODO Take _playerStats.Fortitude into account ie. int damageDealt = ability.Damage - _playerStats.CurrentFortitude (if damageDealt < 0) damageDealt = 0;
-                _combatLog.text += $"\nYou Take {ability.Damage} {ability.Adjective} Damage!\n";
-                _playerHealth.TakeDamage(ability.Damage); // TODO? Critical Chance/Damage
+                int damageDealt = ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude;
+                if(damageDealt < 0)
+                {
+                    damageDealt = 0;
+                }
+                _combatLog.text += $"\nYou Take {damageDealt} {ability.Adjective} Damage!\n";
+                _playerHealth.TakeDamage(damageDealt); // TODO? Critical Chance/Damage
             }
             // TODO Play Hit sound
         }
@@ -212,16 +216,20 @@ public class PlayerCombat : MonoBehaviour
         PlayerAbility selectedAbility = _playerInventory.GetAbility(index);
         _combatLog.text += $"\nYou Used {selectedAbility.Name}!\n";
 
-        if(selectedAbility.AlwaysHits || UnityEngine.Random.Range(0, 100) + selectedAbility.HitChance >= 100) // TODO Take _playerStats.CurrentAccuracy into account
+        if(selectedAbility.AlwaysHits || UnityEngine.Random.Range(0, 100) + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100)
         {
             _combatLog.text += $"\nHit!\n";
-            selectedAbility.Hit(); // TODO Effects other than Damage
-            if(selectedAbility.DealsDamage)
+            selectedAbility.Hit();
+            if(selectedAbility.DealsDamage) // TODO? Critical Chance/Damage
             {
-                int damageDealt = selectedAbility.Damage + _playerStats.CurrentStrength; // TODO? Critical Chance/Damage TODO? Something more interesting than just + CurrentStrength (multiplyer, etc.)
+                int damageDealt = selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude;
+                if(damageDealt < 0)
+                {
+                    damageDealt = 0;
+                }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
                 // TODO Play Hit sound
-                bool enemyDead = _currentEnemy.TakeDamage(damageDealt);
+                bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)
                 {
                     SelectFirstInteractableButton();
