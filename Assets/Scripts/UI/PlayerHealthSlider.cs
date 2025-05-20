@@ -30,20 +30,20 @@ public class PlayerHealthSlider : MonoBehaviour
     {
         _slider.maxValue = max;
         _slider.value = current;
-        _text.text = $"HP {FormatValueForText(current)}/{FormatValueForText(max)}";
+        _text.text = $"HP {current.FormatLargeNumbers()}/{max.FormatLargeNumbers()}";
     }
 
-    string FormatValueForText(int value)
-    {
-        return value switch
-        {
-            < 1000 => value.ToString(),
-            < 10000 => (value / 1000f).ToString("N2") + "K",
-            < 100000 => (value / 1000f).ToString("N1") + "K",
-            < 1000000 => (value / 100000f).ToString("N2") + "M",
-            < 10000000 => (value / 100000f).ToString("N1") + "M",
-            < 100000000 => (value / 100000f).ToString("N0") + "M",
-            _ => value.ToString(),
-        };
-    }
+    // string FormatValueForText(int value)
+    // {
+    //     return value switch
+    //     {
+    //         < 1000 => value.ToString(),
+    //         < 10000 => (value / 1000f).ToString("N2") + "K",
+    //         < 100000 => (value / 1000f).ToString("N1") + "K",
+    //         < 1000000 => (value / 100000f).ToString("N2") + "M",
+    //         < 10000000 => (value / 100000f).ToString("N1") + "M",
+    //         < 100000000 => (value / 100000f).ToString("N0") + "M",
+    //         _ => value.ToString(),
+    //     };
+    // }
 }

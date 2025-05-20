@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0fe75d842ff634f90dbd6326c78f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 250
+  _tenacityMultiplyer: 125
 --- !u!114 &4907908710258672733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,9 +506,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f52772d2772804388f01cbe6a5ccee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Strength>k__BackingField: 0
-  <Accuracy>k__BackingField: 0
-  <Fortitude>k__BackingField: 0
-  <Evasion>k__BackingField: 0
-  <Tenacity>k__BackingField: 0
-  <Initiative>k__BackingField: 2
+  <Strength>k__BackingField: 1
+  <Accuracy>k__BackingField: 1
+  <Fortitude>k__BackingField: 1
+  <Evasion>k__BackingField: 1
+  <Tenacity>k__BackingField: 1
+  <Initiative>k__BackingField: 1
+  <Money>k__BackingField: 0
