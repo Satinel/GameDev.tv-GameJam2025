@@ -3,8 +3,8 @@ using System;
 
 public class PlayerAbility : MonoBehaviour
 {
-    public static event Action<PlayerAbility> OnPlayerAbilityStarted;
-    public static event Action<PlayerAbility> OnPlayerAbilityUsed;
+    public static event Action<string> OnPlayerAbilityUsed;
+
     [field:SerializeField] public string Name { get; private set; } = "Generic Ability";
     [field:SerializeField] public string Adjective { get; private set; } = "<color=Green>Player</color>";
     [field:SerializeField] public float HitChance { get; private set; } = 75f;
@@ -12,18 +12,15 @@ public class PlayerAbility : MonoBehaviour
     [field:SerializeField] public bool AlwaysHits { get; private set; } = false;
     [field:SerializeField] public bool DealsDamage { get; private set; } = true;
 
-    public virtual void StartAbility()
-    {
-        OnPlayerAbilityStarted?.Invoke(this);
-    }
-
-    public virtual void UseAbility()
-    {
-        OnPlayerAbilityUsed?.Invoke(this);
-    }
+    [SerializeField] string UseMessage = string.Empty;
+    [SerializeField] bool _sendUseMessage;
 
     public virtual void Hit()
     {
+        if(_sendUseMessage)
+        {
+            OnPlayerAbilityUsed?.Invoke(UseMessage);
+        }
         // Cause status ailment or what-have-you
     }
 }

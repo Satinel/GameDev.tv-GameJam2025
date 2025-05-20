@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -12,23 +12,16 @@ public class PlayerInventory : MonoBehaviour
 
     public PlayerAbility GetAbility(int index)
     {
-        switch(index)
+        return index switch
         {
-            case 0:
-                return LeftClawWeapon.Ability1;
-            case 1:
-                return LeftClawWeapon.Ability2;
-            case 2:
-                return TailWeapon.Ability1;
-            case 3:
-                return TailWeapon.Ability2;
-            case 4:
-                return RightClawWeapon.Ability1;
-            case 5:
-                return RightClawWeapon.Ability2;
-            default:
-                return LeftClawWeapon.Ability1;
-        }
+            0 => LeftClawWeapon.Ability1,
+            1 => LeftClawWeapon.Ability2,
+            2 => TailWeapon.Ability1,
+            3 => TailWeapon.Ability2,
+            4 => RightClawWeapon.Ability1,
+            5 => RightClawWeapon.Ability2,
+            _ => LeftClawWeapon.Ability1,
+        };
     }
 
     public void EquipWeapon(Equipable weapon, bool isLeft)

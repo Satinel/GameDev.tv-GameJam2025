@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -14,6 +14,15 @@ public class PlayerStats : MonoBehaviour
     [field:SerializeField] public int Initiative { get; set; } // Primarily governs turn order
     [field:SerializeField] public int Money { get; set; } // Primarily governs Tigey
 
+    int _tempBonusStrength;
+    int _tempBonusAccuracy;
+    int _tempBonusFortitude;
+    int _tempBonusEvasion;
+
+    public int CurrentStrength => Strength + _tempBonusStrength;
+    public int CurrentAccuracy => Accuracy + _tempBonusAccuracy;
+    public int CurrentFortitude => Fortitude + _tempBonusFortitude;
+    public int CurrentEvasion => Evasion + _tempBonusEvasion;
 
     public enum Stats
     {
@@ -23,6 +32,45 @@ public class PlayerStats : MonoBehaviour
         Evasion,
         Tenacity,
         Initiative
+    }
+
+    void OnEnable()
+    {
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+    }
+
+    void OnDisable()
+    {
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+    }
+
+    void PlayerCombat_OnCombatResolved()
+    {
+        _tempBonusStrength = 0;
+        _tempBonusAccuracy = 0;
+        _tempBonusFortitude = 0;
+        _tempBonusEvasion = 0;
+    }
+
+    public void GainTempBonus(Stats stat, int amount)
+    {
+        switch(stat)
+        {
+            case Stats.Strength:
+                _tempBonusStrength += amount;
+                break;
+            case Stats.Accuracy:
+                _tempBonusAccuracy += amount;
+                break;
+            case Stats.Fortitude:
+                _tempBonusFortitude += amount;
+                break;
+            case Stats.Evasion:
+                _tempBonusEvasion += amount;
+                break;
+            default:
+                break;
+        }
     }
 
     public void IncreaseStat(Stats stat, int amount)
@@ -64,5 +112,4 @@ public class PlayerStats : MonoBehaviour
 
         OnMoneyChanged?.Invoke(Money);
     }
-
 }

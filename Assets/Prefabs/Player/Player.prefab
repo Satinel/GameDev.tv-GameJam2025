@@ -50,6 +50,8 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
 --- !u!1 &969913625932710865
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +102,8 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
 --- !u!1 &1050778114940919757
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +134,59 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6821622076262332545}
+  - {fileID: 8142942830942228017}
   m_Father: {fileID: 1445799731038215300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1756249606307880601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8142942830942228017}
+  - component: {fileID: 8322965815924578287}
+  m_Layer: 0
+  m_Name: Swapped Right Claw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8142942830942228017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756249606307880601}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1229716164850327988}
+  - {fileID: 1813496706351970323}
+  m_Father: {fileID: 5747204309219795110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8322965815924578287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756249606307880601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac37d30d2da0a3442930e4d48171661a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Gripping Claw
+  <Ability1>k__BackingField: {fileID: 6772458749281503690}
+  <Ability2>k__BackingField: {fileID: 2355752286592710778}
+  <IsLeftSlot>k__BackingField: 0
 --- !u!1 &2329796533606309968
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +236,7 @@ MonoBehaviour:
   <Name>k__BackingField: Tail
   <Ability1>k__BackingField: {fileID: 4522708598885053058}
   <Ability2>k__BackingField: {fileID: 6775933581727316714}
+  <IsLeftSlot>k__BackingField: 0
 --- !u!1 &2345326636199379538
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +317,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Right Claw
   <Ability1>k__BackingField: {fileID: 4993506079645862419}
-  <Ability2>k__BackingField: {fileID: 6426866893377110440}
+  <Ability2>k__BackingField: {fileID: 7461017155599395606}
+  <IsLeftSlot>k__BackingField: 0
+--- !u!1 &2435542661939442857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813496706351970323}
+  - component: {fileID: 2355752286592710778}
+  m_Layer: 0
+  m_Name: Ability2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1813496706351970323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435542661939442857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8142942830942228017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2355752286592710778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435542661939442857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc689b86e111142499a907b13482d667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Tear
+  <Adjective>k__BackingField: <color=Red>Tearing</color>
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 12
+  <AlwaysHits>k__BackingField: 1
+  <DealsDamage>k__BackingField: 1
+  UseMessage: \nGrip Released!\nAccuracy Returned To Normal!\n
+  _sendUseMessage: 1
+  _accuracyBuff: -15
+  _swappedEquipment: {fileID: 3137806993205200348}
+  _baseEquipable: {fileID: 3137806993205200348}
 --- !u!1 &2461063579065275813
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +424,58 @@ MonoBehaviour:
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
+--- !u!1 &2775091269372425626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6146790686659875403}
+  - component: {fileID: 5035502185339537485}
+  m_Layer: 0
+  m_Name: Swapped Left Claw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6146790686659875403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775091269372425626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3633724867233365027}
+  - {fileID: 3794600179037581066}
+  m_Father: {fileID: 7593166869276995549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5035502185339537485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775091269372425626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac37d30d2da0a3442930e4d48171661a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Gripping Claw
+  <Ability1>k__BackingField: {fileID: 6689751933891213306}
+  <Ability2>k__BackingField: {fileID: 1177064059533023019}
+  <IsLeftSlot>k__BackingField: 1
 --- !u!1 &3568213429699988032
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045356040500816172}
-  - component: {fileID: 9145234479200463385}
+  - component: {fileID: 8253597770916233285}
   m_Layer: 0
   m_Name: Ability2
   m_TagString: Untagged
@@ -344,7 +508,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1407619673902670025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9145234479200463385
+--- !u!114 &8253597770916233285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,15 +517,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3568213429699988032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
+  m_Script: {fileID: 11500000, guid: fc689b86e111142499a907b13482d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Grab
-  <Adjective>k__BackingField: <color=Red>Crush</color>
-  <HitChance>k__BackingField: 50
+  <Adjective>k__BackingField: <color=Red>Grip</color>
+  <HitChance>k__BackingField: 90
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: \nYou Get A Strong Grip!\nAccuracy Increased!\n
+  _sendUseMessage: 1
+  _accuracyBuff: 15
+  _swappedEquipment: {fileID: 5035502185339537485}
+  _baseEquipable: {fileID: 8561436319350109281}
 --- !u!1 &4225538726014009835
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +700,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Left Claw
   <Ability1>k__BackingField: {fileID: 6505967035774557494}
-  <Ability2>k__BackingField: {fileID: 9145234479200463385}
+  <Ability2>k__BackingField: {fileID: 8253597770916233285}
+  <IsLeftSlot>k__BackingField: 1
+--- !u!1 &6153999192253545861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3633724867233365027}
+  - component: {fileID: 6689751933891213306}
+  m_Layer: 0
+  m_Name: Ability1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3633724867233365027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153999192253545861}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6146790686659875403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6689751933891213306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153999192253545861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Squeeze
+  <Adjective>k__BackingField: <color=Red>Crush</color>
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 8
+  <AlwaysHits>k__BackingField: 1
+  <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
 --- !u!1 &6653714321228068291
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +925,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1407619673902670025}
+  - {fileID: 6146790686659875403}
   m_Father: {fileID: 1445799731038215300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7343518234329833299
@@ -892,6 +1115,8 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
 --- !u!1 &7442926962721528397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6028927116474670641}
-  - component: {fileID: 6426866893377110440}
+  - component: {fileID: 7461017155599395606}
   m_Layer: 0
   m_Name: Ability2
   m_TagString: Untagged
@@ -1076,7 +1301,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6821622076262332545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6426866893377110440
+--- !u!114 &7461017155599395606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1085,12 +1310,124 @@ MonoBehaviour:
   m_GameObject: {fileID: 7616818233747393119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
+  m_Script: {fileID: 11500000, guid: fc689b86e111142499a907b13482d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Grasp
-  <Adjective>k__BackingField: <color=Red>Crush</color>
-  <HitChance>k__BackingField: 50
+  <Name>k__BackingField: Grab
+  <Adjective>k__BackingField: <color=Red>Grip</color>
+  <HitChance>k__BackingField: 90
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  UseMessage: \nYou Get A Strong Grip!\nAccuracy Increased!\n
+  _sendUseMessage: 1
+  _accuracyBuff: 15
+  _swappedEquipment: {fileID: 8322965815924578287}
+  _baseEquipable: {fileID: 3137806993205200348}
+--- !u!1 &8722961301379913648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3794600179037581066}
+  - component: {fileID: 1177064059533023019}
+  m_Layer: 0
+  m_Name: Ability2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3794600179037581066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722961301379913648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6146790686659875403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1177064059533023019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722961301379913648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc689b86e111142499a907b13482d667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Tear
+  <Adjective>k__BackingField: <color=Red>Tearing</color>
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 12
+  <AlwaysHits>k__BackingField: 1
+  <DealsDamage>k__BackingField: 1
+  UseMessage: \nGrip Released!\nAccuracy Returned To Normal!\n
+  _sendUseMessage: 1
+  _accuracyBuff: -15
+  _swappedEquipment: {fileID: 8561436319350109281}
+  _baseEquipable: {fileID: 8561436319350109281}
+--- !u!1 &8809435752208281563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229716164850327988}
+  - component: {fileID: 6772458749281503690}
+  m_Layer: 0
+  m_Name: Ability1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229716164850327988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809435752208281563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8142942830942228017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6772458749281503690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809435752208281563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Squeeze
+  <Adjective>k__BackingField: <color=Red>Crush</color>
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 8
+  <AlwaysHits>k__BackingField: 1
+  <DealsDamage>k__BackingField: 1
+  UseMessage: 
+  _sendUseMessage: 0
