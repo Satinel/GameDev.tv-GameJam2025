@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c410aff914baf14abd67f4bc41e3701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slider: {fileID: 10618241700530724}
   _text: {fileID: 7683730684360550462}
 --- !u!1 &8517774753926729102
 GameObject:

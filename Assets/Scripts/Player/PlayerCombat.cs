@@ -35,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _playerStats = _playerHealth.GetComponent<PlayerStats>();
         _playerInventory = _playerHealth.GetComponent<PlayerInventory>();
+        _combatMenu.SetActive(false);
     }
 
     void OnEnable()

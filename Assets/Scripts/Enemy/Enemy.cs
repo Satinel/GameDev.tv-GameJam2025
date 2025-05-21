@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public static event Action<Enemy> OnFightStarted;
     public static event Action OnEnemyTurnEnd;
+    public static event Action<int> OnEnemyHealthChanged;
     public static event Action<Enemy> OnEnemyKilled;
 
     [field:SerializeField] public string Name { get; private set; }
@@ -17,9 +18,11 @@ public class Enemy : MonoBehaviour
     [field:SerializeField] public int Tenacity { get; set; } = 1;
     [field:SerializeField] public int Initiative { get; private set; } = 5;
     [SerializeField] int _maxHealth = 25;
+    public int MaxHealth => _maxHealth;
     [SerializeField] int _attacksPerTurn = 1;
 
     int _health;
+    public int CurrentHealth => _health;
     int _attacksPerformed;
 
     bool _inBattle, _isDead, _isFirstTurn, _playerDead;
@@ -115,6 +118,17 @@ public class Enemy : MonoBehaviour
         _health -= amount;
 
         if(_health <= 0)
+        {
+            _health = 0;
+        }
+        if(_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+
+        OnEnemyHealthChanged?.Invoke(amount);
+
+        if(_health == 0)
         {
             _isDead = true;
             AnimateDeath();

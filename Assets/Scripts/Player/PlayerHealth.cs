@@ -8,8 +8,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] int _tenacityMultiplyer = 125;
 
-    int _maxHealth;
-    int _currentHealth;
+    int _maxHealth = 125;
+    int _currentHealth = 125;
     PlayerStats _playerStats;
 
     void Awake()
@@ -20,13 +20,11 @@ public class PlayerHealth : MonoBehaviour
     void OnEnable()
     {
         PlayerStats.OnStatIncreased += PlayerStats_OnTenacityIncreased;
-        PlayerHealthSlider.OnSliderEnabled += PlayerHealthSlider_OnSliderEnabled;
     }
 
     void OnDisable()
     {
         PlayerStats.OnStatIncreased -= PlayerStats_OnTenacityIncreased;
-        PlayerHealthSlider.OnSliderEnabled -= PlayerHealthSlider_OnSliderEnabled;
     }
 
     void Start()
@@ -45,11 +43,6 @@ public class PlayerHealth : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
-        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
-    }
-
-    void PlayerHealthSlider_OnSliderEnabled()
-    {
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
