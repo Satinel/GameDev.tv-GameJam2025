@@ -188,6 +188,7 @@ public class MazeGenerator : MonoBehaviour
                 BossEncounter bossEncounter = Instantiate(_bossEncounterPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
                 bossEncounter.SetCoordinates((int)end.x, (int)end.y);
                 bossEncounter.name = $"Final Boss {end.x} {end.y}";
+                RotateDeadEnd(bossEncounter.transform, end);
                 return;
             }
             // TODO Create a store at _deadEnds[0] (Note that this won't conflict with bossEncounter since in the case of 1 DeadEnd it would happen first and exit the foreach)
@@ -195,7 +196,24 @@ public class MazeGenerator : MonoBehaviour
             DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
             deadEnd.SetCoordinates((int)end.x, (int)end.y);
             deadEnd.name = $"Dead End {end.x} {end.y}";
+            RotateDeadEnd(deadEnd.transform, end);
         }
+    }
+
+    void RotateDeadEnd(Transform deadEnd, Vector2 loc)
+    {
+            if(_map[(int)loc.x + 1, (int)loc.y] == 0)
+            {
+                deadEnd.transform.Rotate(0, 90, 0);
+            }
+            if(_map[(int)loc.x, (int)loc.y - 1] == 0)
+            {
+                deadEnd.transform.Rotate(0, 180, 0);
+            }
+            if(_map[(int)loc.x - 1, (int)loc.y] == 0)
+            {
+                deadEnd.transform.Rotate(0, 270, 0);
+            }
     }
 
     void MazeSpace_OnAnySpaceEntered(Vector2 coordinates)

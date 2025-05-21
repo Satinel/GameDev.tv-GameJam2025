@@ -13,7 +13,6 @@ public class BossEncounter : MonoBehaviour
     void OnEnable()
     {
         _boss = Instantiate(_bossPrefab, transform);
-        _boss.transform.Rotate(0, Random.Range(0f, 359f), 0);
     }
 
     void Start()

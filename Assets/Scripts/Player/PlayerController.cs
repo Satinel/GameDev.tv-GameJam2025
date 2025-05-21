@@ -4,10 +4,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _lookSpeed = 2.5f;
+    [SerializeField] float _autoRotateSpeed = 1f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
-    bool _isFighting, _eventStarted, _optionsOpen;
+    bool _isFighting, _eventStarted, _optionsOpen, _isRotating;
     Rigidbody _rigidbody;
+    Quaternion _targetRotation;
 
     void Awake()
     {
@@ -35,6 +37,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(_isRotating)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, _autoRotateSpeed * Time.deltaTime);
+            if(Quaternion.Angle(transform.rotation, _targetRotation) < 1f)
+            {
+                _isRotating = false;
+            }
+        }
+
         if(_isFighting || _eventStarted || _optionsOpen) { return;}
 
         if(Input.GetKey(KeyCode.W))
@@ -98,9 +109,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Enemy_OnFightStarted(Enemy _)
+    void Enemy_OnFightStarted(Enemy enemy)
     {
         _isFighting = true;
+        Vector3 lookAtTarget = new(enemy.transform.position.x, transform.position.y, enemy.transform.position.z);
+        _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
+        _isRotating = true;
     }
 
     void PlayerCombat_OnCombatResolved()

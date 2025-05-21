@@ -29,7 +29,7 @@ public class DeadEnd : MonoBehaviour
     {
         // TODO Random Roll to determine type of event and only set _enemy if that is the event chosen
         _enemy = Instantiate(_enemies[UnityEngine.Random.Range(0, _enemies.Count)], transform);
-        _enemy.transform.Rotate(0, UnityEngine.Random.Range(0f, 359f), 0);
+        _enemy.transform.Rotate(0, UnityEngine.Random.Range(-35f, 35f), 0);
     }
 
     void OnTriggerEnter(Collider other)
