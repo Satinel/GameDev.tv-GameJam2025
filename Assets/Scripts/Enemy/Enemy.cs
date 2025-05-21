@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public static event Action<Enemy> OnEnemyKilled;
 
     [field:SerializeField] public string Name { get; private set; }
+    [field:SerializeField] public bool IsBoss { get; private set; } = false;
     [field:SerializeField] public int Strength { get; private set; } = 1;
     [field:SerializeField] public int Accuracy { get; set; } = 1;
     [field:SerializeField] public int Fortitude { get; set; } = 1;

@@ -3,6 +3,7 @@ using System;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static event Action<int> OnLevelIncrease;
     public static event Action<Stats, int> OnStatIncreased;
     public static event Action<int> OnMoneyChanged;
 
@@ -21,6 +22,7 @@ public class PlayerStats : MonoBehaviour
 
     int _level = 1;
     int _experience;
+    int _xpToLevel = 100;
 
     public int CurrentStrength => Strength + _tempBonusStrength;
     public int CurrentAccuracy => Accuracy + _tempBonusAccuracy;
@@ -58,7 +60,22 @@ public class PlayerStats : MonoBehaviour
     public void GainExperience(int amount)
     {
         _experience += amount;
-        //if(_experience >= leveluprequirement) { _level++; HandleLevelUp(); }
+        if(_experience >= _xpToLevel)
+        {
+            _level++;
+            HandleLevelUp();
+        }
+    }
+
+    void HandleLevelUp()
+    {
+        IncreaseStat(Stats.Strength, 1);
+        IncreaseStat(Stats.Accuracy, 1);
+        IncreaseStat(Stats.Fortitude, 1);
+        IncreaseStat(Stats.Evasion, 1);
+        IncreaseStat(Stats.Tenacity, 1);
+        IncreaseStat(Stats.Initiative, 1);
+        OnLevelIncrease?.Invoke(_level);
     }
 
     public void GainTempBonus(Stats stat, int amount)
