@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour
     int _tempBonusFortitude;
     int _tempBonusEvasion;
 
+    int _level = 1;
+    int _experience;
+
     public int CurrentStrength => Strength + _tempBonusStrength;
     public int CurrentAccuracy => Accuracy + _tempBonusAccuracy;
     public int CurrentFortitude => Fortitude + _tempBonusFortitude;
@@ -50,6 +53,12 @@ public class PlayerStats : MonoBehaviour
         _tempBonusAccuracy = 0;
         _tempBonusFortitude = 0;
         _tempBonusEvasion = 0;
+    }
+
+    public void GainExperience(int amount)
+    {
+        _experience += amount;
+        //if(_experience >= leveluprequirement) { _level++; HandleLevelUp(); }
     }
 
     public void GainTempBonus(Stats stat, int amount)

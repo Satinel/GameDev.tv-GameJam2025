@@ -75,6 +75,12 @@ public class PlayerInventory : MonoBehaviour
         HasKey = true;
     }
 
+    public void AddWeapon(Equipable newWeapon)
+    {
+        Equipable addedWeapon = Instantiate(newWeapon, _weaponsParent);
+        _weapons.Add(addedWeapon);
+    }
+
     public void AddTrinket(Trinket newTrinket)
     {
         foreach(Trinket trinket in _trinkets)

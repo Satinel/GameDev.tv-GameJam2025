@@ -68,7 +68,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemies:
-  - {fileID: 1966919089452940214, guid: 20b6355d433acce429e58923b9c5a717, type: 3}
+  - {fileID: -4639969856977895938, guid: 8a431c3da0785c24d95b35278f6ac330, type: 3}
+  - {fileID: -7177620125098401147, guid: d5dd84191225dea44ac1dcdac8041a6e, type: 3}
+  - {fileID: 3328033649818316918, guid: 627f073e3c3d6084e9b4e229c578918e, type: 3}
+  - {fileID: 3072797985729650234, guid: acbab0f7ba544814ca3880b921b50524, type: 3}
+  - {fileID: 7680241156815145991, guid: 51eed07da4a577a47810ada12495f44b, type: 3}
   _mapIcon: {fileID: 4010301159153291716}
 --- !u!1 &4010301159153291716
 GameObject:

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1088713998549080126}
   - component: {fileID: 8107414770247082107}
   m_Layer: 0
-  m_Name: Base Enemy Abilities
+  m_Name: Enemy Abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
