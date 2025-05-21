@@ -53,7 +53,7 @@ public class MusicPlayer : MonoBehaviour
         {
             _mainAudioSource.volume = 0;
             _mainAudioSource.clip = _mainSong;
-            _mainAudioSource.loop = true;
+            _mainAudioSource.loop = !_isVictoryMusic;
             _mainAudioSource.Play();
             if(_introClip && _introAudioSource)
             {
@@ -79,7 +79,7 @@ public class MusicPlayer : MonoBehaviour
     void SyncIntro()
     {
         _introAudioSource.PlayOneShot(_introClip, _volume);
-        StartTimer(_introClip.length); // This works by ignoring Time.timeScale in Update()
+        StartTimer(_introClip.length); // This works by ignoring Time.timeScale in Update() HOWEVER it's far from seamless even in editor and is also inconsistent
     }
 
     void StartTimer(float introL)

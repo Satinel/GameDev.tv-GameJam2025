@@ -139,14 +139,14 @@ public class PlayerCombat : MonoBehaviour
                     damageDealt = 0;
                 }
                 _combatLog.text += $"\nYou Take {damageDealt} {ability.Adjective} Damage!\n";
-                _playerHealth.TakeDamage(damageDealt); // TODO? Critical Chance/Damage
+                _playerHealth.TakeDamage(damageDealt);
             }
-            // TODO Play Hit sound
+            // TODO Audio and Visual Hit Effect
         }
         else
         {
             _combatLog.text += $"\nMiss!\n";
-            // TODO Play Missed sound
+            // TODO Audio and Visual Miss Effect
         }
         _currentEnemy.AttackCompleted();
     }
@@ -216,19 +216,33 @@ public class PlayerCombat : MonoBehaviour
         PlayerAbility selectedAbility = _playerInventory.GetAbility(index);
         _combatLog.text += $"\nYou Used {selectedAbility.Name}!\n";
 
-        if(selectedAbility.AlwaysHits || UnityEngine.Random.Range(0, 100) + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100)
+        int toHitRoll = UnityEngine.Random.Range(0, 100);
+        bool criticalHit = toHitRoll > 94;
+
+        if(selectedAbility.AlwaysHits || criticalHit || toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100)
         {
-            _combatLog.text += $"\nHit!\n";
+            if(criticalHit)
+            {
+                _combatLog.text += $"\nCritical Hit!\n";
+            }
+            else
+            {
+                _combatLog.text += $"\nHit!\n";
+            }
             selectedAbility.Hit();
-            if(selectedAbility.DealsDamage) // TODO? Critical Chance/Damage
+            if(selectedAbility.DealsDamage)
             {
                 int damageDealt = selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude;
+                if(criticalHit)
+                {
+                    damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
+                }
                 if(damageDealt < 0)
                 {
                     damageDealt = 0;
                 }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
-                // TODO Play Hit sound
+                // TODO Audio and Visual Hit Effect
                 bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)
                 {
@@ -238,7 +252,7 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            // TODO Play Missed sound
+            // TODO Audio and Visual Miss Effect
             _combatLog.text += $"\nMiss!\n";
             SelectFirstInteractableButton();
         }
