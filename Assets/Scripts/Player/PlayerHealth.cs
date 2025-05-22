@@ -4,6 +4,7 @@ using System;
 public class PlayerHealth : MonoBehaviour
 {
     public static event Action<int, int> OnHealthChanged;
+    public static event Action OnTakeDamage;
     public static event Action OnPlayerDeath;
 
     [SerializeField] int _tenacityMultiplyer = 125;
@@ -52,6 +53,8 @@ public class PlayerHealth : MonoBehaviour
 
         if(_currentHealth < 0) { _currentHealth = 0; }
 
+        OnTakeDamage?.Invoke();
+
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
 
         if(_currentHealth <= 0)
@@ -63,6 +66,5 @@ public class PlayerHealth : MonoBehaviour
     void HandleDeath()
     {
         OnPlayerDeath?.Invoke();
-        // TODO Some UI Somewhere shows final stats of the run
     }
 }
