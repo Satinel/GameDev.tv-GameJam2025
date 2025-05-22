@@ -17,12 +17,17 @@ public class Enemy : MonoBehaviour
     [field:SerializeField] public int Evasion { get; set; } = 1;
     [field:SerializeField] public int Tenacity { get; set; } = 1;
     [field:SerializeField] public int Initiative { get; private set; } = 5;
+    [field:SerializeField] public int ExperienceValue { get; private set; } = 2;
+    [field:SerializeField] public int MoneyValue { get; private set; } = 3;
+    [field:SerializeField] public int LootChance { get; private set; } = 25;
+
     public bool IsPoisoned { get; private set; }
     public int PoisonDamage { get; private set; }
 
     [SerializeField] int _maxHealth = 25;
     public int MaxHealth => _maxHealth;
     [SerializeField] int _attacksPerTurn = 1;
+    [SerializeField] List<Trinket> _lootTable;
 
     int _health;
     public int CurrentHealth => _health;
@@ -45,6 +50,10 @@ public class Enemy : MonoBehaviour
             {
                 _firstAbility = ability;
             }
+        }
+        if(_lootTable.Count == 0)
+        {
+            LootChance = 0;
         }
     }
 
@@ -176,5 +185,11 @@ public class Enemy : MonoBehaviour
     void AnimateAttack()
     {
         _animator.SetTrigger("Attack");
+    }
+
+    public Trinket RollForLoot() // TODO? make loot weighted if possible
+    {
+        int lootRoll = UnityEngine.Random.Range(0, _lootTable.Count - 1);
+        return _lootTable[lootRoll];
     }
 }

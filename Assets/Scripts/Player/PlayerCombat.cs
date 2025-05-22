@@ -142,8 +142,9 @@ public class PlayerCombat : MonoBehaviour
     {
         HideAttackButtons();
         _combatButtonsParent.SetActive(false);
-        _results.SetActive(true);
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
+        _results.SetActive(true);
+        _resultsText.text = $"-RESULTS-\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} Bug Bucks!";
         // TODO Message about gaining xp/money/item (also shown in _resultsText)
         if(!_optionsOpen)
         {
@@ -253,6 +254,7 @@ public class PlayerCombat : MonoBehaviour
     {
         OnCombatResolved?.Invoke();
         _results.SetActive(false);
+        _resultsText.text = string.Empty;
         _combatMenu.SetActive(false);
     }
 

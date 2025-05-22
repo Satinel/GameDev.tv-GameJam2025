@@ -17,6 +17,16 @@ public class PlayerInventory : MonoBehaviour
     List<Equipable> _weapons = new();
     List<Trinket> _trinkets = new();
 
+    void OnEnable()
+    {
+        Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
+    }
+
+    void OnDisable()
+    {
+        Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
+    }
+
     void Start()
     {
         foreach(Equipable weapon in _weaponsParent.GetComponentsInChildren<Equipable>())
@@ -94,5 +104,14 @@ public class PlayerInventory : MonoBehaviour
 
         Trinket addedTrinket = Instantiate(newTrinket, _trinketsParent);
         _trinkets.Add(addedTrinket);
+    }
+
+    void Enemy_OnEnemyKilled(Enemy enemy)
+    {
+        if(UnityEngine.Random.Range(0, 100) < enemy.LootChance)
+        {
+            Trinket lootedTrinket = enemy.RollForLoot();
+            AddTrinket(lootedTrinket);
+        }
     }
 }

@@ -19,6 +19,7 @@ public class GameUI : MonoBehaviour
 
     void OnEnable()
     {
+        PlayerStats.OnExperienceGained += PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged += PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped += PlayerInventory_OnWeaponEquipped;
@@ -26,6 +27,7 @@ public class GameUI : MonoBehaviour
 
     void OnDisable()
     {
+        PlayerStats.OnExperienceGained -= PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged -= PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped -= PlayerInventory_OnWeaponEquipped;
@@ -48,9 +50,10 @@ public class GameUI : MonoBehaviour
 
     void SetStatsText()
     {
-        _statsText.text = $"<size=200%>-<u>Stats</u>-</size>\n";
+        _statsText.text = $"<size=200%>-<u>Stats</u>-</size>\n\nLevel {_playerStats.Level}\n";
         _statsText.text += $"\nStrength {_playerStats.Strength}\nAccuracy {_playerStats.Accuracy}\nFortitude {_playerStats.Fortitude}";
         _statsText.text += $"\nEvasion {_playerStats.Evasion}\nTenacity {_playerStats.Tenacity}\nInitiative {_playerStats.Initiative}";
+        _statsText.text += $"\n\nXP {_playerStats.CurrentXP.FormatLargeNumbers()}/{_playerStats.NextLevelXP.FormatLargeNumbers()}";
     }
 
     void SetAttackButtonTexts()
@@ -71,6 +74,11 @@ public class GameUI : MonoBehaviour
     void ToggleMap()
     {
         _map.SetActive(!_map.activeSelf);
+    }
+
+    void PlayerStats_OnExperienceGained()
+    {
+        SetStatsText();
     }
 
     void PlayerStats_OnStatIncreased(PlayerStats.Stats _, int __)

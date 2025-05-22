@@ -3,6 +3,7 @@ using System;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static event Action OnExperienceGained;
     public static event Action<int> OnLevelIncrease;
     public static event Action<Stats, int> OnStatIncreased;
     public static event Action<int> OnMoneyChanged;
@@ -23,6 +24,9 @@ public class PlayerStats : MonoBehaviour
     int _level = 1;
     int _experience;
     int _xpToLevel = 100;
+    public int Level => _level;
+    public int CurrentXP => _experience;
+    public int NextLevelXP => _xpToLevel;
 
     public int CurrentStrength => Strength + _tempBonusStrength;
     public int CurrentAccuracy => Accuracy + _tempBonusAccuracy;
@@ -42,11 +46,13 @@ public class PlayerStats : MonoBehaviour
     void OnEnable()
     {
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
     }
 
     void OnDisable()
     {
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
     }
 
     void PlayerCombat_OnCombatResolved()
@@ -57,6 +63,12 @@ public class PlayerStats : MonoBehaviour
         _tempBonusEvasion = 0;
     }
 
+    void Enemy_OnEnemyKilled(Enemy enemy)
+    {
+        GainExperience(enemy.ExperienceValue);
+        ChangeMoney(enemy.MoneyValue);
+    }
+
     public void GainExperience(int amount)
     {
         _experience += amount;
@@ -65,14 +77,18 @@ public class PlayerStats : MonoBehaviour
             _level++;
             HandleLevelUp();
         }
+        else
+        {
+            OnExperienceGained?.Invoke();
+        }
     }
 
     void HandleLevelUp()
     {
-        IncreaseStat(Stats.Strength, 1);
-        IncreaseStat(Stats.Accuracy, 1);
-        IncreaseStat(Stats.Fortitude, 1);
-        IncreaseStat(Stats.Evasion, 1);
+        // IncreaseStat(Stats.Strength, 1);
+        // IncreaseStat(Stats.Accuracy, 1);
+        // IncreaseStat(Stats.Fortitude, 1);
+        // IncreaseStat(Stats.Evasion, 1);
         IncreaseStat(Stats.Tenacity, 1);
         IncreaseStat(Stats.Initiative, 1);
         OnLevelIncrease?.Invoke(_level);
