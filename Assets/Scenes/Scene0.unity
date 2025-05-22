@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _introClip: {fileID: 0}
-  _mainSong: {fileID: 8300000, guid: f550d93c720df2747a266a86e53dca3f, type: 3}
+  _mainSong: {fileID: 8300000, guid: 6394a61fde206b44ea4e2560e7b0fb53, type: 3}
   _mainAudioSource: {fileID: 1465464261}
   _introAudioSource: {fileID: 1395074926}
   _volume: 0.75

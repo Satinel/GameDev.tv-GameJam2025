@@ -25,6 +25,7 @@ public class MusicPlayer : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
     }
 
     void OnDisable()
@@ -32,6 +33,7 @@ public class MusicPlayer : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
     }
 
     void Update()
@@ -121,11 +123,8 @@ public class MusicPlayer : MonoBehaviour
 
     void PlayerCombat_OnCombatResolved()
     {
-        if(_isVictoryMusic)
-        {
-            StopMusic();
-            return;
-        }
+        if(_isVictoryMusic) { return; }
+
         if(!_isBattleMusic)
         {
             StartMusic();
@@ -134,5 +133,10 @@ public class MusicPlayer : MonoBehaviour
         {
             StopMusic();
         }
+    }
+
+    void PlayerHealth_OnPlayerDeath()
+    {
+        StopMusic();
     }
 }
