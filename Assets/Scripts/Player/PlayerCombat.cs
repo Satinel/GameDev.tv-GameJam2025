@@ -17,6 +17,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Button[] _buttons;
     [SerializeField] GameObject _closeResultsButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _defaultHit, _defaultMiss; // TODO replace these with prefabs containing visual effects along with sounds
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
     // [SerializeField] GameObject _rightAttack1, _rightAttack2;
@@ -171,12 +173,12 @@ public class PlayerCombat : MonoBehaviour
                 _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
             }
-            // TODO Audio and Visual Hit Effect
+            _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Screen Shake
         }
         else
         {
             _combatLog.text += $"\nMiss!\n";
-            // TODO Audio and Visual Miss Effect
+            _audioSource.PlayOneShot(_defaultMiss); // Visual FX HERE
         }
         _currentEnemy.AttackCompleted();
     }
@@ -284,7 +286,7 @@ public class PlayerCombat : MonoBehaviour
                     damageDealt = 0;
                 }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
-                // TODO Audio and Visual Hit Effect
+                _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)
                 bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)
                 {
@@ -294,8 +296,8 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            // TODO Audio and Visual Miss Effect
-            _combatLog.text += $"\nMiss!\n";
+            _audioSource.PlayOneShot(_defaultMiss);
+            _combatLog.text += $"\nMiss!\n"; // Visual FX HERE
             SelectFirstInteractableButton();
         }
     }
