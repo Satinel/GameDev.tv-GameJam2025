@@ -12,10 +12,10 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] float _defaultDelay = 2f;
 
     [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results;
-    [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash;
+    [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash, _finalResults;
     [SerializeField] GameObject[] _attackButtons;
     [SerializeField] Button[] _buttons;
-    [SerializeField] GameObject _closeResultsButton;
+    [SerializeField] GameObject _closeResultsButton, _mainMenuButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _defaultHit, _defaultMiss; // TODO replace these with prefabs containing visual effects along with sounds
@@ -79,11 +79,11 @@ public class PlayerCombat : MonoBehaviour
             button.gameObject.SetActive(false);
         }
         _combatButtonsParent.SetActive(false);
-        _results.SetActive(true); // TODO Replace with _finalResults.SetActive(true)
+        _finalResults.SetActive(true); // TODO Tally up results for the run
         if(!_optionsOpen)
         {
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_closeResultsButton); // TODO Replace with EventSystem.current.SetSelectedGameObject(_closeFinalResultsButton);
+            EventSystem.current.SetSelectedGameObject(_mainMenuButton); // TODO Replace with EventSystem.current.SetSelectedGameObject(_closeFinalResultsButton);
         }
         _combatLog.text += $"\nYou Were Defeated!\n";
     }
