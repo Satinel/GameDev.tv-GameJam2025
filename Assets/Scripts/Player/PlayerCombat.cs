@@ -1,18 +1,22 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
+using System.Collections;
+using TMPro;
 
 public class PlayerCombat : MonoBehaviour
 {
     public static event Action OnCombatResolved;
 
+    [SerializeField] float _defaultDelay = 2f;
+
     [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results;
+    [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash;
     [SerializeField] GameObject[] _attackButtons;
     [SerializeField] Button[] _buttons;
     [SerializeField] GameObject _closeResultsButton;
-    [SerializeField] TextMeshProUGUI _combatLog, _resultsText;
+    [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
     // [SerializeField] GameObject _rightAttack1, _rightAttack2;
@@ -84,14 +88,39 @@ public class PlayerCombat : MonoBehaviour
 
     void Enemy_OnFightStarted(Enemy enemy)
     {
-        _combatButtonsParent.SetActive(true);
+        _battleStartSplash.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
-        // TODO Initiative Role:
+        StartCoroutine(RollInitiative());
+    }
+
+    IEnumerator RollInitiative()
+    {
+        yield return new WaitForSeconds(_defaultDelay / 1.5f);
+
+        _playerInitiative.text = string.Empty;
+        _enemyInitiative.text = string.Empty;
+        _initiativeSplash.SetActive(true);
+
+        yield return new WaitForSeconds(_defaultDelay / 1.5f);
+
+        _battleStartSplash.SetActive(false);
+
         int playerRoll = UnityEngine.Random.Range(0, 20);
+        //TODO SFX/VFX to indicate something is happening (rolling dice)
+        _playerInitiative.text = (playerRoll + _playerStats.Initiative).ToString();
         _combatLog.text += $"\nYou Roll Initiative!\n{playerRoll + _playerStats.Initiative} ({playerRoll} + {_playerStats.Initiative})\n";
+
+        yield return new WaitForSeconds(_defaultDelay / 3f);
+
         int enemyRoll = UnityEngine.Random.Range(0, 20);
+        //TODO SFX/VFX to indicate something is happening (rolling dice)
+        _enemyInitiative.text = (enemyRoll + _currentEnemy.Initiative).ToString();
         _combatLog.text += $"\n{_currentEnemy.Name} Rolls Initiative!\n{enemyRoll + _currentEnemy.Initiative} ({enemyRoll} + {_currentEnemy.Initiative})\n";
+
+        yield return new WaitForSeconds(_defaultDelay / 2f);
+        _initiativeSplash.SetActive(false);
+
         if(playerRoll + _playerStats.Initiative >= enemyRoll + _currentEnemy.Initiative)
         {
             StartPlayerTurn();
@@ -104,7 +133,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Enemy_OnEnemyTurnEnd()
     {
-        StartPlayerTurn();
+        Invoke(nameof(StartPlayerTurn), _defaultDelay / 1.75f);
     }
 
     void Enemy_OnAnyEnemyKilled(Enemy enemy)
@@ -139,7 +168,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     damageDealt = 0;
                 }
-                _combatLog.text += $"\nYou Take {damageDealt} {ability.Adjective} Damage!\n";
+                _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
             }
             // TODO Audio and Visual Hit Effect
@@ -179,6 +208,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void EndPlayerTurn() // UI Button
     {
+        _enemyTurnSplash.SetActive(true);
         _isPlayerTurn = false;
         if(!_optionsOpen)
         {
@@ -190,6 +220,17 @@ public class PlayerCombat : MonoBehaviour
             button.interactable = false;
         }
         _combatLog.text += $"\n{_currentEnemy.Name}'s Turn Begins!\n";
+        Invoke(nameof(HideEnemySplash), _defaultDelay / 2.5f);
+        Invoke(nameof(StartEnemyTurn), _defaultDelay);
+    }
+
+    void HideEnemySplash()
+    {
+        _enemyTurnSplash.SetActive(false);
+    }
+
+    void StartEnemyTurn()
+    {
         _currentEnemy.AttackStarted();
     }
 
@@ -275,7 +316,10 @@ public class PlayerCombat : MonoBehaviour
 
     void StartPlayerTurn()
     {
+        _playerTurnSplash.SetActive(true);
+        Invoke(nameof(HidePlayerTurnSplash), _defaultDelay / 2);
         _isPlayerTurn = true;
+        _combatButtonsParent.SetActive(true);
         foreach(Button button in _buttons)
         {
             button.gameObject.SetActive(true);
@@ -287,5 +331,10 @@ public class PlayerCombat : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(_buttons[0].gameObject);
         }
         _combatLog.text += $"\nYour Turn Begins!\n";
+    }
+
+    void HidePlayerTurnSplash()
+    {
+        _playerTurnSplash.SetActive(false);
     }
 }

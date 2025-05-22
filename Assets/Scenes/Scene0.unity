@@ -327,8 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca29370d05e17428b7171f7c1f0175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _introClip: {fileID: 8300000, guid: e5bf10ce31e05d647bca7d76e7a25dea, type: 3}
-  _mainSong: {fileID: 8300000, guid: b6211bc6c3b1d5e4ba19cdb6bb4be5cc, type: 3}
+  _introClip: {fileID: 0}
+  _mainSong: {fileID: 8300000, guid: f596487cff3e2ac4b8bfb8473f6e2f0c, type: 3}
   _mainAudioSource: {fileID: 397229873}
   _introAudioSource: {fileID: 550127219}
   _volume: 0.75
@@ -1219,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1038588485
 Transform:
   m_ObjectHideFlags: 0
@@ -1269,8 +1269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca29370d05e17428b7171f7c1f0175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _introClip: {fileID: 8300000, guid: 974071caeffe502459d22a5572346fd8, type: 3}
-  _mainSong: {fileID: 8300000, guid: 0d6197d5b43a1ef4db0d9cd0e33b08bb, type: 3}
+  _introClip: {fileID: 0}
+  _mainSong: {fileID: 8300000, guid: ebb3b99f4db30514b87df3d9c35fbd49, type: 3}
   _mainAudioSource: {fileID: 1169866481}
   _introAudioSource: {fileID: 174520807}
   _volume: 0.75

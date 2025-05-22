@@ -79,7 +79,7 @@ public class MusicPlayer : MonoBehaviour
     void SyncIntro()
     {
         _introAudioSource.PlayOneShot(_introClip, _volume);
-        StartTimer(_introClip.length); // This works by ignoring Time.timeScale in Update() HOWEVER it's far from seamless even in editor and is also inconsistent
+        StartTimer(_introClip.length); // This works by ignoring Time.timeScale in Update() HOWEVER it's far from seamless even in editor and is also inconsistent in timing
     }
 
     void StartTimer(float introL)
