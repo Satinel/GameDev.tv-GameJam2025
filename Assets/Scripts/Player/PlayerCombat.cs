@@ -304,6 +304,10 @@ public class PlayerCombat : MonoBehaviour
                     SelectFirstInteractableButton();
                 }
             }
+            else
+            {
+                SelectFirstInteractableButton();
+            }
         }
         else
         {

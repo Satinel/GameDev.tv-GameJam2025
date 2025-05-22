@@ -1370,6 +1370,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1617591449187073816, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1733087184168168372, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
       propertyPath: m_Name
       value: Tail Attack 1 Text
@@ -1481,6 +1485,31 @@ PrefabInstance:
     - target: {fileID: 4258021091448871112, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
       propertyPath: m_Name
       value: Right Claw Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882829788232010598, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
+      propertyPath: m_text
+      value: '<size=200%>-<u>Stats</u>-</size>
+
+
+        Level 1
+
+
+        Strength
+        80
+
+        Accuracy 20
+
+        Fortitude 48
+
+        Evasion 25
+
+        Tenacity
+        100
+
+        Initiative 10
+
+
+        XP 24/100'
       objectReference: {fileID: 0}
     - target: {fileID: 4882829788232010598, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
       propertyPath: m_fontSize
