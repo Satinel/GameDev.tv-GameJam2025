@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8212865533851511023}
-  - component: {fileID: 6775933581727316714}
+  - component: {fileID: 2343162214518702699}
   m_Layer: 0
   m_Name: Ability2
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2529260658519917025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6775933581727316714
+--- !u!114 &2343162214518702699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,17 +124,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 969913625932710865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fbb859e828119e45919092b32c9d42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sting
-  <Adjective>k__BackingField: <color=Green>Venom</color>
-  <HitChance>k__BackingField: 25
-  <Damage>k__BackingField: 10
+  <Adjective>k__BackingField: <color=Green>Player</color>
+  <HitChance>k__BackingField: 60
+  <Damage>k__BackingField: 15
   <AlwaysHits>k__BackingField: 0
-  <DealsDamage>k__BackingField: 1
-  UseMessage: 
-  _sendUseMessage: 0
+  <DealsDamage>k__BackingField: 0
+  UseMessage: \nEnemy Envenomated!\n
+  _sendUseMessage: 1
 --- !u!1 &1050778114940919757
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Tail
   <Ability1>k__BackingField: {fileID: 4522708598885053058}
-  <Ability2>k__BackingField: {fileID: 6775933581727316714}
+  <Ability2>k__BackingField: {fileID: 2343162214518702699}
   <IsLeftSlot>k__BackingField: 0
 --- !u!1 &2345326636199379538
 GameObject:

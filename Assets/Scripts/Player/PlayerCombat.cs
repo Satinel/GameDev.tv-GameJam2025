@@ -233,6 +233,23 @@ public class PlayerCombat : MonoBehaviour
 
     void StartEnemyTurn()
     {
+        if(!_currentEnemy.IsPoisoned)
+        {
+            _currentEnemy.AttackStarted();
+            return;
+        }
+
+        bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage);
+        _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
+
+        if(!enemyDead)
+        {
+            Invoke(nameof(PostPoisonEnemyAttack), _defaultDelay / 2.75f);
+        }
+    }
+
+    void PostPoisonEnemyAttack()
+    {
         _currentEnemy.AttackStarted();
     }
 

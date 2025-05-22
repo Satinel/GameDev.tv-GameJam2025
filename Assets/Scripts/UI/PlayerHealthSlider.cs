@@ -8,12 +8,12 @@ public class PlayerHealthSlider : MonoBehaviour
     [SerializeField] TextMeshProUGUI _text;
     [SerializeField] float _gradualSpeed = 0.25f;
 
-    void OnEnable()
+    void Start()
     {
         PlayerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         PlayerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
     }

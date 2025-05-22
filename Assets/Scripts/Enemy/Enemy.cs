@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     [field:SerializeField] public int Evasion { get; set; } = 1;
     [field:SerializeField] public int Tenacity { get; set; } = 1;
     [field:SerializeField] public int Initiative { get; private set; } = 5;
+    public bool IsPoisoned { get; private set; }
+    public int PoisonDamage { get; private set; }
+
     [SerializeField] int _maxHealth = 25;
     public int MaxHealth => _maxHealth;
     [SerializeField] int _attacksPerTurn = 1;
@@ -48,16 +51,27 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
+        PlayerAbilityPoison.OnPoisonHit += PlayerAbilityPoison_OnPoisonHit;
     }
 
     void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        PlayerAbilityPoison.OnPoisonHit -= PlayerAbilityPoison_OnPoisonHit;
     }
 
     void PlayerHealth_OnPlayerDeath()
     {
         _playerDead = true;
+    }
+
+    void PlayerAbilityPoison_OnPoisonHit(int poisonDamage)
+    {
+        if(!_inBattle) { return; }
+
+        IsPoisoned = true;
+        PoisonDamage = poisonDamage;
+        AnimateHurt();
     }
 
     public void StartBattle()
