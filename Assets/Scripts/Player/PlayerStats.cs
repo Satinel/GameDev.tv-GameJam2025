@@ -129,12 +129,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeMoney(int amount)
     {
-        Money += amount;
-
-        if(Money < 0)
-        {
-            Money = 0;
-        }
+        Money = Mathf.Max(0, Money + amount);
 
         OnMoneyChanged?.Invoke(Money);
     }

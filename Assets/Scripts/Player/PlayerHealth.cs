@@ -56,9 +56,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        _currentHealth -= amount;
-
-        if(_currentHealth < 0) { _currentHealth = 0; }
+        _currentHealth = Mathf.Max(0, _currentHealth - amount);
 
         OnTakeDamage?.Invoke();
 

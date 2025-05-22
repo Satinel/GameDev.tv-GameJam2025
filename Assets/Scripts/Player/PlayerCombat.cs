@@ -165,11 +165,7 @@ public class PlayerCombat : MonoBehaviour
             ability.Hit();
             if(ability.DealsDamage)
             {
-                int damageDealt = ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude;
-                if(damageDealt < 0)
-                {
-                    damageDealt = 0;
-                }
+                int damageDealt = Mathf.Max(0, ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude);
                 _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
             }
@@ -293,14 +289,10 @@ public class PlayerCombat : MonoBehaviour
             selectedAbility.Hit();
             if(selectedAbility.DealsDamage)
             {
-                int damageDealt = selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude;
+                int damageDealt = Mathf.Max(0, selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude);
                 if(criticalHit)
                 {
                     damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
-                }
-                if(damageDealt < 0)
-                {
-                    damageDealt = 0;
                 }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)

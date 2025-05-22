@@ -129,12 +129,10 @@ public class Enemy : MonoBehaviour
     {
         if(!_inBattle || _isDead) { return _isDead; }
 
-        _health -= amount;
+        _health = Mathf.Max(0, _health - amount);
 
-        if(_health <= 0)
-        {
-            _health = 0;
-        }
+        _health = Mathf.Min(_maxHealth, _health);
+
         if(_health > _maxHealth)
         {
             _health = _maxHealth;
