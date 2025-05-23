@@ -949,5 +949,5 @@ MonoBehaviour:
   <Color1>k__BackingField: {r: 0.9056604, g: 0.7329788, b: 0.055535804, a: 1}
   <Color2>k__BackingField: {r: 0.21698111, g: 0.19958168, b: 0.19958168, a: 1}
   <ColorFont>k__BackingField: {r: 0.90588236, g: 0.73333335, b: 0.05490196, a: 1}
-  _stat: 0
+  _stat: 1
   _debuffValue: 1

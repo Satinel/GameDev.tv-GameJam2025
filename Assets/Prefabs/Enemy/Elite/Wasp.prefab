@@ -200,16 +200,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wasp
   <IsBoss>k__BackingField: 0
-  <Strength>k__BackingField: 1
-  <Accuracy>k__BackingField: 1
-  <Fortitude>k__BackingField: 1
-  <Evasion>k__BackingField: 1
-  <Tenacity>k__BackingField: 1
-  <Initiative>k__BackingField: 6
+  <Strength>k__BackingField: 8
+  <Accuracy>k__BackingField: 10
+  <Fortitude>k__BackingField: 2
+  <Evasion>k__BackingField: 8
+  <Tenacity>k__BackingField: 20
+  <Initiative>k__BackingField: 8
   <ExperienceValue>k__BackingField: 2
   <MoneyValue>k__BackingField: 3
-  <LootChance>k__BackingField: 25
-  _maxHealth: 25
+  <LootChance>k__BackingField: 100
+  _maxHealth: 75
   _attacksPerTurn: 1
   _lootTable: []
 --- !u!1 &1255383751626257826
@@ -1493,19 +1493,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Name>k__BackingField
-      value: Buzz
+      value: Swipe
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 2
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.b
+      value: 0.05490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.r
+      value: 0.90588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <IsOpener>k__BackingField
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Adjective>k__BackingField
-      value: <color=Yellow>Threatening</color>
+      value: Slash
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <AlwaysHits>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1556,15 +1588,83 @@ PrefabInstance:
       value: Sting
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.b
+      value: 0.05490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.r
+      value: 0.90588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Adjective>k__BackingField
-      value: <color=Green>Venom</color>
+      value: Pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.b
+      value: 0.05490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.r
+      value: 0.90588236
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1994095987939754491, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5875642845693819954}
   m_SourcePrefab: {fileID: 100100000, guid: e2acfde478e331346917320f59b61b87, type: 3}
+--- !u!1 &6230709806351254493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1994095987939754491, guid: e2acfde478e331346917320f59b61b87, type: 3}
+  m_PrefabInstance: {fileID: 5610251701680488998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5875642845693819954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230709806351254493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2549b835b8e9a9a469e64530a0147cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Buzz
+  <Adjective>k__BackingField: Warning
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 10
+  <AlwaysHits>k__BackingField: 1
+  <IsOpener>k__BackingField: 1
+  <DealsDamage>k__BackingField: 0
+  <Color1>k__BackingField: {r: 0.9056604, g: 0.7329788, b: 0.055535804, a: 1}
+  <Color2>k__BackingField: {r: 0.21698111, g: 0.19958168, b: 0.19958168, a: 1}
+  <ColorFont>k__BackingField: {r: 0.90588236, g: 0.73333335, b: 0.05490196, a: 1}
+  _stat: 1
+  _debuffValue: 1
 --- !u!4 &6271438673000953513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}

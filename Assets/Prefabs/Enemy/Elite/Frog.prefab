@@ -1185,13 +1185,13 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 12
   <Fortitude>k__BackingField: 5
   <Evasion>k__BackingField: 10
-  <Tenacity>k__BackingField: 4
+  <Tenacity>k__BackingField: 20
   <Initiative>k__BackingField: 12
   <ExperienceValue>k__BackingField: 2
   <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
-  _maxHealth: 25
-  _attacksPerTurn: 1
+  _maxHealth: 75
+  _attacksPerTurn: 2
   _lootTable: []
 --- !u!1 &6462050082117188000
 GameObject:
