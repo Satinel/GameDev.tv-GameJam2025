@@ -209,7 +209,7 @@ public class Enemy : MonoBehaviour
 
     // Trinkets
 
-    void SpikedCarapace_OnActivated(int damage)
+    void SpikedCarapace_OnActivated(string _, int damage)
     {
         TakeDamage(damage, false);
     }

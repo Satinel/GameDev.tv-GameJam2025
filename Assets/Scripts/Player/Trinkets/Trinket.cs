@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Trinket : MonoBehaviour
 {
-    [SerializeField] string _startingName;
-    [SerializeField] string _toolTipText;
+    [SerializeField] protected string _startingName;
+    [SerializeField] protected string _toolTipText;
 
     public string Name { get; private set; }
     public int Level { get; private set; } = 0;

@@ -3,7 +3,7 @@ using System;
 
 public class SpikedCarapace : Trinket
 {
-    public static event Action<int> OnActivated;
+    public static event Action<string, int> OnActivated;
 
     PlayerStats _playerStats;
 
@@ -21,6 +21,6 @@ public class SpikedCarapace : Trinket
     protected override void Activation()
     {
         base.Activation();
-        OnActivated?.Invoke(_playerStats.CurrentFortitude + Level);
+        OnActivated?.Invoke(Name, _playerStats.CurrentFortitude + Level);
     }
 }

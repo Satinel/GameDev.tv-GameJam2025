@@ -8,11 +8,13 @@ public class CombatLog : MonoBehaviour
     void Awake()
     {
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
+        PoisonBuffsStrength.OnActivated += PoisonBuffsStrength_OnActivated;
     }
 
     void OnDestroy()
     {
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
+        PoisonBuffsStrength.OnActivated += PoisonBuffsStrength_OnActivated;
     }
 
     void AddToLog(string message)
@@ -20,8 +22,13 @@ public class CombatLog : MonoBehaviour
         _log.text += message;
     }
 
-    void SpikedCarapace_OnActivated(int amount)
+    void SpikedCarapace_OnActivated(string name, int amount)
     {
-        AddToLog($"\nSpiked Carapace Activated!\n{amount.FormatLargeNumbers()} Retaliation Damage!\n");
+        AddToLog($"\n{name}\nActivated!\n{amount.FormatLargeNumbers()} Retaliation Damage!\n");
+    }
+
+    void PoisonBuffsStrength_OnActivated(string name)
+    {
+        AddToLog($"\n{name}\nActivated!");
     }
 }
