@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8949310396950058007}
   - component: {fileID: 1037738872888865437}
   m_Layer: 0
-  m_Name: Mushman
+  m_Name: Mushguy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,18 +70,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa345083f2449140a4f6235041f1ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Mushman
+  <Name>k__BackingField: Mushguy
   <IsBoss>k__BackingField: 0
-  <Strength>k__BackingField: 2
-  <Accuracy>k__BackingField: 1
-  <Fortitude>k__BackingField: 1
-  <Evasion>k__BackingField: 1
+  <Strength>k__BackingField: 1
+  <Accuracy>k__BackingField: 0
+  <Fortitude>k__BackingField: 0
+  <Evasion>k__BackingField: 0
   <Tenacity>k__BackingField: 1
-  <Initiative>k__BackingField: 3
+  <Initiative>k__BackingField: 1
   <ExperienceValue>k__BackingField: 2
   <MoneyValue>k__BackingField: 3
-  <LootChance>k__BackingField: 25
-  _maxHealth: 45
+  <LootChance>k__BackingField: 0
+  _maxHealth: 25
   _attacksPerTurn: 1
   _lootTable: []
 --- !u!1 &2765903036677381576
@@ -139,8 +139,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 122e8a870b8aec14f97bff8f6ea48795, type: 2}
-  - {fileID: 2100000, guid: 53c2f66571489de4bb608c815e300277, type: 2}
+  - {fileID: 2100000, guid: d976e1d092345964093540c263c47cf3, type: 2}
+  - {fileID: 2100000, guid: 8a0adb327cc4ee1469b9dc6c37c50980, type: 2}
   - {fileID: 2100000, guid: bc22fcb9f57868c4f85fddb938c44463, type: 2}
   - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
   m_StaticBatchInfo:
@@ -416,31 +416,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b
-      value: 0.47450984
+      value: 0.36078432
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.g
-      value: 0.7372549
+      value: 0.25490198
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.r
-      value: 0.854902
+      value: 0.44313726
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.b
-      value: 0.53333336
+      value: 0.47058827
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.g
-      value: 0.43529412
+      value: 0.6745098
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.r
-      value: 0.16862746
+      value: 0.74509805
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <IsOpener>k__BackingField
@@ -448,23 +448,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Adjective>k__BackingField
-      value: Fungal
+      value: <color=Red>Fungal</color>
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <HitChance>k__BackingField
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <ColorFont>k__BackingField.b
-      value: 0.097232126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <ColorFont>k__BackingField.g
-      value: 0.097232126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.r
-      value: 0.8962264
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: m_LocalPosition.x
@@ -515,36 +507,36 @@ PrefabInstance:
       value: Mush Bop
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.b
-      value: 0.53333336
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.g
-      value: 0.43529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.r
-      value: 0.16862746
+      propertyPath: <Damage>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.b
-      value: 0.4431373
+      value: 0.47450984
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.g
-      value: 0.53333336
+      value: 0.6784314
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.r
-      value: 0.60784316
+      value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <IsOpener>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Adjective>k__BackingField
       value: Fungal
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b
-      value: 0.35686275
+      value: 0.36078432
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.g
@@ -552,61 +544,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.r
-      value: 0.44705886
+      value: 0.4431373
       objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Name>k__BackingField
-      value: Cap Attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Damage>k__BackingField
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.b
-      value: 0.44313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.g
-      value: 0.53333336
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color1>k__BackingField.r
-      value: 0.60784316
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color2>k__BackingField.b
-      value: 0.53333336
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color2>k__BackingField.g
-      value: 0.43529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Color2>k__BackingField.r
-      value: 0.16862746
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <IsOpener>k__BackingField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Adjective>k__BackingField
-      value: <color=Cyan>Mush</color>
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <ColorFont>k__BackingField.b
-      value: 0.35686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <ColorFont>k__BackingField.g
-      value: 0.25490198
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <ColorFont>k__BackingField.r
-      value: 0.44705883
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

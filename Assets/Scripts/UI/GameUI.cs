@@ -26,9 +26,11 @@ public class GameUI : MonoBehaviour
         PlayerStats.OnExperienceGained += PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged += PlayerStats_OnMoneyChanged;
+        PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         PlayerInventory.OnWeaponEquipped += PlayerInventory_OnWeaponEquipped;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        PlayerStats.OnTempStatsReset += PlayerStats_OnTempStatsReset;
     }
 
     void OnDisable()
@@ -37,8 +39,10 @@ public class GameUI : MonoBehaviour
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged -= PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped -= PlayerInventory_OnWeaponEquipped;
+        PlayerStats.OnTempStatChange -= PlayerStats_OnTempStatChange;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        PlayerStats.OnTempStatsReset -= PlayerStats_OnTempStatsReset;
     }
 
     void Start()
@@ -70,8 +74,8 @@ public class GameUI : MonoBehaviour
     void SetStatsText()
     {
         _statsText.text = $"<size=200%>-<u>Stats</u>-</size>\n\nLevel {_playerStats.Level}\n";
-        _statsText.text += $"\nStrength {_playerStats.Strength}\nAccuracy {_playerStats.Accuracy}\nFortitude {_playerStats.Fortitude}";
-        _statsText.text += $"\nEvasion {_playerStats.Evasion}\nTenacity {_playerStats.Tenacity}\nInitiative {_playerStats.Initiative}";
+        _statsText.text += $"\nStrength {_playerStats.CurrentStrength}\nAccuracy {_playerStats.CurrentAccuracy}\nFortitude {_playerStats.CurrentFortitude}";
+        _statsText.text += $"\nEvasion {_playerStats.CurrentEvasion}\nTenacity {_playerStats.Tenacity}\nInitiative {_playerStats.Initiative}";
         _statsText.text += $"\n\nXP {_playerStats.CurrentXP.FormatLargeNumbers()}/{_playerStats.NextLevelXP.FormatLargeNumbers()}";
     }
 
@@ -122,6 +126,11 @@ public class GameUI : MonoBehaviour
         SetStatsText();
     }
 
+    void PlayerStats_OnTempStatChange(string _)
+    {
+        SetStatsText();
+    }
+
     void PlayerStats_OnMoneyChanged(int totalMoney)
     {
         _moneyText.text = $"BugBucks {totalMoney.FormatLargeNumbers()}";
@@ -162,5 +171,10 @@ public class GameUI : MonoBehaviour
         _mapButton.SetActive(true);
         _statsButton.SetActive(true);
         _combatLogButton.SetActive(true);
+    }
+
+    void PlayerStats_OnTempStatsReset()
+    {
+        SetStatsText();
     }
 }

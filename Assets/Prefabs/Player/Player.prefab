@@ -658,7 +658,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 12
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
-  UseMessage: \nGrip Released!\nAccuracy Returned To Normal!\n
+  UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -15
   _swappedEquipment: {fileID: 3137806993205200348}
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  UseMessage: \nYou Get A Strong Grip!\nAccuracy Increased!\n
+  UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 15
   _swappedEquipment: {fileID: 5035502185339537485}
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  UseMessage: \nYou Get A Strong Grip!\nAccuracy Increased!\n
+  UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 15
   _swappedEquipment: {fileID: 8322965815924578287}
@@ -3153,7 +3153,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 12
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
-  UseMessage: \nGrip Released!\nAccuracy Returned To Normal!\n
+  UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -15
   _swappedEquipment: {fileID: 8561436319350109281}

@@ -1003,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1557597321106195338
 Transform:
   m_ObjectHideFlags: 0
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 1889136390041040248}
   - component: {fileID: 2365547937222488892}
   m_Layer: 0
-  m_Name: MushKing
+  m_Name: MushPrince
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1214,7 +1214,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5642803763582705234}
   - {fileID: 1512906729708595479}
   - {fileID: 1557597321106195338}
   - {fileID: 4419627833668292952}
@@ -1255,7 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa345083f2449140a4f6235041f1ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Mush King
+  <Name>k__BackingField: Mush Prince
   <IsBoss>k__BackingField: 0
   <Strength>k__BackingField: 5
   <Accuracy>k__BackingField: 3
@@ -1265,7 +1264,7 @@ MonoBehaviour:
   <Initiative>k__BackingField: 5
   <ExperienceValue>k__BackingField: 2
   <MoneyValue>k__BackingField: 3
-  <LootChance>k__BackingField: 20
+  <LootChance>k__BackingField: 100
   _maxHealth: 145
   _attacksPerTurn: 1
   _lootTable: []
@@ -2160,9 +2159,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53c2f66571489de4bb608c815e300277, type: 2}
+  - {fileID: 2100000, guid: 8a0adb327cc4ee1469b9dc6c37c50980, type: 2}
   - {fileID: 2100000, guid: 0e49a7072591b2046961527a0f8775ed, type: 2}
-  - {fileID: 2100000, guid: 122e8a870b8aec14f97bff8f6ea48795, type: 2}
+  - {fileID: 2100000, guid: d976e1d092345964093540c263c47cf3, type: 2}
   - {fileID: 2100000, guid: bc22fcb9f57868c4f85fddb938c44463, type: 2}
   - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
   m_StaticBatchInfo:
@@ -2240,112 +2239,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000050097704, y: 0.017631147, z: 0.003386496}
     m_Extent: {x: 0.016876407, y: 0.018867992, z: 0.013812512}
   m_DirtyAABB: 0
---- !u!1001 &6096882326367218397
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5627613019899638372}
-    m_Modifications:
-    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Name>k__BackingField
-      value: Mush Punch
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <IsOpener>k__BackingField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Adjective>k__BackingField
-      value: <color=Yellow>Mush</color>
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994095987939754491, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: m_Name
-      value: Enemy Abilities (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Name>k__BackingField
-      value: Shroom Boom
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Damage>k__BackingField
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <IsOpener>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Adjective>k__BackingField
-      value: <color=Red>Fungal</color>
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Name>k__BackingField
-      value: Royal Strike
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Damage>k__BackingField
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <Adjective>k__BackingField
-      value: <color=Purple>Princely</color>
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
-      propertyPath: <HitChance>k__BackingField
-      value: 85
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e2acfde478e331346917320f59b61b87, type: 3}
---- !u!4 &5642803763582705234 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
-  m_PrefabInstance: {fileID: 6096882326367218397}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6565573916045396497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2449,6 +2342,10 @@ PrefabInstance:
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Name>k__BackingField
       value: Shroom Boom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.b

@@ -55,6 +55,9 @@ public class Enemy : MonoBehaviour
         {
             LootChance = 0;
         }
+
+        ExperienceValue = _maxHealth * Strength;
+        MoneyValue = Strength + Accuracy + Fortitude + Evasion + Tenacity + Initiative;
     }
 
     void OnEnable()

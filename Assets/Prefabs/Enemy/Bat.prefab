@@ -495,16 +495,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bat
   <IsBoss>k__BackingField: 0
-  <Strength>k__BackingField: 1
-  <Accuracy>k__BackingField: 1
+  <Strength>k__BackingField: 2
+  <Accuracy>k__BackingField: 7
   <Fortitude>k__BackingField: 1
-  <Evasion>k__BackingField: 1
-  <Tenacity>k__BackingField: 1
-  <Initiative>k__BackingField: 5
+  <Evasion>k__BackingField: 10
+  <Tenacity>k__BackingField: 2
+  <Initiative>k__BackingField: 3
   <ExperienceValue>k__BackingField: 2
   <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 25
-  _maxHealth: 25
+  _maxHealth: 15
   _attacksPerTurn: 1
   _lootTable: []
 --- !u!1 &6281652328445498027
@@ -771,6 +771,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3322187680356987705}
     m_Modifications:
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.g
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.r
+      value: 0.3647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.b
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.r
+      value: 0.44313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <IsOpener>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.g
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.r
+      value: 0.3647059
+      objectReference: {fileID: 0}
     - target: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -815,11 +855,93 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Abilities
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Name>k__BackingField
+      value: Flap Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.b
+      value: 0.21176472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color1>k__BackingField.r
+      value: 0.4431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.b
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.g
+      value: 0.21176472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Color2>k__BackingField.r
+      value: 0.3647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <Adjective>k__BackingField
+      value: Wing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.b
+      value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <ColorFont>k__BackingField.r
+      value: 0.44313726
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
+    - {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1994095987939754491, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6110111703269758816}
   m_SourcePrefab: {fileID: 100100000, guid: e2acfde478e331346917320f59b61b87, type: 3}
+--- !u!1 &6786795791690446373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1994095987939754491, guid: e2acfde478e331346917320f59b61b87, type: 3}
+  m_PrefabInstance: {fileID: 5009121456710055902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6110111703269758816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786795791690446373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2549b835b8e9a9a469e64530a0147cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Echolocation
+  <Adjective>k__BackingField: Evasion
+  <HitChance>k__BackingField: 75
+  <Damage>k__BackingField: 10
+  <AlwaysHits>k__BackingField: 1
+  <IsOpener>k__BackingField: 0
+  <DealsDamage>k__BackingField: 0
+  <Color1>k__BackingField: {r: 0.3647059, g: 0.21176471, b: 0.29411766, a: 1}
+  <Color2>k__BackingField: {r: 0.44313726, g: 0.5137255, b: 0.21176471, a: 1}
+  <ColorFont>k__BackingField: {r: 0.3647059, g: 0.21176471, b: 0.29411766, a: 1}
+  _stat: 3
+  _debuffValue: 5
 --- !u!4 &6868208651066229585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}

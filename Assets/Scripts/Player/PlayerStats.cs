@@ -6,6 +6,8 @@ public class PlayerStats : MonoBehaviour
     public static event Action OnExperienceGained;
     public static event Action<int> OnLevelIncrease;
     public static event Action<Stats, int> OnStatIncreased;
+    public static event Action<string> OnTempStatChange;
+    public static event Action OnTempStatsReset;
     public static event Action<int> OnMoneyChanged;
 
     [field:SerializeField] public int Strength { get; set; } // Primarily about dealing damage
@@ -61,6 +63,7 @@ public class PlayerStats : MonoBehaviour
         _tempBonusAccuracy = 0;
         _tempBonusFortitude = 0;
         _tempBonusEvasion = 0;
+        OnTempStatsReset?.Invoke();
     }
 
     void Enemy_OnEnemyKilled(Enemy enemy)
@@ -85,6 +88,7 @@ public class PlayerStats : MonoBehaviour
 
     void HandleLevelUp()
     {
+        // TODO Menu to select stat to increase or randomize
         // IncreaseStat(Stats.Strength, 1);
         // IncreaseStat(Stats.Accuracy, 1);
         // IncreaseStat(Stats.Fortitude, 1);
@@ -112,6 +116,14 @@ public class PlayerStats : MonoBehaviour
                 break;
             default:
                 break;
+        }
+        if(amount > 0)
+        {
+            OnTempStatChange?.Invoke($"\n{stat} +{amount.FormatLargeNumbers()}\n");
+        }
+        else
+        {
+            OnTempStatChange?.Invoke($"\n{stat} -{Mathf.Abs(amount).FormatLargeNumbers()}\n");
         }
     }
 

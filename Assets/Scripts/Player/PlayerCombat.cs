@@ -54,6 +54,7 @@ public class PlayerCombat : MonoBehaviour
         EnemyAbility.OnEnemyAbilityStarted += EnemyAbility_OnEnemyAbilityStarted;
         EnemyAbility.OnEnemyAbilityUsed += EnemyAbility_OnEnemyAbilityUsed;
         PlayerAbility.OnPlayerAbilityUsed += PlayerAbility_OnPlayerAbilityUsed;
+        PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
     }
@@ -67,6 +68,7 @@ public class PlayerCombat : MonoBehaviour
         EnemyAbility.OnEnemyAbilityStarted -= EnemyAbility_OnEnemyAbilityStarted;
         EnemyAbility.OnEnemyAbilityUsed -= EnemyAbility_OnEnemyAbilityUsed;
         PlayerAbility.OnPlayerAbilityUsed -= PlayerAbility_OnPlayerAbilityUsed;
+        PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
@@ -168,15 +170,16 @@ public class PlayerCombat : MonoBehaviour
             ability.Hit();
             if(ability.DealsDamage)
             {
+                string colorHexValue = ColorUtility.ToHtmlStringRGB(ability.ColorFont);
                 int damageDealt = Mathf.Max(0, ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude);
-                _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
+                _combatLog.text += $"\nYou Take\n{damageDealt} <#{colorHexValue}>{ability.Adjective}</color> Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
 
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
 
                 DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
-                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
-                damageFX.Setup(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), damageDealt.FormatLargeNumbers()); // TODO set colors through ability
+                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300f, 300f), damageFX.transform.position.y + UnityEngine.Random.Range(-100f, 0f));
+                damageFX.Setup(ability.Color1, ability.Color2, ability.ColorFont, damageDealt.FormatLargeNumbers()); // TODO set colors through ability
             }
             else
             {
@@ -192,6 +195,11 @@ public class PlayerCombat : MonoBehaviour
     }
 
     void PlayerAbility_OnPlayerAbilityUsed(string message)
+    {
+        _combatLog.text += message;
+    }
+
+    void PlayerStats_OnTempStatChange(string message)
     {
         _combatLog.text += message;
     }
@@ -252,7 +260,7 @@ public class PlayerCombat : MonoBehaviour
         bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage);
 
         DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
-        damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+        damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300f, 300f), damageFX.transform.position.y + UnityEngine.Random.Range(0f, 200f));
         damageFX.Setup(Color.yellow, Color.green, Color.red, _currentEnemy.PoisonDamage.FormatLargeNumbers()); // TODO Better colors
 
         _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
