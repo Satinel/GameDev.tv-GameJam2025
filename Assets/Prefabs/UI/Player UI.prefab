@@ -303,6 +303,7 @@ MonoBehaviour:
   _defaultHit: {fileID: 8300000, guid: 1b6f8001339f4e144aa4f8cbeb8f3fa3, type: 3}
   _defaultMiss: {fileID: 8300000, guid: 7fff73d51d63548418b2db928980fd63, type: 3}
   _defaultUse: {fileID: 8300000, guid: edcd554d8b8a05148889c4951c1015e5, type: 3}
+  _damageSplashPrefab: {fileID: 2983776782022335922, guid: 227e4e0960f1561428b3a37fccd6d3d4, type: 3}
 --- !u!82 &3241533865941917306
 AudioSource:
   m_ObjectHideFlags: 0

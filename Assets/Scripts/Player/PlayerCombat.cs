@@ -19,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse; // TODO replace these with prefabs containing visual effects along with sounds
+    [SerializeField] DamageSplash _damageSplashPrefab;
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
     // [SerializeField] GameObject _rightAttack1, _rightAttack2;
@@ -170,7 +171,12 @@ public class PlayerCombat : MonoBehaviour
                 int damageDealt = Mathf.Max(0, ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude);
                 _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
+
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
+
+                DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
+                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+                damageFX.Setup(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), damageDealt.FormatLargeNumbers()); // TODO set colors through ability
             }
             else
             {
@@ -242,7 +248,12 @@ public class PlayerCombat : MonoBehaviour
         }
 
         _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
+
         bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage);
+
+        DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
+        damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+        damageFX.Setup(Color.yellow, Color.green, Color.red, _currentEnemy.PoisonDamage.FormatLargeNumbers()); // TODO Better colors
 
         _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
 
@@ -304,7 +315,13 @@ public class PlayerCombat : MonoBehaviour
                     damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
                 }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
+
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)
+
+                DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
+                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+                damageFX.Setup(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), damageDealt.FormatLargeNumbers()); // TODO set colors through ability
+
                 bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)
                 {
