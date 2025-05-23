@@ -317,7 +317,7 @@ public class PlayerCombat : MonoBehaviour
             selectedAbility.Hit();
             if(selectedAbility.DealsDamage)
             {
-                int damageDealt = Mathf.Max(0, selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude);
+                int damageDealt = Mathf.Max(1, selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude);
                 if(criticalHit)
                 {
                     damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
