@@ -257,7 +257,7 @@ public class PlayerCombat : MonoBehaviour
 
         _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
 
-        bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage);
+        bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage, false);
 
         DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
         damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300f, 300f), damageFX.transform.position.y + UnityEngine.Random.Range(0f, 200f));
@@ -330,7 +330,7 @@ public class PlayerCombat : MonoBehaviour
                 damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
                 damageFX.Setup(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), damageDealt.FormatLargeNumbers()); // TODO set colors through ability
 
-                bool enemyDead = _currentEnemy.TakeDamage(damageDealt); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
+                bool enemyDead = _currentEnemy.TakeDamage(damageDealt, true); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)
                 {
                     SelectFirstInteractableButton();

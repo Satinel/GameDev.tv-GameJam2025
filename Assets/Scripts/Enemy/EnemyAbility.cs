@@ -11,6 +11,7 @@ public class EnemyAbility : MonoBehaviour
     [field:SerializeField] public int Damage { get; private set; } = 10;
     [field:SerializeField] public bool AlwaysHits { get; private set; } = false;
     [field:SerializeField] public bool IsOpener { get; private set; } = false;
+    [field:SerializeField] public bool IsSingleUse { get; private set; } = false;
     [field:SerializeField] public bool DealsDamage { get; private set; } = true;
     [field:SerializeField] public Color Color1 { get; private set; } = Color.white;
     [field:SerializeField] public Color Color2 { get; private set; } = Color.red;

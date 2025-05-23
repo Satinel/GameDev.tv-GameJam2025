@@ -64,12 +64,18 @@ public class Enemy : MonoBehaviour
     {
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         PlayerAbilityPoison.OnPoisonHit += PlayerAbilityPoison_OnPoisonHit;
+
+        // Trinkets
+        SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
     }
 
     void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         PlayerAbilityPoison.OnPoisonHit -= PlayerAbilityPoison_OnPoisonHit;
+
+        // Trinkets
+        SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -114,12 +120,17 @@ public class Enemy : MonoBehaviour
 
         _selectedAbility.StartAbility();
         _attacksPerformed++;
+        if(_selectedAbility.IsSingleUse)
+        {
+            _abilities.Remove(_selectedAbility);
+        }
         AnimateAttack();
     }
 
     public void AttackCompleted()
     {
         if(_playerDead) { return; }
+        if(_isDead) { return; }
 
         if(_attacksPerformed >= _attacksPerTurn)
         {
@@ -127,7 +138,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            AttackStarted();
+            Invoke(nameof(AttackStarted), 1.5f);
         }
     }
 
@@ -137,7 +148,7 @@ public class Enemy : MonoBehaviour
         OnEnemyTurnEnd?.Invoke();
     }
 
-    public bool TakeDamage(int amount)
+    public bool TakeDamage(int amount, bool playHurt)
     {
         if(!_inBattle || _isDead) { return _isDead; }
 
@@ -157,7 +168,7 @@ public class Enemy : MonoBehaviour
             _isDead = true;
             AnimateDeath();
         }
-        else
+        else if(playHurt)
         {
             AnimateHurt();
         }
@@ -194,5 +205,12 @@ public class Enemy : MonoBehaviour
     {
         int lootRoll = UnityEngine.Random.Range(0, _lootTable.Count - 1);
         return _lootTable[lootRoll];
+    }
+
+    // Trinkets
+
+    void SpikedCarapace_OnActivated(int damage)
+    {
+        TakeDamage(damage, false);
     }
 }

@@ -945,6 +945,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 1
   <IsOpener>k__BackingField: 1
+  <IsSingleUse>k__BackingField: 1
   <DealsDamage>k__BackingField: 0
   <Color1>k__BackingField: {r: 0.9056604, g: 0.7329788, b: 0.055535804, a: 1}
   <Color2>k__BackingField: {r: 0.21698111, g: 0.19958168, b: 0.19958168, a: 1}

@@ -1655,16 +1655,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Buzz
   <Adjective>k__BackingField: Warning
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 98
   <Damage>k__BackingField: 10
-  <AlwaysHits>k__BackingField: 1
+  <AlwaysHits>k__BackingField: 0
   <IsOpener>k__BackingField: 1
+  <IsSingleUse>k__BackingField: 1
   <DealsDamage>k__BackingField: 0
   <Color1>k__BackingField: {r: 0.9056604, g: 0.7329788, b: 0.055535804, a: 1}
   <Color2>k__BackingField: {r: 0.21698111, g: 0.19958168, b: 0.19958168, a: 1}
   <ColorFont>k__BackingField: {r: 0.90588236, g: 0.73333335, b: 0.05490196, a: 1}
   _stat: 1
-  _debuffValue: 1
+  _debuffValue: 6
 --- !u!4 &6271438673000953513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}

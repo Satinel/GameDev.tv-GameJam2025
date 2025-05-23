@@ -2329,6 +2329,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 20
   <AlwaysHits>k__BackingField: 0
   <IsOpener>k__BackingField: 0
+  <IsSingleUse>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Color1>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
   <Color2>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
@@ -2347,16 +2348,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Web Snare
   <Adjective>k__BackingField: Sticky
-  <HitChance>k__BackingField: 90
-  <Damage>k__BackingField: 10
+  <HitChance>k__BackingField: 95
+  <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 0
   <IsOpener>k__BackingField: 1
+  <IsSingleUse>k__BackingField: 1
   <DealsDamage>k__BackingField: 0
   <Color1>k__BackingField: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 1}
   <Color2>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ColorFont>k__BackingField: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 1}
   _stat: 3
-  _debuffValue: 2
+  _debuffValue: 4
 --- !u!4 &4583752937553994078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1932956886834623631, guid: e2acfde478e331346917320f59b61b87, type: 3}

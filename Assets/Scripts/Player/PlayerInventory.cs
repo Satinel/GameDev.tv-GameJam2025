@@ -40,6 +40,14 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T)) // TODO DELETE!!
+        {
+            AddTrinket(_testTrinket);
+        }
+    }
+[SerializeField] Trinket _testTrinket; // TODO DELETE
     public PlayerAbility GetAbility(int index)
     {
         return index switch
@@ -98,12 +106,14 @@ public class PlayerInventory : MonoBehaviour
             if(trinket.GetType() == newTrinket.GetType()) // If Player already has this exact type of trinket, upgrade it
             {
                 trinket.LevelUp();
+                Debug.Log(trinket.Name + " Leveled Up to " + trinket.Level);
                 return;
             }
         }
 
         Trinket addedTrinket = Instantiate(newTrinket, _trinketsParent);
         _trinkets.Add(addedTrinket);
+        Debug.Log("Test Trinket Added");
     }
 
     void Enemy_OnEnemyKilled(Enemy enemy)
