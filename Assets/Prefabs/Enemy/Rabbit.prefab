@@ -1239,14 +1239,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rabbit
+  <IsBoss>k__BackingField: 0
   <Strength>k__BackingField: 1
   <Accuracy>k__BackingField: 1
   <Fortitude>k__BackingField: 1
   <Evasion>k__BackingField: 1
   <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 5
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &4683008609416742867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,10 +2325,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7547453271743435199, guid: 7ebd3ac81184d60458f16877d7dc8943, type: 3}
-  - {fileID: 7729102919815517791, guid: 7ebd3ac81184d60458f16877d7dc8943, type: 3}
-  - {fileID: -2845260874595373743, guid: 7ebd3ac81184d60458f16877d7dc8943, type: 3}
-  - {fileID: 4542641088041586163, guid: 7ebd3ac81184d60458f16877d7dc8943, type: 3}
+  - {fileID: 2100000, guid: 3f58fcde8557acc4a9eb7b10d53b1dbf, type: 2}
+  - {fileID: 2100000, guid: 6dc31190427ea5e48a063b9f52f83aeb, type: 2}
+  - {fileID: 2100000, guid: bc22fcb9f57868c4f85fddb938c44463, type: 2}
+  - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

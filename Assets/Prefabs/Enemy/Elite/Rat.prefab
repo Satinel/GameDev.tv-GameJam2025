@@ -1192,9 +1192,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rat
+  <IsBoss>k__BackingField: 0
+  <Strength>k__BackingField: 1
+  <Accuracy>k__BackingField: 1
+  <Fortitude>k__BackingField: 1
+  <Evasion>k__BackingField: 1
+  <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 7
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &7117876630732946922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,8 +1356,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5243988174349660497, guid: 9695b56bf02058c45b08425d8a458014, type: 3}
-  - {fileID: -4318571312361772713, guid: 9695b56bf02058c45b08425d8a458014, type: 3}
+  - {fileID: 2100000, guid: 4778506fecfee31488b372396763fbda, type: 2}
+  - {fileID: 2100000, guid: aa6428d6ffd8c4f4eba8414549c35b15, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

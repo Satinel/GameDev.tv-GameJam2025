@@ -777,14 +777,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Toad
+  <IsBoss>k__BackingField: 0
   <Strength>k__BackingField: 1
   <Accuracy>k__BackingField: 1
   <Fortitude>k__BackingField: 1
   <Evasion>k__BackingField: 1
   <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 5
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &3936047951982945848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,10 +1609,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4350986122376356537, guid: 7ad6205a276252b408aeab0a70d746e0, type: 3}
-  - {fileID: 5656525344331579023, guid: 7ad6205a276252b408aeab0a70d746e0, type: 3}
-  - {fileID: 4542641088041586163, guid: 7ad6205a276252b408aeab0a70d746e0, type: 3}
-  - {fileID: -2845260874595373743, guid: 7ad6205a276252b408aeab0a70d746e0, type: 3}
+  - {fileID: 2100000, guid: 3ef01b5d03868014586263d42cd8adac, type: 2}
+  - {fileID: 2100000, guid: eb6e78b57b5134146bb96540ce1d7fdb, type: 2}
+  - {fileID: 2100000, guid: bc22fcb9f57868c4f85fddb938c44463, type: 2}
+  - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

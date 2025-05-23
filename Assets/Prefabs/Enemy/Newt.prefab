@@ -787,12 +787,12 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8590565319636649499, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
-  - {fileID: -2636882007124640363, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
-  - {fileID: -1444460858095362738, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
-  - {fileID: -4637428972828790871, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
-  - {fileID: -2845260874595373743, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
-  - {fileID: 4542641088041586163, guid: a85dc148d14eec74c8ff47c3c96b53f4, type: 3}
+  - {fileID: 2100000, guid: 69b617d73bc21b44a963e0806d12af6e, type: 2}
+  - {fileID: 2100000, guid: 4050e22d3a642e64d9dfd55a18ffb08d, type: 2}
+  - {fileID: 2100000, guid: f0ef3ea1ea6d06b40a85f3781321866c, type: 2}
+  - {fileID: 2100000, guid: 6d55e93767bf3a2448c3f4f7ceb05326, type: 2}
+  - {fileID: 2100000, guid: bc22fcb9f57868c4f85fddb938c44463, type: 2}
+  - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2062,14 +2062,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Newt
+  <IsBoss>k__BackingField: 0
   <Strength>k__BackingField: 1
   <Accuracy>k__BackingField: 1
   <Fortitude>k__BackingField: 1
   <Evasion>k__BackingField: 1
   <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 5
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &9220370539460013067
 GameObject:
   m_ObjectHideFlags: 0

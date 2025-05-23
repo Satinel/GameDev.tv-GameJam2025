@@ -813,10 +813,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2505642851634945670, guid: 4279cca77171dc346b6989629216d952, type: 3}
-  - {fileID: -2653651044934150266, guid: 4279cca77171dc346b6989629216d952, type: 3}
-  - {fileID: -382652638819485698, guid: 4279cca77171dc346b6989629216d952, type: 3}
-  - {fileID: -1580535799172915004, guid: 4279cca77171dc346b6989629216d952, type: 3}
+  - {fileID: 2100000, guid: 06868306834b2e84e94b592ac1c95aca, type: 2}
+  - {fileID: 2100000, guid: 8a0adb327cc4ee1469b9dc6c37c50980, type: 2}
+  - {fileID: 2100000, guid: 19520ab41c8f3e446b3633e81fc9a166, type: 2}
+  - {fileID: 2100000, guid: 410823a80044233478ec089c39bf0ba8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1180,9 +1180,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Frog
+  <IsBoss>k__BackingField: 0
+  <Strength>k__BackingField: 1
+  <Accuracy>k__BackingField: 1
+  <Fortitude>k__BackingField: 1
+  <Evasion>k__BackingField: 1
+  <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 10
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &6462050082117188000
 GameObject:
   m_ObjectHideFlags: 0

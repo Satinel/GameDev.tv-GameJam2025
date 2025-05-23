@@ -144,7 +144,7 @@ public class PlayerCombat : MonoBehaviour
         _combatButtonsParent.SetActive(false);
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
         _results.SetActive(true);
-        _combatLog.text = $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
+        _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
         _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n\n";
         // TODO Message about gaining item (also shown in _resultsText)
         if(!_optionsOpen)

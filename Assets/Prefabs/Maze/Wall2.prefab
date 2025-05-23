@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7898307683119697605}
   - component: {fileID: 7430510508396305472}
   m_Layer: 7
-  m_Name: Overly Shadows Renderer
+  m_Name: Overlay Shadows Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 4447542721909973952}
   - component: {fileID: 1508842411150202995}
   m_Layer: 0
-  m_Name: Wall Renderer
+  m_Name: Wall Renderer Simple Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 87dd489082244f946b36965e8b907f0b, type: 2}
+  - {fileID: 2100000, guid: 53c34205898d3884a88e8fd96340c99d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

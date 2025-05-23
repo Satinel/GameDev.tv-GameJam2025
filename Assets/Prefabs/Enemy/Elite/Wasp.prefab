@@ -199,9 +199,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wasp
+  <IsBoss>k__BackingField: 0
+  <Strength>k__BackingField: 1
+  <Accuracy>k__BackingField: 1
+  <Fortitude>k__BackingField: 1
+  <Evasion>k__BackingField: 1
+  <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 6
+  <ExperienceValue>k__BackingField: 2
+  <MoneyValue>k__BackingField: 3
+  <LootChance>k__BackingField: 25
   _maxHealth: 25
   _attacksPerTurn: 1
+  _lootTable: []
 --- !u!1 &1255383751626257826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,10 +1386,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1580535799172915004, guid: b8f58e798e2852846a440cd2bde5f722, type: 3}
-  - {fileID: 9003353085549565770, guid: b8f58e798e2852846a440cd2bde5f722, type: 3}
-  - {fileID: -2653651044934150266, guid: b8f58e798e2852846a440cd2bde5f722, type: 3}
-  - {fileID: -91986665691257589, guid: b8f58e798e2852846a440cd2bde5f722, type: 3}
+  - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
+  - {fileID: 2100000, guid: 04f0ac95827931348af62f00365b3771, type: 2}
+  - {fileID: 2100000, guid: 1ac2b57ea044f94438d62159c44d272b, type: 2}
+  - {fileID: 2100000, guid: 18cfe894921d5f7468e4497b52df10cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
