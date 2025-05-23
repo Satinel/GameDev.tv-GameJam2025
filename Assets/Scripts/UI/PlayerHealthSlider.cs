@@ -34,6 +34,11 @@ public class PlayerHealthSlider : MonoBehaviour
 
     void PlayerHealth_OnHealthChanged(int current, int max)
     {
+        SetHealthValues(current, max);
+    }
+
+    public void SetHealthValues(int current, int max)
+    {
         _slider.value = (float)current / max;
         _text.text = $"HP {current.FormatLargeNumbers()}/{max.FormatLargeNumbers()}";
     }

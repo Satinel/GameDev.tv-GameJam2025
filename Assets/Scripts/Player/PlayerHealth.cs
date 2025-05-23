@@ -11,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
 
     int _maxHealth = 125;
     int _currentHealth = 125;
+
+    public int MaxHealth => _maxHealth;
+    public int CurrentHealth => _currentHealth;
+
     PlayerStats _playerStats;
 
     void Awake()
@@ -21,13 +25,11 @@ public class PlayerHealth : MonoBehaviour
     void OnEnable()
     {
         PlayerStats.OnStatIncreased += PlayerStats_OnTenacityIncreased;
-        Enemy.OnFightStarted += Enemy_OnFightStarted;
     }
 
     void OnDisable()
     {
         PlayerStats.OnStatIncreased -= PlayerStats_OnTenacityIncreased;
-        Enemy.OnFightStarted -= Enemy_OnFightStarted;
     }
 
     void Start()
@@ -47,11 +49,6 @@ public class PlayerHealth : MonoBehaviour
             _currentHealth = _maxHealth;
         }
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
-    }
-
-    void Enemy_OnFightStarted(Enemy _)
-    {
-        OnHealthChanged?.Invoke(_currentHealth, _maxHealth); // Slapdash way to update UI in stats to override default text
     }
 
     public void TakeDamage(int amount)

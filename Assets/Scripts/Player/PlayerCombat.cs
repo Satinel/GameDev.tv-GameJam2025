@@ -18,7 +18,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject _closeResultsButton, _mainMenuButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _defaultHit, _defaultMiss; // TODO replace these with prefabs containing visual effects along with sounds
+    [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse; // TODO replace these with prefabs containing visual effects along with sounds
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
     // [SerializeField] GameObject _rightAttack1, _rightAttack2;
@@ -144,8 +144,9 @@ public class PlayerCombat : MonoBehaviour
         _combatButtonsParent.SetActive(false);
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
         _results.SetActive(true);
-        _resultsText.text = $"-RESULTS-\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} Bug Bucks!";
-        // TODO Message about gaining xp/money/item (also shown in _resultsText)
+        _combatLog.text = $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
+        _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n\n";
+        // TODO Message about gaining item (also shown in _resultsText)
         if(!_optionsOpen)
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -169,8 +170,12 @@ public class PlayerCombat : MonoBehaviour
                 int damageDealt = Mathf.Max(0, ability.Damage + _currentEnemy.Strength - _playerStats.CurrentFortitude);
                 _combatLog.text += $"\nYou Take\n{damageDealt} {ability.Adjective} Damage!\n";
                 _playerHealth.TakeDamage(damageDealt);
+                _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
             }
-            _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Screen Shake
+            else
+            {
+                _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
+            }
         }
         else
         {
@@ -236,7 +241,9 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
+        _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
         bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage);
+
         _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
 
         if(!enemyDead)
@@ -306,6 +313,7 @@ public class PlayerCombat : MonoBehaviour
             }
             else
             {
+                _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
                 SelectFirstInteractableButton();
             }
         }

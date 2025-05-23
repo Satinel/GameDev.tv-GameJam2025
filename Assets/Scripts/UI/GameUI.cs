@@ -3,7 +3,9 @@ using TMPro;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] GameObject _map;
+    [SerializeField] GameObject _map, _statsWindow, _combatLogWindow;
+    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton;
+    [SerializeField] PlayerHealthSlider _playerHealthSlider;
     [SerializeField] TextMeshProUGUI _statsText, _moneyText;
     [SerializeField] TextMeshProUGUI _leftClawText, _leftAttack1Text, _leftAttack2Text;
     [SerializeField] TextMeshProUGUI _tailText, _tailAttack1Text, _tailAttack2Text;
@@ -11,6 +13,8 @@ public class GameUI : MonoBehaviour
 
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
+    PlayerHealth _playerHealth;
+    bool _isInCombat;
 
     void Awake()
     {
@@ -23,6 +27,8 @@ public class GameUI : MonoBehaviour
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged += PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped += PlayerInventory_OnWeaponEquipped;
+        Enemy.OnFightStarted += Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
     }
 
     void OnDisable()
@@ -31,13 +37,18 @@ public class GameUI : MonoBehaviour
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged -= PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped -= PlayerInventory_OnWeaponEquipped;
+        Enemy.OnFightStarted -= Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
     }
 
     void Start()
     {
         _playerInventory = _playerStats.GetComponent<PlayerInventory>();
+        _playerHealth = _playerStats.GetComponent<PlayerHealth>();
         SetStatsText();
         SetAttackButtonTexts();
+        _statsWindow.SetActive(false);
+        _combatLogWindow.SetActive(false);
     }
 
     void Update()
@@ -45,6 +56,14 @@ public class GameUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.M))
         {
             ToggleMap();
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ToggleStats();
+        }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            ToggleLog();
         }
     }
 
@@ -71,9 +90,26 @@ public class GameUI : MonoBehaviour
         _rightAttack2Text.text = _playerInventory.RightClawWeapon.Ability2.Name;
     }
 
-    void ToggleMap()
+    public void ToggleMap()
     {
+        if(_isInCombat) { return; }
+
         _map.SetActive(!_map.activeSelf);
+    }
+
+    public void ToggleStats()
+    {
+        if(_isInCombat) { return; }
+
+        _statsWindow.SetActive(!_statsWindow.activeSelf);
+        _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
+    }
+
+    public void ToggleLog()
+    {
+        if(_isInCombat) { return; }
+
+        _combatLogWindow.SetActive(!_combatLogWindow.activeSelf);
     }
 
     void PlayerStats_OnExperienceGained()
@@ -105,5 +141,26 @@ public class GameUI : MonoBehaviour
             _rightAttack1Text.text = weapon.Ability1.Name;
             _rightAttack2Text.text = weapon.Ability2.Name;
         }
+    }
+
+    void Enemy_OnFightStarted(Enemy _)
+    {
+        _mapButton.SetActive(false);
+        _statsButton.SetActive(false);
+        _combatLogButton.SetActive(false);
+        _isInCombat = true;
+        _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
+        _statsWindow.SetActive(true);
+        _combatLogWindow.SetActive(true);
+        _map.SetActive(false);
+    }
+
+    void PlayerCombat_OnCombatResolved()
+    {
+        _isInCombat = false;
+        _combatLogWindow.SetActive(false);
+        _mapButton.SetActive(true);
+        _statsButton.SetActive(true);
+        _combatLogButton.SetActive(true);
     }
 }
