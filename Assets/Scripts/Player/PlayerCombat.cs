@@ -289,7 +289,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if(criticalHit)
             {
-                _combatLog.text += $"\nCritical Hit!\n";
+                _combatLog.text += $"\n<color=red>Critical Hit!</color>\n";
             }
             else
             {
