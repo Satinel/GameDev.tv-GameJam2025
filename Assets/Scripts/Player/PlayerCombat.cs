@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerCombat : MonoBehaviour
 {
     public static event Action OnCombatResolved;
+    public static event Action OnEnemyMiss;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -190,6 +191,7 @@ public class PlayerCombat : MonoBehaviour
         {
             _combatLog.text += $"\nMiss!\n";
             _audioSource.PlayOneShot(_defaultMiss); // Visual FX HERE
+            OnEnemyMiss?.Invoke();
         }
         _currentEnemy.AttackCompleted();
     }

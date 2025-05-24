@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
 
         // Trinkets
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
+        ParalyzingVenom.OnActivated += ParalyzingVenom_OnActivated;
     }
 
     void OnDisable()
@@ -76,6 +77,7 @@ public class Enemy : MonoBehaviour
 
         // Trinkets
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
+        ParalyzingVenom.OnActivated -= ParalyzingVenom_OnActivated;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -212,5 +214,10 @@ public class Enemy : MonoBehaviour
     void SpikedCarapace_OnActivated(string _, int damage)
     {
         TakeDamage(damage, false);
+    }
+
+    void ParalyzingVenom_OnActivated(string _, int debuff)
+    {
+        Evasion -= debuff;
     }
 }

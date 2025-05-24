@@ -8,13 +8,23 @@ public class CombatLog : MonoBehaviour
     void Awake()
     {
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
-        PoisonBuffsStrength.OnActivated += PoisonBuffsStrength_OnActivated;
+        PoisonBuffsStrength.OnActivated += AddActivationToLog;
+        TacticalLens.OnActivated += AddActivationToLog;
+        PlayerHealth.OnPlayerRevive += PlayerHealth_OnPlayerRevive;
+        AblativeShell.OnActivated += AddActivationToLog;
+        ParalyzingVenom.OnActivated += ParalyzingVenom_OnActivated;
+        DiningFork.OnActivated += DiningFork_OnActivated;
     }
 
     void OnDestroy()
     {
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
-        PoisonBuffsStrength.OnActivated += PoisonBuffsStrength_OnActivated;
+        PoisonBuffsStrength.OnActivated -= AddActivationToLog;
+        TacticalLens.OnActivated -= AddActivationToLog;
+        PlayerHealth.OnPlayerRevive -= PlayerHealth_OnPlayerRevive;
+        AblativeShell.OnActivated -= AddActivationToLog;
+        ParalyzingVenom.OnActivated -= ParalyzingVenom_OnActivated;
+        DiningFork.OnActivated -= DiningFork_OnActivated;
     }
 
     void AddToLog(string message)
@@ -22,13 +32,31 @@ public class CombatLog : MonoBehaviour
         _log.text += message;
     }
 
-    void SpikedCarapace_OnActivated(string name, int amount)
+    void AddActivationToLog(string name)
     {
-        AddToLog($"\n{name}\nActivated!\n{amount.FormatLargeNumbers()} Retaliation Damage!\n");
+        AddToLog($"\n{name}\nActivated!\n");
     }
 
-    void PoisonBuffsStrength_OnActivated(string name)
+    void SpikedCarapace_OnActivated(string name, int amount)
     {
-        AddToLog($"\n{name}\nActivated!");
+        AddActivationToLog(name);
+        AddToLog($"{amount.FormatLargeNumbers()} Retaliation Damage!\n");
+    }
+
+    void PlayerHealth_OnPlayerRevive(Trinket reviveTrinket, int health)
+    {
+        AddToLog($"\n{reviveTrinket.Name}\nActivated!\n{health.FormatLargeNumbers()} Restored!\n");
+    }
+
+    void ParalyzingVenom_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Reduced Evasion By {amount.FormatLargeNumbers()}\n");
+    }
+
+    void DiningFork_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!");
     }
 }

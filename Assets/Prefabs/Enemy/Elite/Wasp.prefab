@@ -210,7 +210,7 @@ MonoBehaviour:
   <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
   _maxHealth: 75
-  _attacksPerTurn: 1
+  _attacksPerTurn: 2
   _lootTable: []
 --- !u!1 &1255383751626257826
 GameObject:

@@ -1,0 +1,17 @@
+using UnityEngine;
+using System;
+
+public class CrabClaw : Trinket
+{
+    PlayerHealth _playerHealth;
+
+    void Awake()
+    {
+        _playerHealth = GetComponentInParent<PlayerHealth>();
+    }
+
+    void Start()
+    {
+        _playerHealth.GainRevive(this);
+    }
+}
