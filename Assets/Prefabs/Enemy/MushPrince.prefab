@@ -1267,7 +1267,8 @@ MonoBehaviour:
   <LootChance>k__BackingField: 100
   _maxHealth: 145
   _attacksPerTurn: 2
-  _lootTable: []
+  _lootTable:
+  - {fileID: -3874058349083109241, guid: 3f4ced9cdb78a1a4d82ec2c97642cb68, type: 3}
 --- !u!1 &5460127691938709050
 GameObject:
   m_ObjectHideFlags: 0

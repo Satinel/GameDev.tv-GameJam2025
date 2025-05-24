@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2065149101087238118
+--- !u!1 &6470693210224816088
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5956279262908366745}
-  - component: {fileID: 3199549382215357561}
+  - component: {fileID: 7636710739241834566}
+  - component: {fileID: -5108983323626554166}
   m_Layer: 0
-  m_Name: Midas Pincer
+  m_Name: Quick Molt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5956279262908366745
+--- !u!4 &7636710739241834566
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065149101087238118}
+  m_GameObject: {fileID: 6470693210224816088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,17 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3199549382215357561
+--- !u!114 &-5108983323626554166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065149101087238118}
+  m_GameObject: {fileID: 6470693210224816088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf0eee36df7d994419638dbeb57d9ebd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b09927de018b7047a5e55c98d7fdbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingName: Midas Pincer
-  _toolTipText: Gain Bug Bucks Equal To Damage Of Your First Attack
+  _startingName: Quick Molt
+  _toolTipText: Regain Some HP On Your Third Combat Turn
+  _healAmount: 125

@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     int _level = 1;
     int _experience;
     int _xpToLevel;
+    float _xpBonusMultiplyer;
     public int Level => _level;
     public int CurrentXP => _experience;
     public int NextLevelXP => _xpToLevel;
@@ -55,12 +56,14 @@ public class PlayerStats : MonoBehaviour
     {
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
+        KeenNose.OnActivated += KeenNose_OnActivated;
     }
 
     void OnDisable()
     {
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
+        KeenNose.OnActivated += KeenNose_OnActivated;
     }
 
     void PlayerCombat_OnCombatResolved()
@@ -78,9 +81,14 @@ public class PlayerStats : MonoBehaviour
         ChangeMoney(enemy.MoneyValue);
     }
 
+    void KeenNose_OnActivated(float multiplyer)
+    {
+        _xpBonusMultiplyer += multiplyer;
+    }
+
     public void GainExperience(int amount)
     {
-        _experience += amount;
+        _experience += amount + Mathf.FloorToInt(amount * _xpBonusMultiplyer);
 
         CheckForLevelUp();
 

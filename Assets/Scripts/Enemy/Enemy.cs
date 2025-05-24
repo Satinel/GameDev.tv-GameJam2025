@@ -68,6 +68,8 @@ public class Enemy : MonoBehaviour
         // Trinkets
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
         ParalyzingVenom.OnActivated += ParalyzingVenom_OnActivated;
+        NutCracker.OnActivated += NutCracker_OnActivated;
+        Spinneret.OnActivated += Spinneret_OnActivated;
     }
 
     void OnDisable()
@@ -78,6 +80,8 @@ public class Enemy : MonoBehaviour
         // Trinkets
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
         ParalyzingVenom.OnActivated -= ParalyzingVenom_OnActivated;
+        NutCracker.OnActivated -= NutCracker_OnActivated;
+        Spinneret.OnActivated -= Spinneret_OnActivated;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -217,6 +221,16 @@ public class Enemy : MonoBehaviour
     }
 
     void ParalyzingVenom_OnActivated(string _, int debuff)
+    {
+        Evasion -= debuff;
+    }
+
+    void NutCracker_OnActivated(string _, int debuff)
+    {
+        Fortitude -= debuff;
+    }
+
+    void Spinneret_OnActivated(string _, int debuff)
     {
         Evasion -= debuff;
     }

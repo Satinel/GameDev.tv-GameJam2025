@@ -1204,7 +1204,8 @@ MonoBehaviour:
   <LootChance>k__BackingField: 100
   _maxHealth: 100
   _attacksPerTurn: 2
-  _lootTable: []
+  _lootTable:
+  - {fileID: -9082045364081580512, guid: d2194eaa898f7cb49a4bbc4ca9934f0a, type: 3}
 --- !u!1 &7117876630732946922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1772,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 0
   <IsOpener>k__BackingField: 1
+  <IsSingleUse>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Color1>k__BackingField: {r: 0.34117648, g: 0.34117648, b: 0.34117648, a: 1}
   <Color2>k__BackingField: {r: 0.90588236, g: 0.70980394, b: 0.6745098, a: 1}

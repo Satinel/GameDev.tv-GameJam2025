@@ -13,7 +13,7 @@ public class Trinket : MonoBehaviour
         Name = _startingName;
     }
 
-    public void LevelUp()
+    public virtual void LevelUp()
     {
         Level++;
         Name = $"{_startingName} (+{Level})";

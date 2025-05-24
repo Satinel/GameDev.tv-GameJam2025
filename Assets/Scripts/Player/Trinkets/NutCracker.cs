@@ -1,22 +1,23 @@
 using UnityEngine;
 using System;
 
-public class ParalyzingVenom : Trinket
+public class NutCracker :Trinket
 {
     public static event Action<string, int> OnActivated;
-    [SerializeField] int _debuffAmount;
+
+    int _debuffAmount;
 
     void Awake()
     {
-        PlayerAbilityPoison.OnPoisonHit += PlayerAbilityPoison_OnPoisonHit;
+        PlayerCombat.OnPlayerDealtDamage += PlayerCombat_OnPlayerDealtDamage;
     }
 
     void OnDestroy()
     {
-        PlayerAbilityPoison.OnPoisonHit -= PlayerAbilityPoison_OnPoisonHit;
+        PlayerCombat.OnPlayerDealtDamage -= PlayerCombat_OnPlayerDealtDamage;
     }
 
-    void PlayerAbilityPoison_OnPoisonHit(int _)
+    void PlayerCombat_OnPlayerDealtDamage(int amount)
     {
         Activation();
     }

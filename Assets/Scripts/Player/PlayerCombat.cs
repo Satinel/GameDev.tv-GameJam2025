@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public static event Action OnEnemyMiss;
     public static event Action<Trinket> OnRerollUsed;
     public static event Action<int> OnPlayerDealtDamage;
+    public static event Action<int> OnPlayerTurnStart;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -35,7 +36,9 @@ public class PlayerCombat : MonoBehaviour
     PlayerInventory _playerInventory;
     Enemy _currentEnemy;
     bool _isPlayerTurn, _optionsOpen;
+    int _playerTotalTurns;
     int _toHitRerolls, _rerollsUsed;
+    int _criticalHitBonus = 0;
     Trinket _reRollTrinket;
 
     void Awake()
@@ -63,6 +66,7 @@ public class PlayerCombat : MonoBehaviour
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
         CompoundEye.OnActivated += CompoundEye_OnActivated;
+        PrehensileTongue.OnActivated += IncreaseCriticalHitBonus;
     }
 
     void OnDisable()
@@ -78,6 +82,7 @@ public class PlayerCombat : MonoBehaviour
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
         CompoundEye.OnActivated -= CompoundEye_OnActivated;
+        PrehensileTongue.OnActivated -= IncreaseCriticalHitBonus;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -108,6 +113,7 @@ public class PlayerCombat : MonoBehaviour
             _toHitRerolls = _reRollTrinket.Level + 1;
         }
         _rerollsUsed = 0;
+        _playerTotalTurns = 0;
         StartCoroutine(RollInitiative());
     }
 
@@ -316,7 +322,7 @@ public class PlayerCombat : MonoBehaviour
 
         int toHitRoll = UnityEngine.Random.Range(0, 100);
         bool hasHit = (toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
-        bool criticalHit = toHitRoll > 94;
+        bool criticalHit = toHitRoll > (94 - _criticalHitBonus);
 
         if(!hasHit)
         {
@@ -392,6 +398,8 @@ public class PlayerCombat : MonoBehaviour
     void StartPlayerTurn()
     {
         _playerTurnSplash.SetActive(true);
+        _playerTotalTurns++;
+        OnPlayerTurnStart?.Invoke(_playerTotalTurns);
         Invoke(nameof(HidePlayerTurnSplash), _defaultDelay / 2);
         _isPlayerTurn = true;
         _combatButtonsParent.SetActive(true);
@@ -416,5 +424,12 @@ public class PlayerCombat : MonoBehaviour
     void CompoundEye_OnActivated(Trinket trinket)
     {
         _reRollTrinket = trinket;
+    }
+
+    void IncreaseCriticalHitBonus(int amount)
+    {
+        _criticalHitBonus += amount;
+        _combatLog.text += $"PrehensileTongue\nActivated!\n";
+        _combatLog.text += $"\nCritical Hit Chance Increased By {amount}%!\n";
     }
 }

@@ -18,6 +18,12 @@ public class CombatLog : MonoBehaviour
         DrinkStraw.OnActivated += DrinkStraw_OnActivated;
         MidasPincer.OnActivated += MidasPincer_OnActivated;
         PlayerCombat.OnRerollUsed += PlayerCombat_OnRerollUsed;
+        QuickMolt.OnActivated += QuickMolt_OnActivated;
+        NutCracker.OnActivated += NutCracker_OnActivated;
+        SharpeningStone.OnActivated += AddActivationToLog;
+        Spinneret.OnActivated += Spinneret_OnActivated;
+        MushroomCap.OnActivated += MushroomCap_OnActivated;
+        PlayerAbilityPoison.OnDamageIncrease += PlayerAbilityPoison_OnDamageIncrease;
     }
 
     void OnDestroy()
@@ -33,6 +39,12 @@ public class CombatLog : MonoBehaviour
         DrinkStraw.OnActivated -= DrinkStraw_OnActivated;
         MidasPincer.OnActivated -= MidasPincer_OnActivated;
         PlayerCombat.OnRerollUsed -= PlayerCombat_OnRerollUsed;
+        QuickMolt.OnActivated -= QuickMolt_OnActivated;
+        NutCracker.OnActivated -= NutCracker_OnActivated;
+        SharpeningStone.OnActivated -= AddActivationToLog;
+        Spinneret.OnActivated -= Spinneret_OnActivated;
+        MushroomCap.OnActivated -= MushroomCap_OnActivated;
+        PlayerAbilityPoison.OnDamageIncrease -= PlayerAbilityPoison_OnDamageIncrease;
     }
 
     void AddToLog(string message)
@@ -89,5 +101,33 @@ public class CombatLog : MonoBehaviour
     {
         AddToLog($"\nMiss!");
         AddActivationToLog(trinket.Name);
+    }
+
+    void QuickMolt_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!\n");
+    }
+
+    void NutCracker_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Reduced Fortitude By {amount.FormatLargeNumbers()}\n");
+    }
+
+    void Spinneret_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Reduced Evasion By {amount.FormatLargeNumbers()}\n");
+    }
+
+    void MushroomCap_OnActivated(string name, int _)
+    {
+        AddActivationToLog(name);
+    }
+
+    void PlayerAbilityPoison_OnDamageIncrease(int totalDamage)
+    {
+        AddToLog($"Poison Damage Raised to {totalDamage.FormatLargeNumbers()}");
     }
 }
