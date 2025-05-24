@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public static event Action OnCombatResolved;
     public static event Action OnEnemyMiss;
+    public static event Action<int> OnPlayerDealtDamage;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -325,6 +326,7 @@ public class PlayerCombat : MonoBehaviour
                     damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
                 }
                 _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
+                OnPlayerDealtDamage?.Invoke(damageDealt);
 
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)
 
