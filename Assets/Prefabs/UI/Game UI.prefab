@@ -486,6 +486,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 554438249629799855, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554438249629799855, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 943358261740010099, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
       propertyPath: m_Name
       value: Player UI
@@ -494,6 +502,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4139594698558313395}
+    - target: {fileID: 3835075419573043863, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_fontSize
+      value: 35.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580348044893082638, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4861820921694046476, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -606,6 +622,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4139594698558313395}
+    - target: {fileID: 8399796378468260588, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399796378468260588, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

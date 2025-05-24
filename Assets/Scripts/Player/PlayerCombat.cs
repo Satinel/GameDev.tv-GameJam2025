@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] float _defaultDelay = 2f;
 
-    [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results;
+    [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results, _levelUpWindow, _randomStatIncreaseButton;
     [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash, _finalResults;
     [SerializeField] GameObject[] _attackButtons;
     [SerializeField] Button[] _buttons;
@@ -67,6 +67,7 @@ public class PlayerCombat : MonoBehaviour
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
         CompoundEye.OnActivated += CompoundEye_OnActivated;
         PrehensileTongue.OnActivated += IncreaseCriticalHitBonus;
+        PlayerStats.NoLevelUp += PlayerStats_NoLevelUp;
     }
 
     void OnDisable()
@@ -83,6 +84,7 @@ public class PlayerCombat : MonoBehaviour
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
         CompoundEye.OnActivated -= CompoundEye_OnActivated;
         PrehensileTongue.OnActivated -= IncreaseCriticalHitBonus;
+        PlayerStats.NoLevelUp -= PlayerStats_NoLevelUp;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -232,7 +234,12 @@ public class PlayerCombat : MonoBehaviour
     {
         _optionsOpen = false;
         if(!_isPlayerTurn) { return; }
-        if(_results.activeSelf)
+        if(_levelUpWindow.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_randomStatIncreaseButton);
+        }
+        else if(_results.activeSelf)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_closeResultsButton);
@@ -301,6 +308,7 @@ public class PlayerCombat : MonoBehaviour
         _results.SetActive(false);
         _resultsText.text = string.Empty;
         _combatMenu.SetActive(false);
+        _closeResultsButton.SetActive(false);
     }
 
     public void HideAttackButtons()
@@ -431,5 +439,15 @@ public class PlayerCombat : MonoBehaviour
         _criticalHitBonus += amount;
         _combatLog.text += $"PrehensileTongue\nActivated!\n";
         _combatLog.text += $"\nCritical Hit Chance Increased By {amount}%!\n";
+    }
+
+    void PlayerStats_NoLevelUp()
+    {
+        if(_results.activeSelf)
+        {
+            _closeResultsButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_closeResultsButton);
+        }
     }
 }

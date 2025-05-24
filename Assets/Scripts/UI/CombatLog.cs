@@ -137,7 +137,7 @@ public class CombatLog : MonoBehaviour
 
     void Enemy_OnVenomStrengthened(int amount)
     {
-        AddToLog($"Venom Damage Incresed By {amount.FormatLargeNumbers()}\n");
+        AddToLog($"Venom Damage\nIncresed By {amount.FormatLargeNumbers()}\n");
     }
 
     void PlayerStats_OnBonusXPEarned(int amount)

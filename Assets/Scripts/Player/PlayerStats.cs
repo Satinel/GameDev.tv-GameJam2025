@@ -4,6 +4,8 @@ using System;
 public class PlayerStats : MonoBehaviour
 {
     public static event Action OnExperienceGained;
+    public static event Action OnLevelUp;
+    public static event Action NoLevelUp;
     public static event Action<Stats, int> OnStatIncreased;
     public static event Action<string> OnTempStatChange;
     public static event Action OnTempStatsReset;
@@ -56,6 +58,7 @@ public class PlayerStats : MonoBehaviour
     void OnEnable()
     {
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        LevelUpWindow.OnLevelStatPicked += LevelUpWindow_OnLevelStatPicked;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         KeenNose.OnActivated += KeenNose_OnActivated;
     }
@@ -63,8 +66,9 @@ public class PlayerStats : MonoBehaviour
     void OnDisable()
     {
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        LevelUpWindow.OnLevelStatPicked -= LevelUpWindow_OnLevelStatPicked;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
-        KeenNose.OnActivated += KeenNose_OnActivated;
+        KeenNose.OnActivated -= KeenNose_OnActivated;
     }
 
     void PlayerCombat_OnCombatResolved()
@@ -74,6 +78,12 @@ public class PlayerStats : MonoBehaviour
         _tempBonusFortitude = 0;
         _tempBonusEvasion = 0;
         OnTempStatsReset?.Invoke();
+    }
+
+    void LevelUpWindow_OnLevelStatPicked(Stats stat, int amount)
+    {
+        IncreaseStat(stat, amount);
+        CheckForLevelUp();
     }
 
     void Enemy_OnEnemyKilled(Enemy enemy)
@@ -105,23 +115,15 @@ public class PlayerStats : MonoBehaviour
 
     void CheckForLevelUp()
     {
-        if(_experience < _xpToLevel) { return; }
+        if(_experience < _xpToLevel)
+        {
+            NoLevelUp?.Invoke();
+            return;
+        }
         
         _level++;
         _xpToLevel = _baseLevelXP * _level * _level;
-        HandleLevelUp();
-        CheckForLevelUp();
-    }
-
-    void HandleLevelUp()
-    {
-        // TODO Menu to select stat to increase or randomize
-        // IncreaseStat(Stats.Strength, 1);
-        // IncreaseStat(Stats.Accuracy, 1);
-        // IncreaseStat(Stats.Fortitude, 1);
-        // IncreaseStat(Stats.Evasion, 1);
-        IncreaseStat(Stats.Tenacity, 1);
-        IncreaseStat(Stats.Initiative, 1);
+        OnLevelUp?.Invoke();
     }
 
     public void GainTempBonus(Stats stat, int amount)
