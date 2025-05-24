@@ -198,12 +198,12 @@ GameObject:
   - component: {fileID: 7713227383852071314}
   - component: {fileID: 5073320270853235798}
   m_Layer: 5
-  m_Name: Enemy Health Bar
+  m_Name: Error Causing Enemy Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3590257686768899789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -290,7 +290,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 7713227383852071314}
+  _gradualSlider: {fileID: 0}
   _text: {fileID: 7481296382587093555}
+  _nameText: {fileID: 0}
+  _gradualSpeed: 0.25
 --- !u!1 &4750226534363413493
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class EnemyHealthSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider, _gradualSlider;
     [SerializeField] TextMeshProUGUI _text, _nameText;
-        [SerializeField] float _gradualSpeed = 0.25f;
+    [SerializeField] float _gradualSpeed = 0.25f;
 
     Enemy _currentEnemy;
 
@@ -15,6 +15,7 @@ public class EnemyHealthSlider : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyHealthChanged += Enemy_OnEnemyHealthChanged;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        gameObject.SetActive(false);
     }
 
     void OnDestroy()
@@ -41,6 +42,7 @@ public class EnemyHealthSlider : MonoBehaviour
 
     void Enemy_OnFightStarted(Enemy enemy)
     {
+        gameObject.SetActive(true);
         _currentEnemy = enemy;
         _slider.value = _currentEnemy.CurrentHealth / (float)_currentEnemy.MaxHealth;
         _gradualSlider.value = _slider.value;
@@ -60,5 +62,6 @@ public class EnemyHealthSlider : MonoBehaviour
     {
         _nameText.text = string.Empty;
         _slider.enabled = false;
+        gameObject.SetActive(false);
     }
 }
