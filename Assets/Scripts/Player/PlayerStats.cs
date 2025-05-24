@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     public static event Action<string> OnTempStatChange;
     public static event Action OnTempStatsReset;
     public static event Action<int> OnMoneyChanged;
+    public static event Action<int> OnBonusXPEarned;
 
     [field:SerializeField] public int Strength { get; set; } // Primarily about dealing damage
     [field:SerializeField] public int Accuracy { get; set; } // Primarily about landing attacks
@@ -88,7 +89,14 @@ public class PlayerStats : MonoBehaviour
 
     public void GainExperience(int amount)
     {
-        _experience += amount + Mathf.FloorToInt(amount * _xpBonusMultiplyer);
+        _experience += amount;
+
+        if(_xpBonusMultiplyer > 0)
+        {
+            int bonus = Mathf.FloorToInt(amount * _xpBonusMultiplyer);
+            _experience += bonus;
+            OnBonusXPEarned?.Invoke(bonus);
+        }
 
         CheckForLevelUp();
 

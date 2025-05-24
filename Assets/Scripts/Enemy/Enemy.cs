@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public static event Action OnEnemyTurnEnd;
     public static event Action<int> OnEnemyHealthChanged;
     public static event Action<Enemy> OnEnemyKilled;
+    public static event Action<int> OnVenomStrengthened;
 
     [field:SerializeField] public string Name { get; private set; }
     [field:SerializeField] public bool IsBoss { get; private set; } = false;
@@ -92,9 +93,17 @@ public class Enemy : MonoBehaviour
     void PlayerAbilityPoison_OnPoisonHit(int poisonDamage)
     {
         if(!_inBattle) { return; }
-
-        IsPoisoned = true;
-        PoisonDamage = poisonDamage;
+        if(!IsPoisoned)
+        {
+            IsPoisoned = true;
+            PoisonDamage = poisonDamage;
+        }
+        else
+        {
+            int extraDamage = Mathf.FloorToInt(poisonDamage / 2f);
+            PoisonDamage += extraDamage;
+            OnVenomStrengthened?.Invoke(extraDamage);
+        }
         AnimateHurt();
     }
 

@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingName: Nut Cracker
   _toolTipText: Your Damage Dealing Attacks Reduce Enemy Fortitude
+  _debuffAmount: 1

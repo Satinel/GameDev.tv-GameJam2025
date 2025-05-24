@@ -24,6 +24,8 @@ public class CombatLog : MonoBehaviour
         Spinneret.OnActivated += Spinneret_OnActivated;
         MushroomCap.OnActivated += MushroomCap_OnActivated;
         PlayerAbilityPoison.OnDamageIncrease += PlayerAbilityPoison_OnDamageIncrease;
+        Enemy.OnVenomStrengthened += Enemy_OnVenomStrengthened;
+        PlayerStats.OnBonusXPEarned += PlayerStats_OnBonusXPEarned;
     }
 
     void OnDestroy()
@@ -45,6 +47,8 @@ public class CombatLog : MonoBehaviour
         Spinneret.OnActivated -= Spinneret_OnActivated;
         MushroomCap.OnActivated -= MushroomCap_OnActivated;
         PlayerAbilityPoison.OnDamageIncrease -= PlayerAbilityPoison_OnDamageIncrease;
+        Enemy.OnVenomStrengthened -= Enemy_OnVenomStrengthened;
+        PlayerStats.OnBonusXPEarned -= PlayerStats_OnBonusXPEarned;
     }
 
     void AddToLog(string message)
@@ -128,6 +132,16 @@ public class CombatLog : MonoBehaviour
 
     void PlayerAbilityPoison_OnDamageIncrease(int totalDamage)
     {
-        AddToLog($"Poison Damage Raised to {totalDamage.FormatLargeNumbers()}");
+        AddToLog($"Venom Damage Raised To {totalDamage.FormatLargeNumbers()}\n");
+    }
+
+    void Enemy_OnVenomStrengthened(int amount)
+    {
+        AddToLog($"Venom Damage Incresed By {amount.FormatLargeNumbers()}\n");
+    }
+
+    void PlayerStats_OnBonusXPEarned(int amount)
+    {
+        AddToLog($"Earned {amount.FormatLargeNumbers()} Bonus XP!\n");
     }
 }

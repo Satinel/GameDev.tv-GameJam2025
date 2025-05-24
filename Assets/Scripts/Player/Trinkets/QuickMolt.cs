@@ -32,6 +32,6 @@ public class QuickMolt : Trinket
     {
         base.Activation();
         OnActivated?.Invoke(Name, _healAmount);
-        _playerHealth.GainHealth(_healAmount * Level);
+        _playerHealth.GainHealth(_healAmount * (Level + 1));
     }
 }

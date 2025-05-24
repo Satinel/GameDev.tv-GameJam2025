@@ -5,7 +5,7 @@ public class NutCracker :Trinket
 {
     public static event Action<string, int> OnActivated;
 
-    int _debuffAmount;
+    [SerializeField] int _debuffAmount;
 
     void Awake()
     {
@@ -25,6 +25,6 @@ public class NutCracker :Trinket
     protected override void Activation()
     {
         base.Activation();
-        OnActivated?.Invoke(Name, _debuffAmount);
+        OnActivated?.Invoke(Name, _debuffAmount + Level);
     }
 }

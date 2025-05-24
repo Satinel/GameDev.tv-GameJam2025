@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void GainHealth(int amount)
-    {
+    {Debug.Log("called with " + amount);
         _currentHealth = Mathf.Min(MaxHealth, _currentHealth + amount);
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }

@@ -48,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
 //         }
 //     }
 // [SerializeField] Trinket _testTrinket; // TODO DELETE
+
     public PlayerAbility GetAbility(int index)
     {
         return index switch

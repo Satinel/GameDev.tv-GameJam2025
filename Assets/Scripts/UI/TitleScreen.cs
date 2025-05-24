@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class TitleScreen : MonoBehaviour
 {
     [SerializeField] GameObject _startButton;
-    [SerializeField] GameObject _optionsPrefab;
+    [SerializeField] GameObject _optionsPrefab, _musicPlayer;
     [SerializeField] Animator _animator;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _punch1SFX, _punch2SFX, _tailSFX;
@@ -49,15 +49,18 @@ public class TitleScreen : MonoBehaviour
         _audioSource.PlayOneShot(_punch1SFX);
     }
 
-        public void PlayPunch2() // Animation Trigger
+    public void PlayPunch2() // Animation Trigger
     {
         _audioSource.PlayOneShot(_punch2SFX);
     }
 
-        public void PlayTail() // Animation Trigger
+    public void PlayTail() // Animation Trigger
     {
         _audioSource.PlayOneShot(_tailSFX);
     }
 
-    
+    public void StartMusic()
+    {
+        _musicPlayer.SetActive(true);
+    }
 }
