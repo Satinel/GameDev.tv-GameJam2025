@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5956279262908366745}
   - component: {fileID: -3597358570822654794}
+  - component: {fileID: 3199549382215357561}
   m_Layer: 0
-  m_Name: Drink Straw
+  m_Name: Midas Pincer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,3 +48,17 @@ MonoBehaviour:
   _startingName: Drink Sraw
   _toolTipText: Heal For A Percentage Of Damage Dealt
   _healPercentage: 0.1
+--- !u!114 &3199549382215357561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065149101087238118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0eee36df7d994419638dbeb57d9ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingName: Midas Pincer
+  _toolTipText: Gain Bug Bucks Equal To Damage Of Your First Attack

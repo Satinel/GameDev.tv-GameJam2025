@@ -15,6 +15,7 @@ public class CombatLog : MonoBehaviour
         ParalyzingVenom.OnActivated += ParalyzingVenom_OnActivated;
         DiningFork.OnActivated += DiningFork_OnActivated;
         DrinkStraw.OnActivated += DrinkStraw_OnActivated;
+        MidasPincer.OnActivated += MidasPincer_OnActivated;
     }
 
     void OnDestroy()
@@ -27,6 +28,7 @@ public class CombatLog : MonoBehaviour
         ParalyzingVenom.OnActivated -= ParalyzingVenom_OnActivated;
         DiningFork.OnActivated -= DiningFork_OnActivated;
         DrinkStraw.OnActivated -= DrinkStraw_OnActivated;
+        MidasPincer.OnActivated -= MidasPincer_OnActivated;
     }
 
     void AddToLog(string message)
@@ -66,5 +68,11 @@ public class CombatLog : MonoBehaviour
     {
         AddActivationToLog(name);
         AddToLog($"Gained {amount.FormatLargeNumbers()} Health!");
+    }
+
+    void MidasPincer_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Bug Bucks!");
     }
 }

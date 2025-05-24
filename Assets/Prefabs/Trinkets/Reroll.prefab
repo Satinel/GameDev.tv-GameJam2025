@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2065149101087238118
+--- !u!1 &5355148544773426830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5956279262908366745}
-  - component: {fileID: -3597358570822654794}
+  - component: {fileID: 3117976653312910877}
+  - component: {fileID: 6216607325764774101}
   m_Layer: 0
-  m_Name: Drink Straw
+  m_Name: Reroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5956279262908366745
+--- !u!4 &3117976653312910877
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065149101087238118}
+  m_GameObject: {fileID: 5355148544773426830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,18 +32,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3597358570822654794
+--- !u!114 &6216607325764774101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065149101087238118}
+  m_GameObject: {fileID: 5355148544773426830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db19acc99e162de4f9e02a01d86fafc2, type: 3}
+  m_Script: {fileID: 11500000, guid: be50af91a4546324d9eca587ad84d0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingName: Drink Sraw
-  _toolTipText: Heal For A Percentage Of Damage Dealt
-  _healPercentage: 0.1
