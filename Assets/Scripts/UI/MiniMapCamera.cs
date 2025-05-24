@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MiniMapCamera : MonoBehaviour
 {
-    public bool LockedRotation { get; private set; }
+    [field:SerializeField] public bool LockedRotation { get; private set; }
 
     Quaternion _startRotation;
     Vector3 _localStartRotation;

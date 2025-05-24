@@ -46,7 +46,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(_isFighting || _eventStarted || _optionsOpen) { return;}
+        if(_isFighting || _eventStarted || _optionsOpen)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         if(Input.GetKey(KeyCode.W))
         {
@@ -75,11 +85,11 @@ public class PlayerController : MonoBehaviour
         }
         else{ _moveRight = false; }
 
-        if(Input.mousePositionDelta.x < 0)
+        if(Input.mousePositionDelta.x < 0 || Input.GetKey(KeyCode.Q))
         {
             transform.Rotate(0, -1 * _lookSpeed * Time.deltaTime, 0);
         }
-        else if(Input.mousePositionDelta.x > 0)
+        else if(Input.mousePositionDelta.x > 0 || Input.GetKey(KeyCode.E))
         {
             transform.Rotate(0, 1 * _lookSpeed * Time.deltaTime, 0);
         }

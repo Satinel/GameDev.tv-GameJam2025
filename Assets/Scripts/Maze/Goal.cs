@@ -5,7 +5,7 @@ public class Goal : MonoBehaviour
 {
     public static event Action OnKeyClaimed;
 
-    [SerializeField] GameObject _mapIcon;
+    [SerializeField] GameObject _mapIcon, _keyModel;
 
     Vector2 _coordinates = new();
 
@@ -28,6 +28,7 @@ public class Goal : MonoBehaviour
         if(!other.gameObject.TryGetComponent(out PlayerInventory playerInventory)) { return; }
 
         _keyClaimed = true;
+        _keyModel.SetActive(false);
         playerInventory.GetKey();
         OnKeyClaimed?.Invoke();
         _mapIcon.SetActive(false);
