@@ -4,7 +4,6 @@ using System;
 public class PlayerStats : MonoBehaviour
 {
     public static event Action OnExperienceGained;
-    public static event Action<int> OnLevelIncrease;
     public static event Action<Stats, int> OnStatIncreased;
     public static event Action<string> OnTempStatChange;
     public static event Action OnTempStatsReset;
@@ -18,6 +17,8 @@ public class PlayerStats : MonoBehaviour
     [field:SerializeField] public int Initiative { get; set; } // Primarily governs turn order
     [field:SerializeField] public int Money { get; set; } // Primarily governs Tigey
 
+    [SerializeField] int _baseLevelXP = 25;
+
     int _tempBonusStrength;
     int _tempBonusAccuracy;
     int _tempBonusFortitude;
@@ -25,7 +26,7 @@ public class PlayerStats : MonoBehaviour
 
     int _level = 1;
     int _experience;
-    int _xpToLevel = 100;
+    int _xpToLevel;
     public int Level => _level;
     public int CurrentXP => _experience;
     public int NextLevelXP => _xpToLevel;
@@ -43,6 +44,11 @@ public class PlayerStats : MonoBehaviour
         Evasion,
         Tenacity,
         Initiative
+    }
+
+    void Start()
+    {
+        _xpToLevel = _baseLevelXP;
     }
 
     void OnEnable()
@@ -75,15 +81,20 @@ public class PlayerStats : MonoBehaviour
     public void GainExperience(int amount)
     {
         _experience += amount;
-        if(_experience >= _xpToLevel)
-        {
-            _level++;
-            HandleLevelUp();
-        }
-        else
-        {
-            OnExperienceGained?.Invoke();
-        }
+
+        CheckForLevelUp();
+
+        OnExperienceGained?.Invoke();
+    }
+
+    void CheckForLevelUp()
+    {
+        if(_experience < _xpToLevel) { return; }
+        
+        _level++;
+        _xpToLevel = _baseLevelXP * _level * _level;
+        HandleLevelUp();
+        CheckForLevelUp();
     }
 
     void HandleLevelUp()
@@ -95,7 +106,6 @@ public class PlayerStats : MonoBehaviour
         // IncreaseStat(Stats.Evasion, 1);
         IncreaseStat(Stats.Tenacity, 1);
         IncreaseStat(Stats.Initiative, 1);
-        OnLevelIncrease?.Invoke(_level);
     }
 
     public void GainTempBonus(Stats stat, int amount)

@@ -6,6 +6,7 @@ public class Goal : MonoBehaviour
     public static event Action OnKeyClaimed;
 
     [SerializeField] GameObject _mapIcon, _keyModel;
+    [SerializeField] AudioSource _audioSource;
 
     Vector2 _coordinates = new();
 
@@ -32,9 +33,7 @@ public class Goal : MonoBehaviour
         playerInventory.GetKey();
         OnKeyClaimed?.Invoke();
         _mapIcon.SetActive(false);
-        // TODO Play a sound
-        // TODO Show a real message
-        Debug.Log("Key Claimed!");
+        _audioSource.Play();
     }
 
     public void SetCoordinates(int x, int z)

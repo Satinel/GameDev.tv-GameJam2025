@@ -7,6 +7,7 @@ public class CombatLog : MonoBehaviour
 
     void Awake()
     {
+        Goal.OnKeyClaimed += Goal_OnKeyClaimed;
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
         PoisonBuffsStrength.OnActivated += AddActivationToLog;
         TacticalLens.OnActivated += AddActivationToLog;
@@ -21,6 +22,7 @@ public class CombatLog : MonoBehaviour
 
     void OnDestroy()
     {
+        Goal.OnKeyClaimed += Goal_OnKeyClaimed;
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
         PoisonBuffsStrength.OnActivated -= AddActivationToLog;
         TacticalLens.OnActivated -= AddActivationToLog;
@@ -41,6 +43,11 @@ public class CombatLog : MonoBehaviour
     void AddActivationToLog(string name)
     {
         AddToLog($"\n{name}\nActivated!\n");
+    }
+
+    void Goal_OnKeyClaimed()
+    {
+        AddToLog($"\nFloor Boss Unlocked!\n");
     }
 
     void SpikedCarapace_OnActivated(string name, int amount)

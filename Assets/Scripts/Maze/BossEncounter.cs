@@ -31,7 +31,6 @@ public class BossEncounter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        _door.SetActive(false);
         if(!_boss) { return; }
 
         if(other.gameObject.GetComponent<PlayerHealth>())
@@ -69,6 +68,7 @@ public class BossEncounter : MonoBehaviour
     {
         Reveal();
         _collider.isTrigger = true;
+        _door.transform.SetPositionAndRotation(new(_door.transform.position.x, _door.transform.position.y + 6, _door.transform.position.z), Quaternion.Euler(270, 0, 0));
     }
 
     public void Reveal()
