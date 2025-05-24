@@ -89,7 +89,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Revive()
     {
+        _hasRevived = true;
         _currentHealth = 1 + (_reviveTrinket.Level * _tenacityMultiplyer);
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         OnPlayerRevive?.Invoke(_reviveTrinket, _currentHealth);
     }
 

@@ -5,18 +5,9 @@ public class CompoundEye : Trinket
 {
     public static event Action<Trinket> OnActivated;
 
-    void Awake()
+    protected override void Start()
     {
-        Enemy.OnFightStarted += Enemy_OnFightStarted;
-    }
-
-    void OnDestroy()
-    {
-        Enemy.OnFightStarted -= Enemy_OnFightStarted;
-    }
-
-    void Enemy_OnFightStarted(Enemy _)
-    {
+        base.Start();
         Activation();
     }
 

@@ -40,14 +40,14 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T)) // TODO DELETE!!
-        {
-            AddTrinket(_testTrinket);
-        }
-    }
-[SerializeField] Trinket _testTrinket; // TODO DELETE
+//     void Update()
+//     {
+//         if(Input.GetKeyDown(KeyCode.T)) // TODO DELETE!!
+//         {
+//             AddTrinket(_testTrinket);
+//         }
+//     }
+// [SerializeField] Trinket _testTrinket; // TODO DELETE
     public PlayerAbility GetAbility(int index)
     {
         return index switch

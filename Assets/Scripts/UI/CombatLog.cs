@@ -51,7 +51,7 @@ public class CombatLog : MonoBehaviour
 
     void PlayerHealth_OnPlayerRevive(Trinket reviveTrinket, int health)
     {
-        AddToLog($"\n{reviveTrinket.Name}\nActivated!\n{health.FormatLargeNumbers()} Restored!\n");
+        AddToLog($"\n{reviveTrinket.Name}\nActivated!\n{health.FormatLargeNumbers()} HP Restored!\n");
     }
 
     void ParalyzingVenom_OnActivated(string name, int amount)
@@ -63,19 +63,19 @@ public class CombatLog : MonoBehaviour
     void DiningFork_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
-        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!");
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!\n");
     }
 
     void DrinkStraw_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
-        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!");
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Health!\n");
     }
 
     void MidasPincer_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
-        AddToLog($"Gained {amount.FormatLargeNumbers()} Bug Bucks!");
+        AddToLog($"Gained {amount.FormatLargeNumbers()} Bug Bucks!\n");
     }
 
     void PlayerCombat_OnRerollUsed(Trinket trinket)

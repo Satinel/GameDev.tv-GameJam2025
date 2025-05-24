@@ -8,7 +8,7 @@ public class Trinket : MonoBehaviour
     public string Name { get; private set; }
     public int Level { get; private set; } = 0;
 
-    void Start()
+    protected virtual void Start()
     {
         Name = _startingName;
     }

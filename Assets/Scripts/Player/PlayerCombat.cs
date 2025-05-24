@@ -36,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
     Enemy _currentEnemy;
     bool _isPlayerTurn, _optionsOpen;
     int _toHitRerolls, _rerollsUsed;
+    Trinket _reRollTrinket;
 
     void Awake()
     {
@@ -102,6 +103,10 @@ public class PlayerCombat : MonoBehaviour
         _battleStartSplash.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
+        if(_reRollTrinket)
+        {
+            _toHitRerolls = _reRollTrinket.Level + 1;
+        }
         _rerollsUsed = 0;
         StartCoroutine(RollInitiative());
     }
@@ -310,14 +315,17 @@ public class PlayerCombat : MonoBehaviour
         _combatLog.text += $"\nYou Used {selectedAbility.Name}!\n";
 
         int toHitRoll = UnityEngine.Random.Range(0, 100);
-        bool hasHit = toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100;
+        bool hasHit = (toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
         bool criticalHit = toHitRoll > 94;
 
-        if(!hasHit && _toHitRerolls < _rerollsUsed)
+        if(!hasHit)
         {
-            _rerollsUsed++;
-            hasHit = true;
-            OnRerollUsed?.Invoke(_reRollTrinket);
+            if(_toHitRerolls > _rerollsUsed)
+            {
+                _rerollsUsed++;
+                hasHit = true;
+                OnRerollUsed?.Invoke(_reRollTrinket);
+            }
         }
 
         if(selectedAbility.AlwaysHits || criticalHit || hasHit)
@@ -405,11 +413,8 @@ public class PlayerCombat : MonoBehaviour
         _playerTurnSplash.SetActive(false);
     }
 
-    Trinket _reRollTrinket;
-
     void CompoundEye_OnActivated(Trinket trinket)
     {
         _reRollTrinket = trinket;
-        _toHitRerolls = _reRollTrinket.Level + 1;
     }
 }

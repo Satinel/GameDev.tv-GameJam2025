@@ -6,6 +6,7 @@ public class AblativeShell : Trinket
     public static event Action<string> OnActivated;
     [SerializeField] int _buffAmount;
     PlayerStats _playerStats;
+    bool _isActive;
 
     void Awake()
     {
@@ -27,6 +28,9 @@ public class AblativeShell : Trinket
 
     void PlayerHealth_OnTakeDamage()
     {
+        if(!_isActive) { return; }
+
+        _isActive = false;
         _playerStats.GainTempBonus(PlayerStats.Stats.Fortitude, -(_buffAmount + Level));
     }
 
@@ -35,5 +39,6 @@ public class AblativeShell : Trinket
         base.Activation();
         OnActivated?.Invoke(Name);
         _playerStats.GainTempBonus(PlayerStats.Stats.Fortitude, _buffAmount + Level);
+        _isActive = true;
     }
 }

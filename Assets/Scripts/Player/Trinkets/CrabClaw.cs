@@ -10,8 +10,9 @@ public class CrabClaw : Trinket
         _playerHealth = GetComponentInParent<PlayerHealth>();
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _playerHealth.GainRevive(this);
     }
 }
