@@ -279,7 +279,7 @@ public class PlayerCombat : MonoBehaviour
         bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage, false);
 
         DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
-        damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300f, 300f), damageFX.transform.position.y + UnityEngine.Random.Range(0f, 200f));
+        damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-200f, 200f), damageFX.transform.position.y + UnityEngine.Random.Range(0f, 200f));
         damageFX.Setup(Color.yellow, Color.green, Color.red, _currentEnemy.PoisonDamage.FormatLargeNumbers()); // TODO Better colors
 
         _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
@@ -358,8 +358,8 @@ public class PlayerCombat : MonoBehaviour
                 _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)
 
                 DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
-                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300, 300), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
-                damageFX.Setup(UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), UnityEngine.Random.ColorHSV(), damageDealt.FormatLargeNumbers()); // TODO set colors through ability
+                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-200, 200), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+                damageFX.Setup(Color.yellow, Color.red, Color.yellow, damageDealt.FormatLargeNumbers()); // TODO set colors through ability
 
                 bool enemyDead = _currentEnemy.TakeDamage(damageDealt, true); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
                 if(!enemyDead)

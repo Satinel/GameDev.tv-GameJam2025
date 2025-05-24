@@ -5,7 +5,7 @@ public class GameOverSplash : MonoBehaviour
 {
     [SerializeField] GameObject _button;
     [SerializeField] Animator _animator;
-    [SerializeField] float _overlaySpeed;
+
     bool _isLoading;
 
     public void LoadMainMenu()
