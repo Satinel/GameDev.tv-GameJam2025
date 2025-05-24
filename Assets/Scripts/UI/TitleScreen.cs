@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 public class TitleScreen : MonoBehaviour
 {
     [SerializeField] GameObject _startButton;
-    [SerializeField] GameObject _buttonsParent, _optionsPrefab;
+    [SerializeField] GameObject _optionsPrefab;
     [SerializeField] Animator _animator;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _punch1SFX, _punch2SFX, _tailSFX;
+
     bool _isLoading;
 
     void Start()
@@ -31,7 +34,6 @@ public class TitleScreen : MonoBehaviour
     {
         if(_isLoading) { return; }
 
-        _buttonsParent.SetActive(false);
         _optionsPrefab.SetActive(false);
         _isLoading = true;
         _animator.SetTrigger("Load");
@@ -41,4 +43,21 @@ public class TitleScreen : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void PlayPunch1() // Animation Trigger
+    {
+        _audioSource.PlayOneShot(_punch1SFX);
+    }
+
+        public void PlayPunch2() // Animation Trigger
+    {
+        _audioSource.PlayOneShot(_punch2SFX);
+    }
+
+        public void PlayTail() // Animation Trigger
+    {
+        _audioSource.PlayOneShot(_tailSFX);
+    }
+
+    
 }

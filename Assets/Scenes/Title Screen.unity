@@ -418,12 +418,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1238915879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3074566093531400923, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
+  m_PrefabInstance: {fileID: 3832315004350211047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1238915880 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1568023180193111208, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
   m_PrefabInstance: {fileID: 3832315004350211047}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1238915879}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6920e39453374c4b9687dc3b31161a4, type: 3}
@@ -618,6 +623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Title UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4990393880187422168, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: _optionsPrefab
+      value: 
+      objectReference: {fileID: 1238915879}
     - target: {fileID: 7653705567131981013, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

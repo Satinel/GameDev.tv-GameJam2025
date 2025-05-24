@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Jab
+  <Name>k__BackingField: Left Jab
   <Adjective>k__BackingField: <color=Yellow>Pincer</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 92
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
@@ -135,6 +135,7 @@ MonoBehaviour:
   <DealsDamage>k__BackingField: 0
   UseMessage: \nEnemy Envenomated!\n
   _sendUseMessage: 1
+  _poisonDamage: 10
 --- !u!1 &1050778114940919757
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,9 +655,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Tear
   <Adjective>k__BackingField: <color=Red>Tearing</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 85
   <Damage>k__BackingField: 12
-  <AlwaysHits>k__BackingField: 1
+  <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
@@ -1155,7 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Grab
   <Adjective>k__BackingField: <color=Red>Grip</color>
-  <HitChance>k__BackingField: 90
+  <HitChance>k__BackingField: 80
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
@@ -2650,9 +2651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a4d35370482e946a3483d337a254fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Punch
+  <Name>k__BackingField: Right Cross
   <Adjective>k__BackingField: <color=Yellow>Fist</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 92
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
@@ -2818,6 +2819,7 @@ MonoBehaviour:
   <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 1
   <Money>k__BackingField: 0
+  _baseLevelXP: 25
 --- !u!1 &7616818233747393119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,7 +2866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Grab
   <Adjective>k__BackingField: <color=Red>Grip</color>
-  <HitChance>k__BackingField: 90
+  <HitChance>k__BackingField: 80
   <Damage>k__BackingField: 5
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
@@ -3150,9 +3152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Tear
   <Adjective>k__BackingField: <color=Red>Tearing</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 85
   <Damage>k__BackingField: 12
-  <AlwaysHits>k__BackingField: 1
+  <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
