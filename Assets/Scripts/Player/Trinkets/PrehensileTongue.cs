@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class PrehensileTongue : Trinket
+public class PrehensileTongue : Trinket // Please Note that farming these breaks the game as at 95 all player attacks crit and cannot miss
 {
     public static event Action<int> OnActivated;
 

@@ -68,7 +68,8 @@ public class BossEncounter : MonoBehaviour
     {
         Reveal();
         _collider.isTrigger = true;
-        _door.transform.SetPositionAndRotation(new(_door.transform.position.x, _door.transform.position.y + 6, _door.transform.position.z), Quaternion.Euler(270, 0, 0));
+        _door.transform.position = new(_door.transform.position.x, _door.transform.position.y + 6, _door.transform.position.z);
+        _door.transform.localRotation = Quaternion.Euler(-90, 0, 0);
     }
 
     public void Reveal()
