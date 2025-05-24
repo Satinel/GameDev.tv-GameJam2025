@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5956279262908366745}
   - component: {fileID: 5426738683328500236}
   m_Layer: 0
-  m_Name: Spinked Carapace Trinket
+  m_Name: Spiked Carapace Trinket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

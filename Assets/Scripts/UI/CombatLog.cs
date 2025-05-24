@@ -16,6 +16,7 @@ public class CombatLog : MonoBehaviour
         DiningFork.OnActivated += DiningFork_OnActivated;
         DrinkStraw.OnActivated += DrinkStraw_OnActivated;
         MidasPincer.OnActivated += MidasPincer_OnActivated;
+        PlayerCombat.OnRerollUsed += PlayerCombat_OnRerollUsed;
     }
 
     void OnDestroy()
@@ -29,6 +30,7 @@ public class CombatLog : MonoBehaviour
         DiningFork.OnActivated -= DiningFork_OnActivated;
         DrinkStraw.OnActivated -= DrinkStraw_OnActivated;
         MidasPincer.OnActivated -= MidasPincer_OnActivated;
+        PlayerCombat.OnRerollUsed -= PlayerCombat_OnRerollUsed;
     }
 
     void AddToLog(string message)
@@ -74,5 +76,11 @@ public class CombatLog : MonoBehaviour
     {
         AddActivationToLog(name);
         AddToLog($"Gained {amount.FormatLargeNumbers()} Bug Bucks!");
+    }
+
+    void PlayerCombat_OnRerollUsed(Trinket trinket)
+    {
+        AddToLog($"\nMiss!");
+        AddActivationToLog(trinket.Name);
     }
 }

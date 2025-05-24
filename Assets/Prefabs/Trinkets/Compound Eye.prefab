@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3117976653312910877}
   - component: {fileID: 6216607325764774101}
   m_Layer: 0
-  m_Name: Reroll
+  m_Name: Compound Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be50af91a4546324d9eca587ad84d0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingName: Compound Eye
+  _toolTipText: A Missed Attack Hits Instead

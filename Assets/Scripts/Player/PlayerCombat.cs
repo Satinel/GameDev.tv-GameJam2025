@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public static event Action OnCombatResolved;
     public static event Action OnEnemyMiss;
+    public static event Action<Trinket> OnRerollUsed;
     public static event Action<int> OnPlayerDealtDamage;
 
     [SerializeField] float _defaultDelay = 2f;
@@ -34,6 +35,7 @@ public class PlayerCombat : MonoBehaviour
     PlayerInventory _playerInventory;
     Enemy _currentEnemy;
     bool _isPlayerTurn, _optionsOpen;
+    int _toHitRerolls, _rerollsUsed;
 
     void Awake()
     {
@@ -59,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
         PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        CompoundEye.OnActivated += CompoundEye_OnActivated;
     }
 
     void OnDisable()
@@ -73,6 +76,7 @@ public class PlayerCombat : MonoBehaviour
         PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        CompoundEye.OnActivated -= CompoundEye_OnActivated;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -98,6 +102,7 @@ public class PlayerCombat : MonoBehaviour
         _battleStartSplash.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
+        _rerollsUsed = 0;
         StartCoroutine(RollInitiative());
     }
 
@@ -305,9 +310,17 @@ public class PlayerCombat : MonoBehaviour
         _combatLog.text += $"\nYou Used {selectedAbility.Name}!\n";
 
         int toHitRoll = UnityEngine.Random.Range(0, 100);
+        bool hasHit = toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100;
         bool criticalHit = toHitRoll > 94;
 
-        if(selectedAbility.AlwaysHits || criticalHit || toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion >= 100)
+        if(!hasHit && _toHitRerolls < _rerollsUsed)
+        {
+            _rerollsUsed++;
+            hasHit = true;
+            OnRerollUsed?.Invoke(_reRollTrinket);
+        }
+
+        if(selectedAbility.AlwaysHits || criticalHit || hasHit)
         {
             if(criticalHit)
             {
@@ -390,5 +403,13 @@ public class PlayerCombat : MonoBehaviour
     void HidePlayerTurnSplash()
     {
         _playerTurnSplash.SetActive(false);
+    }
+
+    Trinket _reRollTrinket;
+
+    void CompoundEye_OnActivated(Trinket trinket)
+    {
+        _reRollTrinket = trinket;
+        _toHitRerolls = _reRollTrinket.Level + 1;
     }
 }
