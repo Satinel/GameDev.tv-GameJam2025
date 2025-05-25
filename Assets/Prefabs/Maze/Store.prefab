@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tigey: {fileID: 1284082479329837526}
+  _mapIcon: {fileID: 9120114886456320393}
 --- !u!1 &9120114886456320393
 GameObject:
   m_ObjectHideFlags: 0

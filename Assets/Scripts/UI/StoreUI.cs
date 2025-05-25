@@ -11,7 +11,8 @@ public class StoreUI : MonoBehaviour
     [SerializeField] List<Trinket> _saleItems;
     [SerializeField] StoreButton[] _storeButtons;
     [SerializeField] TextMeshProUGUI _priceText, _descriptionText;
-    [SerializeField] int _itemPrice;
+    [SerializeField] int _itemPrice, _priceIncrease;
+    [SerializeField] bool _isTutorial;
     [SerializeField] GameObject _storeWindow, _tooPoorWindow, _sorryButton, _leaveButton;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _purchaseClip;
@@ -23,7 +24,20 @@ public class StoreUI : MonoBehaviour
     {
         Store.OnEnteredStore += Store_OnEnteredStore;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
 
+        SetupItems();
+    }
+
+    void OnDestroy()
+    {
+        Store.OnEnteredStore -= Store_OnEnteredStore;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
+    }
+
+    void SetupItems()
+    {
         if(_saleItems.Count > 3)
         {
             _saleItems.Shuffle();
@@ -38,12 +52,6 @@ public class StoreUI : MonoBehaviour
 
         _playerStats = FindFirstObjectByType<PlayerStats>();
         _playerInventory = _playerStats.GetComponent<PlayerInventory>();
-    }
-
-    void OnDestroy()
-    {
-        Store.OnEnteredStore -= Store_OnEnteredStore;
-        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
     void Store_OnEnteredStore(Transform t)
@@ -67,6 +75,14 @@ public class StoreUI : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_leaveButton);
         }
+    }
+
+    void RestAreaUI_OnRestAreaUsed()
+    {
+        if(_isTutorial) { return; }
+
+        _itemPrice += _priceIncrease;
+        SetupItems();
     }
 
     public void LeaveStoreButton() // UI Button

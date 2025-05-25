@@ -15,10 +15,25 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] RectTransform _itemList;
     List<Button> _trinketButtons = new();
 
+    PlayerInventory _playerInventory;
+
     void Start()
     {
         PlayerInventory.OnTrinketAdded += PlayerInventory_OnTrinketAdded;
         OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
+
+        _playerInventory = FindFirstObjectByType<PlayerInventory>();
+        foreach(Trinket trinket in _playerInventory.GetInventory())
+        {
+            InventoryButton inventoryButton = Instantiate(_invButtonPrefab, _itemList);
+            inventoryButton.SetTrinket(trinket, _toolTipTextArea);
+            Button button = inventoryButton.GetComponent<Button>();
+            _trinketButtons.Insert(_trinketButtons.Count, button);
+            if(_trinketButtons.Count > 1)
+            {
+                SetButtonNavigations();
+            }
+        }
     }
 
     void OnDestroy()

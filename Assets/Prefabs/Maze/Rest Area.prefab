@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _emptyTransform: {fileID: 5887157516318310617}
+  _mapIcon: {fileID: 5054332519290810550}
 --- !u!1 &2786952627869401351
 GameObject:
   m_ObjectHideFlags: 0
