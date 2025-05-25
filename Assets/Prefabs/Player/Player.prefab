@@ -50,6 +50,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Accurate Moderate Damage
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &881370429788364186
@@ -133,6 +134,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 15
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 0
+  <Description>k__BackingField: Cause Ongoing Defense Piercing Damage
   UseMessage: \nEnemy Envenomated!\n
   _sendUseMessage: 1
   _poisonDamage: 10
@@ -656,9 +658,10 @@ MonoBehaviour:
   <Name>k__BackingField: Tear
   <Adjective>k__BackingField: <color=Red>Tearing</color>
   <HitChance>k__BackingField: 85
-  <Damage>k__BackingField: 12
+  <Damage>k__BackingField: 16
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Release Grip for Extreme Damage
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
@@ -796,10 +799,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Whip
   <Adjective>k__BackingField: <color=Yellow>Lashing</color>
-  <HitChance>k__BackingField: 75
-  <Damage>k__BackingField: 8
+  <HitChance>k__BackingField: 95
+  <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Very Accurate Low Damage
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &2532794386574005264
@@ -1157,12 +1161,13 @@ MonoBehaviour:
   <Name>k__BackingField: Grab
   <Adjective>k__BackingField: <color=Red>Grip</color>
   <HitChance>k__BackingField: 80
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
-  _accuracyBuff: 1
+  _accuracyBuff: 2
   _swappedEquipment: {fileID: 5035502185339537485}
   _baseEquipable: {fileID: 8561436319350109281}
 --- !u!1 &3604232841298259615
@@ -2017,6 +2022,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Guaranteed Mild Damage
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &6473475120198362188
@@ -2653,10 +2659,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Right Cross
   <Adjective>k__BackingField: <color=Yellow>Fist</color>
-  <HitChance>k__BackingField: 92
-  <Damage>k__BackingField: 10
+  <HitChance>k__BackingField: 88
+  <Damage>k__BackingField: 14
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Semi-Accurate High Damage
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &7442926962721528397
@@ -2867,12 +2874,13 @@ MonoBehaviour:
   <Name>k__BackingField: Grab
   <Adjective>k__BackingField: <color=Red>Grip</color>
   <HitChance>k__BackingField: 80
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
-  _accuracyBuff: 1
+  _accuracyBuff: 2
   _swappedEquipment: {fileID: 8322965815924578287}
   _baseEquipable: {fileID: 3137806993205200348}
 --- !u!1 &8657731044431436606
@@ -3153,9 +3161,10 @@ MonoBehaviour:
   <Name>k__BackingField: Tear
   <Adjective>k__BackingField: <color=Red>Tearing</color>
   <HitChance>k__BackingField: 85
-  <Damage>k__BackingField: 12
+  <Damage>k__BackingField: 16
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Release Grip for Extreme Damage
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
@@ -3297,6 +3306,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
+  <Description>k__BackingField: Guaranteed Mild Damage
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &9136909456936630332

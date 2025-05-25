@@ -70,7 +70,7 @@ public class StoreUI : MonoBehaviour
         {
             _tooPoorWindow.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_tooPoorWindow);
+            EventSystem.current.SetSelectedGameObject(_sorryButton);
         }
         else
         {

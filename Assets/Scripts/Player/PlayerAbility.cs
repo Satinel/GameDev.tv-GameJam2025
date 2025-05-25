@@ -11,6 +11,7 @@ public class PlayerAbility : MonoBehaviour
     [field:SerializeField] public int Damage { get; private set; } = 10;
     [field:SerializeField] public bool AlwaysHits { get; private set; } = false;
     [field:SerializeField] public bool DealsDamage { get; private set; } = true;
+    [field:SerializeField] public string Description { get; private set; }
 
     [SerializeField] string UseMessage = string.Empty;
     [SerializeField] bool _sendUseMessage;

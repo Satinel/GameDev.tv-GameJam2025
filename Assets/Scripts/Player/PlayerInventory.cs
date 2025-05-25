@@ -7,6 +7,8 @@ public class PlayerInventory : MonoBehaviour
     public static event Action<Equipable, bool> OnWeaponEquipped;
     public static event Action<Trinket> OnTrinketAdded;
     public static event Action<Trinket> OnTrinketLevelled;
+    public static event Action<PlayerAbility> OnAbilityFocused;
+    public static event Action OnAbilityNotFocused;
 
     [field:SerializeField] public Equipable LeftClawWeapon { get; private set; }
     [field:SerializeField] public Equipable TailWeapon { get; private set; }
@@ -23,11 +25,15 @@ public class PlayerInventory : MonoBehaviour
     void OnEnable()
     {
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
+        AbilityButton.OnButtonFocused += AbilityButton_OnButtonFocused;
+        AbilityButton.OnButtonNotFocused += AbilityButton_OnButtonNotFocused;
     }
 
     void OnDisable()
     {
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
+        AbilityButton.OnButtonFocused -= AbilityButton_OnButtonFocused;
+        AbilityButton.OnButtonNotFocused -= AbilityButton_OnButtonNotFocused;
     }
 
     void Start()
@@ -64,6 +70,16 @@ public class PlayerInventory : MonoBehaviour
             5 => RightClawWeapon.Ability2,
             _ => LeftClawWeapon.Ability1,
         };
+    }
+
+    void AbilityButton_OnButtonFocused(int index)
+    {
+        OnAbilityFocused?.Invoke(GetAbility(index));
+    }
+
+    void AbilityButton_OnButtonNotFocused()
+    {
+        OnAbilityNotFocused?.Invoke();
     }
 
     public void EquipWeapon(Equipable weapon, bool isLeft)

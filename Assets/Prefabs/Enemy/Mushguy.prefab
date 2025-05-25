@@ -72,11 +72,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Mushguy
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 0
   <Accuracy>k__BackingField: 0
   <Fortitude>k__BackingField: 0
   <Evasion>k__BackingField: 0
-  Tenacity: 5
+  Tenacity: 6
   <Initiative>k__BackingField: 0
   <LootChance>k__BackingField: 0
   _maxHealth: 40
