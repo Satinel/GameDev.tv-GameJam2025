@@ -200,16 +200,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wasp
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 8
   <Accuracy>k__BackingField: 10
   <Fortitude>k__BackingField: 2
   <Evasion>k__BackingField: 8
-  <Tenacity>k__BackingField: 20
+  Tenacity: 1
   <Initiative>k__BackingField: 8
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
-  _maxHealth: 75
+  _maxHealth: 100
   _attacksPerTurn: 2
   _lootTable:
   - {fileID: 6216607325764774101, guid: 1e57210b32860da409e8681389187d11, type: 3}

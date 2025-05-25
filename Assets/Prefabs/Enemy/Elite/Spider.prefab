@@ -764,7 +764,7 @@ MonoBehaviour:
   Tenacity: 1
   <Initiative>k__BackingField: 7
   <LootChance>k__BackingField: 100
-  _maxHealth: 95
+  _maxHealth: 115
   _attacksPerTurn: 2
   _lootTable:
   - {fileID: -8970973399201382796, guid: 3eadb53e8f270654da953d59b7a603a4, type: 3}

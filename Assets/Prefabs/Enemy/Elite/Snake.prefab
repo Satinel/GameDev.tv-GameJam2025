@@ -631,16 +631,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Snake
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 6
   <Accuracy>k__BackingField: 6
   <Fortitude>k__BackingField: 6
   <Evasion>k__BackingField: 6
-  <Tenacity>k__BackingField: 20
+  Tenacity: 1
   <Initiative>k__BackingField: 6
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
-  _maxHealth: 100
+  _maxHealth: 150
   _attacksPerTurn: 2
   _lootTable:
   - {fileID: 7703683647252609927, guid: f68b7e986b26d3949a671735ea3610dc, type: 3}

@@ -59,6 +59,8 @@ public class PlayerCombat : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd += Enemy_OnEnemyTurnEnd;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
+        PlayerInventory.OnTrinketAdded += PlayerInventory_OnTrinketAdded;
+        PlayerInventory.OnTrinketLevelled += PlayerInventory_OnTrinketLevelled;
         EnemyAbility.OnEnemyAbilityStarted += EnemyAbility_OnEnemyAbilityStarted;
         EnemyAbility.OnEnemyAbilityUsed += EnemyAbility_OnEnemyAbilityUsed;
         PlayerAbility.OnPlayerAbilityUsed += PlayerAbility_OnPlayerAbilityUsed;
@@ -76,6 +78,8 @@ public class PlayerCombat : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd -= Enemy_OnEnemyTurnEnd;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
+        PlayerInventory.OnTrinketAdded -= PlayerInventory_OnTrinketAdded;
+        PlayerInventory.OnTrinketLevelled -= PlayerInventory_OnTrinketLevelled;
         EnemyAbility.OnEnemyAbilityStarted -= EnemyAbility_OnEnemyAbilityStarted;
         EnemyAbility.OnEnemyAbilityUsed -= EnemyAbility_OnEnemyAbilityUsed;
         PlayerAbility.OnPlayerAbilityUsed -= PlayerAbility_OnPlayerAbilityUsed;
@@ -168,8 +172,18 @@ public class PlayerCombat : MonoBehaviour
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
         _results.SetActive(true);
         _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
-        _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n\n";
-        // TODO Message about gaining item (also shown in _resultsText)
+        _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
+    }
+
+    void PlayerInventory_OnTrinketAdded(Trinket trinket)
+    {
+        Debug.Log("eh?");
+        _resultsText.text += $"\nAcquired {trinket.StartingName}!\n";
+    }
+
+    void PlayerInventory_OnTrinketLevelled(Trinket trinket)
+    {
+        _resultsText.text += $"\nUpgraded {trinket.StartingName} to +{trinket.Level}!\n";
     }
 
     void EnemyAbility_OnEnemyAbilityStarted(EnemyAbility ability)

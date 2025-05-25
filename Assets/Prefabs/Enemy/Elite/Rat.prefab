@@ -1193,16 +1193,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rat
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 7
   <Accuracy>k__BackingField: 12
   <Fortitude>k__BackingField: 6
   <Evasion>k__BackingField: 5
-  <Tenacity>k__BackingField: 20
+  Tenacity: 1
   <Initiative>k__BackingField: 7
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
-  _maxHealth: 100
+  _maxHealth: 125
   _attacksPerTurn: 2
   _lootTable:
   - {fileID: -9082045364081580512, guid: d2194eaa898f7cb49a4bbc4ca9934f0a, type: 3}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
@@ -138,6 +139,13 @@ public class PlayerInventory : MonoBehaviour
 
     void Enemy_OnEnemyKilled(Enemy enemy)
     {
+        StartCoroutine(SearchBody(enemy));
+    }
+
+    IEnumerator SearchBody(Enemy enemy)
+    {
+        yield return new WaitForSeconds(1f);
+
         if(UnityEngine.Random.Range(0, 100) < enemy.LootChance)
         {
             Trinket lootedTrinket = enemy.RollForLoot();
