@@ -10,7 +10,7 @@ public class StoreUI : MonoBehaviour
 
     [SerializeField] List<Trinket> _saleItems;
     [SerializeField] StoreButton[] _storeButtons;
-    [SerializeField] TextMeshProUGUI _priceText;
+    [SerializeField] TextMeshProUGUI _priceText, _descriptionText;
     [SerializeField] int _itemPrice;
     [SerializeField] GameObject _tooPoorWindow, _sorryButton, _leaveButton;
     [SerializeField] AudioSource _audioSource;
@@ -48,6 +48,7 @@ public class StoreUI : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_leaveButton);
+        _descriptionText.text = string.Empty;
     }
 
     public void LeaveStoreButton() // UI Button
@@ -59,6 +60,8 @@ public class StoreUI : MonoBehaviour
     public void ClosePoorWindowButton() // UI Button
     {
         _tooPoorWindow.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_leaveButton);
     }
 
     public void AttemptPurchase(int index) // UI Buttons
@@ -77,6 +80,7 @@ public class StoreUI : MonoBehaviour
             _storeButtons[index].gameObject.SetActive(false);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_leaveButton);
+            _descriptionText.text = string.Empty;
         }
     }
 }

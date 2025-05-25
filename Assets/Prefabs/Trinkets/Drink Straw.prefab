@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingName: Drink Sraw
   _toolTipText: Heal For A Percentage Of Damage Dealt
-  _healPercentage: 0.1
+  _healPercentage: 0.2

@@ -249,7 +249,7 @@ MonoBehaviour:
   _rightClawText: {fileID: 6319336437324293472}
   _rightAttack1Text: {fileID: 4574154976064837284}
   _rightAttack2Text: {fileID: 5243870263602598747}
-  _storeWindow: {fileID: 1979351652343629203}
+  _storeWindow: {fileID: 2647408122220956138}
 --- !u!114 &779856235543560592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +373,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 738986577160683326}
     m_Modifications:
+    - target: {fileID: 745351615365370903, guid: bd3857875a4b6dc4c8d3b4b6ad9af3d4, type: 3}
+      propertyPath: m_fontSize
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1684308931175879484, guid: bd3857875a4b6dc4c8d3b4b6ad9af3d4, type: 3}
       propertyPath: _toolTipTextArea
       value: 
@@ -485,14 +489,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1979351652343629203 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8379632373527371924, guid: bd3857875a4b6dc4c8d3b4b6ad9af3d4, type: 3}
-  m_PrefabInstance: {fileID: 8012606222613095687}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1986477669514545931 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8404592125632130572, guid: bd3857875a4b6dc4c8d3b4b6ad9af3d4, type: 3}
+  m_PrefabInstance: {fileID: 8012606222613095687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2647408122220956138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5444576252243930349, guid: bd3857875a4b6dc4c8d3b4b6ad9af3d4, type: 3}
   m_PrefabInstance: {fileID: 8012606222613095687}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8719379221569751558
