@@ -15,14 +15,23 @@ public class ExitUI : MonoBehaviour
     void Start()
     {
         Exit.OnExitEntered += Exit_OnExitEntered;
+        BossEncounter.OnBossDefeated += BossEncounter_OnBossDefeated;
     }
 
     void OnDestroy()
     {
         Exit.OnExitEntered -= Exit_OnExitEntered;
+        BossEncounter.OnBossDefeated += BossEncounter_OnBossDefeated;
     }
 
     void Exit_OnExitEntered(Transform t)
+    {
+        _exitWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_exitButton);
+    }
+
+    void BossEncounter_OnBossDefeated()
     {
         _exitWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -41,6 +50,7 @@ public class ExitUI : MonoBehaviour
     public void CreepComplete() // Animation Trigger
     {
         OnExitResolved?.Invoke();
+        _exitWindow.SetActive(false);
         // TODO (Not really) set an int in player to track number of mazes cleared and use that number to add to stats of every enemy in the next version of maze
         SceneManager.LoadScene(2);
     }
@@ -48,5 +58,6 @@ public class ExitUI : MonoBehaviour
     public void CloseWindow() // UI Button
     {
         OnExitResolved?.Invoke();
+        _exitWindow.SetActive(false);
     }
 }

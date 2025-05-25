@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
 
 public class BossEncounter : MonoBehaviour
 {
+    public static event Action OnBossDefeated;
+
     [SerializeField] Enemy _bossPrefab;
     [SerializeField] GameObject _mapIcon, _door;
     [SerializeField] BoxCollider _collider;
+    [SerializeField] Exit _exitPrefab;
 
     Enemy _boss;
     bool _isRevealed;
@@ -53,6 +57,8 @@ public class BossEncounter : MonoBehaviour
             _boss.EndBattle();
             gameObject.SetActive(false);
             // TODO Go to next level of dungeon or show a results screen or whatever!
+            OnBossDefeated?.Invoke();
+            Exit exit = Instantiate(_exitPrefab, transform.position, Quaternion.identity);
         }
     }
 

@@ -29,12 +29,14 @@ public class PlayerHealth : MonoBehaviour
     {
         PlayerStats.OnStatIncreased += PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted += EnemyStats_OnFightStarted;
+        RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
     }
 
     void OnDisable()
     {
         PlayerStats.OnStatIncreased -= PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted -= EnemyStats_OnFightStarted;
+        RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
     }
 
     void Start()
@@ -59,6 +61,11 @@ public class PlayerHealth : MonoBehaviour
     void EnemyStats_OnFightStarted(Enemy _)
     {
         _hasRevived = false;
+    }
+
+    void RestAreaUI_OnRestAreaUsed()
+    {
+        GainHealth(_maxHealth);
     }
 
     public void TakeDamage(int amount)

@@ -550,7 +550,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9bd8aa904dfdb1940bdfcc5725bea003, type: 2}
-  - {fileID: 2100000, guid: 76e8bd403bd9c1c49a4921d8e4e47cc9, type: 2}
+  - {fileID: 2100000, guid: 851c752b6c094104ea68a1c40a5141e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -756,14 +756,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Spider
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 8
   <Accuracy>k__BackingField: 2
   <Fortitude>k__BackingField: 4
   <Evasion>k__BackingField: 3
-  <Tenacity>k__BackingField: 20
+  Tenacity: 1
   <Initiative>k__BackingField: 7
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
   _maxHealth: 95
   _attacksPerTurn: 2

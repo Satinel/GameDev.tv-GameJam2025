@@ -73,6 +73,7 @@ MonoBehaviour:
   _mapIcon: {fileID: 4010301159153291716}
   _door: {fileID: 163752961942903024}
   _collider: {fileID: 3636826354036201719}
+  _exitPrefab: {fileID: 319926374393958376, guid: 63be560b6e438744d98ec12faa89ecf3, type: 3}
 --- !u!1 &398171499909963339
 GameObject:
   m_ObjectHideFlags: 0

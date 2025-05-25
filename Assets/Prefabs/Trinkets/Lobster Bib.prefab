@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingName: Lobster Bib
   _toolTipText: Gain HP After Defeating An Enemy
-  _healAmount: 45
+  _healAmount: 75

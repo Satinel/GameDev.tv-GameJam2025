@@ -29,6 +29,7 @@ public class CombatLog : MonoBehaviour
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
         PlayerInventory.OnTrinketAdded += PlayerInventory_OnTrinketAdded;
         PlayerInventory.OnTrinketLevelled += PlayerInventory_OnTrinketLevelled;
+        RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
     }
 
     void OnDestroy()
@@ -55,6 +56,7 @@ public class CombatLog : MonoBehaviour
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
         PlayerInventory.OnTrinketAdded -= PlayerInventory_OnTrinketAdded;
         PlayerInventory.OnTrinketLevelled -= PlayerInventory_OnTrinketLevelled;
+        RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
     }
 
     void AddToLog(string message)
@@ -164,5 +166,10 @@ public class CombatLog : MonoBehaviour
     void PlayerInventory_OnTrinketLevelled(Trinket trinket)
     {
         AddToLog($"\nUpgraded {trinket.StartingName} to +{trinket.Level}!\n");
+    }
+
+    void RestAreaUI_OnRestAreaUsed()
+    {
+        AddToLog($"\nYou're well rested!\nFully Recovered HP!\n");
     }
 }

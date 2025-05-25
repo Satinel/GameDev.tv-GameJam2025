@@ -28,7 +28,7 @@ public class DiningFork : Trinket
     protected override void Activation()
     {
         base.Activation();
-        OnActivated?.Invoke(Name, _healAmount + Level);
-        _playerHealth.GainHealth(_healAmount + Level);
+        OnActivated?.Invoke(Name, _healAmount + (_healAmount * Level));
+        _playerHealth.GainHealth(_healAmount + (_healAmount * Level));
     }
 }

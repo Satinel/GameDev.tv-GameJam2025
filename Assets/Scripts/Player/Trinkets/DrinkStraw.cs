@@ -23,7 +23,7 @@ public class DrinkStraw : Trinket
 
     void PlayerCombat_OnPlayerDealtDamage(int amount)
     {
-        _healAmount = Mathf.Max(1, Mathf.FloorToInt(amount * (_healPercentage + Level)));
+        _healAmount = Mathf.Max(1, Mathf.FloorToInt(amount * (_healPercentage + (Level / 0.1f))));
         Activation();
     }
 

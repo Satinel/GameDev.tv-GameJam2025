@@ -3672,6 +3672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 8304283605471661671, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8948528157461705528, guid: bce723573bf608242b09689bc3fb84f0, type: 3}
       propertyPath: m_fontSize
       value: 20
