@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _autoRotateSpeed = 1f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
-    bool _isFighting, _eventStarted, _optionsOpen, _isRotating;
+    bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
     Rigidbody _rigidbody;
     Quaternion _targetRotation;
 
@@ -21,8 +21,10 @@ public class PlayerController : MonoBehaviour
     {
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
-        OptionsMenu.OnOptionsOpened += MenuOptions_OnOptionsOpened;
-        OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
+        OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        InventoryUI.OnInventoryOpened += InventoryUI_OnInventoryOpened;
+        InventoryUI.OnInventoryClosed += InventoryUI_OnInventoryClosed;
         DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
         Store.OnEnteredStore += Store_OnEnteredStore;
         StoreUI.OnExitStore += StoreUI_OnExitStore;
@@ -36,8 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
-        OptionsMenu.OnOptionsOpened -= MenuOptions_OnOptionsOpened;
-        OptionsMenu.OnOptionsClosed -= MenuOptions_OnOptionsClosed;
+        OptionsMenu.OnOptionsOpened -= OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        InventoryUI.OnInventoryOpened -= InventoryUI_OnInventoryOpened;
+        InventoryUI.OnInventoryClosed -= InventoryUI_OnInventoryClosed;
         DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
         Store.OnEnteredStore -= Store_OnEnteredStore;
         StoreUI.OnExitStore -= StoreUI_OnExitStore;
@@ -58,7 +62,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(_isFighting || _eventStarted || _optionsOpen)
+        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen)
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -111,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.linearVelocity = Vector3.zero;
 
-        if(_isFighting || _eventStarted || _optionsOpen) { return; }
+        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
 
         if(_moveForward)
         {
@@ -144,14 +148,24 @@ public class PlayerController : MonoBehaviour
         _isFighting = false;
     }
 
-    void MenuOptions_OnOptionsOpened()
+    void OptionsMenu_OnOptionsOpened()
     {
         _optionsOpen = true;
     }
 
-    void MenuOptions_OnOptionsClosed()
+    void OptionsMenu_OnOptionsClosed()
     {
         _optionsOpen = false;
+    }
+
+    void InventoryUI_OnInventoryOpened()
+    {
+        _inventoryOpen = true;
+    }
+
+    void InventoryUI_OnInventoryClosed()
+    {
+        _inventoryOpen = false;
     }
 
     void DeadEnd_OnAnyDeadEndEvent()

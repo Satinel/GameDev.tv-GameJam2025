@@ -54,10 +54,13 @@ public class PlayerInventory : MonoBehaviour
 //     {
 //         if(Input.GetKeyDown(KeyCode.T)) // TODO DELETE!!
 //         {
-//             AddTrinket(_testTrinket);
+//             foreach(Trinket trinket in _testTrinkets)
+//             {
+//                 AddTrinket(trinket);
+//             }
 //         }
 //     }
-// [SerializeField] Trinket _testTrinket; // TODO DELETE
+// [SerializeField] List<Trinket> _testTrinkets = new(); // TODO DELETE
 
     public PlayerAbility GetAbility(int index)
     {

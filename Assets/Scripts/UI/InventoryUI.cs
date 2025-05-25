@@ -3,14 +3,17 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using TMPro;
+using System;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static event Action OnInventoryOpened;
+    public static event Action OnInventoryClosed;
     [SerializeField] GameObject _inventoryWindow;
     [SerializeField] InventoryButton _invButtonPrefab;
     [SerializeField] TextMeshProUGUI _toolTipTextArea;
     [SerializeField] RectTransform _itemList;
-    List<Button> _trinketButtons;
+    List<Button> _trinketButtons = new();
 
     void Start()
     {
@@ -50,11 +53,14 @@ public class InventoryUI : MonoBehaviour
 
     void SetButtonNavigations()
     {
-        for(int i = 0; i < _trinketButtons.Count - 1; i++)
+        for(int i = 0; i < _trinketButtons.Count; i++)
         {
             Navigation navigation = _trinketButtons[i].navigation;
             navigation.mode = Navigation.Mode.Explicit;
-            navigation.selectOnDown = _trinketButtons[i + 1];
+            if(i < _trinketButtons.Count - 1)
+            {
+                navigation.selectOnDown = _trinketButtons[i + 1];
+            }
             if(i > 0)
             {
                 navigation.selectOnUp = _trinketButtons[i - 1];
@@ -71,6 +77,7 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
+            OnInventoryOpened?.Invoke();
             _inventoryWindow.SetActive(true);
             if(_trinketButtons.Count > 0)
             {
@@ -83,5 +90,6 @@ public class InventoryUI : MonoBehaviour
     public void Close()
     {
         _inventoryWindow.SetActive(false);
+        OnInventoryClosed?.Invoke();
     }
 }

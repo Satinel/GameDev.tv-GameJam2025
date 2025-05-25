@@ -177,7 +177,6 @@ public class PlayerCombat : MonoBehaviour
 
     void PlayerInventory_OnTrinketAdded(Trinket trinket)
     {
-        Debug.Log("eh?");
         _resultsText.text += $"\nAcquired {trinket.StartingName}!\n";
     }
 
