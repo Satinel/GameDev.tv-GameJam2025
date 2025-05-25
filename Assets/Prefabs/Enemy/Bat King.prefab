@@ -142,7 +142,7 @@ MonoBehaviour:
   <Evasion>k__BackingField: 8
   Tenacity: 1
   <Initiative>k__BackingField: 5
-  <LootChance>k__BackingField: 25
+  <LootChance>k__BackingField: 15
   _maxHealth: 50
   _attacksPerTurn: 1
   _lootTable:

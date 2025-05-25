@@ -24,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse; // TODO replace these with prefabs containing visual effects along with sounds
     [SerializeField] DamageSplash _damageSplashPrefab;
+    [SerializeField] Transform _missFloatingTextPrefab;
 
     // [SerializeField] GameObject _leftAttack1, _leftAttack2;
     // [SerializeField] GameObject _rightAttack1, _rightAttack2;
@@ -217,7 +218,9 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             _combatLog.text += $"\nMiss!\n";
-            _audioSource.PlayOneShot(_defaultMiss); // Visual FX HERE
+            _audioSource.PlayOneShot(_defaultMiss);
+            Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
+            floatingText.position = new(floatingText.position.x, floatingText.position.y - 300);
             OnEnemyMiss?.Invoke();
         }
         _currentEnemy.AttackCompleted();
@@ -392,7 +395,9 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             _audioSource.PlayOneShot(_defaultMiss);
-            _combatLog.text += $"\nMiss!\n"; // Visual FX HERE
+            _combatLog.text += $"\nMiss!\n";
+            Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
+            floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
             SelectFirstInteractableButton();
         }
     }

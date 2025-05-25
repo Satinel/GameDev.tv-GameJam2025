@@ -56,9 +56,11 @@ public class BossEncounter : MonoBehaviour
         {
             _boss.EndBattle();
             gameObject.SetActive(false);
-            // TODO Go to next level of dungeon or show a results screen or whatever!
-            OnBossDefeated?.Invoke();
-            Exit exit = Instantiate(_exitPrefab, transform.position, Quaternion.identity);
+            if(_boss.IsBoss)
+            {
+                OnBossDefeated?.Invoke();
+                Instantiate(_exitPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 

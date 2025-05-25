@@ -55,7 +55,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d976e1d092345964093540c263c47cf3, type: 2}
+  - {fileID: 2100000, guid: 06868306834b2e84e94b592ac1c95aca, type: 2}
   - {fileID: 2100000, guid: 8a0adb327cc4ee1469b9dc6c37c50980, type: 2}
   - {fileID: 6341755078290054540, guid: 66e676319e2ee174e94e55e47e6e7ae8, type: 3}
   - {fileID: 6976859009215677814, guid: 66e676319e2ee174e94e55e47e6e7ae8, type: 3}
@@ -546,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Mushrogal
   <IsBoss>k__BackingField: 0
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 1
   <Accuracy>k__BackingField: 1
   <Fortitude>k__BackingField: 1
