@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
         DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
         Store.OnEnteredStore += Store_OnEnteredStore;
         StoreUI.OnExitStore += StoreUI_OnExitStore;
+        Exit.OnExitEntered += Exit_OnExitEntered;
+        ExitUI.OnExitResolved += ExitUI_OnExitResolved;
     }
 
     void OnDisable()
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
         DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
         Store.OnEnteredStore -= Store_OnEnteredStore;
         StoreUI.OnExitStore -= StoreUI_OnExitStore;
+        Exit.OnExitEntered -= Exit_OnExitEntered;
+        ExitUI.OnExitResolved -= ExitUI_OnExitResolved;
     }
 
     void Update()
@@ -160,6 +164,20 @@ public class PlayerController : MonoBehaviour
     }
 
     void StoreUI_OnExitStore()
+    {
+        _eventStarted = false;
+        _isRotating = false;
+    }
+
+    void Exit_OnExitEntered(Transform empty)
+    {
+        _eventStarted = true;
+        Vector3 lookAtTarget = new(empty.transform.position.x, transform.position.y, empty.transform.position.z);
+        _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
+        _isRotating = true;
+    }
+
+    void ExitUI_OnExitResolved()
     {
         _eventStarted = false;
         _isRotating = false;
