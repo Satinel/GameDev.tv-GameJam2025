@@ -8,6 +8,7 @@ public class Trinket : MonoBehaviour
     public string Name { get; private set; }
     public int Level { get; private set; } = 0;
     public string StartingName => _startingName;
+    public string ToolTipText => _toolTipText;
 
     protected virtual void Start()
     {

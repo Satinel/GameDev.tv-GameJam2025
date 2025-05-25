@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
         OptionsMenu.OnOptionsOpened += MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += MenuOptions_OnOptionsClosed;
         DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
-        // TODO Set _eventStarted to false
+        Store.OnEnteredStore += Store_OnEnteredStore;
+        StoreUI.OnExitStore += StoreUI_OnExitStore;
     }
 
     void OnDisable()
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
         OptionsMenu.OnOptionsOpened -= MenuOptions_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= MenuOptions_OnOptionsClosed;
         DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
+        Store.OnEnteredStore -= Store_OnEnteredStore;
+        StoreUI.OnExitStore -= StoreUI_OnExitStore;
     }
 
     void Update()
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.linearVelocity = Vector3.zero;
 
-        if(_isFighting || _optionsOpen) { return;}
+        if(_isFighting || _eventStarted || _optionsOpen) { return; }
 
         if(_moveForward)
         {
@@ -146,5 +149,19 @@ public class PlayerController : MonoBehaviour
     void DeadEnd_OnAnyDeadEndEvent()
     {
         _eventStarted = true;
+    }
+
+    void Store_OnEnteredStore(Transform tigey)
+    {
+        _eventStarted = true;
+        Vector3 lookAtTarget = new(tigey.transform.position.x, transform.position.y, tigey.transform.position.z);
+        _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
+        _isRotating = true;
+    }
+
+    void StoreUI_OnExitStore()
+    {
+        _eventStarted = false;
+        _isRotating = false;
     }
 }

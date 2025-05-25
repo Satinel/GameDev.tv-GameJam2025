@@ -2,24 +2,9 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    // [SerializeField] AudioClip _introClip;
-    // [SerializeField] AudioClip _mainSong;
-    [SerializeField] AudioSource _mainAudioSource;//, _introAudioSource;
-    // [SerializeField] float _volume = 0.75f;
-    // [SerializeField] bool _isBattleMusic = true, _isBossMusic, _isVictoryMusic;
+    [SerializeField] AudioSource _mainAudioSource;
     [SerializeField] AudioClip _dungeonClip, _regularBattleClip, _eliteBattleClip, _bossBattleClip, _victoryClip, _defeatClip;
-    
-    // bool _isTiming = false;
-    // float _timer = 0;
-    // float _introLength = 0;
-
-    // void Start()
-    // {
-    //     if(!_isBattleMusic && !_isVictoryMusic)
-    //     {
-    //         StartMusic();
-    //     }
-    // }
+    [SerializeField] AudioClip _storeClip, _alternateBattleClip, _alternateEliteClip;
 
     void OnEnable()
     {
@@ -27,6 +12,8 @@ public class MusicPlayer : MonoBehaviour
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
+        Store.OnEnteredStore += Store_OnEnteredStore;
+        StoreUI.OnExitStore += StoreUI_OnExitStore;
     }
 
     void OnDisable()
@@ -35,6 +22,8 @@ public class MusicPlayer : MonoBehaviour
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        Store.OnEnteredStore -= Store_OnEnteredStore;
+        StoreUI.OnExitStore -= StoreUI_OnExitStore;
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
@@ -47,11 +36,25 @@ public class MusicPlayer : MonoBehaviour
         }
         else if(enemy.IsElite)
         {
-            _mainAudioSource.clip = _eliteBattleClip;
+            if(_alternateEliteClip && Random.Range(0, 5) > 3)
+            {
+                _mainAudioSource.clip = _alternateEliteClip;
+            }
+            else
+            {
+                _mainAudioSource.clip = _eliteBattleClip;
+            }
         }
         else
         {
-            _mainAudioSource.clip = _regularBattleClip;
+            if(_alternateBattleClip && Random.Range(0, 5) > 3)
+            {
+                _mainAudioSource.clip = _alternateBattleClip;
+            }
+            else
+            {
+                _mainAudioSource.clip = _regularBattleClip;
+            }
         }
 
         _mainAudioSource.Play();
@@ -79,65 +82,17 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     if(!_isTiming) { return; }
+    void Store_OnEnteredStore(Transform _)
+    {
+        _mainAudioSource.Stop();
+        _mainAudioSource.clip = _storeClip;
+        _mainAudioSource.Play();
+    }
 
-    //     _timer += Time.unscaledDeltaTime;
-
-    //     if(_timer >= _introLength)
-    //     {
-    //         PlayMainSong();
-    //         _isTiming = false;
-    //     }
-    // }
-
-    // void StartMusic()
-    // {
-    //     if(_mainSong && _mainAudioSource)
-    //     {
-    //         _mainAudioSource.volume = 0;
-    //         _mainAudioSource.clip = _mainSong;
-    //         _mainAudioSource.loop = !_isVictoryMusic;
-    //         _mainAudioSource.Play();
-    //         if(_introClip && _introAudioSource)
-    //         {
-    //             _mainAudioSource.Pause();
-    //             _introAudioSource.volume = _volume;
-    //             Invoke(nameof(SyncIntro), 0.25f);
-    //         }
-    //         else
-    //         {
-    //             _mainAudioSource.volume = _volume;
-    //         }
-    //     }
-    // }
-
-    // void StopMusic()
-    // {
-    //     _timer = 0;
-    //     _isTiming = false;
-    //     _introAudioSource.Stop();
-    //     _mainAudioSource.Stop();
-    // }
-
-    // void SyncIntro()
-    // {
-    //     _introAudioSource.PlayOneShot(_introClip, _volume);
-    //     StartTimer(_introClip.length); // This works by ignoring Time.timeScale in Update() HOWEVER it's far from seamless even in editor and is also inconsistent in timing
-    // }
-
-    // void StartTimer(float introL)
-    // {
-    //     _isTiming = true;
-    //     _timer = 0;
-    //     _introLength = introL;
-    // }
-
-    // void PlayMainSong()
-    // {
-        // _mainAudioSource.volume = _volume;
-        // _mainAudioSource.UnPause();
-    // }
-
+    void StoreUI_OnExitStore()
+    {
+        _mainAudioSource.Stop();
+        _mainAudioSource.clip = _dungeonClip;
+        _mainAudioSource.Play();
+    }
 }

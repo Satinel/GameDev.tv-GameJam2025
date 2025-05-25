@@ -10,11 +10,12 @@ public class GameUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _leftClawText, _leftAttack1Text, _leftAttack2Text;
     [SerializeField] TextMeshProUGUI _tailText, _tailAttack1Text, _tailAttack2Text;
     [SerializeField] TextMeshProUGUI _rightClawText, _rightAttack1Text, _rightAttack2Text;
+    [SerializeField] GameObject _storeWindow;
 
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
     PlayerHealth _playerHealth;
-    bool _isInCombat;
+    bool _isInCombat, _isInStore;
 
     void Awake()
     {
@@ -31,6 +32,8 @@ public class GameUI : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         PlayerStats.OnTempStatsReset += PlayerStats_OnTempStatsReset;
+        Store.OnEnteredStore += Store_OnEnteredStore;
+        StoreUI.OnExitStore += StoreUI_OnExitStore;
     }
 
     void OnDisable()
@@ -43,6 +46,8 @@ public class GameUI : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         PlayerStats.OnTempStatsReset -= PlayerStats_OnTempStatsReset;
+        Store.OnEnteredStore -= Store_OnEnteredStore;
+        StoreUI.OnExitStore -= StoreUI_OnExitStore;
     }
 
     void Start()
@@ -96,7 +101,7 @@ public class GameUI : MonoBehaviour
 
     public void ToggleMap()
     {
-        if(_isInCombat) { return; }
+        if(_isInCombat || _isInStore) { return; }
 
         _map.SetActive(!_map.activeSelf);
     }
@@ -176,5 +181,20 @@ public class GameUI : MonoBehaviour
     void PlayerStats_OnTempStatsReset()
     {
         SetStatsText();
+    }
+
+    void Store_OnEnteredStore(Transform _)
+    {
+        _isInStore = true;
+        _mapButton.SetActive(false);
+        _map.SetActive(false);
+        _storeWindow.SetActive(true);
+    }
+
+    void StoreUI_OnExitStore()
+    {
+        _storeWindow.SetActive(false);
+        _isInStore = false;
+        _mapButton.SetActive(true);
     }
 }
