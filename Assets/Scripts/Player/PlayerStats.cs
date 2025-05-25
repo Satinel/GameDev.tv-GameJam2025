@@ -4,7 +4,7 @@ using System;
 public class PlayerStats : MonoBehaviour
 {
     public static event Action OnExperienceGained;
-    public static event Action OnLevelUp;
+    public static event Action<int> OnLevelUp;
     public static event Action NoLevelUp;
     public static event Action<Stats, int> OnStatIncreased;
     public static event Action<string> OnTempStatChange;
@@ -117,7 +117,7 @@ public class PlayerStats : MonoBehaviour
 
         _level++;
         _xpToLevel = _baseLevelXP * _level * _level;
-        OnLevelUp?.Invoke();
+        OnLevelUp?.Invoke(_level);
     }
 
     public void GainTempBonus(Stats stat, int amount)

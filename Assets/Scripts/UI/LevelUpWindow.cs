@@ -1,6 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
+using TMPro;
 
 public class LevelUpWindow : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LevelUpWindow : MonoBehaviour
 
     [SerializeField] GameObject _toggleWindow;
     [SerializeField] GameObject _randomButton;
+    [SerializeField] TextMeshProUGUI _levelText;
 
     void Start()
     {
@@ -20,8 +22,10 @@ public class LevelUpWindow : MonoBehaviour
         PlayerStats.OnLevelUp -= PlayerStats_OnLevelUp;
     }
 
-    void PlayerStats_OnLevelUp()
+    void PlayerStats_OnLevelUp(int level)
     {
+        _levelText.text = $"Reached Level {level}!";
+
         _toggleWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_randomButton);

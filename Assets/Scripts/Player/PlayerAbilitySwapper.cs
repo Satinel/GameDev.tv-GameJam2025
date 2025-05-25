@@ -38,7 +38,7 @@ public class PlayerAbilitySwapper : PlayerAbility
     public override void Hit()
     {
         base.Hit();
-        _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff + _playerStats.Level);
+        _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff);
         _playerInventory.EquipWeapon(_swappedEquipment, _swappedEquipment.IsLeftSlot);
     }
 }

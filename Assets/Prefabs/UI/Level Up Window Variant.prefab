@@ -451,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _toggleWindow: {fileID: 4241851569291799080}
   _randomButton: {fileID: 5998294928046120021}
+  _levelText: {fileID: 406725689343147976}
 --- !u!1 &9002543414577936103
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +545,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.95
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Reduces Damage Taken
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Fortitude Increase
@@ -725,6 +734,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 54
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Increases Dodge Chance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Evasion Increase
@@ -906,6 +923,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 48.15
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Increases Chance To Go First
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Initiative Increase
@@ -1087,6 +1112,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 49.45
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Increases Hit Points (HP)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Tenacity Increase
@@ -1268,6 +1301,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 46.85
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Increases Damage Given
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Strength Increase
@@ -1449,6 +1490,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Increases Hit Chance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Accuracy Increase
@@ -1630,6 +1679,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 34.15
       objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _descriptionText
+      value: Let The Fates Decide
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
+      propertyPath: _toolTipTextArea
+      value: 
+      objectReference: {fileID: 6402961839877502125}
     - target: {fileID: 2892880717676585382, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_Name
       value: Random Stat Increase

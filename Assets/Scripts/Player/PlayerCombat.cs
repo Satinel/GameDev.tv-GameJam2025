@@ -170,11 +170,6 @@ public class PlayerCombat : MonoBehaviour
         _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
         _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n\n";
         // TODO Message about gaining item (also shown in _resultsText)
-        if(!_optionsOpen)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_closeResultsButton);
-        }
     }
 
     void EnemyAbility_OnEnemyAbilityStarted(EnemyAbility ability)

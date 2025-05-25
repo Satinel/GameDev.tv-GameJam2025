@@ -153,7 +153,7 @@ public class CombatLog : MonoBehaviour
 
     void PlayerStats_OnStatIncreased(PlayerStats.Stats stat, int amount)
     {
-        AddToLog($"{stat} Increased By {amount.FormatLargeNumbers()}!\n");
+        AddToLog($"\n{stat} Increased By {amount.FormatLargeNumbers()}!\n");
     }
 
     void PlayerInventory_OnTrinketAdded(Trinket trinket)
@@ -163,6 +163,6 @@ public class CombatLog : MonoBehaviour
 
     void PlayerInventory_OnTrinketLevelled(Trinket trinket)
     {
-        AddToLog($"Upgraded {trinket.StartingName} to +{trinket.Level}!\n");
+        AddToLog($"\nUpgraded {trinket.StartingName} to +{trinket.Level}!\n");
     }
 }
