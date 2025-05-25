@@ -278,7 +278,7 @@ MonoBehaviour:
   _combatMenu: {fileID: 1353822730196023814}
   _combatButtonsParent: {fileID: 2691887344857914050}
   _results: {fileID: 4030077440768986996}
-  _levelUpWindow: {fileID: 1490379345968020329}
+  _levelUpWindow: {fileID: 7879872657935641567}
   _randomStatIncreaseButton: {fileID: 340798701892296098}
   _battleStartSplash: {fileID: 8792972382455210686}
   _initiativeSplash: {fileID: 1244645414322632126}
@@ -1716,21 +1716,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4965119305019607738, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965119305019607738, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: c180da44e835d7e40aad294185dab370, type: 2}
-    - target: {fileID: 4965119305019607738, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 4965119305019607738, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7442370545642775623, guid: c180da44e835d7e40aad294185dab370, type: 2}
     - target: {fileID: 5597700783499333897, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
       propertyPath: m_Name
       value: Stats Text
@@ -1762,36 +1750,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6147094049900875872, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
-    - target: {fileID: 6147094049900875872, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: c180da44e835d7e40aad294185dab370, type: 2}
     - target: {fileID: 6147094049900875872, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
-    - target: {fileID: 6147094049900875872, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7442370545642775623, guid: c180da44e835d7e40aad294185dab370, type: 2}
-    - target: {fileID: 7683730684360550462, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7683730684360550462, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: c180da44e835d7e40aad294185dab370, type: 2}
     - target: {fileID: 7683730684360550462, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 7683730684360550462, guid: e32e9a283dca9cc4d825fff53f154ae2, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7442370545642775623, guid: c180da44e835d7e40aad294185dab370, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2597,10 +2565,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Up Window
       objectReference: {fileID: 0}
-    - target: {fileID: 4839715897881115294, guid: 84fffb24ed345fd47b663c7c355c6e42, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4882866039147000838, guid: 84fffb24ed345fd47b663c7c355c6e42, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2696,9 +2660,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4882866039147000838, guid: 84fffb24ed345fd47b663c7c355c6e42, type: 3}
   m_PrefabInstance: {fileID: 6306442360431772151}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1490379345968020329 stripped
+--- !u!1 &7879872657935641567 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4839715897881115294, guid: 84fffb24ed345fd47b663c7c355c6e42, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4241851569291799080, guid: 84fffb24ed345fd47b663c7c355c6e42, type: 3}
   m_PrefabInstance: {fileID: 6306442360431772151}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6546611154677262649

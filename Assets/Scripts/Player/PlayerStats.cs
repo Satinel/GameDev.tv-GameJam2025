@@ -57,7 +57,6 @@ public class PlayerStats : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         LevelUpWindow.OnLevelStatPicked += LevelUpWindow_OnLevelStatPicked;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         KeenNose.OnActivated += KeenNose_OnActivated;
@@ -65,19 +64,9 @@ public class PlayerStats : MonoBehaviour
 
     void OnDisable()
     {
-        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         LevelUpWindow.OnLevelStatPicked -= LevelUpWindow_OnLevelStatPicked;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
         KeenNose.OnActivated -= KeenNose_OnActivated;
-    }
-
-    void PlayerCombat_OnCombatResolved()
-    {
-        _tempBonusStrength = 0;
-        _tempBonusAccuracy = 0;
-        _tempBonusFortitude = 0;
-        _tempBonusEvasion = 0;
-        OnTempStatsReset?.Invoke();
     }
 
     void LevelUpWindow_OnLevelStatPicked(Stats stat, int amount)
@@ -88,6 +77,11 @@ public class PlayerStats : MonoBehaviour
 
     void Enemy_OnEnemyKilled(Enemy enemy)
     {
+        _tempBonusStrength = 0;
+        _tempBonusAccuracy = 0;
+        _tempBonusFortitude = 0;
+        _tempBonusEvasion = 0;
+        OnTempStatsReset?.Invoke();
         GainExperience(enemy.ExperienceValue);
         ChangeMoney(enemy.MoneyValue);
     }
@@ -120,7 +114,7 @@ public class PlayerStats : MonoBehaviour
             NoLevelUp?.Invoke();
             return;
         }
-        
+
         _level++;
         _xpToLevel = _baseLevelXP * _level * _level;
         OnLevelUp?.Invoke();

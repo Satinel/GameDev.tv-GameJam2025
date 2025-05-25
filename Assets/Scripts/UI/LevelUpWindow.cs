@@ -6,14 +6,13 @@ public class LevelUpWindow : MonoBehaviour
 {
     public static event Action<PlayerStats.Stats, int> OnLevelStatPicked;
 
-    [SerializeField] GameObject _levelUpWindow;
+    [SerializeField] GameObject _toggleWindow;
     [SerializeField] GameObject _randomButton;
 
     void Start()
     {
         PlayerStats.OnLevelUp += PlayerStats_OnLevelUp;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_randomButton);
+        CloseLevelWindow();
     }
 
     void OnDestroy()
@@ -23,46 +22,55 @@ public class LevelUpWindow : MonoBehaviour
 
     void PlayerStats_OnLevelUp()
     {
-        _levelUpWindow.SetActive(true);
+        _toggleWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_randomButton);
     }
 
-    public void CloseLevelWindow()
+    void CloseLevelWindow()
     {
-        _levelUpWindow.SetActive(false);
+        _toggleWindow.SetActive(false);
     }
 
     public void StrengthIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Strength, 1);
     }
 
     public void AccuracyIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Accuracy, 1);
     }
 
     public void FortitudeIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Fortitude, 1);
     }
 
     public void EvasionIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Evasion, 1);
     }
 
     public void TenacityIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Tenacity, 1);
     }
 
     public void InitiativeIncrease()
     {
+        CloseLevelWindow();
         OnLevelStatPicked?.Invoke(PlayerStats.Stats.Initiative, 1);
     }
 
     public void RandomIncrease()
     {
+        CloseLevelWindow();
         int stat = UnityEngine.Random.Range(1, 7);
         switch(stat)
         {

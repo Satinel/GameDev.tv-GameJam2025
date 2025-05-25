@@ -443,11 +443,8 @@ public class PlayerCombat : MonoBehaviour
 
     void PlayerStats_NoLevelUp()
     {
-        if(_results.activeSelf)
-        {
-            _closeResultsButton.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_closeResultsButton);
-        }
+        _closeResultsButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_closeResultsButton);
     }
 }

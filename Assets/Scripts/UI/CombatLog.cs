@@ -26,6 +26,9 @@ public class CombatLog : MonoBehaviour
         PlayerAbilityPoison.OnDamageIncrease += PlayerAbilityPoison_OnDamageIncrease;
         Enemy.OnVenomStrengthened += Enemy_OnVenomStrengthened;
         PlayerStats.OnBonusXPEarned += PlayerStats_OnBonusXPEarned;
+        PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
+        PlayerInventory.OnTrinketAdded += PlayerInventory_OnTrinketAdded;
+        PlayerInventory.OnTrinketLevelled += PlayerInventory_OnTrinketLevelled;
     }
 
     void OnDestroy()
@@ -49,6 +52,9 @@ public class CombatLog : MonoBehaviour
         PlayerAbilityPoison.OnDamageIncrease -= PlayerAbilityPoison_OnDamageIncrease;
         Enemy.OnVenomStrengthened -= Enemy_OnVenomStrengthened;
         PlayerStats.OnBonusXPEarned -= PlayerStats_OnBonusXPEarned;
+        PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
+        PlayerInventory.OnTrinketAdded -= PlayerInventory_OnTrinketAdded;
+        PlayerInventory.OnTrinketLevelled -= PlayerInventory_OnTrinketLevelled;
     }
 
     void AddToLog(string message)
@@ -143,5 +149,20 @@ public class CombatLog : MonoBehaviour
     void PlayerStats_OnBonusXPEarned(int amount)
     {
         AddToLog($"Earned {amount.FormatLargeNumbers()} Bonus XP!\n");
+    }
+
+    void PlayerStats_OnStatIncreased(PlayerStats.Stats stat, int amount)
+    {
+        AddToLog($"{stat} Increased By {amount.FormatLargeNumbers()}!\n");
+    }
+
+    void PlayerInventory_OnTrinketAdded(Trinket trinket)
+    {
+        AddToLog($"\nFound {trinket.Name}!\n");
+    }
+
+    void PlayerInventory_OnTrinketLevelled(Trinket trinket)
+    {
+        AddToLog($"Upgraded {trinket.StartingName} to +{trinket.Level}!\n");
     }
 }

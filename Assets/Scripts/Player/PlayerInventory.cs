@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class PlayerInventory : MonoBehaviour
 {
     public static event Action<Equipable, bool> OnWeaponEquipped;
+    public static event Action<Trinket> OnTrinketAdded;
+    public static event Action<Trinket> OnTrinketLevelled;
+
     [field:SerializeField] public Equipable LeftClawWeapon { get; private set; }
     [field:SerializeField] public Equipable TailWeapon { get; private set; }
     [field:SerializeField] public Equipable RightClawWeapon { get; private set; }
@@ -107,14 +110,14 @@ public class PlayerInventory : MonoBehaviour
             if(trinket.GetType() == newTrinket.GetType()) // If Player already has this exact type of trinket, upgrade it
             {
                 trinket.LevelUp();
-                Debug.Log(trinket.Name + " Leveled Up to " + trinket.Level);
+                OnTrinketLevelled?.Invoke(trinket);
                 return;
             }
         }
 
         Trinket addedTrinket = Instantiate(newTrinket, _trinketsParent);
         _trinkets.Add(addedTrinket);
-        Debug.Log("Test Trinket Added");
+        OnTrinketAdded?.Invoke(addedTrinket);
     }
 
     void Enemy_OnEnemyKilled(Enemy enemy)

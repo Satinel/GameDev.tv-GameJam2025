@@ -1763,7 +1763,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Level Up Button
+  m_Name: Default Button Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Normal
