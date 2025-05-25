@@ -1311,9 +1311,9 @@ MonoBehaviour:
   _log: {fileID: 7133244437750382519}
   _tipText: {fileID: 5469610508471421049}
   _toolTip: {fileID: 2517355703300518285}
-  _tipDuration: 0.45
+  _tipDuration: 1
   _audioSource: {fileID: 6002404084464808206}
-  _trinketSFX: {fileID: 8300000, guid: 70f38f81e2a00544d989ac3958693b1d, type: 3}
+  _trinketSFX: {fileID: 8300000, guid: 608e4057db93afc4698121516386d1e1, type: 3}
 --- !u!114 &2569175070727603676
 MonoBehaviour:
   m_ObjectHideFlags: 0

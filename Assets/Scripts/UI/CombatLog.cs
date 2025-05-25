@@ -97,12 +97,11 @@ public class CombatLog : MonoBehaviour
             {
                 _audioSource.PlayOneShot(_trinketSFX);
             }
+            _tipText.text = $"{name}\nActivated!\n";
+            _toolTip.SetActive(true);
+            _timer = 0;
         }
-        string message = $"\n{name}\nActivated!\n";
-        _tipText.text = message;
-        _toolTip.SetActive(true);
-        _timer = 0;
-        AddToLog(message);
+        AddToLog($"\n{name}\nActivated!\n");
     }
 
     void Enemy_OnFightStarted(Enemy _)

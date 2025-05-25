@@ -123,6 +123,7 @@ public class Enemy : MonoBehaviour
     public void EndBattle()
     {
         _inBattle = false;
+        Destroy(gameObject, 1f);
     }
 
     public void AttackStarted()
