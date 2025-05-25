@@ -1387,6 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 377661570035574181, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
+    - {fileID: 316172731606429189, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1450733254873006690, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
@@ -1406,6 +1407,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6401289574035896588}
   m_SourcePrefab: {fileID: 100100000, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
+--- !u!1 &5444576252243930349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3102438595014852739, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
+  m_PrefabInstance: {fileID: 6953863728384470126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8164837581655774477 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1283036279164795235, guid: 0392b7a6a27ebe34db96726d0cc3a57a, type: 3}
@@ -1453,6 +1459,7 @@ MonoBehaviour:
   _priceText: {fileID: 8423641643079986387}
   _descriptionText: {fileID: 8469078256748397398}
   _itemPrice: 500
+  _storeWindow: {fileID: 5444576252243930349}
   _tooPoorWindow: {fileID: 9172498953776402319}
   _sorryButton: {fileID: 738951019956716634}
   _leaveButton: {fileID: 3247399983756735146}

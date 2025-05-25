@@ -12,16 +12,26 @@ public class RestAreaUI : MonoBehaviour
     void Start()
     {
         RestArea.OnRestAreaEntered += RestArea_OnRestAreaEntered;
+        OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
     }
 
     void OnDestroy()
     {
         RestArea.OnRestAreaEntered -= RestArea_OnRestAreaEntered;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
     void RestArea_OnRestAreaEntered(Transform t)
     {
         _restWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_exitButton);
+    }
+
+    void OptionsMenu_OnOptionsClosed()
+    {
+        if(!_restWindow.activeSelf) { return; }
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_exitButton);
     }

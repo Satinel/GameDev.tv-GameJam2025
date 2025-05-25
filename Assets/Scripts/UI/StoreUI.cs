@@ -12,7 +12,7 @@ public class StoreUI : MonoBehaviour
     [SerializeField] StoreButton[] _storeButtons;
     [SerializeField] TextMeshProUGUI _priceText, _descriptionText;
     [SerializeField] int _itemPrice;
-    [SerializeField] GameObject _tooPoorWindow, _sorryButton, _leaveButton;
+    [SerializeField] GameObject _storeWindow, _tooPoorWindow, _sorryButton, _leaveButton;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _purchaseClip;
 
@@ -22,6 +22,7 @@ public class StoreUI : MonoBehaviour
     void Start()
     {
         Store.OnEnteredStore += Store_OnEnteredStore;
+        OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
 
         if(_saleItems.Count > 3)
         {
@@ -42,6 +43,7 @@ public class StoreUI : MonoBehaviour
     void OnDestroy()
     {
         Store.OnEnteredStore -= Store_OnEnteredStore;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
     void Store_OnEnteredStore(Transform t)
@@ -49,6 +51,22 @@ public class StoreUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_leaveButton);
         _descriptionText.text = string.Empty;
+    }
+
+    void OptionsMenu_OnOptionsClosed()
+    {
+        if(!_storeWindow.activeSelf) { return; }
+
+        if(_tooPoorWindow.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_sorryButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_leaveButton);
+        }
     }
 
     public void LeaveStoreButton() // UI Button

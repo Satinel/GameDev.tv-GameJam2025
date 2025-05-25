@@ -3,8 +3,8 @@ using TMPro;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] GameObject _map, _statsWindow, _combatLogWindow;
-    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton;
+    [SerializeField] GameObject _map, _statsWindow, _combatLogWindow, _inventoryWindow;
+    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton;
     [SerializeField] PlayerHealthSlider _playerHealthSlider;
     [SerializeField] TextMeshProUGUI _statsText, _moneyText;
     [SerializeField] TextMeshProUGUI _leftClawText, _leftAttack1Text, _leftAttack2Text;
@@ -74,6 +74,10 @@ public class GameUI : MonoBehaviour
         {
             ToggleLog();
         }
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventory();
+        }
     }
 
     void SetStatsText()
@@ -99,14 +103,14 @@ public class GameUI : MonoBehaviour
         _rightAttack2Text.text = _playerInventory.RightClawWeapon.Ability2.Name;
     }
 
-    public void ToggleMap()
+    public void ToggleMap() // Also UI Button
     {
         if(_isInCombat || _isInStore) { return; }
 
         _map.SetActive(!_map.activeSelf);
     }
 
-    public void ToggleStats()
+    public void ToggleStats() // Also UI Button
     {
         if(_isInCombat) { return; }
 
@@ -114,11 +118,18 @@ public class GameUI : MonoBehaviour
         _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
     }
 
-    public void ToggleLog()
+    public void ToggleLog() // Also UI Button
     {
         if(_isInCombat) { return; }
 
         _combatLogWindow.SetActive(!_combatLogWindow.activeSelf);
+    }
+
+    public void ToggleInventory() // Also UI Button
+    {
+        if(_isInCombat) { return; }
+
+        _inventoryWindow.SetActive(!_inventoryWindow.activeSelf);
     }
 
     void PlayerStats_OnExperienceGained()
@@ -162,11 +173,13 @@ public class GameUI : MonoBehaviour
         _mapButton.SetActive(false);
         _statsButton.SetActive(false);
         _combatLogButton.SetActive(false);
+        _inventoryButton.SetActive(false);
         _isInCombat = true;
         _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
         _statsWindow.SetActive(true);
         _combatLogWindow.SetActive(true);
         _map.SetActive(false);
+        _inventoryWindow.SetActive(false);
     }
 
     void PlayerCombat_OnCombatResolved()
@@ -176,6 +189,7 @@ public class GameUI : MonoBehaviour
         _mapButton.SetActive(true);
         _statsButton.SetActive(true);
         _combatLogButton.SetActive(true);
+        _inventoryButton.SetActive(true);
     }
 
     void PlayerStats_OnTempStatsReset()
