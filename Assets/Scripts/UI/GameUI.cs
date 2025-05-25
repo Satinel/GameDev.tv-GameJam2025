@@ -3,7 +3,8 @@ using TMPro;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] GameObject _map, _statsWindow, _combatLogWindow, _inventoryWindow;
+    [SerializeField] GameObject _map, _statsWindow, _combatLogWindow;
+    [SerializeField] InventoryUI _inventoryWindow;
     [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton;
     [SerializeField] PlayerHealthSlider _playerHealthSlider;
     [SerializeField] TextMeshProUGUI _statsText, _moneyText;
@@ -129,7 +130,7 @@ public class GameUI : MonoBehaviour
     {
         if(_isInCombat) { return; }
 
-        _inventoryWindow.SetActive(!_inventoryWindow.activeSelf);
+        _inventoryWindow.Toggle();
     }
 
     void PlayerStats_OnExperienceGained()
@@ -179,7 +180,7 @@ public class GameUI : MonoBehaviour
         _statsWindow.SetActive(true);
         _combatLogWindow.SetActive(true);
         _map.SetActive(false);
-        _inventoryWindow.SetActive(false);
+        _inventoryWindow.Close();
     }
 
     void PlayerCombat_OnCombatResolved()

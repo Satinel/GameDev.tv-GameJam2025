@@ -152,4 +152,9 @@ public class PlayerInventory : MonoBehaviour
             AddTrinket(lootedTrinket);
         }
     }
+
+    public List<Trinket> GetInventory()
+    {
+        return _trinkets;
+    }
 }
