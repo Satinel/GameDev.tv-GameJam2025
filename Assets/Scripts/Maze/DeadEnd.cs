@@ -32,6 +32,13 @@ public class DeadEnd : MonoBehaviour
         _enemy.transform.Rotate(0, UnityEngine.Random.Range(-35f, 35f), 0);
     }
 
+    public void RestAreaTrigger()
+    {
+        gameObject.SetActive(true);
+        _enemy = Instantiate(_enemies[UnityEngine.Random.Range(0, _enemies.Count)], transform);
+        _enemy.transform.Rotate(0, UnityEngine.Random.Range(-35f, 35f), 0);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(!other.gameObject.GetComponent<PlayerHealth>()) { return; }

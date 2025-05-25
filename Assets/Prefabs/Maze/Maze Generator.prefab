@@ -151,6 +151,8 @@ MonoBehaviour:
   _deadEndPrefab: {fileID: -5267923260892102690, guid: ee2e27a19b1eb984fa77639524810540, type: 3}
   _goalPrefab: {fileID: 3716734212774446492, guid: aca9b0f1a9969d748bea654acdd19525, type: 3}
   _bossEncounterPrefab: {fileID: 1280366896334935162, guid: 74a2b8fc5b2fb2c499c933c82ee81434, type: 3}
+  _storePrefab: {fileID: 8586650183754994499, guid: 9d81a2fb477945544b13eba728244d84, type: 3}
+  _restAreaPrefab: {fileID: 8874664389842951447, guid: b3573a3441f58eb43aaa3869de351264, type: 3}
   _mazeParent: {fileID: 7285167544408180780}
   _encountersParent: {fileID: 857012327406016486}
   _endsParent: {fileID: 6740012936315159069}

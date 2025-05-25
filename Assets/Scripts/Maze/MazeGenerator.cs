@@ -15,6 +15,8 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] DeadEnd _deadEndPrefab;
     [SerializeField] Goal _goalPrefab;
     [SerializeField] BossEncounter _bossEncounterPrefab;
+    [SerializeField] Store _storePrefab;
+    [SerializeField] RestArea _restAreaPrefab;
     [SerializeField] Transform _mazeParent, _encountersParent, _endsParent;
     GameObject _player;
 
@@ -28,15 +30,19 @@ public class MazeGenerator : MonoBehaviour
 
     List<Vector2> _openSpaces = new();
     List<Vector2> _deadEnds = new();
+    List<RandomEncounter> _randomEncounters = new();
+    List<DeadEnd> _elites = new();
 
     void OnEnable()
     {
         MazeSpace.OnAnySpaceEntered += MazeSpace_OnAnySpaceEntered;
+        RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
     }
 
     void OnDisable()
     {
         MazeSpace.OnAnySpaceEntered -= MazeSpace_OnAnySpaceEntered;
+        RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
     }
 
     void Start()
@@ -173,6 +179,7 @@ public class MazeGenerator : MonoBehaviour
                 randomEnc.SetCoordinates((int)space.x, (int)space.y);
 
                 randomEnc.name = $"Random Encounter {space.x} {space.y}";
+                _randomEncounters.Add(randomEnc);
             }
         }
     }
@@ -191,12 +198,45 @@ public class MazeGenerator : MonoBehaviour
                 RotateDeadEnd(bossEncounter.transform, end);
                 return;
             }
-            // TODO Create a store at _deadEnds[0] (Note that this won't conflict with bossEncounter since in the case of 1 DeadEnd it would happen first and exit the foreach)
+            if(end == _deadEnds[0])
+            {
+                Store store = Instantiate(_storePrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                store.SetCoordinates((int)end.x, (int)end.y);
+                store.name = $"Store {end.x} {end.y}";
+                continue;
+            }
+            if(UnityEngine.Random.Range(0, 10) > 8)
+            {
+                RestArea restArea = Instantiate(_restAreaPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                restArea.SetCoordinates((int)end.x, (int)end.y);
+                restArea.name = $"restArea {end.x} {end.y}";
+                continue;
+            }
 
             DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
             deadEnd.SetCoordinates((int)end.x, (int)end.y);
             deadEnd.name = $"Dead End {end.x} {end.y}";
             RotateDeadEnd(deadEnd.transform, end);
+            _elites.Add(deadEnd);
+        }
+    }
+
+
+    void RestAreaUI_OnRestAreaUsed()
+    {
+        foreach(RandomEncounter randomEncounter in _randomEncounters)
+        {
+            if(!randomEncounter.gameObject.activeSelf)
+            {
+                randomEncounter.gameObject.SetActive(true);
+            }
+        }
+        foreach(DeadEnd end in _elites)
+        {
+            if(!end.gameObject.activeSelf && UnityEngine.Random.Range(0, 4) > 2)
+            {
+                end.RestAreaTrigger();
+            }
         }
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3247736659503660107}
   - component: {fileID: 5606048760177735433}
+  - component: {fileID: 4924022827733466548}
   m_Layer: 5
   m_Name: MissFloatingText
   m_TagString: Untagged
@@ -59,6 +60,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4924022827733466548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113359099618479683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7350941550c59024abe381702629ae79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyDelay: 1
+  _outlineImage: {fileID: 0}
+  _insideImage: {fileID: 0}
+  _text: {fileID: 0}
 --- !u!1 &1224589575656710923
 GameObject:
   m_ObjectHideFlags: 0

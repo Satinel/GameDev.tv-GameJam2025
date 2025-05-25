@@ -4,9 +4,18 @@ using TMPro;
 public class CombatLog : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _log;
+    [SerializeField] TextMeshProUGUI _tipText;
+    [SerializeField] GameObject _toolTip;
+    bool _inCombat;
+    float _timer;
+    [SerializeField] float _tipDuration = 0.45f;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _trinketSFX;
 
     void Awake()
     {
+        Enemy.OnFightStarted += Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         Goal.OnKeyClaimed += Goal_OnKeyClaimed;
         SpikedCarapace.OnActivated += SpikedCarapace_OnActivated;
         PoisonBuffsStrength.OnActivated += AddActivationToLog;
@@ -34,7 +43,9 @@ public class CombatLog : MonoBehaviour
 
     void OnDestroy()
     {
-        Goal.OnKeyClaimed += Goal_OnKeyClaimed;
+        Enemy.OnFightStarted -= Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        Goal.OnKeyClaimed -= Goal_OnKeyClaimed;
         SpikedCarapace.OnActivated -= SpikedCarapace_OnActivated;
         PoisonBuffsStrength.OnActivated -= AddActivationToLog;
         TacticalLens.OnActivated -= AddActivationToLog;
@@ -59,6 +70,20 @@ public class CombatLog : MonoBehaviour
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
     }
 
+    void Update()
+    {
+        if(!_inCombat) { return; }
+
+        if(_timer < _tipDuration)
+        {
+            _timer += Time.deltaTime;
+        }
+        else
+        {
+            _toolTip.SetActive(false);
+        }
+    }
+
     void AddToLog(string message)
     {
         _log.text += message;
@@ -66,7 +91,30 @@ public class CombatLog : MonoBehaviour
 
     void AddActivationToLog(string name)
     {
-        AddToLog($"\n{name}\nActivated!\n");
+        if(_inCombat)
+        {
+            if(_audioSource && _trinketSFX)
+            {
+                _audioSource.PlayOneShot(_trinketSFX);
+            }
+        }
+        string message = $"\n{name}\nActivated!\n";
+        _tipText.text = message;
+        _toolTip.SetActive(true);
+        _timer = 0;
+        AddToLog(message);
+    }
+
+    void Enemy_OnFightStarted(Enemy _)
+    {
+        _inCombat = true;
+    }
+
+    void PlayerCombat_OnCombatResolved()
+    {
+        _inCombat = false;
+        _toolTip.SetActive(false);
+        _timer = 0;
     }
 
     void Goal_OnKeyClaimed()
