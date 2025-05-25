@@ -12,13 +12,13 @@ public class PlayerStats : MonoBehaviour
     public static event Action<int> OnMoneyChanged;
     public static event Action<int> OnBonusXPEarned;
 
-    [field:SerializeField] public int Strength { get; set; } // Primarily about dealing damage
-    [field:SerializeField] public int Accuracy { get; set; } // Primarily about landing attacks
-    [field:SerializeField] public int Fortitude { get; set; } // Primarily about reducing damage
-    [field:SerializeField] public int Evasion { get; set; } // Primarily about avoiding attacks
-    [field:SerializeField] public int Tenacity { get; set; } // Primarily governs Hitpoints
-    [field:SerializeField] public int Initiative { get; set; } // Primarily governs turn order
-    [field:SerializeField] public int Money { get; set; } // Primarily governs Tigey
+    [field:SerializeField] public int Strength { get; private set; } // Primarily about dealing damage
+    [field:SerializeField] public int Accuracy { get; private set; } // Primarily about landing attacks
+    [field:SerializeField] public int Fortitude { get; private set; } // Primarily about reducing damage
+    [field:SerializeField] public int Evasion { get; private set; } // Primarily about avoiding attacks
+    [field:SerializeField] public int Tenacity { get; private set; } // Primarily governs Hitpoints
+    [field:SerializeField] public int Initiative { get; private set; } // Primarily governs turn order
+    [field:SerializeField] public int Money { get; private set; } // Primarily governs Tigey
 
     [SerializeField] int _baseLevelXP = 25;
 

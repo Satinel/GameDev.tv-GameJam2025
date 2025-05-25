@@ -13,18 +13,22 @@ public class Enemy : MonoBehaviour
     [field:SerializeField] public string Name { get; private set; }
     [field:SerializeField] public bool IsBoss { get; private set; } = false;
     [field:SerializeField] public int Strength { get; private set; } = 1;
-    [field:SerializeField] public int Accuracy { get; set; } = 1;
-    [field:SerializeField] public int Fortitude { get; set; } = 1;
-    [field:SerializeField] public int Evasion { get; set; } = 1;
-    [field:SerializeField] public int Tenacity { get; set; } = 1;
+    [field:SerializeField] public int Accuracy { get; private set; } = 1;
+    [field:SerializeField] public int Fortitude { get; private set; } = 1;
+    [field:SerializeField] public int Evasion { get; private set; } = 1;
+
+    [Tooltip("Added to other stats for Money but not XP")]
+    [SerializeField] int Tenacity = 1;
+
     [field:SerializeField] public int Initiative { get; private set; } = 5;
-    [field:SerializeField] public int ExperienceValue { get; private set; } = 2;
-    [field:SerializeField] public int MoneyValue { get; private set; } = 3;
+    public int ExperienceValue { get; private set; } = 2;
+    public int MoneyValue { get; private set; } = 3;
     [field:SerializeField] public int LootChance { get; private set; } = 25;
 
     public bool IsPoisoned { get; private set; }
     public int PoisonDamage { get; private set; }
 
+    [Tooltip("Added to other stats for XP but not Money")]
     [SerializeField] int _maxHealth = 25;
     public int MaxHealth => _maxHealth;
     [SerializeField] int _attacksPerTurn = 1;
@@ -57,7 +61,7 @@ public class Enemy : MonoBehaviour
             LootChance = 0;
         }
 
-        ExperienceValue = _maxHealth * Strength;
+        ExperienceValue = _maxHealth + Strength + Accuracy + Fortitude + Evasion + Initiative;
         MoneyValue = Strength + Accuracy + Fortitude + Evasion + Tenacity + Initiative;
     }
 

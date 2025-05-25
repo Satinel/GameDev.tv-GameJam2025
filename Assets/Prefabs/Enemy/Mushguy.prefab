@@ -72,16 +72,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Mushguy
   <IsBoss>k__BackingField: 0
-  <Strength>k__BackingField: 1
+  <Strength>k__BackingField: 0
   <Accuracy>k__BackingField: 0
   <Fortitude>k__BackingField: 0
   <Evasion>k__BackingField: 0
-  <Tenacity>k__BackingField: 1
-  <Initiative>k__BackingField: 1
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
+  Tenacity: 5
+  <Initiative>k__BackingField: 0
   <LootChance>k__BackingField: 0
-  _maxHealth: 25
+  _maxHealth: 40
   _attacksPerTurn: 1
   _lootTable: []
 --- !u!1 &2765903036677381576
@@ -416,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b
@@ -452,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <HitChance>k__BackingField
-      value: 80
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.r
@@ -508,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.b
@@ -532,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <HitChance>k__BackingField
-      value: 95
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b

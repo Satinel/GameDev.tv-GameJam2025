@@ -158,7 +158,7 @@ public class CombatLog : MonoBehaviour
 
     void PlayerInventory_OnTrinketAdded(Trinket trinket)
     {
-        AddToLog($"\nFound {trinket.Name}!\n");
+        AddToLog($"\nFound {trinket.StartingName}!\n");
     }
 
     void PlayerInventory_OnTrinketLevelled(Trinket trinket)

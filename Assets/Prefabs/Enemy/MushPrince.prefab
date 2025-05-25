@@ -1256,16 +1256,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Mush Prince
   <IsBoss>k__BackingField: 0
-  <Strength>k__BackingField: 5
+  <Strength>k__BackingField: 3
   <Accuracy>k__BackingField: 3
-  <Fortitude>k__BackingField: 2
-  <Evasion>k__BackingField: 1
-  <Tenacity>k__BackingField: 1
-  <Initiative>k__BackingField: 5
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
+  <Fortitude>k__BackingField: 3
+  <Evasion>k__BackingField: 2
+  Tenacity: 20
+  <Initiative>k__BackingField: 1
   <LootChance>k__BackingField: 100
-  _maxHealth: 145
+  _maxHealth: 175
   _attacksPerTurn: 2
   _lootTable:
   - {fileID: -3874058349083109241, guid: 3f4ced9cdb78a1a4d82ec2c97642cb68, type: 3}
@@ -2285,6 +2283,10 @@ PrefabInstance:
       value: Mush
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b
       value: 0.44313726
       objectReference: {fileID: 0}
@@ -2346,7 +2348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color2>k__BackingField.b
@@ -2367,6 +2369,10 @@ PrefabInstance:
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Adjective>k__BackingField
       value: Fungal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b
@@ -2422,7 +2428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <HitChance>k__BackingField
-      value: 85
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b

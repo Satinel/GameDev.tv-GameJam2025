@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         _rigidbody = GetComponent<Rigidbody>();
     }
 

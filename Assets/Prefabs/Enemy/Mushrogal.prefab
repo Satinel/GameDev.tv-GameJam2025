@@ -550,12 +550,10 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 1
   <Fortitude>k__BackingField: 1
   <Evasion>k__BackingField: 1
-  <Tenacity>k__BackingField: 1
+  Tenacity: 8
   <Initiative>k__BackingField: 5
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 25
-  _maxHealth: 25
+  _maxHealth: 60
   _attacksPerTurn: 1
   _lootTable: []
 --- !u!1 &8944664198630321795
@@ -639,6 +637,10 @@ PrefabInstance:
       value: Gnawing
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
+      propertyPath: <HitChance>k__BackingField
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b
       value: 0.43529412
       objectReference: {fileID: 0}
@@ -700,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b
@@ -780,7 +782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <HitChance>k__BackingField
-      value: 80
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 8107414770247082107, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <ColorFont>k__BackingField.b
