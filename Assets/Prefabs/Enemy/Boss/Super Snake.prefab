@@ -656,15 +656,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Serpent
-  <IsBoss>k__BackingField: 0
+  <IsBoss>k__BackingField: 1
+  <IsElite>k__BackingField: 0
   <Strength>k__BackingField: 16
   <Accuracy>k__BackingField: 16
   <Fortitude>k__BackingField: 16
   <Evasion>k__BackingField: 16
-  <Tenacity>k__BackingField: 60
+  Tenacity: 1
   <Initiative>k__BackingField: 16
-  <ExperienceValue>k__BackingField: 2
-  <MoneyValue>k__BackingField: 3
   <LootChance>k__BackingField: 100
   _maxHealth: 600
   _attacksPerTurn: 3
