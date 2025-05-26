@@ -1,15 +1,78 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action OnMapPressed;
+    public static event Action OnInventoryPressed;
+    public static event Action OnLogPressed;
+    public static event Action OnStatsPressed;
+    public static event Action OnOptionsPressed;
+
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _lookSpeed = 2.5f;
     [SerializeField] float _autoRotateSpeed = 1f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
+    bool _lookLeft, _lookRight;
     bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
     Rigidbody _rigidbody;
     Quaternion _targetRotation;
+
+    public void OnMove(InputValue value)
+    {
+        _moveForward = value.Get<Vector2>().y > 0.5;
+        _moveLeft = value.Get<Vector2>().x < -0.5;
+        _moveBackward = value.Get<Vector2>().y < -0.5;
+        _moveRight = value.Get<Vector2>().x > 0.5;
+    }
+
+    public void OnLook(InputValue value)
+    {
+        _lookLeft = value.Get<Vector2>().x < -0.5;
+        _lookRight = value.Get<Vector2>().x > 0.5;
+    }
+
+    public void OnMap(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            OnMapPressed?.Invoke();
+        }
+    }
+
+    public void OnInventory(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            OnInventoryPressed?.Invoke();
+        }
+    }
+
+    public void OnLog(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            OnLogPressed?.Invoke();
+        }
+    }
+
+    public void OnStats(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            OnStatsPressed?.Invoke();
+        }
+    }
+
+    public void OnOptions(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            OnOptionsPressed?.Invoke();
+        }
+    }
 
     void Awake()
     {
@@ -74,38 +137,12 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if(Input.GetKey(KeyCode.W))
-        {
-            _moveForward = true;
-        }
-        else if(Input.GetKey(KeyCode.S))
-        {
-            _moveBackward = true;
-            _moveForward = false;
-        }
-        else
-        {
-            _moveForward = false;
-            _moveBackward = false;
-        }
-
-        if(Input.GetKey(KeyCode.A))
-        {
-            _moveLeft = true;
-        }
-        else{ _moveLeft = false; }
-
-        if(Input.GetKey(KeyCode.D))
-        {
-            _moveRight = true;
-        }
-        else{ _moveRight = false; }
-
-        if(Input.mousePositionDelta.x < 0 || Input.GetKey(KeyCode.Q))
+        if(_lookLeft)
         {
             transform.Rotate(0, -1 * _lookSpeed * Time.deltaTime, 0);
         }
-        else if(Input.mousePositionDelta.x > 0 || Input.GetKey(KeyCode.E))
+
+        if(_lookRight)
         {
             transform.Rotate(0, 1 * _lookSpeed * Time.deltaTime, 0);
         }
@@ -123,15 +160,15 @@ public class PlayerController : MonoBehaviour
         }
         if(_moveBackward)
         {
-            _rigidbody.linearVelocity += _moveSpeed * 0.45f * Time.deltaTime * -transform.forward;
+            _rigidbody.linearVelocity += _moveSpeed * 0.75f * Time.deltaTime * -transform.forward;
         }
         if(_moveLeft)
         {
-            _rigidbody.linearVelocity += _moveSpeed * .75f * Time.deltaTime * -transform.right;
+            _rigidbody.linearVelocity += _moveSpeed * .9f * Time.deltaTime * -transform.right;
         }
         if(_moveRight)
         {
-            _rigidbody.linearVelocity += _moveSpeed * .75f * Time.deltaTime * transform.right;
+            _rigidbody.linearVelocity += _moveSpeed * .9f * Time.deltaTime * transform.right;
         }
     }
 

@@ -10,7 +10,7 @@ public class CombatLog : MonoBehaviour
     float _timer;
     [SerializeField] float _tipDuration = 0.45f;
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _trinketSFX;
+    [SerializeField] AudioClip _trinketSFX, _restAreaSFX;
 
     void Awake()
     {
@@ -218,5 +218,9 @@ public class CombatLog : MonoBehaviour
     void RestAreaUI_OnRestAreaUsed()
     {
         AddToLog($"\nYou're well rested!\nFully Recovered HP!\n");
+        if(_audioSource && _restAreaSFX)
+        {
+            _audioSource.PlayOneShot(_restAreaSFX);
+        }
     }
 }

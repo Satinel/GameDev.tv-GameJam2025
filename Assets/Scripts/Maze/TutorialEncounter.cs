@@ -14,6 +14,9 @@ public class TutorialEncounter : MonoBehaviour
 
     void RestAreaUI_OnRestAreaUsed()
     {
-        gameObject.SetActive(true);
+        if(Random.Range(0, 3) > 0)
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

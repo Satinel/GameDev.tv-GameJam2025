@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class GameUI : MonoBehaviour
 
     void OnEnable()
     {
+        PlayerController.OnMapPressed += PlayerController_OnMapPressed;
+        PlayerController.OnInventoryPressed += PlayerController_OnInventoryPressed;
+        PlayerController.OnLogPressed += PlayerController_OnLogPressed;
+        PlayerController.OnStatsPressed += PlayerController_OnStatsPressed;
         PlayerStats.OnExperienceGained += PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged += PlayerStats_OnMoneyChanged;
@@ -39,6 +44,10 @@ public class GameUI : MonoBehaviour
 
     void OnDisable()
     {
+        PlayerController.OnMapPressed -= PlayerController_OnMapPressed;
+        PlayerController.OnInventoryPressed -= PlayerController_OnInventoryPressed;
+        PlayerController.OnLogPressed -= PlayerController_OnLogPressed;
+        PlayerController.OnStatsPressed -= PlayerController_OnStatsPressed;
         PlayerStats.OnExperienceGained -= PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
         PlayerStats.OnMoneyChanged -= PlayerStats_OnMoneyChanged;
@@ -61,25 +70,41 @@ public class GameUI : MonoBehaviour
         _combatLogWindow.SetActive(false);
     }
 
-    void Update()
+    void PlayerController_OnMapPressed()
     {
-        if(Input.GetKeyDown(KeyCode.M))
-        {
-            ToggleMap();
-        }
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            ToggleStats();
-        }
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            ToggleLog();
-        }
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            ToggleInventory();
-        }
+        ToggleMap();
     }
+    void PlayerController_OnInventoryPressed()
+    {
+        ToggleInventory();
+    }
+    void PlayerController_OnLogPressed()
+    {
+        ToggleLog();
+    }
+    void PlayerController_OnStatsPressed()
+    {
+        ToggleStats();
+    }
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.M))
+    //     {
+    //         ToggleMap();
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         ToggleStats();
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.L))
+    //     {
+    //         ToggleLog();
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.I))
+    //     {
+    //         ToggleInventory();
+    //     }
+    // }
 
     void SetStatsText()
     {

@@ -13,15 +13,30 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] GameObject _quitPrompt;
     [SerializeField] GameObject _cancelQuitButton, _quitPromptButton, _audioButton;
 
-    void Update()
+    void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleOptions();
-        }
+        PlayerController.OnOptionsPressed += PlayerController_OnOptionsPressed;
     }
 
-    void ToggleOptions()
+    void OnDestroy()
+    {
+        PlayerController.OnOptionsPressed -= PlayerController_OnOptionsPressed;
+    }
+
+    void PlayerController_OnOptionsPressed()
+    {
+        ToggleOptions();
+    }
+
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.Tab))
+    //     {
+    //         ToggleOptions();
+    //     }
+    // }
+
+    public void ToggleOptions()
     {
         if(_optionsCanvas.enabled)
         {

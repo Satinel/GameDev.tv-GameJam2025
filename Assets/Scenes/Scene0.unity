@@ -856,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 7299582708336988687, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: '_enemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 1037738872888865437, guid: 23bb0aa1a8a0b7a4d837e36f1c48b7a4, type: 3}
+      objectReference: {fileID: 7636588575166261348, guid: 3c862b3a16c4bce498904c5fe50e4275, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4706,6 +4706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 6337433091015328337, guid: aca9b0f1a9969d748bea654acdd19525, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 70f38f81e2a00544d989ac3958693b1d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5275,7 +5279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7454157289873133, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: m_Name
-      value: Mshrogal Fight 1 (1)
+      value: Mushrogal Fight 4
       objectReference: {fileID: 0}
     - target: {fileID: 2672655268430434176, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5511,7 +5515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7454157289873133, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: m_Name
-      value: Mshrogal Fight 1
+      value: Echinoid Fight 3
       objectReference: {fileID: 0}
     - target: {fileID: 2672655268430434176, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5560,14 +5564,11 @@ PrefabInstance:
     - target: {fileID: 7299582708336988687, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
       propertyPath: '_enemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 8533533172139636420, guid: 8953abe061ad6bb4babd7f3899a42642, type: 3}
+      objectReference: {fileID: 842415563653292065, guid: f12d4ced7d985fb49bdf715476bef4d3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7454157289873133, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1828114806}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
 --- !u!4 &1292494471 stripped
 Transform:
@@ -7337,23 +7338,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9177272385750613594, guid: a85601564d2abcb49a285857ec8338d4, type: 3}
   m_PrefabInstance: {fileID: 1825425522}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1828114805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7454157289873133, guid: 415aa04181a0acd42b534745c9d49b91, type: 3}
-  m_PrefabInstance: {fileID: 1292494470}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1828114806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828114805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0196a2cc110ff7489404c6033d7500b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1828393266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4286757261196176728, guid: a85601564d2abcb49a285857ec8338d4, type: 3}
@@ -7434,6 +7418,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _extraIcon: {fileID: 0}
+--- !u!114 &1932410635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1568023180193111208, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
+  m_PrefabInstance: {fileID: 3832315004350211047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6920e39453374c4b9687dc3b31161a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1942006976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5677565321678632031, guid: fee7b96b673ba5b448c289444df985a7, type: 3}
@@ -8669,6 +8664,34 @@ PrefabInstance:
       propertyPath: '_saleItems.Array.data[2]'
       value: 
       objectReference: {fileID: -3597358570822654794, guid: 9969e5bd147d6644280d957c8cf66733, type: 3}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1932410635}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593395778370743025, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4379828739939231352, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
