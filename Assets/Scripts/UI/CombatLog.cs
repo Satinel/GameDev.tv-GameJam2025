@@ -93,10 +93,10 @@ public class CombatLog : MonoBehaviour
     {
         if(_inCombat)
         {
-            if(_audioSource && _trinketSFX)
-            {
-                _audioSource.PlayOneShot(_trinketSFX);
-            }
+            // if(_audioSource && _trinketSFX)
+            // {
+            //     _audioSource.PlayOneShot(_trinketSFX);
+            // }
             _tipText.text = $"{name}\nActivated!\n";
             _toolTip.SetActive(true);
             _timer = 0;

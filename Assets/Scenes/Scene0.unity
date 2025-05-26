@@ -8389,6 +8389,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6727260545878089057, guid: 1958857d11d4cbf43bf21905de2d8d59, type: 3}
+      propertyPath: _dungeonClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 687e83ba3f7e581458bf8224bede2e0c, type: 3}
+    - target: {fileID: 7643996732682136937, guid: 1958857d11d4cbf43bf21905de2d8d59, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 687e83ba3f7e581458bf8224bede2e0c, type: 3}
+    - target: {fileID: 7643996732682136937, guid: 1958857d11d4cbf43bf21905de2d8d59, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 687e83ba3f7e581458bf8224bede2e0c, type: 3}
     - target: {fileID: 8875618498007587028, guid: 1958857d11d4cbf43bf21905de2d8d59, type: 3}
       propertyPath: m_Name
       value: Music Player

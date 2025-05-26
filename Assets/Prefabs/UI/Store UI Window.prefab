@@ -1459,6 +1459,8 @@ MonoBehaviour:
   _priceText: {fileID: 8423641643079986387}
   _descriptionText: {fileID: 8469078256748397398}
   _itemPrice: 500
+  _priceIncrease: 600
+  _isTutorial: 0
   _storeWindow: {fileID: 5444576252243930349}
   _tooPoorWindow: {fileID: 9172498953776402319}
   _sorryButton: {fileID: 738951019956716634}
