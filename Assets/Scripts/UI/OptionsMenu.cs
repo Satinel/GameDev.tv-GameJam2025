@@ -2,20 +2,24 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 // using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
     public static event Action OnOptionsOpened;
     public static event Action OnOptionsClosed;
+    public static event Action<float> OnMouseLookChanged;
 
     [SerializeField] Canvas _optionsCanvas, _audioCanvas;
     [SerializeField] GameObject _closeMenuButton;
     [SerializeField] GameObject _quitPrompt;
     [SerializeField] GameObject _cancelQuitButton, _quitPromptButton, _audioButton;
+    [SerializeField] Slider _mouseLookSlider;
 
     void Start()
     {
         PlayerController.OnOptionsPressed += PlayerController_OnOptionsPressed;
+        _mouseLookSlider.value = PlayerPrefs.GetFloat("MouseLook", 1);
     }
 
     void OnDestroy()
@@ -28,13 +32,11 @@ public class OptionsMenu : MonoBehaviour
         ToggleOptions();
     }
 
-    // void Update()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.Tab))
-    //     {
-    //         ToggleOptions();
-    //     }
-    // }
+    public void SetMouseLookSensitivity()
+    {
+        PlayerPrefs.SetFloat("MouseLook", _mouseLookSlider.value);
+        OnMouseLookChanged?.Invoke(_mouseLookSlider.value);
+    }
 
     public void ToggleOptions()
     {

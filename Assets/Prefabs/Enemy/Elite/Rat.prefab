@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rat
   <IsBoss>k__BackingField: 0
-  <IsElite>k__BackingField: 0
+  <IsElite>k__BackingField: 1
   <Strength>k__BackingField: 7
   <Accuracy>k__BackingField: 12
   <Fortitude>k__BackingField: 6

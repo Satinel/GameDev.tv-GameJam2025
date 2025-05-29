@@ -1,9 +1,12 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     public static event Action<int, int> OnHealthChanged;
+    public static event Action<int, int> OnInitialHealthSettings;
+    
     public static event Action OnTakeDamage;
     public static event Action OnPlayerDeath;
     public static event Action<Trinket, int> OnPlayerRevive;
@@ -30,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerStats.OnStatIncreased += PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted += EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
     void OnDisable()
@@ -37,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerStats.OnStatIncreased -= PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted -= EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
     }
 
     void Start()
@@ -66,6 +71,16 @@ public class PlayerHealth : MonoBehaviour
     void RestAreaUI_OnRestAreaUsed()
     {
         GainHealth(_maxHealth);
+    }
+
+    void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Invoke(nameof(CallOnInitialHealthSettings), 0.5f); // This should update PlayerHealthSlider before a combat starts but after PlayerHealthSlider has had time to subscribe to OnHealthChanged
+    }
+
+    void CallOnInitialHealthSettings()
+    {
+        OnInitialHealthSettings?.Invoke(_currentHealth, MaxHealth);
     }
 
     public void TakeDamage(int amount)

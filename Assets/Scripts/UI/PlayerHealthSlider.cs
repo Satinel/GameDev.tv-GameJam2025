@@ -11,11 +11,13 @@ public class PlayerHealthSlider : MonoBehaviour
     void Start()
     {
         PlayerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
+        PlayerHealth.OnInitialHealthSettings += PlayerHealth_OnInitialHealthSettings;
     }
 
     void OnDestroy()
     {
         PlayerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
+        PlayerHealth.OnInitialHealthSettings -= PlayerHealth_OnInitialHealthSettings;
     }
 
     void Update()
@@ -35,6 +37,12 @@ public class PlayerHealthSlider : MonoBehaviour
     void PlayerHealth_OnHealthChanged(int current, int max)
     {
         SetHealthValues(current, max);
+    }
+
+    void PlayerHealth_OnInitialHealthSettings(int current, int max)
+    {
+        SetHealthValues(current, max);
+        _gradualSlider.value = _slider.value;
     }
 
     public void SetHealthValues(int current, int max)

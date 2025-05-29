@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Frog
   <IsBoss>k__BackingField: 0
-  <IsElite>k__BackingField: 0
+  <IsElite>k__BackingField: 1
   <Strength>k__BackingField: 8
   <Accuracy>k__BackingField: 12
   <Fortitude>k__BackingField: 5

@@ -631,7 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Snake
   <IsBoss>k__BackingField: 0
-  <IsElite>k__BackingField: 0
+  <IsElite>k__BackingField: 1
   <Strength>k__BackingField: 6
   <Accuracy>k__BackingField: 6
   <Fortitude>k__BackingField: 6

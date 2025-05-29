@@ -756,7 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Spider
   <IsBoss>k__BackingField: 0
-  <IsElite>k__BackingField: 0
+  <IsElite>k__BackingField: 1
   <Strength>k__BackingField: 8
   <Accuracy>k__BackingField: 2
   <Fortitude>k__BackingField: 4

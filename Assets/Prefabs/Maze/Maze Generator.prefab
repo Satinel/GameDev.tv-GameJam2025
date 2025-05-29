@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _encounterChancePercentage: 20
-  _width: 30
-  _depth: 30
+  _width: 20
+  _depth: 20
   _scale: 6
   _mazeSpacePrefab: {fileID: 6154276949408704129, guid: a85601564d2abcb49a285857ec8338d4, type: 3}
   _mazeWallPrefab: {fileID: 7701632342779744159, guid: bb5c967bf62254e40ac416c2389f5530, type: 3}

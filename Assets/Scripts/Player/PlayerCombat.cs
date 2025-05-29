@@ -264,6 +264,7 @@ public class PlayerCombat : MonoBehaviour
     public void EndPlayerTurn() // UI Button
     {
         _enemyTurnSplash.SetActive(true);
+        _playerTurnSplash.SetActive(false);
         _isPlayerTurn = false;
         if(!_optionsOpen)
         {
@@ -419,6 +420,7 @@ public class PlayerCombat : MonoBehaviour
     void StartPlayerTurn()
     {
         _playerTurnSplash.SetActive(true);
+        _enemyTurnSplash.SetActive(false);
         _playerTotalTurns++;
         OnPlayerTurnStart?.Invoke(_playerTotalTurns);
         Invoke(nameof(HidePlayerTurnSplash), _defaultDelay / 2);

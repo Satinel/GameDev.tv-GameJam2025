@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _lookSpeed = 2.5f;
     [SerializeField] float _autoRotateSpeed = 1f;
+    [SerializeField] float _mouseSensitivity = 1f;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
     bool _lookLeft, _lookRight;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _rigidbody = GetComponent<Rigidbody>();
+        _mouseSensitivity = PlayerPrefs.GetFloat("MouseLook", 1);
     }
 
     void OnEnable()
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        OptionsMenu.OnMouseLookChanged += OptionsMenu_OnMouseLookChanged;
         InventoryUI.OnInventoryOpened += InventoryUI_OnInventoryOpened;
         InventoryUI.OnInventoryClosed += InventoryUI_OnInventoryClosed;
         DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
@@ -103,6 +106,7 @@ public class PlayerController : MonoBehaviour
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened -= OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        OptionsMenu.OnMouseLookChanged -= OptionsMenu_OnMouseLookChanged;
         InventoryUI.OnInventoryOpened -= InventoryUI_OnInventoryOpened;
         InventoryUI.OnInventoryClosed -= InventoryUI_OnInventoryClosed;
         DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
@@ -127,24 +131,17 @@ public class PlayerController : MonoBehaviour
 
         if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
             return;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
         }
 
         if(_lookLeft)
         {
-            transform.Rotate(0, -1 * _lookSpeed * Time.deltaTime, 0);
+            transform.Rotate(0, -1 * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
         }
 
         if(_lookRight)
         {
-            transform.Rotate(0, 1 * _lookSpeed * Time.deltaTime, 0);
+            transform.Rotate(0, 1 * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
         }
     }
 
@@ -172,9 +169,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ShowCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.SetCursor(null, default, CursorMode.Auto);
+        Cursor.visible = true;
+    }
+
+    void HideCursor()
+    {
+        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+    }
+
     void Enemy_OnFightStarted(Enemy enemy)
     {
         _isFighting = true;
+        ShowCursor();
         Vector3 lookAtTarget = new(enemy.transform.position.x, transform.position.y, enemy.transform.position.z);
         _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
         _isRotating = true;
@@ -183,31 +196,42 @@ public class PlayerController : MonoBehaviour
     void PlayerCombat_OnCombatResolved()
     {
         _isFighting = false;
+        HideCursor();
     }
 
     void OptionsMenu_OnOptionsOpened()
     {
         _optionsOpen = true;
+        ShowCursor();
     }
 
     void OptionsMenu_OnOptionsClosed()
     {
         _optionsOpen = false;
+        HideCursor();
+    }
+
+    void OptionsMenu_OnMouseLookChanged(float value)
+    {
+        _mouseSensitivity = value;
     }
 
     void InventoryUI_OnInventoryOpened()
     {
         _inventoryOpen = true;
+        ShowCursor();
     }
 
     void InventoryUI_OnInventoryClosed()
     {
         _inventoryOpen = false;
+        HideCursor();
     }
 
     void DeadEnd_OnAnyDeadEndEvent()
     {
         _eventStarted = true;
+        ShowCursor();
     }
 
     void Store_OnEnteredStore(Transform tigey)
@@ -216,12 +240,14 @@ public class PlayerController : MonoBehaviour
         Vector3 lookAtTarget = new(tigey.transform.position.x, transform.position.y, tigey.transform.position.z);
         _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
         _isRotating = true;
+        ShowCursor();
     }
 
     void StoreUI_OnExitStore()
     {
         _eventStarted = false;
         _isRotating = false;
+        HideCursor();
     }
 
     void Exit_OnExitEntered(Transform empty)
@@ -230,12 +256,14 @@ public class PlayerController : MonoBehaviour
         Vector3 lookAtTarget = new(empty.transform.position.x, transform.position.y, empty.transform.position.z);
         _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
         _isRotating = true;
+        ShowCursor();
     }
 
     void ExitUI_OnExitResolved()
     {
         _eventStarted = false;
         _isRotating = false;
+        HideCursor();
     }
 
     void RestArea_OnRestAreaEntered(Transform empty)
@@ -244,11 +272,13 @@ public class PlayerController : MonoBehaviour
         Vector3 lookAtTarget = new(empty.transform.position.x, transform.position.y, empty.transform.position.z);
         _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
         _isRotating = true;
+        ShowCursor();
     }
 
     void RestAreaUI_OnRestAreaResolved()
     {
         _eventStarted = false;
         _isRotating = false;
+        HideCursor();
     }
 }

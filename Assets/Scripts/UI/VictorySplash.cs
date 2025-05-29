@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class VictorySplash : MonoBehaviour
 {
-    [SerializeField] GameObject _window, _mainMenuButton;
+    [SerializeField] GameObject _window, _mainMenuButton, _newMazeButton;
     bool _victory;
     PlayerController _playerController;
 
@@ -42,8 +42,16 @@ public class VictorySplash : MonoBehaviour
     public void LoadMainMenu()
     {
         _mainMenuButton.SetActive(false);
+        _newMazeButton.SetActive(false);
         _playerController = FindFirstObjectByType<PlayerController>();
         _playerController.transform.SetParent(transform); // This is a pretty clean way to remove DontDestroyOnLoad
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadNewMaze()
+    {
+        _mainMenuButton.SetActive(false);
+        _newMazeButton.SetActive(false);
+        SceneManager.LoadScene(2);
     }
 }
