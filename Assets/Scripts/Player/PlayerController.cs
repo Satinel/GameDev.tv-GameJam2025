@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _lookSpeed = 2.5f;
     [SerializeField] float _autoRotateSpeed = 1f;
     [SerializeField] float _mouseSensitivity = 1f;
+    [SerializeField] Texture2D _customCursor;
 
     bool _moveForward, _moveBackward, _moveLeft, _moveRight;
     bool _lookLeft, _lookRight;
@@ -82,6 +83,11 @@ public class PlayerController : MonoBehaviour
         _mouseSensitivity = PlayerPrefs.GetFloat("MouseLook", 1);
     }
 
+    void Start()
+    {
+        HideCursor();
+    }
+
     void OnEnable()
     {
         Enemy.OnFightStarted += Enemy_OnFightStarted;
@@ -131,7 +137,18 @@ public class PlayerController : MonoBehaviour
 
         if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen)
         {
+#if UNITY_WEBGL
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+#endif
             return;
+        }
+        else
+        {
+#if UNITY_WEBGL
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+#endif
         }
 
         if(_lookLeft)
@@ -171,17 +188,21 @@ public class PlayerController : MonoBehaviour
 
     void ShowCursor()
     {
+#if !UNITY_WEBGL
         Cursor.lockState = CursorLockMode.Confined;
-        Cursor.SetCursor(null, default, CursorMode.Auto);
+        Cursor.SetCursor(_customCursor, default, CursorMode.Auto);
         Cursor.visible = true;
+#endif
     }
 
     void HideCursor()
     {
+#if !UNITY_WEBGL
         if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+#endif
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
