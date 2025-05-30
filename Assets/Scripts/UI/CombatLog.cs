@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class CombatLog : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _log;
     [SerializeField] TextMeshProUGUI _tipText;
     [SerializeField] GameObject _toolTip;
+    [SerializeField] int _maxLineCount = 100;
     bool _inCombat;
     float _timer;
     [SerializeField] float _tipDuration = 0.45f;
@@ -114,6 +116,22 @@ public class CombatLog : MonoBehaviour
         _inCombat = false;
         _toolTip.SetActive(false);
         _timer = 0;
+
+        if(_log.textInfo.lineCount > _maxLineCount)
+        {
+            string[] lines = _log.text.Split('\n');
+            List<string> trimmedLines = new();
+            int startIndex = lines.Length - _maxLineCount;
+            for (int i = startIndex; i < lines.Length - 1; i++)
+            {
+                trimmedLines.Add(lines[i]);
+            }
+            _log.text = string.Empty;
+            foreach(string line in trimmedLines)
+            {
+                _log.text += $"\n{line}";
+            }
+        }
     }
 
     void Goal_OnKeyClaimed()

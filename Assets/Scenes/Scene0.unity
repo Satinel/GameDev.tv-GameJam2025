@@ -8537,6 +8537,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608959773612762900, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 608959773612762900, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3074566093531400923, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
       propertyPath: m_Name
       value: Options UI
