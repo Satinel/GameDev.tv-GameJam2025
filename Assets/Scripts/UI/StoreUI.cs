@@ -46,6 +46,7 @@ public class StoreUI : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             _storeButtons[i].SetTrinket(_saleItems[i]);
+            _storeButtons[i].gameObject.SetActive(true);
         }
 
         _priceText.text = $"Price: {_itemPrice.FormatLargeNumbers()} BugBucks";
