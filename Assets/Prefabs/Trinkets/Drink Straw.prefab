@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db19acc99e162de4f9e02a01d86fafc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingName: Drink Sraw
+  _startingName: Drink Straw
   _toolTipText: Heal For A Percentage Of Damage Dealt
   _healPercentage: 0.5

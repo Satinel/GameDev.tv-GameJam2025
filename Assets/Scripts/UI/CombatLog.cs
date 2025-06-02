@@ -171,7 +171,7 @@ public class CombatLog : MonoBehaviour
     void MidasPincer_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
-        AddToLog($"Gained {amount.FormatLargeNumbers()} Bug Bucks!\n");
+        AddToLog($"Gained {amount.FormatLargeNumbers()} BugBucks!\n");
     }
 
     void PlayerCombat_OnRerollUsed(Trinket trinket)

@@ -136,14 +136,14 @@ public class PlayerCombat : MonoBehaviour
 
         _battleStartSplash.SetActive(false);
 
-        int playerRoll = UnityEngine.Random.Range(0, 20);
+        int playerRoll = UnityEngine.Random.Range(1, 21);
         //TODO SFX/VFX to indicate something is happening (rolling dice)
         _playerInitiative.text = (playerRoll + _playerStats.Initiative).ToString();
         _combatLog.text += $"\nYou Roll Initiative!\n{playerRoll + _playerStats.Initiative} ({playerRoll} + {_playerStats.Initiative})\n";
 
         yield return new WaitForSeconds(_defaultDelay / 3f);
 
-        int enemyRoll = UnityEngine.Random.Range(0, 20);
+        int enemyRoll = UnityEngine.Random.Range(1, 21);
         //TODO SFX/VFX to indicate something is happening (rolling dice)
         _enemyInitiative.text = (enemyRoll + _currentEnemy.Initiative).ToString();
         _combatLog.text += $"\n{_currentEnemy.Name} Rolls Initiative!\n{enemyRoll + _currentEnemy.Initiative} ({enemyRoll} + {_currentEnemy.Initiative})\n";
@@ -172,8 +172,8 @@ public class PlayerCombat : MonoBehaviour
         _combatButtonsParent.SetActive(false);
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
         _results.SetActive(true);
-        _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
-        _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} Bug Bucks!\n";
+        _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} BugBucks!\n";
+        _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} BugBucks!\n";
     }
 
     void PlayerInventory_OnTrinketAdded(Trinket trinket)

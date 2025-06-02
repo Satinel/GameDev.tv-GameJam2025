@@ -8724,6 +8724,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4843871774279747740, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7442370545642775623, guid: c180da44e835d7e40aad294185dab370, type: 2}
+    - target: {fileID: 4843871774279747740, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5661630087639760313, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
       propertyPath: m_fontSize
       value: 56.6
@@ -8759,6 +8767,14 @@ PrefabInstance:
     - target: {fileID: 9097469912353934706, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
       propertyPath: m_Name
       value: Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180717661628373853, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7442370545642775623, guid: c180da44e835d7e40aad294185dab370, type: 2}
+    - target: {fileID: 9180717661628373853, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

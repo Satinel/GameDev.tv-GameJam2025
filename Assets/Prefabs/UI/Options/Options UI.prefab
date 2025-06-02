@@ -454,12 +454,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5688697842857337284}
+  - {fileID: 6757165326757529667}
+  - {fileID: 3540229316830837763}
   - {fileID: 6629379137234750384}
   - {fileID: 2542133256122197928}
   - {fileID: 5408807207610129666}
   - {fileID: 8618765089368973285}
-  - {fileID: 6757165326757529667}
-  - {fileID: 3540229316830837763}
   m_Father: {fileID: 5689473565908483762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3254,7 +3254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5475461108587974908, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_fontSize
-      value: 67.1
+      value: 56.6
       objectReference: {fileID: 0}
     - target: {fileID: 7833359069089527361, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_Name
@@ -3416,7 +3416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5475461108587974908, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_fontSize
-      value: 67.1
+      value: 56.6
       objectReference: {fileID: 0}
     - target: {fileID: 7833359069089527361, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_Name

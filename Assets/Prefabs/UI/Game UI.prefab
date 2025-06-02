@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _window: {fileID: 8614583046644822384}
   _mainMenuButton: {fileID: 7221564284891235766}
-  _newMazeButton: {fileID: 0}
+  _newMazeButton: {fileID: 2879919462451192631}
 --- !u!1 &6051377457365846491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1731,7 @@ MonoBehaviour:
   _log: {fileID: 7133244437750382519}
   _tipText: {fileID: 5469610508471421049}
   _toolTip: {fileID: 2517355703300518285}
+  _maxLineCount: 100
   _tipDuration: 1
   _audioSource: {fileID: 6002404084464808206}
   _trinketSFX: {fileID: 8300000, guid: 608e4057db93afc4698121516386d1e1, type: 3}
@@ -2687,12 +2688,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
+--- !u!1 &2879919462451192631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7833359069089527361, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
+  m_PrefabInstance: {fileID: 5422942995333338486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3862276810489032049 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9141103999270008839, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
   m_PrefabInstance: {fileID: 5422942995333338486}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2879919462451192631}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}

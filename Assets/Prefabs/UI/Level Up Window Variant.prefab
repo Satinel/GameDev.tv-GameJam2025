@@ -1484,11 +1484,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1111408222041835291, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_text
-      value: Acurracy +1
+      value: Accuracy +1
       objectReference: {fileID: 0}
     - target: {fileID: 1111408222041835291, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: m_fontSize
-      value: 44.1
+      value: 44.35
       objectReference: {fileID: 0}
     - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: _descriptionText
