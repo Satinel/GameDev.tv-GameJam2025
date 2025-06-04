@@ -2871,10 +2871,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8cfc6330a031a4dac74adbf195f416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 300
-  _lookSpeed: 120
+  _moveSpeed: 360
+  _lookSpeed: 220
   _autoRotateSpeed: 85
   _mouseSensitivity: 1
+  _customCursor: {fileID: 2800000, guid: 4faf19495fd333c4c9d52d6dc224cc07, type: 3}
 --- !u!114 &8287712847053111603
 MonoBehaviour:
   m_ObjectHideFlags: 0

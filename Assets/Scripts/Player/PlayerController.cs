@@ -16,24 +16,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _mouseSensitivity = 1f;
     [SerializeField] Texture2D _customCursor;
 
-    bool _moveForward, _moveBackward, _moveLeft, _moveRight;
-    bool _lookLeft, _lookRight;
+    Vector2 _moveValue = Vector2.zero;
+    float _lookValue;
     bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
     Rigidbody _rigidbody;
     Quaternion _targetRotation;
 
     public void OnMove(InputValue value)
     {
-        _moveForward = value.Get<Vector2>().y > 0.5;
-        _moveLeft = value.Get<Vector2>().x < -0.5;
-        _moveBackward = value.Get<Vector2>().y < -0.5;
-        _moveRight = value.Get<Vector2>().x > 0.5;
+        _moveValue = value.Get<Vector2>();
     }
 
     public void OnLook(InputValue value)
     {
-        _lookLeft = value.Get<Vector2>().x < -0.5;
-        _lookRight = value.Get<Vector2>().x > 0.5;
+        _lookValue = value.Get<Vector2>().x;
     }
 
     public void OnMap(InputValue value)
@@ -151,39 +147,19 @@ public class PlayerController : MonoBehaviour
 #endif
         }
 
-        if(_lookLeft)
-        {
-            transform.Rotate(0, -1 * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
-        }
-
-        if(_lookRight)
-        {
-            transform.Rotate(0, 1 * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
-        }
+        transform.Rotate(0, _lookValue * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
     }
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocity = Vector3.zero;
+        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen)
+        {
+            _rigidbody.linearVelocity = Vector3.zero;
+            return;
+        }
 
-        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
-
-        if(_moveForward)
-        {
-            _rigidbody.linearVelocity += _moveSpeed * Time.deltaTime * transform.forward;
-        }
-        if(_moveBackward)
-        {
-            _rigidbody.linearVelocity += _moveSpeed * 0.75f * Time.deltaTime * -transform.forward;
-        }
-        if(_moveLeft)
-        {
-            _rigidbody.linearVelocity += _moveSpeed * .9f * Time.deltaTime * -transform.right;
-        }
-        if(_moveRight)
-        {
-            _rigidbody.linearVelocity += _moveSpeed * .9f * Time.deltaTime * transform.right;
-        }
+        _rigidbody.linearVelocity = _moveSpeed * Time.deltaTime * _moveValue.y * transform.forward;
+        _rigidbody.linearVelocity += _moveSpeed * Time.deltaTime * _moveValue.x * transform.right;
     }
 
     void ShowCursor()
