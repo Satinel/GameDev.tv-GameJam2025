@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
 public class CombatLog : MonoBehaviour
 {
+    [SerializeField] ScrollRect _scrollRect;
     [SerializeField] TextMeshProUGUI _log;
     [SerializeField] TextMeshProUGUI _tipText;
     [SerializeField] GameObject _toolTip;
@@ -109,6 +111,7 @@ public class CombatLog : MonoBehaviour
     void Enemy_OnFightStarted(Enemy _)
     {
         _inCombat = true;
+        _scrollRect.verticalNormalizedPosition = 0;
     }
 
     void PlayerCombat_OnCombatResolved()
@@ -117,7 +120,7 @@ public class CombatLog : MonoBehaviour
         _toolTip.SetActive(false);
         _timer = 0;
 
-        if(_log.textInfo.lineCount > _maxLineCount)
+        if(_log.textInfo.lineCount > _maxLineCount + 1)
         {
             string[] lines = _log.text.Split('\n');
             List<string> trimmedLines = new();

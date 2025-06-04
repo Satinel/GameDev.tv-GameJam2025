@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
     PlayerHealth _playerHealth;
-    bool _isInCombat, _isInStore;
+    bool _isInCombat, _isInStore, _logWasClosed;
 
     void Awake()
     {
@@ -203,7 +203,15 @@ public class GameUI : MonoBehaviour
         _isInCombat = true;
         _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
         _statsWindow.SetActive(true);
-        _combatLogWindow.SetActive(true);
+        if(!_combatLogWindow.activeSelf)
+        {
+            _combatLogWindow.SetActive(true);
+            _logWasClosed = true;
+        }
+        else
+        {
+            _logWasClosed = false;
+        }
         _map.SetActive(false);
         _inventoryWindow.Close();
     }
@@ -211,7 +219,10 @@ public class GameUI : MonoBehaviour
     void PlayerCombat_OnCombatResolved()
     {
         _isInCombat = false;
-        _combatLogWindow.SetActive(false);
+        if(_logWasClosed)
+        {
+            _combatLogWindow.SetActive(false);
+        }
         _mapButton.SetActive(true);
         _statsButton.SetActive(true);
         _combatLogButton.SetActive(true);
