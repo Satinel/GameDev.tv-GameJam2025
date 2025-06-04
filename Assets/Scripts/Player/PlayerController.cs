@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public static event Action OnOptionsPressed;
 
     [SerializeField] float _moveSpeed = 5f;
+    [SerializeField] float _sprintModifer = 1.75f;
+    [SerializeField] float _strafeModifer = 0.85f;
     [SerializeField] float _lookSpeed = 2.5f;
     [SerializeField] float _autoRotateSpeed = 1f;
     [SerializeField] float _mouseSensitivity = 1f;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 _moveValue = Vector2.zero;
     float _lookValue;
+    bool _isSprinting;
     bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
     Rigidbody _rigidbody;
     Quaternion _targetRotation;
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputValue value)
     {
         _lookValue = value.Get<Vector2>().x;
+    }
+
+    public void OnSprint(InputValue value)
+    {
+        _isSprinting = value.isPressed;
     }
 
     public void OnMap(InputValue value)
@@ -158,8 +166,15 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        _rigidbody.linearVelocity = _moveSpeed * Time.deltaTime * _moveValue.y * transform.forward;
-        _rigidbody.linearVelocity += _moveSpeed * Time.deltaTime * _moveValue.x * transform.right;
+        float sprintValue = 1;
+
+        if(_isSprinting)
+        {
+            sprintValue = _sprintModifer;
+        }
+
+        _rigidbody.linearVelocity = _moveSpeed * sprintValue * Time.deltaTime * _moveValue.y * transform.forward;
+        _rigidbody.linearVelocity += _moveSpeed * sprintValue * _strafeModifer * Time.deltaTime * _moveValue.x * transform.right;
     }
 
     void ShowCursor()
