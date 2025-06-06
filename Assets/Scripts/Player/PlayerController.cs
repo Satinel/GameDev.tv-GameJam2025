@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public static event Action OnLogPressed;
     public static event Action OnStatsPressed;
     public static event Action OnOptionsPressed;
+    public static event Action<PlayerInput> OnControlSchemeChanged;
 
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _sprintModifer = 1.75f;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _autoRotateSpeed = 1f;
     [SerializeField] float _mouseSensitivity = 1f;
     [SerializeField] Texture2D _customCursor;
+    [SerializeField] PlayerInput _playerInput;
 
     Vector2 _moveValue = Vector2.zero;
     float _lookValue;
@@ -78,6 +80,11 @@ public class PlayerController : MonoBehaviour
         {
             OnOptionsPressed?.Invoke();
         }
+    }
+
+    public void OnControlsChanged(PlayerInput input)
+    {
+        OnControlSchemeChanged?.Invoke(input);
     }
 
     void Awake()

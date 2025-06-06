@@ -2873,10 +2873,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 360
   _sprintModifer: 1.75
+  _strafeModifer: 0.85
   _lookSpeed: 220
   _autoRotateSpeed: 85
   _mouseSensitivity: 1
   _customCursor: {fileID: 2800000, guid: 4faf19495fd333c4c9d52d6dc224cc07, type: 3}
+  _playerInput: {fileID: 8427840521243357608}
 --- !u!114 &8287712847053111603
 MonoBehaviour:
   m_ObjectHideFlags: 0

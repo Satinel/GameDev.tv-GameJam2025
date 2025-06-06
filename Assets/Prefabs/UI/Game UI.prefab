@@ -1703,6 +1703,7 @@ MonoBehaviour:
   _statsButton: {fileID: 222242077147551562}
   _combatLogButton: {fileID: 3811171485064566977}
   _inventoryButton: {fileID: 7465853616154735895}
+  _sprintDisplay: {fileID: 5320880670721846944}
   _playerHealthSlider: {fileID: 7317504176013182134}
   _statsText: {fileID: 2994140573066917744}
   _moneyText: {fileID: 4045404782999793066}
@@ -3578,6 +3579,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5320880670721846944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3920242262547825108, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}
+  m_PrefabInstance: {fileID: 9201117191804366708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5469610508471421049 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3771512423607166733, guid: 632f95b6dcd3aab4299b30e3d04f0405, type: 3}

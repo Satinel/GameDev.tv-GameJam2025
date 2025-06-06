@@ -6,7 +6,7 @@ public class GameUI : MonoBehaviour
 {
     [SerializeField] GameObject _map, _statsWindow, _combatLogWindow;
     [SerializeField] InventoryUI _inventoryWindow;
-    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton;
+    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton, _sprintDisplay;
     [SerializeField] PlayerHealthSlider _playerHealthSlider;
     [SerializeField] TextMeshProUGUI _statsText, _moneyText;
     [SerializeField] TextMeshProUGUI _leftClawText, _leftAttack1Text, _leftAttack2Text;
@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
     PlayerHealth _playerHealth;
-    bool _isInCombat, _isInStore, _logWasClosed;
+    bool _isInCombat, _isInStore, _logWasClosed, _statsWasClosed;
 
     void Awake()
     {
@@ -202,7 +202,15 @@ public class GameUI : MonoBehaviour
         _inventoryButton.SetActive(false);
         _isInCombat = true;
         _playerHealthSlider.SetHealthValues(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
-        _statsWindow.SetActive(true);
+        if(!_statsWindow.activeSelf)
+        {
+            _statsWindow.SetActive(true);
+            _statsWasClosed = true;
+        }
+        else
+        {
+            _statsWasClosed = false;
+        }
         if(!_combatLogWindow.activeSelf)
         {
             _combatLogWindow.SetActive(true);
@@ -213,20 +221,26 @@ public class GameUI : MonoBehaviour
             _logWasClosed = false;
         }
         _map.SetActive(false);
+        _sprintDisplay.SetActive(false);
         _inventoryWindow.Close();
     }
 
     void PlayerCombat_OnCombatResolved()
     {
         _isInCombat = false;
+        if(_statsWasClosed)
+        {
+            _statsWindow.SetActive(false);
+        }
         if(_logWasClosed)
         {
             _combatLogWindow.SetActive(false);
         }
-        _mapButton.SetActive(true);
         _statsButton.SetActive(true);
+        _mapButton.SetActive(true);
         _combatLogButton.SetActive(true);
         _inventoryButton.SetActive(true);
+        _sprintDisplay.SetActive(true);
     }
 
     void PlayerStats_OnTempStatsReset()
