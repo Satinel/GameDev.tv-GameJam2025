@@ -10,8 +10,8 @@ public class PlayerAnimator : MonoBehaviour
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
-        PlayerCombat.OnPlayerAbilityHit += PlayerCombat_OnPlayerAbilityHit;
-        PlayerCombat.OnPlayerAbilityMiss += PlayerCombat_OnPlayerAbilityMiss;
+        PlayerCombat.OnPlayerAbilityUsed += PlayerCombat_OnPlayerAbilityUsed;
+        // PlayerCombat.OnPlayerAbilityMiss += PlayerCombat_OnPlayerAbilityMiss;
     }
 
     void OnDestroy()
@@ -19,8 +19,8 @@ public class PlayerAnimator : MonoBehaviour
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
-        PlayerCombat.OnPlayerAbilityHit -= PlayerCombat_OnPlayerAbilityHit;
-        PlayerCombat.OnPlayerAbilityMiss -= PlayerCombat_OnPlayerAbilityMiss;
+        PlayerCombat.OnPlayerAbilityUsed -= PlayerCombat_OnPlayerAbilityUsed;
+        // PlayerCombat.OnPlayerAbilityMiss -= PlayerCombat_OnPlayerAbilityMiss;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -56,42 +56,42 @@ public class PlayerAnimator : MonoBehaviour
         _tailShadow.SetBool("InCombat", false);
     }
 
-    void PlayerCombat_OnPlayerAbilityHit(int index)
+    void PlayerCombat_OnPlayerAbilityUsed(int index, string clip)
     {
         switch(index)
         {
             case 0:
-                _leftAnimator.SetTrigger("Attack1");
-                _leftShadow.SetTrigger("Attack1");
+                _leftAnimator.Play(clip);
+                _leftShadow.Play(clip);
                 break;
             case 1:
-                _leftAnimator.SetTrigger("Attack2");
-                _leftShadow.SetTrigger("Attack2");
+                _leftAnimator.Play(clip);
+                _leftShadow.Play(clip);
                 break;
             case 2:
-                _tailAnimator.SetTrigger("Attack1");
-                _tailShadow.SetTrigger("Attack1");
+                _tailAnimator.Play(clip);
+                _tailShadow.Play(clip);
                 break;
             case 3:
-                _tailAnimator.SetTrigger("Attack2");
-                _tailShadow.SetTrigger("Attack2");
+                _tailAnimator.Play(clip);
+                _tailShadow.Play(clip);
                 break;
             case 4:
-                _rightAnimator.SetTrigger("Attack1");
-                _rightShadow.SetTrigger("Attack1");
+                _rightAnimator.Play(clip);
+                _rightShadow.Play(clip);
                 break;
             case 5:
-                _rightAnimator.SetTrigger("Attack2");
-                _rightShadow.SetTrigger("Attack2");
+                _rightAnimator.Play(clip);
+                _rightShadow.Play(clip);
                 break;
             default:
-                _leftAnimator.SetTrigger("Attack1");
-                _leftShadow.SetTrigger("Attack1");
+                _leftAnimator.Play(clip);
+                _leftShadow.Play(clip);
                 break;
         }
     }
 
-    void PlayerCombat_OnPlayerAbilityMiss(int index)
+    /*void PlayerCombat_OnPlayerAbilityMiss(int index, string clip)
     {
         switch(index)
         {
@@ -124,5 +124,5 @@ public class PlayerAnimator : MonoBehaviour
                 _leftShadow.SetTrigger("Miss1");
                 break;
         }
-    }
+    }*/
 }

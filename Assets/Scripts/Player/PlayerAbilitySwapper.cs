@@ -5,6 +5,7 @@ public class PlayerAbilitySwapper : PlayerAbility
     [SerializeField] int _accuracyBuff;
     [SerializeField] Equipable _swappedEquipment;
     [SerializeField] Equipable _baseEquipable;
+    [SerializeField] bool _activatesOnMiss;
 
     PlayerInventory _playerInventory;
     PlayerStats _playerStats;
@@ -40,5 +41,14 @@ public class PlayerAbilitySwapper : PlayerAbility
         base.Hit();
         _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff);
         _playerInventory.EquipWeapon(_swappedEquipment, _swappedEquipment.IsLeftSlot);
+    }
+
+    public override void Miss()
+    {
+        if(_activatesOnMiss)
+        {
+            _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff);
+            _playerInventory.EquipWeapon(_swappedEquipment, _swappedEquipment.IsLeftSlot);
+        }
     }
 }

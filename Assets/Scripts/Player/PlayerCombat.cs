@@ -12,8 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public static event Action<Trinket> OnRerollUsed;
     public static event Action<int> OnPlayerDealtDamage;
     public static event Action<int> OnPlayerTurnStart;
-    public static event Action<int> OnPlayerAbilityHit;
-    public static event Action<int> OnPlayerAbilityMiss;
+    public static event Action<int, string> OnPlayerAbilityUsed;
+    // public static event Action<int, string> OnPlayerAbilityMiss;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -363,11 +363,11 @@ public class PlayerCombat : MonoBehaviour
 
         if(_selectedAbility.AlwaysHits || _hasCriticalHit || hasHit)
         {
-            OnPlayerAbilityHit?.Invoke(index);
+            OnPlayerAbilityUsed?.Invoke(index, _selectedAbility.HitAnimation.name);
         }
         else
         {
-            OnPlayerAbilityMiss?.Invoke(index);
+            OnPlayerAbilityUsed?.Invoke(index, _selectedAbility.MissAnimation.name);
         }
     }
 

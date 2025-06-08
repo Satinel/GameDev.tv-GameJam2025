@@ -51,6 +51,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Accurate Moderate Damage
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 089269b6c65e938489e4ec023a76fb49, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 045eb1de8d7219040a75cc200d96bb51, type: 2}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &881370429788364186
@@ -135,6 +137,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 0
   <Description>k__BackingField: Cause Ongoing Defense Piercing Damage
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: a635518412069714e96bafd5c10cec06, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: fb7166d7ac9ec1549b2e1cd6e5efed5d, type: 2}
   UseMessage: \nEnemy Envenomated!\n
   _sendUseMessage: 1
   _poisonDamage: 10
@@ -404,11 +408,14 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Release Grip for Extreme Damage
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
   _swappedEquipment: {fileID: 3137806993205200348}
   _baseEquipable: {fileID: 3137806993205200348}
+  _activatesOnMiss: 1
 --- !u!1 &2461063579065275813
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +467,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Very Accurate Low Damage
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 7a5d06d5ec3d8c84ba14dc9d44c9fba6, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: fea8ba84a7ecd7e4c8355ebeec6eebd2, type: 2}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &2775091269372425626
@@ -563,11 +572,14 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 2
   _swappedEquipment: {fileID: 5035502185339537485}
   _baseEquipable: {fileID: 8561436319350109281}
+  _activatesOnMiss: 0
 --- !u!1 &4225538726014009835
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +903,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Guaranteed Mild Damage
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &6653714321228068291
@@ -1273,6 +1287,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Semi-Accurate High Damage
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &7442926962721528397
@@ -1610,11 +1626,14 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 2
   _swappedEquipment: {fileID: 8322965815924578287}
   _baseEquipable: {fileID: 3137806993205200348}
+  _activatesOnMiss: 0
 --- !u!1 &8657731044431436606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,11 +1829,14 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Release Grip for Extreme Damage
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
   _swappedEquipment: {fileID: 8561436319350109281}
   _baseEquipable: {fileID: 8561436319350109281}
+  _activatesOnMiss: 1
 --- !u!1 &8809435752208281563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1888,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Guaranteed Mild Damage
+  <HitAnimation>k__BackingField: {fileID: 0}
+  <MissAnimation>k__BackingField: {fileID: 0}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1001 &2502776501252179073

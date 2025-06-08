@@ -12,6 +12,8 @@ public class PlayerAbility : MonoBehaviour
     [field:SerializeField] public bool AlwaysHits { get; private set; } = false;
     [field:SerializeField] public bool DealsDamage { get; private set; } = true;
     [field:SerializeField] public string Description { get; private set; }
+    [field:SerializeField] public AnimationClip HitAnimation { get; private set; }
+    [field:SerializeField] public AnimationClip MissAnimation { get; private set; }
 
     [SerializeField] string UseMessage = string.Empty;
     [SerializeField] bool _sendUseMessage;
@@ -23,5 +25,10 @@ public class PlayerAbility : MonoBehaviour
             OnPlayerAbilityUsed?.Invoke(UseMessage);
         }
         // Cause status ailment or what-have-you
+    }
+
+    public virtual void Miss()
+    {
+        // This is just for the Tear ability
     }
 }
