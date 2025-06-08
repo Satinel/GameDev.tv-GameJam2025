@@ -74,6 +74,8 @@ public class PlayerCombat : MonoBehaviour
         CompoundEye.OnActivated += CompoundEye_OnActivated;
         PrehensileTongue.OnActivated += IncreaseCriticalHitBonus;
         PlayerStats.NoLevelUp += PlayerStats_NoLevelUp;
+        AnimatorAbilityTrigger.OnAnimatorHit += OnAnimatorHit;
+        AnimatorAbilityTrigger.OnAnimatorMiss += OnAnimatorMiss;
     }
 
     void OnDisable()
@@ -93,6 +95,8 @@ public class PlayerCombat : MonoBehaviour
         CompoundEye.OnActivated -= CompoundEye_OnActivated;
         PrehensileTongue.OnActivated -= IncreaseCriticalHitBonus;
         PlayerStats.NoLevelUp -= PlayerStats_NoLevelUp;
+        AnimatorAbilityTrigger.OnAnimatorHit -= OnAnimatorHit;
+        AnimatorAbilityTrigger.OnAnimatorMiss -= OnAnimatorMiss;
     }
 
     void PlayerHealth_OnPlayerDeath()
@@ -367,7 +371,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void PlayerAbilityHit() // Animation Event
+    public void OnAnimatorHit() // Animation Event
     {
         if(_hasCriticalHit)
         {
@@ -409,7 +413,7 @@ public class PlayerCombat : MonoBehaviour
         _selectedAbility = null;
     }
 
-    public void PlayerAbilityMiss() // Animation Event
+    public void OnAnimatorMiss() // Animation Event
     {
         _audioSource.PlayOneShot(_defaultMiss);
         _combatLog.text += $"\nMiss!\n";

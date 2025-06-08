@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] Animator _leftAnimator, _rightAnimator, _tailAnimator;
+    [SerializeField] Animator _leftShadow, _rightShadow, _tailShadow;
 
     void Awake()
     {
@@ -32,11 +33,17 @@ public class PlayerAnimator : MonoBehaviour
     void Enemy_OnFightStarted(Enemy enemy)
     {
         _leftAnimator.SetBool("InCombat", true);
-        _leftAnimator.SetBool("IsMovingt", false);
+        _leftAnimator.SetBool("IsMoving", false);
         _rightAnimator.SetBool("InCombat", true);
-        _rightAnimator.SetBool("IsMovingt", false);
+        _rightAnimator.SetBool("IsMoving", false);
         _tailAnimator.SetBool("InCombat", true);
-        _tailAnimator.SetBool("IsMovingt", false);
+        _tailAnimator.SetBool("IsMoving", false);
+        _leftShadow.SetBool("InCombat", true);
+        _leftShadow.SetBool("IsMoving", false);
+        _rightShadow.SetBool("InCombat", true);
+        _rightShadow.SetBool("IsMoving", false);
+        _tailShadow.SetBool("InCombat", true);
+        _tailShadow.SetBool("IsMoving", false);
     }
 
     void Enemy_OnAnyEnemyKilled(Enemy enemy)
@@ -44,6 +51,9 @@ public class PlayerAnimator : MonoBehaviour
         _leftAnimator.SetBool("InCombat", false);
         _rightAnimator.SetBool("InCombat", false);
         _tailAnimator.SetBool("InCombat", false);
+        _leftShadow.SetBool("InCombat", false);
+        _rightShadow.SetBool("InCombat", false);
+        _tailShadow.SetBool("InCombat", false);
     }
 
     void PlayerCombat_OnPlayerAbilityHit(int index)
@@ -52,24 +62,31 @@ public class PlayerAnimator : MonoBehaviour
         {
             case 0:
                 _leftAnimator.SetTrigger("Attack1");
+                _leftShadow.SetTrigger("Attack1");
                 break;
             case 1:
                 _leftAnimator.SetTrigger("Attack2");
+                _leftShadow.SetTrigger("Attack2");
                 break;
             case 2:
                 _tailAnimator.SetTrigger("Attack1");
+                _tailShadow.SetTrigger("Attack1");
                 break;
             case 3:
                 _tailAnimator.SetTrigger("Attack2");
+                _tailShadow.SetTrigger("Attack2");
                 break;
             case 4:
                 _rightAnimator.SetTrigger("Attack1");
+                _rightShadow.SetTrigger("Attack1");
                 break;
             case 5:
                 _rightAnimator.SetTrigger("Attack2");
+                _rightShadow.SetTrigger("Attack2");
                 break;
             default:
                 _leftAnimator.SetTrigger("Attack1");
+                _leftShadow.SetTrigger("Attack1");
                 break;
         }
     }
@@ -79,25 +96,32 @@ public class PlayerAnimator : MonoBehaviour
         switch(index)
         {
             case 0:
-                _leftAnimator.SetTrigger("Miss");
+                _leftAnimator.SetTrigger("Miss1");
+                _leftShadow.SetTrigger("Miss1");
                 break;
             case 1:
-                _leftAnimator.SetTrigger("Miss");
+                _leftAnimator.SetTrigger("Miss2");
+                _leftShadow.SetTrigger("Miss2");
                 break;
             case 2:
-                _tailAnimator.SetTrigger("Miss");
+                _tailAnimator.SetTrigger("Miss1");
+                _tailShadow.SetTrigger("Miss1");
                 break;
             case 3:
-                _tailAnimator.SetTrigger("Miss");
+                _tailAnimator.SetTrigger("Miss2");
+                _tailShadow.SetTrigger("Miss2");
                 break;
             case 4:
-                _rightAnimator.SetTrigger("Miss");
+                _rightAnimator.SetTrigger("Miss1");
+                _rightShadow.SetTrigger("Miss1");
                 break;
             case 5:
-                _rightAnimator.SetTrigger("Miss");
+                _rightAnimator.SetTrigger("Miss2");
+                _rightShadow.SetTrigger("Miss2");
                 break;
             default:
-                _leftAnimator.SetTrigger("Miss");
+                _leftAnimator.SetTrigger("Miss1");
+                _leftShadow.SetTrigger("Miss1");
                 break;
         }
     }
