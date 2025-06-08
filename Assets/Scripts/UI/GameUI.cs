@@ -66,7 +66,6 @@ public class GameUI : MonoBehaviour
         _playerHealth = _playerStats.GetComponent<PlayerHealth>();
         SetStatsText();
         SetAttackButtonTexts();
-        _statsWindow.SetActive(false);
         _combatLogWindow.SetActive(false);
     }
 

@@ -13,7 +13,6 @@ public class PlayerCombat : MonoBehaviour
     public static event Action<int> OnPlayerDealtDamage;
     public static event Action<int> OnPlayerTurnStart;
     public static event Action<int, string> OnPlayerAbilityUsed;
-    // public static event Action<int, string> OnPlayerAbilityMiss;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -27,12 +26,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse; // TODO replace these with prefabs containing visual effects along with sounds
     [SerializeField] DamageSplash _damageSplashPrefab;
     [SerializeField] Transform _missFloatingTextPrefab;
-
-    // [SerializeField] GameObject _leftAttack1, _leftAttack2;
-    // [SerializeField] GameObject _rightAttack1, _rightAttack2;
-    // [SerializeField] GameObject _tailAttack1, _tailAttack2;
-
-    // TODO Set/Get equipped items in claws if any
 
     PlayerHealth _playerHealth;
     PlayerStats _playerStats;
@@ -417,6 +410,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _audioSource.PlayOneShot(_defaultMiss);
         _combatLog.text += $"\nMiss!\n";
+        _selectedAbility.Miss();
         Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
         floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
         SelectFirstInteractableButton();

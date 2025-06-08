@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAnimator : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class PlayerAnimator : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed += PlayerCombat_OnPlayerAbilityUsed;
-        // PlayerCombat.OnPlayerAbilityMiss += PlayerCombat_OnPlayerAbilityMiss;
     }
 
     void OnDestroy()
@@ -20,7 +20,28 @@ public class PlayerAnimator : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed -= PlayerCombat_OnPlayerAbilityUsed;
-        // PlayerCombat.OnPlayerAbilityMiss -= PlayerCombat_OnPlayerAbilityMiss;
+    }
+
+    public void OnMove(InputValue value)
+    {
+        if(value.Get<Vector2>().y != 0)
+        {
+            _leftAnimator.SetBool("IsMoving", true);
+            _rightAnimator.SetBool("IsMoving", true);
+            _tailAnimator.SetBool("IsMoving", true);
+            _leftShadow.SetBool("IsMoving", true);
+            _rightShadow.SetBool("IsMoving", true);
+            _tailShadow.SetBool("IsMoving", true);
+        }
+        else
+        {
+            _leftAnimator.SetBool("IsMoving", false);
+            _rightAnimator.SetBool("IsMoving", false);
+            _tailAnimator.SetBool("IsMoving", false);
+            _leftShadow.SetBool("IsMoving", false);
+            _rightShadow.SetBool("IsMoving", false);
+            _tailShadow.SetBool("IsMoving", false);
+        }
     }
 
     void PlayerHealth_OnPlayerDeath()

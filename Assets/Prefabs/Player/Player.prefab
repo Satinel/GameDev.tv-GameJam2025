@@ -408,8 +408,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Release Grip for Extreme Damage
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 758589c654464584abcddb9b64ea15f3, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 3c40c075d3a2f124c87c21070644f8ee, type: 2}
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
@@ -572,8 +572,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: c2d85e87ea6768345a76b49863b9d0d0, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 80b5ab0a8daec824f89de4ac411c641f, type: 2}
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 2
@@ -903,8 +903,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Guaranteed Mild Damage
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: b7dccd8357cbe704b95959d2934447e4, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 2eef8d495a245714aa345790129efeaa, type: 2}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &6653714321228068291
@@ -1287,8 +1287,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Semi-Accurate High Damage
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 94bff5db915be1c488eabdda730169c1, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 7021c8b9f7ced9c439776157363bd361, type: 2}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1 &7442926962721528397
@@ -1572,9 +1572,9 @@ MonoBehaviour:
   _leftAnimator: {fileID: 7732177383163112960}
   _rightAnimator: {fileID: 1488828435213182510}
   _tailAnimator: {fileID: 9118032012237827053}
-  _leftShadow: {fileID: 0}
-  _rightShadow: {fileID: 0}
-  _tailShadow: {fileID: 0}
+  _leftShadow: {fileID: 2203917887877263841}
+  _rightShadow: {fileID: 7047272453094064331}
+  _tailShadow: {fileID: 7477107243229478275}
 --- !u!1 &7616818233747393119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,8 +1626,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 851c69e8090a5094b963388ac4003e80, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: e6ede03911a6d5f46bf56ca16f204d7e, type: 2}
   UseMessage: \nYou Get A Strong Grip!
   _sendUseMessage: 1
   _accuracyBuff: 2
@@ -1829,8 +1829,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Release Grip for Extreme Damage
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: a84bde00fafb4e94ca8556975a282191, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: 32f130df11a0f7c4b9c7f80accc7fb20, type: 2}
   UseMessage: \nGrip Released!
   _sendUseMessage: 1
   _accuracyBuff: -1
@@ -1888,8 +1888,8 @@ MonoBehaviour:
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
   <Description>k__BackingField: Guaranteed Mild Damage
-  <HitAnimation>k__BackingField: {fileID: 0}
-  <MissAnimation>k__BackingField: {fileID: 0}
+  <HitAnimation>k__BackingField: {fileID: 7400000, guid: 322fbee0fb237b64ebbcc43978712f45, type: 2}
+  <MissAnimation>k__BackingField: {fileID: 7400000, guid: aba7810142aaacf4f9921c85a828b357, type: 2}
   UseMessage: 
   _sendUseMessage: 0
 --- !u!1001 &2502776501252179073
@@ -1987,8 +1987,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2745385375130814441, guid: 40d8108f47934ed439b0d01503e160a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3600321885474687342}
   m_SourcePrefab: {fileID: 100100000, guid: 40d8108f47934ed439b0d01503e160a0, type: 3}
+--- !u!1 &333887065218171752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2745385375130814441, guid: 40d8108f47934ed439b0d01503e160a0, type: 3}
+  m_PrefabInstance: {fileID: 2502776501252179073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3600321885474687342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333887065218171752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isShadow: 1
+--- !u!95 &7047272453094064331 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4861447793996563530, guid: 40d8108f47934ed439b0d01503e160a0, type: 3}
+  m_PrefabInstance: {fileID: 2502776501252179073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7669742762758709192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5245501281515068233, guid: 40d8108f47934ed439b0d01503e160a0, type: 3}
@@ -2089,13 +2115,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6589947896352104100, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5861847972701699648}
   m_SourcePrefab: {fileID: 100100000, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
+--- !u!95 &2203917887877263841 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2869121219723707308, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
+  m_PrefabInstance: {fileID: 4126644332921320013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4786269382243057768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8874615250122076709, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
   m_PrefabInstance: {fileID: 4126644332921320013}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7075431655325904105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6589947896352104100, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
+  m_PrefabInstance: {fileID: 4126644332921320013}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5861847972701699648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075431655325904105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isShadow: 1
 --- !u!1001 &5521163350955126188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2173,6 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isShadow: 0
 --- !u!4 &4014936374894370697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8874615250122076709, guid: 8622a2dcae3a7f948a4bf11e531020ef, type: 3}
@@ -2270,6 +2323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isShadow: 0
 --- !u!1001 &7128735681990314007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2365,11 +2419,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4637523070686056472, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7977674070765461412}
   m_SourcePrefab: {fileID: 100100000, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
+--- !u!1 &2501065682935126031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4637523070686056472, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
+  m_PrefabInstance: {fileID: 7128735681990314007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7977674070765461412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501065682935126031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isShadow: 1
 --- !u!4 &5522959045181675890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3335802452459573605, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
+  m_PrefabInstance: {fileID: 7128735681990314007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7477107243229478275 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 372213519637951892, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
   m_PrefabInstance: {fileID: 7128735681990314007}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8909140371587292793
@@ -2449,6 +2529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4c4d993dfda294b80f56f6f1b09d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isShadow: 0
 --- !u!4 &6190401505581305628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3335802452459573605, guid: 2cf7830b05d10b84a9c7dd327778e64a, type: 3}
