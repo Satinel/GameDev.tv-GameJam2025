@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     public static event Action<Trinket> OnRerollUsed;
     public static event Action<int> OnPlayerDealtDamage;
     public static event Action<int> OnPlayerTurnStart;
+    public static event Action<int> OnPlayerAbilityHit;
+    public static event Action<int> OnPlayerAbilityMiss;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -36,11 +38,12 @@ public class PlayerCombat : MonoBehaviour
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
     Enemy _currentEnemy;
-    bool _isPlayerTurn, _optionsOpen;
+    bool _isPlayerTurn, _optionsOpen, _hasCriticalHit;
     int _playerTotalTurns;
     int _toHitRerolls, _rerollsUsed;
     int _criticalHitBonus = 0;
     Trinket _reRollTrinket;
+    PlayerAbility _selectedAbility;
 
     void Awake()
     {
@@ -337,12 +340,12 @@ public class PlayerCombat : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(null);
         HideAttackButtons();
-        PlayerAbility selectedAbility = _playerInventory.GetAbility(index);
-        _combatLog.text += $"\nYou Used {selectedAbility.Name}!\n";
+        _selectedAbility = _playerInventory.GetAbility(index);
+        _combatLog.text += $"\nYou Used {_selectedAbility.Name}!\n";
 
         int toHitRoll = UnityEngine.Random.Range(0, 100);
-        bool hasHit = (toHitRoll + selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
-        bool criticalHit = toHitRoll > (94 - _criticalHitBonus);
+        bool hasHit = (toHitRoll + _selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
+        _hasCriticalHit = toHitRoll > (94 - _criticalHitBonus);
 
         if(!hasHit)
         {
@@ -354,53 +357,65 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
-        if(selectedAbility.AlwaysHits || criticalHit || hasHit)
+        if(_selectedAbility.AlwaysHits || _hasCriticalHit || hasHit)
         {
-            if(criticalHit)
-            {
-                _combatLog.text += $"\n<color=red>Critical Hit!</color>\n";
-            }
-            else
-            {
-                _combatLog.text += $"\nHit!\n";
-            }
-            selectedAbility.Hit();
-            if(selectedAbility.DealsDamage)
-            {
-                int damageDealt = Mathf.Max(1, selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude);
-                if(criticalHit)
-                {
-                    damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
-                }
-                _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {selectedAbility.Adjective} Damage!\n";
-                OnPlayerDealtDamage?.Invoke(damageDealt);
+            OnPlayerAbilityHit?.Invoke(index);
+        }
+        else
+        {
+            OnPlayerAbilityMiss?.Invoke(index);
+        }
+    }
 
-                _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(criticalHit)
-
-                DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
-                damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-200, 200), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
-                damageFX.Setup(Color.yellow, Color.red, Color.yellow, damageDealt.FormatLargeNumbers()); // TODO set colors through ability
-
-                bool enemyDead = _currentEnemy.TakeDamage(damageDealt, true); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
-                if(!enemyDead)
-                {
-                    SelectFirstInteractableButton();
-                }
-            }
-            else
+    public void PlayerAbilityHit() // Animation Event
+    {
+        if(_hasCriticalHit)
+        {
+            _combatLog.text += $"\n<color=red>Critical Hit!</color>\n";
+        }
+        else
+        {
+            _combatLog.text += $"\nHit!\n";
+        }
+        _selectedAbility.Hit();
+        if(_selectedAbility.DealsDamage)
+        {
+            int damageDealt = Mathf.Max(1, _selectedAbility.Damage + _playerStats.CurrentStrength - _currentEnemy.Fortitude);
+            if(_hasCriticalHit)
             {
-                _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
+                damageDealt *= 2; // Making critical damage double regular damage isn't very interesting but it's fine for a game jam
+            }
+            _combatLog.text += $"\n{_currentEnemy.Name} Took\n{damageDealt} {_selectedAbility.Adjective} Damage!\n";
+            OnPlayerDealtDamage?.Invoke(damageDealt);
+
+            _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE + Different one if(_hasCriticalHit)
+
+            DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
+            damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-200, 200), damageFX.transform.position.y + UnityEngine.Random.Range(-100, 200));
+            damageFX.Setup(Color.yellow, Color.red, Color.yellow, damageDealt.FormatLargeNumbers()); // TODO set colors through ability
+
+            bool enemyDead = _currentEnemy.TakeDamage(damageDealt, true); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
+            if(!enemyDead)
+            {
                 SelectFirstInteractableButton();
             }
         }
         else
         {
-            _audioSource.PlayOneShot(_defaultMiss);
-            _combatLog.text += $"\nMiss!\n";
-            Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
-            floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
+            _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
             SelectFirstInteractableButton();
         }
+        _hasCriticalHit = false;
+        _selectedAbility = null;
+    }
+
+    public void PlayerAbilityMiss() // Animation Event
+    {
+        _audioSource.PlayOneShot(_defaultMiss);
+        _combatLog.text += $"\nMiss!\n";
+        Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
+        floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
+        SelectFirstInteractableButton();
     }
 
     public void SelectFirstInteractableButton()
