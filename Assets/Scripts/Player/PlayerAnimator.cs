@@ -5,6 +5,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] Animator _leftAnimator, _rightAnimator, _tailAnimator;
     [SerializeField] Animator _leftShadow, _rightShadow, _tailShadow;
+    bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen;
 
     void Awake()
     {
@@ -12,6 +13,18 @@ public class PlayerAnimator : MonoBehaviour
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed += PlayerCombat_OnPlayerAbilityUsed;
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
+        OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        InventoryUI.OnInventoryOpened += InventoryUI_OnInventoryOpened;
+        InventoryUI.OnInventoryClosed += InventoryUI_OnInventoryClosed;
+        DeadEnd.OnAnyDeadEndEvent += DeadEnd_OnAnyDeadEndEvent;
+        Store.OnEnteredStore += Store_OnEnteredStore;
+        StoreUI.OnExitStore += StoreUI_OnExitStore;
+        Exit.OnExitEntered += Exit_OnExitEntered;
+        ExitUI.OnExitResolved += ExitUI_OnExitResolved;
+        RestArea.OnRestAreaEntered += RestArea_OnRestAreaEntered;
+        RestAreaUI.OnRestAreaResolved += RestAreaUI_OnRestAreaResolved;
     }
 
     void OnDestroy()
@@ -20,11 +33,25 @@ public class PlayerAnimator : MonoBehaviour
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed -= PlayerCombat_OnPlayerAbilityUsed;
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
+        OptionsMenu.OnOptionsOpened -= OptionsMenu_OnOptionsOpened;
+        OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        InventoryUI.OnInventoryOpened -= InventoryUI_OnInventoryOpened;
+        InventoryUI.OnInventoryClosed -= InventoryUI_OnInventoryClosed;
+        DeadEnd.OnAnyDeadEndEvent -= DeadEnd_OnAnyDeadEndEvent;
+        Store.OnEnteredStore -= Store_OnEnteredStore;
+        StoreUI.OnExitStore -= StoreUI_OnExitStore;
+        Exit.OnExitEntered -= Exit_OnExitEntered;
+        ExitUI.OnExitResolved -= ExitUI_OnExitResolved;
+        RestArea.OnRestAreaEntered -= RestArea_OnRestAreaEntered;
+        RestAreaUI.OnRestAreaResolved -= RestAreaUI_OnRestAreaResolved;
     }
 
     public void OnMove(InputValue value)
     {
-        if(value.Get<Vector2>().y != 0)
+        if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
+
+        if(value.Get<Vector2>() != Vector2.zero)
         {
             _leftAnimator.SetBool("IsMoving", true);
             _rightAnimator.SetBool("IsMoving", true);
@@ -53,6 +80,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void Enemy_OnFightStarted(Enemy enemy)
     {
+        _isFighting = true;
         _leftAnimator.SetBool("InCombat", true);
         _leftAnimator.SetBool("IsMoving", false);
         _rightAnimator.SetBool("InCombat", true);
@@ -112,38 +140,63 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    /*void PlayerCombat_OnPlayerAbilityMiss(int index, string clip)
+    void PlayerCombat_OnCombatResolved()
     {
-        switch(index)
-        {
-            case 0:
-                _leftAnimator.SetTrigger("Miss1");
-                _leftShadow.SetTrigger("Miss1");
-                break;
-            case 1:
-                _leftAnimator.SetTrigger("Miss2");
-                _leftShadow.SetTrigger("Miss2");
-                break;
-            case 2:
-                _tailAnimator.SetTrigger("Miss1");
-                _tailShadow.SetTrigger("Miss1");
-                break;
-            case 3:
-                _tailAnimator.SetTrigger("Miss2");
-                _tailShadow.SetTrigger("Miss2");
-                break;
-            case 4:
-                _rightAnimator.SetTrigger("Miss1");
-                _rightShadow.SetTrigger("Miss1");
-                break;
-            case 5:
-                _rightAnimator.SetTrigger("Miss2");
-                _rightShadow.SetTrigger("Miss2");
-                break;
-            default:
-                _leftAnimator.SetTrigger("Miss1");
-                _leftShadow.SetTrigger("Miss1");
-                break;
-        }
-    }*/
+        _isFighting = false;
+    }
+
+    void OptionsMenu_OnOptionsOpened()
+    {
+        _optionsOpen = true;
+    }
+
+    void OptionsMenu_OnOptionsClosed()
+    {
+        _optionsOpen = false;
+    }
+
+    void InventoryUI_OnInventoryOpened()
+    {
+        _inventoryOpen = true;
+    }
+
+    void InventoryUI_OnInventoryClosed()
+    {
+        _inventoryOpen = false;
+    }
+
+    void DeadEnd_OnAnyDeadEndEvent()
+    {
+        _eventStarted = true;
+    }
+
+    void Store_OnEnteredStore(Transform tigey)
+    {
+        _eventStarted = true;
+    }
+
+    void StoreUI_OnExitStore()
+    {
+        _eventStarted = false;
+    }
+
+    void Exit_OnExitEntered(Transform empty)
+    {
+        _eventStarted = true;
+    }
+
+    void ExitUI_OnExitResolved()
+    {
+        _eventStarted = false;
+    }
+
+    void RestArea_OnRestAreaEntered(Transform empty)
+    {
+        _eventStarted = true;
+    }
+
+    void RestAreaUI_OnRestAreaResolved()
+    {
+        _eventStarted = false;
+    }
 }

@@ -1575,6 +1575,7 @@ MonoBehaviour:
   _leftShadow: {fileID: 2203917887877263841}
   _rightShadow: {fileID: 7047272453094064331}
   _tailShadow: {fileID: 7477107243229478275}
+  _rigidbody: {fileID: 6380770386253849883}
 --- !u!1 &7616818233747393119
 GameObject:
   m_ObjectHideFlags: 0
