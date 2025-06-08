@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Tactical Lens
-  _toolTipText: Increase Accuracy After Evading An Attack
+  _toolTipText: Increase Accuracy By 2 After Evading An Attack
   _buffAmount: 2

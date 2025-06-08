@@ -11,6 +11,7 @@ public class PoisonBuffsStrength : Trinket
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         PlayerAbilityPoison.OnPoisonHit += PlayerAbilityPoison_OnPoisonHit;
+        _toolTipText = $"Envenomating Increases Strength By {_buffAmount} Until End of Combat";
     }
 
     void OnDestroy()
@@ -21,6 +22,12 @@ public class PoisonBuffsStrength : Trinket
     void PlayerAbilityPoison_OnPoisonHit(int _)
     {
         Activation();
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Envenomating Increases Strength By {_buffAmount + Level} Until End of Combat";
     }
 
     protected override void Activation()

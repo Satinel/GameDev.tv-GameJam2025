@@ -8,11 +8,18 @@ public class Spinneret : Trinket
     void Awake()
     {
         PlayerCombat.OnPlayerTurnStart += PlayerCombat_OnPlayerTurnStart;
+        _toolTipText = $"Reduce Enemy Evasion By {Level + 1} At The Start Of Your Turn";
     }
 
     void OnDestroy()
     {
         PlayerCombat.OnPlayerTurnStart -= PlayerCombat_OnPlayerTurnStart;
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Reduce Enemy Evasion By {Level + 1} At The Start Of Your Turn";
     }
 
     void PlayerCombat_OnPlayerTurnStart(int turn)

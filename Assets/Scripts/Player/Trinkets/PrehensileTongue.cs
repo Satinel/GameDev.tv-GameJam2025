@@ -7,6 +7,11 @@ public class PrehensileTongue : Trinket // Please Note that farming these breaks
 
     [SerializeField] int _critChanceIncrease = 1;
 
+    void Awake()
+    {
+        _toolTipText = $"Increase Critical Hit Chance By {_critChanceIncrease}%";
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -17,5 +22,6 @@ public class PrehensileTongue : Trinket // Please Note that farming these breaks
     {
         base.LevelUp();
         OnActivated?.Invoke(_critChanceIncrease);
+        _toolTipText = $"Increase Critical Hit Chance By {_critChanceIncrease + Level}%";
     }
 }

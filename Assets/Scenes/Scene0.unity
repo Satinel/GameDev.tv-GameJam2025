@@ -9519,7 +9519,7 @@ PrefabInstance:
     - target: {fileID: 2349402945647163616, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
       propertyPath: '_saleItems.Array.data[1]'
       value: 
-      objectReference: {fileID: -4364832259551811519, guid: 06849eadcb55a234f97ac9094858acec, type: 3}
+      objectReference: {fileID: 7954079750948677717, guid: 06849eadcb55a234f97ac9094858acec, type: 3}
     - target: {fileID: 2349402945647163616, guid: 8270bc1ef824bad459cb898485e92c4f, type: 3}
       propertyPath: '_saleItems.Array.data[2]'
       value: 

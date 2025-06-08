@@ -10,6 +10,7 @@ public class NutCracker :Trinket
     void Awake()
     {
         PlayerCombat.OnPlayerDealtDamage += PlayerCombat_OnPlayerDealtDamage;
+        _toolTipText = $"Your Damage Dealing Attacks Reduce Enemy Fortitude By {_debuffAmount}";
     }
 
     void OnDestroy()
@@ -20,6 +21,12 @@ public class NutCracker :Trinket
     void PlayerCombat_OnPlayerDealtDamage(int amount)
     {
         Activation();
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Your Damage Dealing Attacks Reduce Enemy Fortitude By {_debuffAmount + Level}";
     }
 
     protected override void Activation()

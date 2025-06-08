@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5956279262908366745}
-  - component: {fileID: -4364832259551811519}
+  - component: {fileID: 7954079750948677717}
   m_Layer: 0
   m_Name: Lobster Bib
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4364832259551811519
+--- !u!114 &7954079750948677717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2065149101087238118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02959438fdad6134185521769c7e8ea9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cab61483d6c2f9428255098b7347d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Lobster Bib
-  _toolTipText: Gain HP After Defeating An Enemy
+  _toolTipText: Gain 75 HP After Defeating An Enemy
   _healAmount: 75

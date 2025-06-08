@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Drink Straw
-  _toolTipText: Heal For A Percentage Of Damage Dealt
+  _toolTipText: Heal For 50% Of Damage Dealt
   _healPercentage: 0.5

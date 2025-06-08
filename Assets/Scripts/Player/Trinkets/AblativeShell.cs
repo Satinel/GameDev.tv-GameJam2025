@@ -13,12 +13,19 @@ public class AblativeShell : Trinket
         _playerStats = GetComponentInParent<PlayerStats>();
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerHealth.OnTakeDamage += PlayerHealth_OnTakeDamage;
+        _toolTipText = $"Gain {_buffAmount} Bonus Fortitude Until Taking Damage";
     }
 
     void OnDestroy()
     {
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerHealth.OnTakeDamage -= PlayerHealth_OnTakeDamage;
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Gain {_buffAmount + Level} Bonus Fortitude Until Taking Damage";
     }
 
     void Enemy_OnFightStarted(Enemy _)

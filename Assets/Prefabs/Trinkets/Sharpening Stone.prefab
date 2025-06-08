@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Sharpening Stone
-  _toolTipText: Gain Temporary Strength At The Start Of Every Turn
+  _toolTipText: Gain 1 Strength At The Start Of Your Turn

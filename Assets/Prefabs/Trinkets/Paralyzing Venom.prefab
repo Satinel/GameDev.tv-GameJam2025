@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Paralyzing Venom
-  _toolTipText: Envenomating Decreases Enemy Evasion
+  _toolTipText: Envenomating Decreases Enemy Evasion By 7
   _debuffAmount: 7

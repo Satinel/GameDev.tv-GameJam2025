@@ -342,19 +342,21 @@ public class PlayerCombat : MonoBehaviour
 
         int toHitRoll = UnityEngine.Random.Range(0, 100);
         bool hasHit = (toHitRoll + _selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
-        _hasCriticalHit = toHitRoll > (94 - _criticalHitBonus);
 
         if(!hasHit)
         {
             if(_toHitRerolls > _rerollsUsed)
             {
                 _rerollsUsed++;
-                hasHit = true;
+                toHitRoll = UnityEngine.Random.Range(0, 100);
+                hasHit = (toHitRoll + _selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
                 OnRerollUsed?.Invoke(_reRollTrinket);
             }
         }
 
-        if(_selectedAbility.AlwaysHits || _hasCriticalHit || hasHit)
+        _hasCriticalHit = toHitRoll > (94 - _criticalHitBonus);
+
+        if(_selectedAbility.AlwaysHits || hasHit)
         {
             OnPlayerAbilityUsed?.Invoke(index, _selectedAbility.HitAnimation.name);
         }

@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Quick Molt
-  _toolTipText: Regain Some HP On Your Third Combat Turn
+  _toolTipText: Regain 125 HP On Your Third Combat Turn
   _healAmount: 125

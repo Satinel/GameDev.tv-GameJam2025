@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Keen Nose
-  _toolTipText: Gain More Experience
+  _toolTipText: Gain 10% More Experience
   _bonusAmount: 0.1

@@ -11,6 +11,7 @@ public class SharpeningStone : Trinket
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         PlayerCombat.OnPlayerTurnStart += PlayerCombat_OnPlayerTurnStart;
+        _toolTipText = $"Gain 1 Strength At The Start Of Your Turn";
     }
 
     void OnDestroy()
@@ -21,6 +22,12 @@ public class SharpeningStone : Trinket
     void PlayerCombat_OnPlayerTurnStart(int turn)
     {
         Activation();
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Gain {Level + 1} Strength At The Start Of Your Turn";
     }
 
     protected override void Activation()

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Midas Pincer
-  _toolTipText: Gain Bug Bucks Equal To Damage Of Your First Attack
+  _toolTipText: Gain BugBucks Equal To Damage Of Your First Successful Attack

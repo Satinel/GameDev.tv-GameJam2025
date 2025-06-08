@@ -10,12 +10,19 @@ public class TacticalLens : Trinket
     void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
-        PlayerCombat.OnEnemyMiss += PlayerCombat_OnEnemyMiss;;
+        PlayerCombat.OnEnemyMiss += PlayerCombat_OnEnemyMiss;
+        _toolTipText = $"Increase Accuracy By {_buffAmount} After Evading An Attack";
     }
 
     void OnDestroy()
     {
         PlayerCombat.OnEnemyMiss -= PlayerCombat_OnEnemyMiss;
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Increase Accuracy By {_buffAmount + Level} After Evading An Attack";
     }
 
     void PlayerCombat_OnEnemyMiss()

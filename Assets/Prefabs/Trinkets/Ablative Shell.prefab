@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Ablative Shell
-  _toolTipText: Gain Bonus Fortitude Until Taking Damage
+  _toolTipText: Gain 10 Bonus Fortitude Until Taking Damage
   _buffAmount: 10

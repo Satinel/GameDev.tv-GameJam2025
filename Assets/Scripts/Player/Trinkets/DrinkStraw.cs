@@ -14,6 +14,7 @@ public class DrinkStraw : Trinket
     {
         _playerHealth = GetComponentInParent<PlayerHealth>();
         PlayerCombat.OnPlayerDealtDamage += PlayerCombat_OnPlayerDealtDamage;
+        _toolTipText = $"Heal For {Mathf.RoundToInt(_healPercentage * 100)}% Of Damage Dealt";
     }
 
     void OnDestroy()
@@ -21,9 +22,16 @@ public class DrinkStraw : Trinket
         PlayerCombat.OnPlayerDealtDamage -= PlayerCombat_OnPlayerDealtDamage;
     }
 
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _healPercentage += 0.1f;
+        _toolTipText = $"Heal For {Mathf.RoundToInt(_healPercentage * 100)}% Of Damage Dealt";
+    }
+
     void PlayerCombat_OnPlayerDealtDamage(int amount)
     {
-        _healAmount = Mathf.Max(1, Mathf.FloorToInt(amount * (_healPercentage + (Level / 0.1f))));
+        _healAmount = Mathf.Max(1, Mathf.RoundToInt(amount * _healPercentage));
         Activation();
     }
 

@@ -9,6 +9,7 @@ public class ParalyzingVenom : Trinket
     void Awake()
     {
         PlayerAbilityPoison.OnPoisonHit += PlayerAbilityPoison_OnPoisonHit;
+        _toolTipText = $"Envenomating Decreases Enemy Evasion By {_debuffAmount}";
     }
 
     void OnDestroy()
@@ -21,9 +22,15 @@ public class ParalyzingVenom : Trinket
         Activation();
     }
 
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Envenomating Decreases Enemy Evasion By {_debuffAmount + Level}";
+    }
+
     protected override void Activation()
     {
         base.Activation();
-        OnActivated?.Invoke(Name, _debuffAmount);
+        OnActivated?.Invoke(Name, _debuffAmount + Level);
     }
 }

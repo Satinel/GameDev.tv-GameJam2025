@@ -13,11 +13,18 @@ public class QuickMolt : Trinket
     {
         _playerHealth = GetComponentInParent<PlayerHealth>();
         PlayerCombat.OnPlayerTurnStart += PlayerCombat_OnPlayerTurnStart;
+        _toolTipText = $"Regain {_healAmount} HP On Your Third Combat Turn";
     }
 
     void OnDestroy()
     {
         PlayerCombat.OnPlayerTurnStart -= PlayerCombat_OnPlayerTurnStart;
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Regain {_healAmount * (Level + 1)} HP On Your Third Combat Turn";
     }
 
     void PlayerCombat_OnPlayerTurnStart(int turn)

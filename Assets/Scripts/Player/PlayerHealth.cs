@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     int _maxHealth = 125;
     int _currentHealth = 125;
     bool _canRevive, _hasRevived;
-    Trinket _reviveTrinket;
+    CrabClaw _reviveTrinket;
 
     public int MaxHealth => _maxHealth;
     public int CurrentHealth => _currentHealth;
@@ -112,7 +112,7 @@ public class PlayerHealth : MonoBehaviour
     void Revive()
     {
         _hasRevived = true;
-        _currentHealth = 1 + (_reviveTrinket.Level * _tenacityMultiplyer);
+        _currentHealth = Mathf.Min(_maxHealth, 1 + (_reviveTrinket.Level * _reviveTrinket.Multiplyer));
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         OnPlayerRevive?.Invoke(_reviveTrinket, _currentHealth);
     }
@@ -123,7 +123,7 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
-    public void GainRevive(Trinket trinket)
+    public void GainRevive(CrabClaw trinket)
     {
         _reviveTrinket = trinket;
         _canRevive = true;

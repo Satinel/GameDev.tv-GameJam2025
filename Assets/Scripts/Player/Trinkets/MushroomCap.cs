@@ -7,6 +7,11 @@ public class MushroomCap : Trinket
 
     [SerializeField] int _poisonDamageIncrease = 5;
 
+    void Awake()
+    {
+        _toolTipText = $"Increase Venom Damage By {_poisonDamageIncrease}";
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -16,6 +21,7 @@ public class MushroomCap : Trinket
     public  override void LevelUp()
     {
         base.LevelUp();
+        _toolTipText = $"Increase Venom Damage By {_poisonDamageIncrease * (Level + 1)}";
         OnActivated?.Invoke(Name, _poisonDamageIncrease);
     }
 }

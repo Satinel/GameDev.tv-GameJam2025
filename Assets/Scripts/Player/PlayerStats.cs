@@ -88,7 +88,7 @@ public class PlayerStats : MonoBehaviour
 
     void KeenNose_OnActivated(float multiplyer)
     {
-        _xpBonusMultiplyer += multiplyer;
+        _xpBonusMultiplyer = multiplyer;
     }
 
     public void GainExperience(int amount)

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Spinneret
-  _toolTipText: Reduce Enemy Evasion At The Start Of Your Turn
+  _toolTipText: Reduce Enemy Evasion By 1 At The Start Of Your Turn

@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Crab Claw
-  _toolTipText: The First Time You Take Lethal Damage Restore Some HP
+  _toolTipText: The First Time You Take Lethal Damage Heal To 1 HP

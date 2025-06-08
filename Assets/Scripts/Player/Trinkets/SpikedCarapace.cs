@@ -11,11 +11,18 @@ public class SpikedCarapace : Trinket
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         PlayerHealth.OnTakeDamage += Activation;
+        _toolTipText = $"Deal Damage Equal to Current Fortitude When Hurt";
     }
 
-    void Onestroy()
+    void OnDestroy()
     {
         PlayerHealth.OnTakeDamage -= Activation;
+    }
+
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        _toolTipText = $"Deal Damage Equal to Current Fortitude (+{Level}) When Hurt";
     }
 
     protected override void Activation()

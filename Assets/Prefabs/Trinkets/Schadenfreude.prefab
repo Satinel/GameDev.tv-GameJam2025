@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Schadenfreude
-  _toolTipText: Envenomating Increases Strength Until End of Combat
+  _toolTipText: Envenomating Increases Strength By 5 Until End of Combat
   _buffAmount: 5

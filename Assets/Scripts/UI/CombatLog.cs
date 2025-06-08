@@ -27,7 +27,7 @@ public class CombatLog : MonoBehaviour
         PlayerHealth.OnPlayerRevive += PlayerHealth_OnPlayerRevive;
         AblativeShell.OnActivated += AddActivationToLog;
         ParalyzingVenom.OnActivated += ParalyzingVenom_OnActivated;
-        DiningFork.OnActivated += DiningFork_OnActivated;
+        LobsterBib.OnActivated += LobsterBib_OnActivated;
         DrinkStraw.OnActivated += DrinkStraw_OnActivated;
         MidasPincer.OnActivated += MidasPincer_OnActivated;
         PlayerCombat.OnRerollUsed += PlayerCombat_OnRerollUsed;
@@ -56,7 +56,7 @@ public class CombatLog : MonoBehaviour
         PlayerHealth.OnPlayerRevive -= PlayerHealth_OnPlayerRevive;
         AblativeShell.OnActivated -= AddActivationToLog;
         ParalyzingVenom.OnActivated -= ParalyzingVenom_OnActivated;
-        DiningFork.OnActivated -= DiningFork_OnActivated;
+        LobsterBib.OnActivated -= LobsterBib_OnActivated;
         DrinkStraw.OnActivated -= DrinkStraw_OnActivated;
         MidasPincer.OnActivated -= MidasPincer_OnActivated;
         PlayerCombat.OnRerollUsed -= PlayerCombat_OnRerollUsed;
@@ -159,7 +159,7 @@ public class CombatLog : MonoBehaviour
         AddToLog($"Reduced Evasion By {amount.FormatLargeNumbers()}\n");
     }
 
-    void DiningFork_OnActivated(string name, int amount)
+    void LobsterBib_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
         AddToLog($"Gained {amount.FormatLargeNumbers()} Health!\n");
