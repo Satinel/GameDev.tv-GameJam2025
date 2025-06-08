@@ -50,7 +50,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Accurate Moderate Damage
+  <Description>k__BackingField: 
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 089269b6c65e938489e4ec023a76fb49, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 045eb1de8d7219040a75cc200d96bb51, type: 2}
   UseMessage: 
@@ -133,7 +133,7 @@ MonoBehaviour:
   <Name>k__BackingField: Sting
   <Adjective>k__BackingField: <color=Green>Player</color>
   <HitChance>k__BackingField: 60
-  <Damage>k__BackingField: 15
+  <Damage>k__BackingField: 0
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 0
   <Description>k__BackingField: Cause Ongoing Defense Piercing Damage
@@ -407,7 +407,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 16
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Release Grip for Extreme Damage
+  <Description>k__BackingField: '[Accuracy -1] Release Grip'
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 758589c654464584abcddb9b64ea15f3, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 3c40c075d3a2f124c87c21070644f8ee, type: 2}
   UseMessage: \nGrip Released!
@@ -466,7 +466,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Very Accurate Low Damage
+  <Description>k__BackingField: 
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 7a5d06d5ec3d8c84ba14dc9d44c9fba6, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: fea8ba84a7ecd7e4c8355ebeec6eebd2, type: 2}
   UseMessage: 
@@ -571,7 +571,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
+  <Description>k__BackingField: '[Accuracy +2] Grasp the Enemy'
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: c2d85e87ea6768345a76b49863b9d0d0, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 80b5ab0a8daec824f89de4ac411c641f, type: 2}
   UseMessage: \nYou Get A Strong Grip!
@@ -898,11 +898,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Squeeze
   <Adjective>k__BackingField: <color=Red>Crush</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 99
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Guaranteed Mild Damage
+  <Description>k__BackingField: 
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: b7dccd8357cbe704b95959d2934447e4, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 2eef8d495a245714aa345790129efeaa, type: 2}
   UseMessage: 
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 14
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Semi-Accurate High Damage
+  <Description>k__BackingField: 
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 94bff5db915be1c488eabdda730169c1, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 7021c8b9f7ced9c439776157363bd361, type: 2}
   UseMessage: 
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 6
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Grasp the Enemy to Increase Accuracy and Change Attacks
+  <Description>k__BackingField: '[Accuracy +2] Grasp the Enemy'
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 851c69e8090a5094b963388ac4003e80, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: e6ede03911a6d5f46bf56ca16f204d7e, type: 2}
   UseMessage: \nYou Get A Strong Grip!
@@ -1828,7 +1828,7 @@ MonoBehaviour:
   <Damage>k__BackingField: 16
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Release Grip for Extreme Damage
+  <Description>k__BackingField: '[Accuracy -1] Release Grip'
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: a84bde00fafb4e94ca8556975a282191, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: 32f130df11a0f7c4b9c7f80accc7fb20, type: 2}
   UseMessage: \nGrip Released!
@@ -1883,11 +1883,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Squeeze
   <Adjective>k__BackingField: <color=Red>Crush</color>
-  <HitChance>k__BackingField: 75
+  <HitChance>k__BackingField: 99
   <Damage>k__BackingField: 8
   <AlwaysHits>k__BackingField: 1
   <DealsDamage>k__BackingField: 1
-  <Description>k__BackingField: Guaranteed Mild Damage
+  <Description>k__BackingField: 
   <HitAnimation>k__BackingField: {fileID: 7400000, guid: 322fbee0fb237b64ebbcc43978712f45, type: 2}
   <MissAnimation>k__BackingField: {fileID: 7400000, guid: aba7810142aaacf4f9921c85a828b357, type: 2}
   UseMessage: 
