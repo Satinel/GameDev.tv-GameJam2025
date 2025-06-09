@@ -6,7 +6,7 @@ public class RandomEncounter : MonoBehaviour
     [SerializeField] List<Enemy> _enemies = new();
     [SerializeField] protected GameObject _mapIcon;
 
-    bool _isRevealed, _wasTriggered;
+    bool _isRevealed;
     Vector2 _coordinates = new();
     Enemy _enemy;
 
@@ -14,7 +14,6 @@ public class RandomEncounter : MonoBehaviour
     {
         _enemy = Instantiate(_enemies[Random.Range(0, _enemies.Count)], transform);
         _enemy.transform.Rotate(0, Random.Range(0f, 359f), 0);
-        _wasTriggered = false;
     }
 
     void Start()
@@ -31,7 +30,6 @@ public class RandomEncounter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(_wasTriggered) { return; }
         if(!_enemy) { return; }
 
         if(other.gameObject.GetComponent<PlayerHealth>())
@@ -39,7 +37,6 @@ public class RandomEncounter : MonoBehaviour
             Vector3 lookAtTarget = new(other.transform.position.x, _enemy.transform.position.y, other.transform.position.z);
             _enemy.transform.LookAt(lookAtTarget);
             _enemy.StartBattle();
-            _wasTriggered = true;
         }
     }
 

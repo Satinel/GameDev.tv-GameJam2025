@@ -75,6 +75,12 @@ public class PlayerAnimator : MonoBehaviour
 
     void PlayerHealth_OnPlayerDeath()
     {
+        _leftAnimator.SetBool("InCombat", false);
+        _rightAnimator.SetBool("InCombat", false);
+        _tailAnimator.SetBool("InCombat", false);
+        _leftShadow.SetBool("InCombat", false);
+        _rightShadow.SetBool("InCombat", false);
+        _tailShadow.SetBool("InCombat", false);
         _leftAnimator.enabled = false;
         _rightAnimator.enabled = false;
         _tailAnimator.enabled = false;

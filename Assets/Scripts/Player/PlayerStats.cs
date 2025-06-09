@@ -58,6 +58,7 @@ public class PlayerStats : MonoBehaviour
     void OnEnable()
     {
         LevelUpWindow.OnLevelStatPicked += LevelUpWindow_OnLevelStatPicked;
+        PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         KeenNose.OnActivated += KeenNose_OnActivated;
     }
@@ -65,6 +66,7 @@ public class PlayerStats : MonoBehaviour
     void OnDisable()
     {
         LevelUpWindow.OnLevelStatPicked -= LevelUpWindow_OnLevelStatPicked;
+        PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
         KeenNose.OnActivated -= KeenNose_OnActivated;
     }
@@ -73,6 +75,15 @@ public class PlayerStats : MonoBehaviour
     {
         IncreaseStat(stat, amount);
         CheckForLevelUp();
+    }
+
+    void PlayerHealth_OnPlayerDeath()
+    {
+        _tempBonusStrength = 0;
+        _tempBonusAccuracy = 0;
+        _tempBonusFortitude = 0;
+        _tempBonusEvasion = 0;
+        OnTempStatsReset?.Invoke();
     }
 
     void Enemy_OnEnemyKilled(Enemy enemy)

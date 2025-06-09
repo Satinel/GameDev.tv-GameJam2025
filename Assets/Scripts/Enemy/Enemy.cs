@@ -48,7 +48,6 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _health = _maxHealth;
         foreach(EnemyAbility ability in GetComponentsInChildren<EnemyAbility>())
         {
             _abilities.Add(ability);
@@ -61,7 +60,20 @@ public class Enemy : MonoBehaviour
         {
             LootChance = 0;
         }
+        int floor = PlayerHealth.DungeonFloor;
+Debug.Log(PlayerHealth.DungeonFloor);
+        if(floor > 0)
+        {
+            _maxHealth *= floor;
+            Strength *= floor;
+            Accuracy *= floor;
+            Fortitude *= floor;
+            Evasion *= floor;
+            Tenacity *= floor;
+            Initiative *= floor;
+        }
 
+        _health = _maxHealth;
         ExperienceValue = _maxHealth + Strength + Accuracy + Fortitude + Evasion + Initiative;
         MoneyValue = Strength + Accuracy + Fortitude + Evasion + Tenacity + Initiative;
     }

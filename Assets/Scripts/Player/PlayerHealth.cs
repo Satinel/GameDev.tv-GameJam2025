@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public static event Action OnPlayerDeath;
     public static event Action<Trinket, int> OnPlayerRevive;
 
-    public int DungeonFloor { get; private set; } = 0; // TODO Use this it increase the difficulty of subsequent mazes
+    public static int DungeonFloor { get; private set; } = 1;
     [SerializeField] int _tenacityMultiplyer = 125;
 
     int _maxHealth = 125;

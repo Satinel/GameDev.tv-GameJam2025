@@ -204,7 +204,7 @@ public class SaveSystem : MonoBehaviour
         
         dataStrings.Insert(dataStrings.Count, _health.CurrentHealth.ToString());
         dataStrings.Insert(dataStrings.Count, _health.MaxHealth.ToString());
-        dataStrings.Insert(dataStrings.Count, _health.DungeonFloor.ToString());
+        dataStrings.Insert(dataStrings.Count, PlayerHealth.DungeonFloor.ToString());
 
 
         foreach(Trinket trinket in _inventory.GetInventory())

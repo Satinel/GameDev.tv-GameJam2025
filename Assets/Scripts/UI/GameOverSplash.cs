@@ -16,6 +16,7 @@ public class GameOverSplash : MonoBehaviour
     public void Respawn()
     {
         OnRespawn?.Invoke();
+        gameObject.SetActive(false);
     }
 
     public void LoadMainMenu()

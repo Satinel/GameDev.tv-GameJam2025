@@ -61,7 +61,6 @@ public class ExitUI : MonoBehaviour
     {
         OnExitResolved?.Invoke();
         _exitWindow.SetActive(false);
-        // TODO (Not really) set an int in player to track number of mazes cleared and use that number to add to stats of every enemy in the next version of maze
         SceneManager.LoadScene(2);
     }
 
