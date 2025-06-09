@@ -18,7 +18,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] Store _storePrefab;
     [SerializeField] RestArea _restAreaPrefab;
     [SerializeField] Transform _mazeParent, _encountersParent, _endsParent;
-    GameObject _player;
+    PlayerHealth _playerHealth;
 
     List<Vector2> _directions = new()
     {
@@ -47,7 +47,7 @@ public class MazeGenerator : MonoBehaviour
 
     void Start()
     {
-        _player = FindFirstObjectByType<PlayerHealth>().gameObject;
+        _playerHealth = FindFirstObjectByType<PlayerHealth>();
         // if(!_player) { return; }
 
         InitializeMap();
@@ -158,7 +158,8 @@ public class MazeGenerator : MonoBehaviour
         {
             if(space == _openSpaces[0])
             {
-                _player.transform.position = new(space.x * _scale, 0, space.y * _scale);
+                _playerHealth.gameObject.transform.position = new(space.x * _scale, 0, space.y * _scale);
+                _playerHealth.SetSpawnPoint();
                 continue;
             }
 

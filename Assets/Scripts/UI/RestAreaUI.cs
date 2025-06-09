@@ -9,6 +9,8 @@ public class RestAreaUI : MonoBehaviour
 
     [SerializeField] GameObject _restWindow, _exitButton;
 
+    Vector3 _spawnPoint;
+
     void Start()
     {
         RestArea.OnRestAreaEntered += RestArea_OnRestAreaEntered;
@@ -21,8 +23,9 @@ public class RestAreaUI : MonoBehaviour
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
-    void RestArea_OnRestAreaEntered(Transform t)
+    void RestArea_OnRestAreaEntered(Transform emptyTransform)
     {
+        _spawnPoint = new(emptyTransform.position.x, 0, emptyTransform.position.z);
         _restWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_exitButton);
@@ -38,6 +41,9 @@ public class RestAreaUI : MonoBehaviour
 
     public void UseRestArea()
     {
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+        playerHealth.transform.position = _spawnPoint;
+        playerHealth.SetSpawnPoint();
         OnRestAreaUsed?.Invoke();
         CloseWindow();
     }

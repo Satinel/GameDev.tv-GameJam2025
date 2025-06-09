@@ -53,6 +53,7 @@ public class PlayerCombat : MonoBehaviour
     void OnEnable()
     {
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
+        GameOverSplash.OnRespawn += GameOverSplash_OnRespawn;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd += Enemy_OnEnemyTurnEnd;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
@@ -74,6 +75,7 @@ public class PlayerCombat : MonoBehaviour
     void OnDisable()
     {
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        GameOverSplash.OnRespawn -= GameOverSplash_OnRespawn;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyTurnEnd -= Enemy_OnEnemyTurnEnd;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
@@ -108,6 +110,14 @@ public class PlayerCombat : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(_mainMenuButton); // TODO Replace with EventSystem.current.SetSelectedGameObject(_closeFinalResultsButton);
         }
         _combatLog.text += $"\nYou Were Defeated!\n";
+    }
+
+    void GameOverSplash_OnRespawn()
+    {
+        CloseCombatMenu();
+        _combatButtonsParent.SetActive(false);
+        _combatLog.text += $"\nYou Have Respawned!\n";
+        OnCombatResolved?.Invoke();
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
@@ -254,6 +264,11 @@ public class PlayerCombat : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_closeResultsButton);
+        }
+        else if(_finalResults.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_mainMenuButton);
         }
         else
         {

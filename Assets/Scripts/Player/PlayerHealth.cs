@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     int _maxHealth = 125;
     int _currentHealth = 125;
     bool _canRevive, _hasRevived;
+    Vector3 _spawnPosition = Vector3.zero;
     CrabClaw _reviveTrinket;
 
     public int MaxHealth => _maxHealth;
@@ -35,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         Enemy.OnFightStarted += EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        GameOverSplash.OnRespawn += GameOverSplash_OnRespawn;
     }
 
     void OnDisable()
@@ -43,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
         Enemy.OnFightStarted -= EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
         SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        GameOverSplash.OnRespawn -= GameOverSplash_OnRespawn;
     }
 
     void Start()
@@ -130,6 +133,18 @@ public class PlayerHealth : MonoBehaviour
     {
         _reviveTrinket = trinket;
         _canRevive = true;
+    }
+
+    public void SetSpawnPoint()
+    {
+        _spawnPosition = transform.position;
+    }
+
+    void GameOverSplash_OnRespawn()
+    {
+        transform.position = _spawnPosition;
+        _currentHealth = _maxHealth;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
     public void IncreaseDungeonFloor()

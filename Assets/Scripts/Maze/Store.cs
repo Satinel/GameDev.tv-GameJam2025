@@ -40,6 +40,7 @@ public class Store : MonoBehaviour
         if(other.gameObject.GetComponent<PlayerHealth>())
         {
             OnEnteredStore?.Invoke(_tigey);
+            Reveal();
         }
     }
 

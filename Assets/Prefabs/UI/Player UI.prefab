@@ -573,7 +573,7 @@ MonoBehaviour:
   - {fileID: 289865069040056886}
   - {fileID: 4308088516330090002}
   _closeResultsButton: {fileID: 1329121036155479082}
-  _mainMenuButton: {fileID: 1763511740126518045}
+  _mainMenuButton: {fileID: 750942091726144966}
   _combatLog: {fileID: 2111782865453273283}
   _resultsText: {fileID: 8170465679347583522}
   _playerInitiative: {fileID: 2906897997780134322}
@@ -3314,9 +3314,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8cf8ea7b7135314e8a020455bdf3d42, type: 3}
---- !u!1 &1763511740126518045 stripped
+--- !u!1 &750942091726144966 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1862165501647819208, guid: a8cf8ea7b7135314e8a020455bdf3d42, type: 3}
+  m_CorrespondingSourceObject: {fileID: 848115884600168211, guid: a8cf8ea7b7135314e8a020455bdf3d42, type: 3}
   m_PrefabInstance: {fileID: 121312682141567701}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &2387707859692843277 stripped

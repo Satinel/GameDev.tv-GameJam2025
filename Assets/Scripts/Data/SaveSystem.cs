@@ -28,11 +28,13 @@ public class SaveSystem : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         PlayerHealth.OnPlayerDeath += AutoSave;
+        RestAreaUI.OnRestAreaUsed += AutoSave;
     }
 
     void OnDestroy()
     {
         PlayerHealth.OnPlayerDeath -= AutoSave;
+        RestAreaUI.OnRestAreaUsed -= AutoSave;
     }
 
     void Start()

@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     public int CurrentHealth => _health;
     int _attacksPerformed;
 
-    bool _inBattle, _isDead, _isFirstTurn, _playerDead;
+    bool _inBattle, _isDead, _isFirstTurn;
     List<EnemyAbility> _abilities = new();
     EnemyAbility _firstAbility, _selectedAbility;
 
@@ -92,7 +92,8 @@ public class Enemy : MonoBehaviour
 
     void PlayerHealth_OnPlayerDeath()
     {
-        _playerDead = true;
+        _inBattle = false;
+        _health = _maxHealth;
     }
 
     void PlayerAbilityPoison_OnPoisonHit(int poisonDamage)
@@ -150,7 +151,7 @@ public class Enemy : MonoBehaviour
 
     public void AttackCompleted()
     {
-        if(_playerDead) { return; }
+        if(!_inBattle) { return; }
         if(_isDead) { return; }
 
         if(_attacksPerformed >= _attacksPerTurn)

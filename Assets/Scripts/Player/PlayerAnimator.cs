@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     void Awake()
     {
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
+        GameOverSplash.OnRespawn += GameOverSplash_OnRespawn;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         Enemy.OnEnemyKilled += Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed += PlayerCombat_OnPlayerAbilityUsed;
@@ -30,6 +31,7 @@ public class PlayerAnimator : MonoBehaviour
     void OnDestroy()
     {
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        GameOverSplash.OnRespawn -= GameOverSplash_OnRespawn;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         Enemy.OnEnemyKilled -= Enemy_OnAnyEnemyKilled;
         PlayerCombat.OnPlayerAbilityUsed -= PlayerCombat_OnPlayerAbilityUsed;
@@ -76,6 +78,19 @@ public class PlayerAnimator : MonoBehaviour
         _leftAnimator.enabled = false;
         _rightAnimator.enabled = false;
         _tailAnimator.enabled = false;
+        _leftShadow.enabled = false;
+        _rightShadow.enabled = false;
+        _tailShadow.enabled = false;
+    }
+
+    void GameOverSplash_OnRespawn()
+    {
+        _leftAnimator.enabled = true;
+        _rightAnimator.enabled = true;
+        _tailAnimator.enabled = true;
+        _leftShadow.enabled = true;
+        _rightShadow.enabled = true;
+        _tailShadow.enabled = true;
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
