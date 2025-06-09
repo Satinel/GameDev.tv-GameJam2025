@@ -26,6 +26,7 @@ public class SaveSystem : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         PlayerHealth.OnPlayerDeath += AutoSave;
     }
 
@@ -85,7 +86,6 @@ public class SaveSystem : MonoBehaviour
     {
         // _loadPrompt.SetActive(false);
     }
-
 
     public void OpenSaveMenu()
     {
@@ -205,17 +205,10 @@ public class SaveSystem : MonoBehaviour
         dataStrings.Insert(dataStrings.Count, _health.DungeonFloor.ToString());
 
 
-        foreach(Trinket trinket in _allTrinkets)
+        foreach(Trinket trinket in _inventory.GetInventory())
         {
             dataStrings.Insert(dataStrings.Count, trinket.Name.ToString());
-            if(_inventory.GetInventory().Contains(trinket))
-            {
-                dataStrings.Insert(dataStrings.Count, (trinket.Level + 1).ToString());
-            }
-            else
-            {
-                dataStrings.Insert(dataStrings.Count, "0");
-            }
+            dataStrings.Insert(dataStrings.Count, (trinket.Level + 1).ToString());
         }
 
         try

@@ -15,7 +15,7 @@ public class PlayerInventory : MonoBehaviour
     [field:SerializeField] public Equipable TailWeapon { get; private set; }
     [field:SerializeField] public Equipable RightClawWeapon { get; private set; }
 
-    public bool HasKey { get; private set; }
+    public bool HasKey { get; private set; } // Note: This doesn't actually do anything
 
     [SerializeField] Transform _trinketsParent, _weaponsParent;
     [SerializeField] Equipable _unarmedLeft, _unarmedRight;

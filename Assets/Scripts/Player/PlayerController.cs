@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,11 +19,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _autoRotateSpeed = 1f;
     [SerializeField] float _mouseSensitivity = 1f;
     [SerializeField] Texture2D _customCursor;
-    [SerializeField] PlayerInput _playerInput;
 
     Vector2 _moveValue = Vector2.zero;
     float _lookValue;
     bool _isSprinting;
+    bool _isMainMenu = true;
     bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
     Rigidbody _rigidbody;
     Quaternion _targetRotation;
@@ -89,18 +90,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _rigidbody = GetComponent<Rigidbody>();
         _mouseSensitivity = PlayerPrefs.GetFloat("MouseLook", 1);
     }
 
-    void Start()
-    {
-        HideCursor();
-    }
-
     void OnEnable()
     {
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
@@ -137,6 +133,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(_isMainMenu) { return; }
+
         if(_isRotating)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, _autoRotateSpeed * Time.deltaTime);
@@ -167,6 +165,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(_isMainMenu) { return; }
+
         if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen)
         {
             _rigidbody.linearVelocity = Vector3.zero;
@@ -195,12 +195,22 @@ public class PlayerController : MonoBehaviour
 
     void HideCursor()
     {
+        if(_isMainMenu) { return; }
 #if !UNITY_WEBGL
         if(_isFighting || _eventStarted || _optionsOpen || _inventoryOpen) { return; }
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 #endif
+    }
+
+    void SceneManager_sceneLoaded(Scene scene, LoadSceneMode _)
+    {
+        if(scene.buildIndex != 0)
+        {
+            _isMainMenu = false;
+            HideCursor();
+        }
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
