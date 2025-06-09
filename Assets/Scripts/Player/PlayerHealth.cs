@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public static event Action OnPlayerDeath;
     public static event Action<Trinket, int> OnPlayerRevive;
 
+    public int DungeonFloor { get; private set; } = 0; // TODO Use this it increase the difficulty of subsequent mazes
     [SerializeField] int _tenacityMultiplyer = 125;
 
     int _maxHealth = 125;
@@ -129,10 +130,16 @@ public class PlayerHealth : MonoBehaviour
         _canRevive = true;
     }
 
-    public void LoadData(int currentHealth, int maxHealth)
+    public void IncreaseDungeonFloor()
+    {
+        DungeonFloor++;
+    }
+
+    public void LoadData(int currentHealth, int maxHealth, int dungeonFloor)
     {
         _currentHealth = currentHealth;
         _maxHealth = maxHealth;
+        DungeonFloor = dungeonFloor;
         if(currentHealth <= 0) // This will be the case from an Autosave upon player death
         {
             _currentHealth = _maxHealth;

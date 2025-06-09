@@ -202,8 +202,8 @@ public class SaveSystem : MonoBehaviour
         
         dataStrings.Insert(dataStrings.Count, _health.CurrentHealth.ToString());
         dataStrings.Insert(dataStrings.Count, _health.MaxHealth.ToString());
+        dataStrings.Insert(dataStrings.Count, _health.DungeonFloor.ToString());
 
-        dataStrings.Insert(dataStrings.Count, _inventory.HasKey.ToString());
 
         foreach(Trinket trinket in _allTrinkets)
         {
@@ -272,7 +272,7 @@ public class SaveSystem : MonoBehaviour
         _stats.LoadData(int.Parse(dataArray[0]), int.Parse(dataArray[1]), int.Parse(dataArray[2]), int.Parse(dataArray[3]), int.Parse(dataArray[4]), 
                         int.Parse(dataArray[5]), int.Parse(dataArray[6]), int.Parse(dataArray[7]), int.Parse(dataArray[8]), int.Parse(dataArray[9]));
 
-        _health.LoadData(int.Parse(dataArray[10]), int.Parse(dataArray[11]));
+        _health.LoadData(int.Parse(dataArray[10]), int.Parse(dataArray[11]), int.Parse(dataArray[12]));
 
         List<Trinket> savedTrinkets = new();
         List<int> trinketLevels = new();
@@ -290,7 +290,7 @@ public class SaveSystem : MonoBehaviour
             }
         }
 
-        _inventory.LoadData(bool.Parse(dataArray[12]), savedTrinkets, trinketLevels);
+        _inventory.LoadData(savedTrinkets, trinketLevels);
 
         CloseLoadMenu();
         // TODO Load a new maze

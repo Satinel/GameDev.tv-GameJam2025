@@ -161,10 +161,8 @@ public class PlayerInventory : MonoBehaviour
         return _trinkets;
     }
 
-    public void LoadData(bool hasKey, List<Trinket> trinkets, List<int> index)
+    public void LoadData(List<Trinket> trinkets, List<int> index)
     {
-        HasKey = hasKey;
-
         for(int i = 0; i < trinkets.Count; i++)
         {
             for(int j = 0; j < index[i]; j++)
