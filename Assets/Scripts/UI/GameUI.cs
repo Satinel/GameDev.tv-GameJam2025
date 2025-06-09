@@ -111,6 +111,7 @@ public class GameUI : MonoBehaviour
         _statsText.text += $"\nStrength {_playerStats.CurrentStrength}\nAccuracy {_playerStats.CurrentAccuracy}\nFortitude {_playerStats.CurrentFortitude}";
         _statsText.text += $"\nEvasion {_playerStats.CurrentEvasion}\nTenacity {_playerStats.Tenacity}\nInitiative {_playerStats.Initiative}";
         _statsText.text += $"\n\nXP {_playerStats.CurrentXP.FormatLargeNumbers()}/{_playerStats.NextLevelXP.FormatLargeNumbers()}";
+        _moneyText.text = $"BugBucks {_playerStats.Money.FormatLargeNumbers()}";
     }
 
     void SetAttackButtonTexts()

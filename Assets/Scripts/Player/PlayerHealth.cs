@@ -128,4 +128,16 @@ public class PlayerHealth : MonoBehaviour
         _reviveTrinket = trinket;
         _canRevive = true;
     }
+
+    public void LoadData(int currentHealth, int maxHealth)
+    {
+        _currentHealth = currentHealth;
+        _maxHealth = maxHealth;
+        if(currentHealth <= 0) // This will be the case from an Autosave upon player death
+        {
+            _currentHealth = _maxHealth;
+        }
+
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
 }

@@ -1308,6 +1308,7 @@ GameObject:
   - component: {fileID: 4907908710258672733}
   - component: {fileID: 4643666014486381817}
   - component: {fileID: 5466138989926516346}
+  - component: {fileID: 1471600943564145627}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1575,7 +1576,39 @@ MonoBehaviour:
   _leftShadow: {fileID: 2203917887877263841}
   _rightShadow: {fileID: 7047272453094064331}
   _tailShadow: {fileID: 7477107243229478275}
-  _rigidbody: {fileID: 6380770386253849883}
+--- !u!114 &1471600943564145627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442926962721528397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3ce27072172704c98df52ffc83739e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allTrinkets:
+  - {fileID: 6022222534601962881, guid: 2deddca7ce616cb42b88b6d187d03c44, type: 3}
+  - {fileID: 6216607325764774101, guid: 1e57210b32860da409e8681389187d11, type: 3}
+  - {fileID: 8173069060424587993, guid: c38b2ede9c10bda41aebb9b387e0e59c, type: 3}
+  - {fileID: -3597358570822654794, guid: 9969e5bd147d6644280d957c8cf66733, type: 3}
+  - {fileID: -9082045364081580512, guid: d2194eaa898f7cb49a4bbc4ca9934f0a, type: 3}
+  - {fileID: 7954079750948677717, guid: 06849eadcb55a234f97ac9094858acec, type: 3}
+  - {fileID: 3199549382215357561, guid: cefded5716913764dbc928f219fb2a7a, type: 3}
+  - {fileID: -3874058349083109241, guid: 3f4ced9cdb78a1a4d82ec2c97642cb68, type: 3}
+  - {fileID: -6132173437346916593, guid: 56ad90ff911938b49865a5ab211e32e7, type: 3}
+  - {fileID: -3806643276652968601, guid: ca5fa4ee6b376c54aba691ec978cafea, type: 3}
+  - {fileID: -152580772690854375, guid: 1c67785a1bf9cc446868d4f9c3b9a0a9, type: 3}
+  - {fileID: -5108983323626554166, guid: e4063a8fa3a0bba48a5cc56cd7214293, type: 3}
+  - {fileID: 7703683647252609927, guid: f68b7e986b26d3949a671735ea3610dc, type: 3}
+  - {fileID: -2067764475112987270, guid: b610a7b9f82b85947a25fe4b0eb2c389, type: 3}
+  - {fileID: 5426738683328500236, guid: ecb97c6b3c4e07143bf62c08811a492d, type: 3}
+  - {fileID: -8970973399201382796, guid: 3eadb53e8f270654da953d59b7a603a4, type: 3}
+  - {fileID: -7599161028642291572, guid: e06248088a3a7284bbde4fe17fef5e19, type: 3}
+  _inventory: {fileID: 4907908710258672733}
+  _stats: {fileID: 4643666014486381817}
+  _health: {fileID: 8287712847053111603}
 --- !u!1 &7616818233747393119
 GameObject:
   m_ObjectHideFlags: 0

@@ -183,4 +183,20 @@ public class PlayerStats : MonoBehaviour
 
         OnMoneyChanged?.Invoke(Money);
     }
+
+    public void LoadData(int level, int experience, int xpToLevel, int strength, int accuracy, int fortitude, int evastion, int tenacity, int initiative, int money)
+    {
+        _level = level;
+        _experience = experience;
+        _xpToLevel = xpToLevel;
+        Strength = strength;
+        Accuracy = accuracy;
+        Fortitude = fortitude;
+        Evasion = evastion;
+        Tenacity = tenacity;
+        Initiative = initiative;
+        Money = money;
+
+        OnExperienceGained?.Invoke(); // This doesn't need to be OnExperienceGained but it's a convenient one to update all stat UI and affect nothing else
+    }
 }
