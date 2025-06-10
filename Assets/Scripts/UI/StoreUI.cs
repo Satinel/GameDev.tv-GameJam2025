@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class StoreUI : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class StoreUI : MonoBehaviour
 
     [SerializeField] List<Trinket> _saleItems;
     [SerializeField] StoreButton[] _storeButtons;
+    [SerializeField] List<Button> _buttonList = new();
     [SerializeField] TextMeshProUGUI _priceText, _descriptionText;
     [SerializeField] int _itemPrice, _priceIncrease;
     [SerializeField] bool _isTutorial;
@@ -51,8 +53,15 @@ public class StoreUI : MonoBehaviour
 
         _priceText.text = $"Price: {_itemPrice.FormatLargeNumbers()} BugBucks";
 
-        _playerStats = FindFirstObjectByType<PlayerStats>();
-        _playerInventory = _playerStats.GetComponent<PlayerInventory>();
+        if(!_playerStats)
+        {
+            _playerStats = FindFirstObjectByType<PlayerStats>();
+        }
+        if(!_playerInventory)
+        {
+            _playerInventory = _playerStats.GetComponent<PlayerInventory>();
+        }
+        SetButtonNavigations();
     }
 
     void Store_OnEnteredStore(Transform t)
@@ -112,10 +121,86 @@ public class StoreUI : MonoBehaviour
             _playerStats.ChangeMoney(-_itemPrice);
             _playerInventory.AddTrinket(_saleItems[index]);
             _audioSource.PlayOneShot(_purchaseClip);
-            _storeButtons[index].gameObject.SetActive(false);
+            _storeButtons[index].SellTrinket();
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_leaveButton);
+            SetButtonNavigations();
             _descriptionText.text = string.Empty;
+        }
+    }
+
+    void SetButtonNavigations() //  What a nonsense method this is
+    {
+        for(int i = 0; i < _buttonList.Count; i++)
+        {
+            if(!_buttonList[i].interactable) { continue; }
+
+            Navigation navigation = _buttonList[i].navigation;
+            navigation.mode = Navigation.Mode.Explicit;
+            if(i < _buttonList.Count - 1)
+            {
+                if(_buttonList[i + 1].interactable)
+                {
+                    navigation.selectOnRight = _buttonList[i + 1];
+                }
+                else if(i < _buttonList.Count - 2 && _buttonList[i + 2].interactable)
+                {
+                    navigation.selectOnRight = _buttonList[i + 2];
+                }
+                else
+                {
+                    navigation.selectOnRight = _buttonList[3];
+                }
+            }
+            if(i > 0)
+            {
+                if(_buttonList[i - 1].interactable)
+                {
+                    navigation.selectOnLeft = _buttonList[i - 1];
+                }
+                else if(i > 1 && _buttonList[i - 2].interactable)
+                {
+                    navigation.selectOnLeft = _buttonList[i - 2];
+                }
+                else
+                {
+                    navigation.selectOnLeft = _buttonList[3];
+                }
+            }
+            if(i != _buttonList.Count)
+            {
+                navigation.selectOnUp = _buttonList[3];
+                navigation.selectOnDown = _buttonList[3];
+            }
+            else
+            {
+                if(_buttonList[0].interactable)
+                {
+                    navigation.selectOnUp = _buttonList[0];
+                }
+                else if(_buttonList[1].interactable)
+                {
+                    navigation.selectOnUp = _buttonList[1];
+                }
+                else if(_buttonList[2].interactable)
+                {
+                    navigation.selectOnUp = _buttonList[2];
+                }
+            }
+            _buttonList[i].navigation = navigation;
+        }
+    }
+
+    public void SetFirstInteractable()
+    {
+        foreach(Button button in _buttonList)
+        {
+            if(button.interactable)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
+                break;
+            }
         }
     }
 }
