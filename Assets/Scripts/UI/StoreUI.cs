@@ -61,7 +61,6 @@ public class StoreUI : MonoBehaviour
         {
             _playerInventory = _playerStats.GetComponent<PlayerInventory>();
         }
-        SetButtonNavigations();
     }
 
     void Store_OnEnteredStore(Transform t)
@@ -93,6 +92,7 @@ public class StoreUI : MonoBehaviour
 
         _itemPrice += _priceIncrease;
         SetupItems();
+        SetButtonNavigations();
     }
 
     public void LeaveStoreButton() // UI Button
@@ -137,13 +137,13 @@ public class StoreUI : MonoBehaviour
 
             Navigation navigation = _buttonList[i].navigation;
             navigation.mode = Navigation.Mode.Explicit;
-            if(i < _buttonList.Count - 1)
+            if(i < _buttonList.Count - 2)
             {
                 if(_buttonList[i + 1].interactable)
                 {
                     navigation.selectOnRight = _buttonList[i + 1];
                 }
-                else if(i < _buttonList.Count - 2 && _buttonList[i + 2].interactable)
+                else if(_buttonList[i + 2].interactable)
                 {
                     navigation.selectOnRight = _buttonList[i + 2];
                 }
@@ -167,20 +167,20 @@ public class StoreUI : MonoBehaviour
                     navigation.selectOnLeft = _buttonList[3];
                 }
             }
-            if(i != _buttonList.Count)
+            if(i != _buttonList.Count - 1)
             {
                 navigation.selectOnUp = _buttonList[3];
                 navigation.selectOnDown = _buttonList[3];
             }
             else
             {
-                if(_buttonList[0].interactable)
-                {
-                    navigation.selectOnUp = _buttonList[0];
-                }
-                else if(_buttonList[1].interactable)
+                if(_buttonList[1].interactable)
                 {
                     navigation.selectOnUp = _buttonList[1];
+                }
+                else if(_buttonList[0].interactable)
+                {
+                    navigation.selectOnUp = _buttonList[0];
                 }
                 else if(_buttonList[2].interactable)
                 {
@@ -192,6 +192,11 @@ public class StoreUI : MonoBehaviour
     }
 
     public void SetFirstInteractable()
+    {
+        Invoke(nameof(Reselect), 0.1f);
+    }
+
+    void Reselect()
     {
         foreach(Button button in _buttonList)
         {
