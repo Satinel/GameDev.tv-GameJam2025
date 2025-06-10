@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
             LootChance = 0;
         }
         int floor = PlayerHealth.DungeonFloor;
-Debug.Log(PlayerHealth.DungeonFloor);
+
         if(floor > 0)
         {
             _maxHealth *= floor;

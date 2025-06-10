@@ -11,16 +11,21 @@ public class VolumeControl : MonoBehaviour
     [SerializeField] Slider _masterVolumeSlider;
     [SerializeField] Slider _musicVolumeSlider;
     [SerializeField] Slider _sfxVolumeSlider;
+    bool _hasStarted;
 
     void Start()
     {
         _masterVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume", 1);
         _musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
         _sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1);
+        _hasStarted = true;
+        gameObject.SetActive(false);
     }
 
     void OnEnable()
     {
+        if(!_hasStarted) { return; }
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_mainMenuButton);
     }

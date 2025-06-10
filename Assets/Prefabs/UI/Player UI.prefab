@@ -493,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6184636184212185807}
   - component: {fileID: 4469186306935253525}
+  - component: {fileID: 5484626370861943617}
   - component: {fileID: 3241533865941917306}
   m_Layer: 5
   m_Name: Player UI
@@ -584,6 +585,21 @@ MonoBehaviour:
   _defaultUse: {fileID: 8300000, guid: edcd554d8b8a05148889c4951c1015e5, type: 3}
   _damageSplashPrefab: {fileID: 2983776782022335922, guid: 227e4e0960f1561428b3a37fccd6d3d4, type: 3}
   _missFloatingTextPrefab: {fileID: 3247736659503660107, guid: 9dce4566f81eb74469848dd2a4f8f403, type: 3}
+--- !u!114 &5484626370861943617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943358261740010099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7852ba9f4f797c94a9220731ece0de1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 3241533865941917306}
+  _selectedSFX: {fileID: 8300000, guid: 00d0a3086e3f78c4589b61e2b7e98af5, type: 3}
+  _clickedSFX: {fileID: 8300000, guid: aea0e9878ffa71d4f8148b2ac49e82e6, type: 3}
 --- !u!82 &3241533865941917306
 AudioSource:
   m_ObjectHideFlags: 0
