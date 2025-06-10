@@ -18,7 +18,6 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results, _levelUpWindow, _randomStatIncreaseButton;
     [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash, _finalResults;
-    [SerializeField] GameObject[] _attackButtons;
     [SerializeField] Button[] _buttons;
     [SerializeField] GameObject _closeResultsButton, _mainMenuButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
@@ -96,7 +95,6 @@ public class PlayerCombat : MonoBehaviour
 
     void PlayerHealth_OnPlayerDeath()
     {
-        HideAttackButtons();
         foreach(Button button in _buttons)
         {
             button.interactable = false;
@@ -178,7 +176,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Enemy_OnAnyEnemyKilled(Enemy enemy)
     {
-        HideAttackButtons();
         _combatButtonsParent.SetActive(false);
         _combatLog.text += $"\n{_currentEnemy.Name} Was Defeated!\n";
         _results.SetActive(true);
@@ -285,7 +282,6 @@ public class PlayerCombat : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(null);
         }
-        HideAttackButtons();
         foreach(Button button in _buttons)
         {
             button.interactable = false;
@@ -338,20 +334,11 @@ public class PlayerCombat : MonoBehaviour
         _closeResultsButton.SetActive(false);
     }
 
-    public void HideAttackButtons()
-    {
-        foreach(GameObject attackButton in _attackButtons)
-        {
-            attackButton.SetActive(false);
-        }
-    }
-
     public void UseAttack(int index) // UI Button
     {
         if(!_currentEnemy) { return; }
 
         EventSystem.current.SetSelectedGameObject(null);
-        HideAttackButtons();
         _selectedAbility = _playerInventory.GetAbility(index);
         _combatLog.text += $"\nYou Used {_selectedAbility.Name}!\n";
 
