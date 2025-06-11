@@ -85,4 +85,9 @@ public class BossEncounter : MonoBehaviour
         _mapIcon.SetActive(true);
         _isRevealed = true;
     }
+
+    public void LoadOnKeyClaimed()
+    {
+        Goal_OnKeyClaimed();
+    }
 }

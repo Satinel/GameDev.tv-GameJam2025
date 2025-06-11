@@ -156,3 +156,4 @@ MonoBehaviour:
   _mazeParent: {fileID: 7285167544408180780}
   _encountersParent: {fileID: 857012327406016486}
   _endsParent: {fileID: 6740012936315159069}
+  _isNewMap: 1

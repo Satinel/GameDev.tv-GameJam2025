@@ -7,7 +7,8 @@ public class MazeUnit : MonoBehaviour
     protected Vector2 _coordinates = new();
 
     bool _isRevealed;
-    public int IsWall { get; private set; }
+    public byte IsWall { get; private set; }
+    public Vector2 Coordinates => _coordinates;
 
     void OnEnable()
     {
@@ -39,8 +40,8 @@ public class MazeUnit : MonoBehaviour
         IsWall += 2;
     }
 
-    public void SetIsWall(int binary)
+    public void SetIsWall(byte wall)
     {
-        IsWall = binary;
+        IsWall = wall;
     }
 }

@@ -18,6 +18,8 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] Store _storePrefab;
     [SerializeField] RestArea _restAreaPrefab;
     [SerializeField] Transform _mazeParent, _encountersParent, _endsParent;
+    [SerializeField] bool _isNewMap;
+
     PlayerHealth _playerHealth;
 
     List<Vector2> _directions = new()
@@ -57,11 +59,103 @@ public class MazeGenerator : MonoBehaviour
         _playerHealth = FindFirstObjectByType<PlayerHealth>();
         // if(!_player) { return; }
 
+        if(_isNewMap)
+        {
+            GenerateNewMap();
+        }
+    }
+
+    public void GenerateNewMap()
+    {
         InitializeMap();
         Generate();
         DrawMap();
         PopulateMap();
         FillDeadEnds();
+    }
+
+    public void LoadMapData(string[] dataArray)
+    {
+        int currentIndex = int.Parse(dataArray[0]) * 3;
+        _map = new byte[_width, _depth];
+        for(int i = 1; i < currentIndex; i += 3)
+        {
+            _map[int.Parse(dataArray[i]), int.Parse(dataArray[i + 1])] = byte.Parse(dataArray[i + 2]);
+        }
+
+        DrawMap();
+
+        currentIndex++;
+
+        PlayerInventory playerInventory = FindFirstObjectByType<PlayerInventory>();
+
+        if(bool.Parse(dataArray[currentIndex]))
+        {
+            playerInventory.GetKey();
+        }
+        currentIndex++;
+
+        foreach(var space in _openSpaces)
+        {
+            if(space == _openSpaces[0])
+            {
+                _playerHealth.gameObject.transform.position = new(space.x * _scale, 0, space.y * _scale);
+                _playerHealth.SetSpawnPoint();
+                continue;
+            }
+
+            if(space == _openSpaces[_openSpaces.Count - 1])
+            {
+                if(!playerInventory.HasKey)
+                {    
+                    Goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
+                    Goal.SetCoordinates((int)space.x, (int)space.y);
+                }
+                return;
+            }
+
+            if(CountSquareNeighbours((int)space.x, (int)space.y) == 1)
+            {
+                _deadEnds.Add(space);
+            }
+        }
+
+        BossEncounter = Instantiate(_bossEncounterPrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
+        BossEncounter.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        BossEncounter.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
+        if(playerInventory.HasKey)
+        {
+            BossEncounter.LoadOnKeyClaimed();
+        }
+        currentIndex += 3;
+
+        RestArea = Instantiate(_restAreaPrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
+        RestArea.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        RestArea.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
+        currentIndex += 3;
+
+        Store = Instantiate(_storePrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
+        Store.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        Store.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
+        currentIndex += 3;
+
+        for(int i = currentIndex + 1; i < currentIndex + (int.Parse(dataArray[currentIndex]) * 3); i += 3)
+        {
+            DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(int.Parse(dataArray[i]), 0, int.Parse(dataArray[i + 1])), Quaternion.identity, _endsParent);
+            deadEnd.SetCoordinates(int.Parse(dataArray[i]), int.Parse(dataArray[i + 1]));
+            
+            deadEnd.transform.Rotate(0, int.Parse(dataArray[i + 2]), 0);
+            _elites.Add(deadEnd);
+        }
+
+        currentIndex += int.Parse(dataArray[currentIndex]) * 3;
+
+        for(int i = currentIndex + 1; i < currentIndex + (int.Parse(dataArray[currentIndex]) * 2); i += 2)
+        {
+            RandomEncounter randomEnc = Instantiate(_randomEncounterPrefab, new(int.Parse(dataArray[i]), 0, int.Parse(dataArray[i + 1])), Quaternion.identity, _endsParent);
+            randomEnc.SetCoordinates(int.Parse(dataArray[i]), int.Parse(dataArray[i + 1]));
+            _randomEncounters.Add(randomEnc);
+        }
     }
 
     void InitializeMap()
@@ -102,7 +196,7 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int x = 0; x < _width; x++)
             {
-                if(_map[x,z] == 1)
+                if(_map[x,z] == 1 || _map[x,z] == 3)
                 {
                     MazeUnit wall;
                     if(z % 2 == 0)
@@ -132,6 +226,10 @@ public class MazeGenerator : MonoBehaviour
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = $"Wall {x} {z}";
                     AllMazeUnits.Add(wall);
+                    if(_map[x,z] == 3)
+                    {
+                        wall.Reveal();
+                    }
                 }
                 else
                 {
@@ -141,6 +239,10 @@ public class MazeGenerator : MonoBehaviour
                     space.name = $"Floor {x} {z}";
                     _openSpaces.Add(new(x, z));
                     AllMazeUnits.Add(space);
+                    if(_map[x,z] == 2)
+                    {
+                        space.Reveal();
+                    }
                 }
             }
         }
