@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     [field:SerializeField] public int Tenacity { get; private set; } // Primarily governs Hitpoints
     [field:SerializeField] public int Initiative { get; private set; } // Primarily governs turn order
     [field:SerializeField] public int Money { get; private set; } // Primarily governs Tigey
+    [field:SerializeField] public int CriticalHitBonus { get; private set; } // Increases chance of critical hits
 
     [SerializeField] int _baseLevelXP = 25;
 
@@ -31,6 +32,8 @@ public class PlayerStats : MonoBehaviour
     int _experience;
     int _xpToLevel;
     float _xpBonusMultiplyer;
+
+    public CompoundEye RerollTrinket;
     public int Level => _level;
     public int CurrentXP => _experience;
     public int NextLevelXP => _xpToLevel;
@@ -61,6 +64,8 @@ public class PlayerStats : MonoBehaviour
         PlayerHealth.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
         KeenNose.OnActivated += KeenNose_OnActivated;
+        PrehensileTongue.OnActivated += PrehensileTongue_OnActivated;
+        CompoundEye.OnActivated += CompoundEye_OnActivated;
     }
 
     void OnDisable()
@@ -69,6 +74,8 @@ public class PlayerStats : MonoBehaviour
         PlayerHealth.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
         KeenNose.OnActivated -= KeenNose_OnActivated;
+        PrehensileTongue.OnActivated -= PrehensileTongue_OnActivated;
+        CompoundEye.OnActivated -= CompoundEye_OnActivated;
     }
 
     void LevelUpWindow_OnLevelStatPicked(Stats stat, int amount)
@@ -100,6 +107,16 @@ public class PlayerStats : MonoBehaviour
     void KeenNose_OnActivated(float multiplyer)
     {
         _xpBonusMultiplyer = multiplyer;
+    }
+
+    void PrehensileTongue_OnActivated(int amount)
+    {
+        CriticalHitBonus += amount;
+    }
+
+    void CompoundEye_OnActivated(CompoundEye eye)
+    {
+        RerollTrinket = eye;
     }
 
     public void GainExperience(int amount)

@@ -33,8 +33,6 @@ public class PlayerCombat : MonoBehaviour
     bool _isPlayerTurn, _optionsOpen, _hasCriticalHit;
     int _playerTotalTurns;
     int _toHitRerolls, _rerollsUsed;
-    int _criticalHitBonus = 0;
-    Trinket _reRollTrinket;
     PlayerAbility _selectedAbility;
 
     void Awake()
@@ -64,8 +62,7 @@ public class PlayerCombat : MonoBehaviour
         PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
-        CompoundEye.OnActivated += CompoundEye_OnActivated;
-        PrehensileTongue.OnActivated += IncreaseCriticalHitBonus;
+        PrehensileTongue.OnActivated += PrehensileTongue_OnActivated;
         PlayerStats.NoLevelUp += PlayerStats_NoLevelUp;
         AnimatorAbilityTrigger.OnAnimatorHit += OnAnimatorHit;
         AnimatorAbilityTrigger.OnAnimatorMiss += OnAnimatorMiss;
@@ -86,8 +83,7 @@ public class PlayerCombat : MonoBehaviour
         PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
-        CompoundEye.OnActivated -= CompoundEye_OnActivated;
-        PrehensileTongue.OnActivated -= IncreaseCriticalHitBonus;
+        PrehensileTongue.OnActivated -= PrehensileTongue_OnActivated;
         PlayerStats.NoLevelUp -= PlayerStats_NoLevelUp;
         AnimatorAbilityTrigger.OnAnimatorHit -= OnAnimatorHit;
         AnimatorAbilityTrigger.OnAnimatorMiss -= OnAnimatorMiss;
@@ -123,9 +119,9 @@ public class PlayerCombat : MonoBehaviour
         _battleStartSplash.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
-        if(_reRollTrinket)
+        if(_playerStats.RerollTrinket)
         {
-            _toHitRerolls = _reRollTrinket.Level + 1;
+            _toHitRerolls = _playerStats.RerollTrinket.Level + 1;
         }
         _rerollsUsed = 0;
         _playerTotalTurns = 0;
@@ -352,11 +348,11 @@ public class PlayerCombat : MonoBehaviour
                 _rerollsUsed++;
                 toHitRoll = UnityEngine.Random.Range(0, 100);
                 hasHit = (toHitRoll + _selectedAbility.HitChance + _playerStats.CurrentAccuracy - _currentEnemy.Evasion) >= 100;
-                OnRerollUsed?.Invoke(_reRollTrinket);
+                OnRerollUsed?.Invoke(_playerStats.RerollTrinket);
             }
         }
 
-        _hasCriticalHit = toHitRoll > (94 - _criticalHitBonus);
+        _hasCriticalHit = toHitRoll > (94 - _playerStats.CriticalHitBonus);
 
         if(_selectedAbility.AlwaysHits || hasHit)
         {
@@ -461,14 +457,8 @@ public class PlayerCombat : MonoBehaviour
         _playerTurnSplash.SetActive(false);
     }
 
-    void CompoundEye_OnActivated(Trinket trinket)
+    void PrehensileTongue_OnActivated(int amount)
     {
-        _reRollTrinket = trinket;
-    }
-
-    void IncreaseCriticalHitBonus(int amount)
-    {
-        _criticalHitBonus += amount;
         _combatLog.text += $"PrehensileTongue\nActivated!\n";
         _combatLog.text += $"\nCritical Hit Chance Increased By {amount}%!\n";
     }

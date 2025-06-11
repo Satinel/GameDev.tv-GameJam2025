@@ -3,7 +3,7 @@ using System;
 
 public class CompoundEye : Trinket
 {
-    public static event Action<Trinket> OnActivated;
+    public static event Action<CompoundEye> OnActivated;
 
     void Awake()
     {

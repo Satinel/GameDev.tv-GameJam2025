@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
+        DungeonFloor = 1;
     }
 
     void OnEnable()
