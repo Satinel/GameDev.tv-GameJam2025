@@ -113,6 +113,8 @@ public class SaveSystem : MonoBehaviour
     public void SaveMaze() // TODO? Save maze layout and location of everything...
     {
         MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
+        if(!currentMaze) { return; }
+
         string saveMazePath;
 #if UNITY_WEBGL
 {
@@ -127,8 +129,34 @@ public class SaveSystem : MonoBehaviour
         saveMazePath = Application.persistentDataPath + "/saveMaze.txt"; // Note the / is needed here but not in WEBGL
 }
 #endif
-        // int savedMoney = _wallet.SaveMoney();
-        // File.WriteAllText(saveMazePath, savedMoney.ToString());
+        List<string> dataStrings = new ();
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.AllMazeUnits.Count.ToString());
+        foreach(MazeUnit unit in currentMaze.AllMazeUnits)
+        {
+            dataStrings.Insert(dataStrings.Count, unit.IsWall.ToString());
+        }
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.Goal.transform.position.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.position.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.position.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.position.ToString());
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.Elites.Count.ToString());
+        foreach(DeadEnd elite in currentMaze.Elites)
+        {
+            dataStrings.Insert(dataStrings.Count, elite.transform.position.ToString());
+        }
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.RandomEncounters.Count.ToString());
+        {
+            foreach(RandomEncounter encounter in currentMaze.RandomEncounters)
+            {
+                dataStrings.Insert(dataStrings.Count, encounter.transform.position.ToString());
+            }
+        }
+
+        File.WriteAllLines(saveMazePath, dataStrings);
     }
 
 

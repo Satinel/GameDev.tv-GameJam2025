@@ -32,6 +32,13 @@ public class MazeGenerator : MonoBehaviour
     List<Vector2> _deadEnds = new();
     List<RandomEncounter> _randomEncounters = new();
     List<DeadEnd> _elites = new();
+    public List<MazeUnit> AllMazeUnits { get; private set; }
+    public Goal Goal { get; private set; }
+    public BossEncounter BossEncounter { get; set; }
+    public RestArea RestArea { get; set; }
+    public Store Store { get; private set; }
+    public List<DeadEnd> Elites => _elites;
+    public List<RandomEncounter> RandomEncounters => _randomEncounters;
 
     void OnEnable()
     {
@@ -121,15 +128,19 @@ public class MazeGenerator : MonoBehaviour
                         }
                     }
                     wall.SetCoordinates(x, z);
+                    wall.SetIsWall(_map[x,z]);
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = $"Wall {x} {z}";
+                    AllMazeUnits.Add(wall);
                 }
                 else
                 {
                     MazeUnit space = Instantiate(_mazeSpacePrefab, new(x * _scale, 0, z * _scale), Quaternion.identity, _mazeParent);
                     space.SetCoordinates(x, z);
+                    space.SetIsWall(_map[x,z]);
                     space.name = $"Floor {x} {z}";
                     _openSpaces.Add(new(x, z));
+                    AllMazeUnits.Add(space);
                 }
             }
         }
@@ -165,8 +176,8 @@ public class MazeGenerator : MonoBehaviour
 
             if(space == _openSpaces[_openSpaces.Count - 1])
             {
-                Goal goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
-                goal.SetCoordinates((int)space.x, (int)space.y);
+                Goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
+                Goal.SetCoordinates((int)space.x, (int)space.y);
                 return;
             }
 
@@ -193,24 +204,26 @@ public class MazeGenerator : MonoBehaviour
         {
             if(end == _deadEnds[_deadEnds.Count - 1])
             {
-                BossEncounter bossEncounter = Instantiate(_bossEncounterPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
-                bossEncounter.SetCoordinates((int)end.x, (int)end.y);
-                bossEncounter.name = $"Final Boss {end.x} {end.y}";
-                RotateDeadEnd(bossEncounter.transform, end);
+                BossEncounter = Instantiate(_bossEncounterPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                BossEncounter.SetCoordinates((int)end.x, (int)end.y);
+                BossEncounter.name = $"Final Boss {end.x} {end.y}";
+                RotateDeadEnd(BossEncounter.transform, end);
                 return;
             }
             if(end == _deadEnds[0])
             {
-                Store store = Instantiate(_storePrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
-                store.SetCoordinates((int)end.x, (int)end.y);
-                store.name = $"Store {end.x} {end.y}";
+                RestArea = Instantiate(_restAreaPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                RestArea.SetCoordinates((int)end.x, (int)end.y);
+                RestArea.name = $"restArea {end.x} {end.y}";
+                RotateDeadEnd(RestArea.transform, end);
                 continue;
             }
-            if(UnityEngine.Random.Range(0, 10) > 8)
+            if(end == _deadEnds[1])
             {
-                RestArea restArea = Instantiate(_restAreaPrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
-                restArea.SetCoordinates((int)end.x, (int)end.y);
-                restArea.name = $"restArea {end.x} {end.y}";
+                Store = Instantiate(_storePrefab, new(end.x * _scale, 0, end.y * _scale), Quaternion.identity, _endsParent);
+                Store.SetCoordinates((int)end.x, (int)end.y);
+                Store.name = $"Store {end.x} {end.y}";
+                RotateDeadEnd(Store.transform, end);
                 continue;
             }
 

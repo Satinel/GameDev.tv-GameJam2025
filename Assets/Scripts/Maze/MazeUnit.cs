@@ -7,6 +7,7 @@ public class MazeUnit : MonoBehaviour
     protected Vector2 _coordinates = new();
 
     bool _isRevealed;
+    public int IsWall { get; private set; }
 
     void OnEnable()
     {
@@ -25,8 +26,8 @@ public class MazeUnit : MonoBehaviour
 
     void MazeGenerator_OnMazeUnitRevealed(Vector2 coordinates)
     {
-        if (_isRevealed) { return; }
-        if (coordinates != _coordinates) { return; }
+        if(_isRevealed) { return; }
+        if(coordinates != _coordinates) { return; }
 
         Reveal();
     }
@@ -35,5 +36,11 @@ public class MazeUnit : MonoBehaviour
     {
         _mapIcon.SetActive(true);
         _isRevealed = true;
+        IsWall += 2;
+    }
+
+    public void SetIsWall(int binary)
+    {
+        IsWall = binary;
     }
 }

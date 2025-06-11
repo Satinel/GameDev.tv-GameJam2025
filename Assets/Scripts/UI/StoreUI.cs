@@ -26,7 +26,12 @@ public class StoreUI : MonoBehaviour
     {
         Store.OnEnteredStore += Store_OnEnteredStore;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
-        RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
+        // RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
+
+        if(!_isTutorial)
+        {
+            _itemPrice *= PlayerHealth.DungeonFloor;
+        }
 
         SetupItems();
     }
@@ -35,7 +40,7 @@ public class StoreUI : MonoBehaviour
     {
         Store.OnEnteredStore -= Store_OnEnteredStore;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
-        RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
+        // RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
     }
 
     void SetupItems()
@@ -86,14 +91,14 @@ public class StoreUI : MonoBehaviour
         }
     }
 
-    void RestAreaUI_OnRestAreaUsed()
-    {
-        if(_isTutorial) { return; }
+    // void RestAreaUI_OnRestAreaUsed()
+    // {
+    //     if(_isTutorial) { return; }
 
-        _itemPrice += _priceIncrease;
-        SetupItems();
-        SetButtonNavigations();
-    }
+    //     _itemPrice += _priceIncrease;
+    //     SetupItems();
+    //     SetButtonNavigations();
+    // }
 
     public void LeaveStoreButton() // UI Button
     {
