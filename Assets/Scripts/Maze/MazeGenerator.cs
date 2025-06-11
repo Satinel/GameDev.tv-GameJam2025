@@ -34,7 +34,7 @@ public class MazeGenerator : MonoBehaviour
     List<Vector2> _deadEnds = new();
     List<RandomEncounter> _randomEncounters = new();
     List<DeadEnd> _elites = new();
-    public List<MazeUnit> AllMazeUnits { get; private set; }
+    public List<MazeUnit> AllMazeUnits { get; private set; } = new();
     public Goal Goal { get; private set; }
     public BossEncounter BossEncounter { get; set; }
     public RestArea RestArea { get; set; }

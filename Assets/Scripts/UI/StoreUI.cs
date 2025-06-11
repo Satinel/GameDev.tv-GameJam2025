@@ -13,7 +13,7 @@ public class StoreUI : MonoBehaviour
     [SerializeField] StoreButton[] _storeButtons;
     [SerializeField] List<Button> _buttonList = new();
     [SerializeField] TextMeshProUGUI _priceText, _descriptionText;
-    [SerializeField] int _itemPrice, _priceIncrease;
+    [SerializeField] int _itemPrice;
     [SerializeField] bool _isTutorial;
     [SerializeField] GameObject _storeWindow, _tooPoorWindow, _sorryButton, _leaveButton;
     [SerializeField] AudioSource _audioSource;

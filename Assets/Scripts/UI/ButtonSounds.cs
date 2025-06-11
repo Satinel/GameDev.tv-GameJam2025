@@ -9,6 +9,7 @@ public class ButtonSounds : MonoBehaviour, ISelectHandler
     public static event Action OnButtonClicked;
 
     [SerializeField] Button _button;
+    [SerializeField] bool _playsSound;
 
     void Awake()
     {
@@ -31,6 +32,8 @@ public class ButtonSounds : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        if(!_playsSound) { return; }
+
         if(_button.interactable)
         {
             OnButtonSelected?.Invoke();
@@ -39,6 +42,8 @@ public class ButtonSounds : MonoBehaviour, ISelectHandler
 
     void ButtonOnClick()
     {
+        if(!_playsSound) { return; }
+
         OnButtonClicked?.Invoke();
     }
 }
