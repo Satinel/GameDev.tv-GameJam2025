@@ -19,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject _combatMenu, _combatButtonsParent, _results, _levelUpWindow, _randomStatIncreaseButton;
     [SerializeField] GameObject _battleStartSplash, _initiativeSplash, _playerTurnSplash, _enemyTurnSplash, _finalResults;
     [SerializeField] Button[] _buttons;
+    [SerializeField] Button _endTurnButton;
     [SerializeField] GameObject _closeResultsButton, _mainMenuButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
     [SerializeField] AudioSource _audioSource;
@@ -30,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
     PlayerStats _playerStats;
     PlayerInventory _playerInventory;
     Enemy _currentEnemy;
-    bool _isPlayerTurn, _optionsOpen, _hasCriticalHit;
+    bool _isPlayerTurn, _optionsOpen, _hasCriticalHit, _playerActing;
     int _playerTotalTurns;
     int _toHitRerolls, _rerollsUsed;
     PlayerAbility _selectedAbility;
@@ -116,6 +117,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Enemy_OnFightStarted(Enemy enemy)
     {
+        _playerActing = false;
         _battleStartSplash.SetActive(true);
         _combatMenu.SetActive(true);
         _currentEnemy = enemy;
@@ -130,13 +132,13 @@ public class PlayerCombat : MonoBehaviour
 
     IEnumerator RollInitiative()
     {
-        yield return new WaitForSeconds(_defaultDelay / 1.5f);
+        yield return new WaitForSeconds(_defaultDelay / 1.75f);
 
         _playerInitiative.text = string.Empty;
         _enemyInitiative.text = string.Empty;
         _initiativeSplash.SetActive(true);
 
-        yield return new WaitForSeconds(_defaultDelay / 1.5f);
+        yield return new WaitForSeconds(_defaultDelay / 1.75f);
 
         _battleStartSplash.SetActive(false);
 
@@ -247,7 +249,7 @@ public class PlayerCombat : MonoBehaviour
     void OptionsMenu_OnOptionsClosed()
     {
         _optionsOpen = false;
-        if(!_isPlayerTurn) { return; }
+
         if(_levelUpWindow.activeSelf)
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -265,7 +267,10 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            SelectFirstInteractableButton();
+            if(_isPlayerTurn)
+            {
+                SelectFirstInteractableButton();
+            }
         }
     }
 
@@ -334,6 +339,8 @@ public class PlayerCombat : MonoBehaviour
     {
         if(!_currentEnemy) { return; }
 
+        _playerActing = true;
+
         EventSystem.current.SetSelectedGameObject(null);
         _selectedAbility = _playerInventory.GetAbility(index);
         _combatLog.text += $"\nYou Used {_selectedAbility.Name}!\n";
@@ -394,12 +401,14 @@ public class PlayerCombat : MonoBehaviour
             bool enemyDead = _currentEnemy.TakeDamage(damageDealt, true); // Without checking for Enemy death here, the wrong UI button will be selected upon combat end
             if(!enemyDead)
             {
+                _playerActing = false;
                 SelectFirstInteractableButton();
             }
         }
         else
         {
             _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
+            _playerActing = false;
             SelectFirstInteractableButton();
         }
         _hasCriticalHit = false;
@@ -413,6 +422,7 @@ public class PlayerCombat : MonoBehaviour
         _selectedAbility.Miss();
         Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
         floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
+        _playerActing = false;
         SelectFirstInteractableButton();
     }
 
@@ -425,6 +435,11 @@ public class PlayerCombat : MonoBehaviour
             if(button.interactable)
             {
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
+                if(button == _endTurnButton && !_playerActing && _isPlayerTurn)
+                {
+                    _endTurnButton.interactable = false;
+                    Invoke(nameof(EndPlayerTurn), 0.25f);
+                }
                 break;
             }
         }

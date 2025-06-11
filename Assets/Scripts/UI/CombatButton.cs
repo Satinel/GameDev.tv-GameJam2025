@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CombatButton : MonoBehaviour, ISelectHandler, IPointerClickHandler
+public class CombatButton : MonoBehaviour, ISelectHandler//, IPointerClickHandler
 {
     [SerializeField] Button _button;
     PlayerCombat _playerCombat;
@@ -20,13 +20,13 @@ public class CombatButton : MonoBehaviour, ISelectHandler, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(!_button.interactable)
-        {
-            Invoke(nameof(Reselect), 0.1f);
-        }
-    }
+    // public void OnPointerClick(PointerEventData eventData)
+    // {
+    //     if(!_button.interactable)
+    //     {
+    //         Invoke(nameof(Reselect), 0.1f);
+    //     }
+    // }
 
     void Reselect()
     {
