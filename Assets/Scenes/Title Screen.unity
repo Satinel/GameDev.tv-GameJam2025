@@ -346,6 +346,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &849701838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1471600943564145627, guid: 4fe6f00d96ecf4f4da4eb7c3a0f125fe, type: 3}
+  m_PrefabInstance: {fileID: 346448139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3ce27072172704c98df52ffc83739e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238915879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3074566093531400923, guid: b4d1a9d6a516c7d47b945825a02ddc53, type: 3}
@@ -547,6 +558,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4164235203989272083, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 849701838}
+    - target: {fileID: 4164235203989272083, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ContinueButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164235203989272083, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaveSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4325073580365463277, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
       propertyPath: m_Name
       value: Main Title UI
@@ -599,6 +622,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1238915880}
+    - target: {fileID: 8804958965582317616, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 849701838}
+    - target: {fileID: 8804958965582317616, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewGamePlus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804958965582317616, guid: d63ddebafe588194f95066c4ea4a0532, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SaveSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
