@@ -82,6 +82,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if(scene.buildIndex == 0) { return; }
 
+        _currentHealth = _maxHealth;
+
         Invoke(nameof(CallOnInitialHealthSettings), 0.5f); // This should update PlayerHealthSlider before a combat starts but after PlayerHealthSlider has had time to subscribe to OnHealthChanged
     }
 

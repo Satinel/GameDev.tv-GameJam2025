@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using System.Collections.Generic;
 
 public class SaveSystem : MonoBehaviour
 {
+    public static event Action OnSaveDataFound;
+    public static event Action OnAutoSaveFound;
+    public static event Action OnLoadStarted;
+
     [SerializeField] List<Trinket> _allTrinkets = new();
     [SerializeField] PlayerInventory _inventory;
     [SerializeField] PlayerStats _stats;
@@ -16,6 +21,7 @@ public class SaveSystem : MonoBehaviour
     // [SerializeField] TextMeshProUGUI _errorText, _saveButtonText;
 
     bool _isSaving;
+    int _sceneIndex = 2;
 
     // static readonly int SAVED_HASH = Animator.StringToHash("Saved");
     // static readonly int NOFILE_HASH = Animator.StringToHash("NoFile");
@@ -28,42 +34,45 @@ public class SaveSystem : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        TitleScreen.OnMusicStarted += TitleScreen_OnMusicStarted;
+        TitleScreen.OnCreepComplete += TitleScreen_OnCreepComplete;
         PlayerHealth.OnPlayerDeath += AutoSave;
         RestAreaUI.OnRestAreaUsed += AutoSave;
     }
 
     void OnDestroy()
     {
+        TitleScreen.OnMusicStarted -= TitleScreen_OnMusicStarted;
+        TitleScreen.OnCreepComplete -= TitleScreen_OnCreepComplete;
         PlayerHealth.OnPlayerDeath -= AutoSave;
         RestAreaUI.OnRestAreaUsed -= AutoSave;
     }
 
-    void Start()
+    void TitleScreen_OnMusicStarted()
     {
         string path;
+        string mazePath;
         string autoPath;
 #if UNITY_WEBGL
 {
-            path = WEBPATH + SAVENAME;
-            autoPath = WEBPATH + AUTOSAVENAME;
-            // _saveButtonText.text = "Save & Quit";
+        path = WEBPATH + SAVENAME;
+        mazePath = WEBPATH + SAVEMAZENAME;
+        autoPath = WEBPATH + AUTOSAVENAME;
 }
 #else
 {
-            path = Application.persistentDataPath + "/" +  SAVENAME;
-            autoPath = Application.persistentDataPath + "/" +  AUTOSAVENAME;
+        path = Application.persistentDataPath + "/" +  SAVENAME;
+        path = Application.persistentDataPath + "/" +  SAVEMAZENAME;
+        autoPath = Application.persistentDataPath + "/" +  AUTOSAVENAME;
 }
 #endif
-        if(File.Exists(path))
+        if(File.Exists(path) && File.Exists(mazePath))
         {
-            string[] data = File.ReadAllLines(path);
-            // _loadButton.Setup(data[0], data[1], data[2], data[3], data[8]);
-            // _saveButton.Setup(data[0], data[1], data[2], data[3], data[8]);
+            OnSaveDataFound?.Invoke();
         }
         if(File.Exists(autoPath))
         {
-            string[] data = File.ReadAllLines(autoPath);
-            // _loadAutoSaveButton.Setup(data[0], data[1], data[2], data[3], data[8]);
+            OnAutoSaveFound?.Invoke();
         }
 
         // AutoLoadAchievements();
@@ -111,9 +120,9 @@ public class SaveSystem : MonoBehaviour
         // _savePrompt.SetActive(false);
     }
 
-    public void NewGamePlus()
+    public void NewGamePlus() // UI Button on Title Screen
     {
-    
+        LoadDataFile(AUTOSAVENAME, false);
     }
 
     public void AutoSave()
@@ -170,7 +179,7 @@ public class SaveSystem : MonoBehaviour
 
         foreach(Trinket trinket in _inventory.GetInventory())
         {
-            dataStrings.Insert(dataStrings.Count, trinket.Name.ToString());
+            dataStrings.Insert(dataStrings.Count, trinket.StartingName.ToString());
             dataStrings.Insert(dataStrings.Count, (trinket.Level + 1).ToString());
         }
 
@@ -179,17 +188,11 @@ public class SaveSystem : MonoBehaviour
             File.WriteAllLines(savePath, dataStrings);
             
             if(fileName == AUTOSAVENAME) { _isSaving = false; return; }
-            
-            // _savePrompt.SetActive(false);
-            // _animator.SetTrigger(SAVED_HASH);
-            // string[] savedData = File.ReadAllLines(savePath); // This was just for the buttons I think
-            // _saveButton.Setup(savedData[0], savedData[1], savedData[2], savedData[3], savedData[8]);
-            // _loadButton.Setup(savedData[0], savedData[1], savedData[2], savedData[3], savedData[8]); // Since Loading is only currently available at Main Title this should be irrelevant
-#if UNITY_WEBGL
-{
-            // _campaign.ReturnToTitle();
-}
-#endif
+// #if UNITY_WEBGL
+// {
+//             // _campaign.ReturnToTitle();
+// }
+// #endif
         }
         catch(Exception ex)
         {
@@ -265,7 +268,7 @@ public class SaveSystem : MonoBehaviour
         File.WriteAllLines(saveMazePath, dataStrings);
     }
 
-    public void LoadDataFile(string fileName) // TODO Prompt about loading data
+    public void LoadDataFile(string fileName, bool loadMaze)
     {
         string loadPath;
         string[] dataArray;
@@ -301,7 +304,7 @@ public class SaveSystem : MonoBehaviour
         {
             foreach(Trinket trinket in _allTrinkets)
             {
-                if(trinket.Name == dataArray[i])
+                if(trinket.StartingName == dataArray[i])
                 {
                     savedTrinkets.Add(trinket);
                     trinketLevels.Add(int.Parse(dataArray[i + 1]));
@@ -312,9 +315,15 @@ public class SaveSystem : MonoBehaviour
 
         _inventory.LoadData(savedTrinkets, trinketLevels);
 
-        // TODO Load a new maze
-        LoadMaze();
-        CloseLoadMenu();
+        if(!loadMaze)
+        {
+            _sceneIndex = 2;
+        }
+        else
+        {
+            _sceneIndex = 3;
+        }
+        OnLoadStarted?.Invoke();
     }
 
     public void LoadMaze() // TODO???? Load maze layout and location of everything.......
@@ -332,17 +341,23 @@ public class SaveSystem : MonoBehaviour
 #endif
         if(File.Exists(saveMazePath))
         {
+            // Load loading Maze then load as below
             dataArray = File.ReadAllLines(saveMazePath);
         }
         else
         {
-            // _animator.SetTrigger(NOFILE_HASH);
-            // _loadPrompt.SetActive(false);
+            Debug.Log("No Maze Data Found!");
+            // Load Regular Maze
             return;
         }
 
         MazeGenerator mazeGenerator = FindFirstObjectByType<MazeGenerator>();
 
         mazeGenerator.LoadMapData(dataArray);
+    }
+
+    void TitleScreen_OnCreepComplete()
+    {
+        SceneManager.LoadScene(_sceneIndex);
     }
 }

@@ -1,20 +1,28 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
-    [SerializeField] GameObject _startButton;
+    public static event Action OnMusicStarted;
+    public static event Action OnCreepComplete;
+
+    [SerializeField] int _sceneIndex = 1;
+    [SerializeField] GameObject _startButton, _continueButton, _newPlusButton;
     [SerializeField] GameObject _optionsPrefab, _musicPlayer;
     [SerializeField] Animator _animator;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _punch1SFX, _punch2SFX, _tailSFX;
 
-    bool _isLoading;
+    bool _isLoading, _noTrigger;
 
     void Start()
     {
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
+        SaveSystem.OnAutoSaveFound += SaveSystem_OnAutoSaveFound;
+        SaveSystem.OnSaveDataFound += SaveSystem_OnSaveDataFound;
+        SaveSystem.OnLoadStarted += SaveSystem_OnLoadStarted;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_startButton);
     }
@@ -22,12 +30,42 @@ public class TitleScreen : MonoBehaviour
     void OnDestroy()
     {
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
+        SaveSystem.OnAutoSaveFound -= SaveSystem_OnAutoSaveFound;
+        SaveSystem.OnSaveDataFound -= SaveSystem_OnSaveDataFound;
+        SaveSystem.OnLoadStarted -= SaveSystem_OnLoadStarted;
     }
 
     void OptionsMenu_OnOptionsClosed()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_startButton);
+        if(_continueButton.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(_continueButton);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(_startButton);
+        }
+    }
+
+    void SaveSystem_OnAutoSaveFound()
+    {
+        _newPlusButton.SetActive(true);
+    }
+
+    void SaveSystem_OnSaveDataFound()
+    {
+        _continueButton.SetActive(true);
+    }
+
+    void SaveSystem_OnLoadStarted()
+    {
+        if(_isLoading) { return; }
+
+        _optionsPrefab.SetActive(false);
+        _isLoading = true;
+        _noTrigger = true;
+        _animator.SetTrigger("Load");
     }
 
     public void LoadGameScene()
@@ -36,12 +74,21 @@ public class TitleScreen : MonoBehaviour
 
         _optionsPrefab.SetActive(false);
         _isLoading = true;
+        _noTrigger = false;
         _animator.SetTrigger("Load");
     }
 
     public void CreepComplete() // Animation Trigger
     {
-        SceneManager.LoadScene(1);
+        if(_noTrigger)
+        {
+            OnCreepComplete?.Invoke();
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene(_sceneIndex);
+        }
     }
 
     public void PlayPunch1() // Animation Trigger
@@ -62,5 +109,6 @@ public class TitleScreen : MonoBehaviour
     public void StartMusic()
     {
         _musicPlayer.SetActive(true);
+        OnMusicStarted?.Invoke();
     }
 }
