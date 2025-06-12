@@ -37,7 +37,10 @@ public class MazeUnit : MonoBehaviour
     {
         _mapIcon.SetActive(true);
         _isRevealed = true;
-        IsWall += 2;
+        if(IsWall < 2)
+        {
+            IsWall += 2;
+        }
     }
 
     public void SetIsWall(byte wall)

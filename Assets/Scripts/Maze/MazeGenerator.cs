@@ -31,6 +31,7 @@ public class MazeGenerator : MonoBehaviour
     };
 
     List<Vector2> _openSpaces = new();
+    List<MazeSpace> _revealedSpaces = new();
     List<Vector2> _deadEnds = new();
     List<RandomEncounter> _randomEncounters = new();
     List<DeadEnd> _elites = new();
@@ -162,6 +163,11 @@ public class MazeGenerator : MonoBehaviour
 
         _playerHealth.gameObject.transform.position = new(float.Parse(dataArray[dataArray.Length - 2]), 0, float.Parse(dataArray[dataArray.Length - 1]));;
         _playerHealth.SetSpawnPoint();
+
+        foreach(MazeSpace space in _revealedSpaces)
+        {
+            space.LoadRevealed();
+        }
     }
 
     void InitializeMap()
@@ -232,10 +238,6 @@ public class MazeGenerator : MonoBehaviour
                     wall.transform.position = new(x * _scale, 0, z * _scale);
                     wall.name = $"Wall {x} {z}";
                     AllMazeUnits.Add(wall);
-                    if(_map[x,z] == 3)
-                    {
-                        wall.Reveal();
-                    }
                 }
                 else
                 {
@@ -247,7 +249,7 @@ public class MazeGenerator : MonoBehaviour
                     AllMazeUnits.Add(space);
                     if(_map[x,z] == 2)
                     {
-                        space.Reveal();
+                        _revealedSpaces.Add((MazeSpace)space);
                     }
                 }
             }

@@ -18,4 +18,11 @@ public class MazeSpace : MazeUnit
             Reveal();
         }
     }
+
+    public void LoadRevealed()
+    {
+        OnAnySpaceEntered?.Invoke(_coordinates);
+        _wasEntered = true;
+        Reveal();
+    }
 }
