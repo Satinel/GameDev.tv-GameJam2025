@@ -111,99 +111,6 @@ public class SaveSystem : MonoBehaviour
         // _savePrompt.SetActive(false);
     }
 
-    public void SaveMaze()
-    {
-        MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
-        if(!currentMaze) { return; }
-
-        string saveMazePath;
-#if UNITY_WEBGL
-{
-        saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
-        if(!Directory.Exists(saveMazePath))
-        {
-            Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
-        }
-}
-#else
-{
-        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
-}
-#endif
-        List<string> dataStrings = new ();
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.AllMazeUnits.Count.ToString());
-        foreach(MazeUnit unit in currentMaze.AllMazeUnits)
-        {
-            dataStrings.Insert(dataStrings.Count, unit.Coordinates.x.ToString());
-            dataStrings.Insert(dataStrings.Count, unit.Coordinates.y.ToString());
-            dataStrings.Insert(dataStrings.Count, unit.IsWall.ToString());
-        }
-
-        dataStrings.Insert(dataStrings.Count, _inventory.HasKey.ToString());
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.position.x.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.position.z.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.rotation.eulerAngles.y.ToString());
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.position.x.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.position.z.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.rotation.eulerAngles.y.ToString());
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.position.x.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.position.z.ToString());
-        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.rotation.eulerAngles.y.ToString());
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.Elites.Count.ToString());
-        foreach(DeadEnd elite in currentMaze.Elites)
-        {
-            dataStrings.Insert(dataStrings.Count, elite.transform.position.x.ToString());
-            dataStrings.Insert(dataStrings.Count, elite.transform.position.z.ToString());
-            dataStrings.Insert(dataStrings.Count, elite.transform.rotation.eulerAngles.y.ToString());
-        }
-
-        dataStrings.Insert(dataStrings.Count, currentMaze.RandomEncounters.Count.ToString());
-        {
-            foreach(RandomEncounter encounter in currentMaze.RandomEncounters)
-            {
-                dataStrings.Insert(dataStrings.Count, encounter.transform.position.x.ToString());
-                dataStrings.Insert(dataStrings.Count, encounter.transform.position.z.ToString());
-            }
-        }
-
-        File.WriteAllLines(saveMazePath, dataStrings);
-    }
-
-
-    public void LoadMaze() // TODO???? Load maze layout and location of everything.......
-    {
-        string saveMazePath;
-        string[] dataArray;
-#if UNITY_WEBGL
-{
-        saveMazePath = WEBPATH + SAVEMAZENAME;
-}
-#else
-{
-        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
-}
-#endif
-        if(File.Exists(saveMazePath))
-        {
-            dataArray = File.ReadAllLines(saveMazePath);
-        }
-        else
-        {
-            // _animator.SetTrigger(NOFILE_HASH);
-            // _loadPrompt.SetActive(false);
-            return;
-        }
-
-        MazeGenerator mazeGenerator = FindFirstObjectByType<MazeGenerator>();
-
-        mazeGenerator.LoadMapData(dataArray);
-    }
-
     public void NewGamePlus()
     {
     
@@ -295,6 +202,69 @@ public class SaveSystem : MonoBehaviour
         _isSaving = false;
     }
 
+    public void SaveMaze()
+    {
+        MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
+        if(!currentMaze) { return; }
+
+        string saveMazePath;
+#if UNITY_WEBGL
+{
+        saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
+        if(!Directory.Exists(saveMazePath))
+        {
+            Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
+        }
+}
+#else
+{
+        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
+}
+#endif
+        List<string> dataStrings = new ();
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.AllMazeUnits.Count.ToString());
+        foreach(MazeUnit unit in currentMaze.AllMazeUnits)
+        {
+            dataStrings.Insert(dataStrings.Count, unit.Coordinates.x.ToString());
+            dataStrings.Insert(dataStrings.Count, unit.Coordinates.y.ToString());
+            dataStrings.Insert(dataStrings.Count, unit.IsWall.ToString());
+        }
+
+        dataStrings.Insert(dataStrings.Count, _inventory.HasKey.ToString());
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.position.x.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.position.z.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.BossEncounter.transform.rotation.eulerAngles.y.ToString());
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.position.x.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.position.z.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.RestArea.transform.rotation.eulerAngles.y.ToString());
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.position.x.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.position.z.ToString());
+        dataStrings.Insert(dataStrings.Count, currentMaze.Store.transform.rotation.eulerAngles.y.ToString());
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.Elites.Count.ToString());
+        foreach(DeadEnd elite in currentMaze.Elites)
+        {
+            dataStrings.Insert(dataStrings.Count, elite.transform.position.x.ToString());
+            dataStrings.Insert(dataStrings.Count, elite.transform.position.z.ToString());
+            dataStrings.Insert(dataStrings.Count, elite.transform.rotation.eulerAngles.y.ToString());
+        }
+
+        dataStrings.Insert(dataStrings.Count, currentMaze.RandomEncounters.Count.ToString());
+        {
+            foreach(RandomEncounter encounter in currentMaze.RandomEncounters)
+            {
+                dataStrings.Insert(dataStrings.Count, encounter.transform.position.x.ToString());
+                dataStrings.Insert(dataStrings.Count, encounter.transform.position.z.ToString());
+            }
+        }
+
+        File.WriteAllLines(saveMazePath, dataStrings);
+    }
+
     public void LoadDataFile(string fileName) // TODO Prompt about loading data
     {
         string loadPath;
@@ -342,7 +312,37 @@ public class SaveSystem : MonoBehaviour
 
         _inventory.LoadData(savedTrinkets, trinketLevels);
 
-        CloseLoadMenu();
         // TODO Load a new maze
+        LoadMaze();
+        CloseLoadMenu();
+    }
+
+    public void LoadMaze() // TODO???? Load maze layout and location of everything.......
+    {
+        string saveMazePath;
+        string[] dataArray;
+#if UNITY_WEBGL
+{
+        saveMazePath = WEBPATH + SAVEMAZENAME;
+}
+#else
+{
+        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
+}
+#endif
+        if(File.Exists(saveMazePath))
+        {
+            dataArray = File.ReadAllLines(saveMazePath);
+        }
+        else
+        {
+            // _animator.SetTrigger(NOFILE_HASH);
+            // _loadPrompt.SetActive(false);
+            return;
+        }
+
+        MazeGenerator mazeGenerator = FindFirstObjectByType<MazeGenerator>();
+
+        mazeGenerator.LoadMapData(dataArray);
     }
 }
