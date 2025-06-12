@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         Exit.OnExitEntered += Exit_OnExitEntered;
         ExitUI.OnExitResolved += ExitUI_OnExitResolved;
         RestArea.OnRestAreaEntered += RestArea_OnRestAreaEntered;
+        RestAreaUI.OnSavePrompted += RestArea_OnSavePrompted;
         RestAreaUI.OnRestAreaResolved += RestAreaUI_OnRestAreaResolved;
     }
 
@@ -128,6 +129,7 @@ public class PlayerController : MonoBehaviour
         Exit.OnExitEntered -= Exit_OnExitEntered;
         ExitUI.OnExitResolved -= ExitUI_OnExitResolved;
         RestArea.OnRestAreaEntered -= RestArea_OnRestAreaEntered;
+        RestAreaUI.OnSavePrompted -= RestArea_OnSavePrompted;
         RestAreaUI.OnRestAreaResolved -= RestAreaUI_OnRestAreaResolved;
     }
 
@@ -301,6 +303,12 @@ public class PlayerController : MonoBehaviour
         Vector3 lookAtTarget = new(empty.transform.position.x, transform.position.y, empty.transform.position.z);
         _targetRotation = Quaternion.LookRotation(lookAtTarget - transform.position);
         _isRotating = true;
+        ShowCursor();
+    }
+
+    void RestArea_OnSavePrompted()
+    {
+        _eventStarted = true;
         ShowCursor();
     }
 

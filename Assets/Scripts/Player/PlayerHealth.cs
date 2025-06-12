@@ -143,6 +143,11 @@ public class PlayerHealth : MonoBehaviour
         _spawnPosition = transform.position;
     }
 
+    public Vector3 GetSpawnPosition()
+    {
+        return transform.position;
+    }
+
     void GameOverSplash_OnRespawn()
     {
         transform.position = _spawnPosition;
@@ -155,15 +160,11 @@ public class PlayerHealth : MonoBehaviour
         DungeonFloor++;
     }
 
-    public void LoadData(int currentHealth, int maxHealth, int dungeonFloor)
+    public void LoadData(int maxHealth, int dungeonFloor)
     {
-        _currentHealth = currentHealth;
         _maxHealth = maxHealth;
         DungeonFloor = dungeonFloor;
-        if(currentHealth <= 0) // This will be the case from an Autosave upon player death
-        {
-            _currentHealth = _maxHealth;
-        }
+        _currentHealth = _maxHealth;
 
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }

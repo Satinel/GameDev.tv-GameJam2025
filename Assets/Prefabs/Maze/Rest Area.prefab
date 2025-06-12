@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emptyTransform: {fileID: 5887157516318310617}
   _mapIcon: {fileID: 5054332519290810550}
+  _collider: {fileID: 4097405150059212728}
 --- !u!1 &2786952627869401351
 GameObject:
   m_ObjectHideFlags: 0

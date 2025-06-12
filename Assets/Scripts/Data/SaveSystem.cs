@@ -10,16 +10,15 @@ public class SaveSystem : MonoBehaviour
     public static event Action OnSaveDataFound;
     public static event Action OnAutoSaveFound;
     public static event Action OnLoadStarted;
-    public static event Action OnMazeLoaded;
+    public static event Action OnMazeLoaded; // TODO Trigger animation of splash screen with tail mask
+    public static event Action OnSaveComplete; // TODO Trigger animation of splash screen with tail mask
 
     [SerializeField] List<Trinket> _allTrinkets = new();
     [SerializeField] PlayerInventory _inventory;
     [SerializeField] PlayerStats _stats;
     [SerializeField] PlayerHealth _health;
     
-    // [SerializeField] GameObject _loadPrompt, _loadMenu, _savePrompt, _saveMenu;
     // [SerializeField] Animator _animator;
-    // [SerializeField] SaveButton _loadButton, _loadAutoSaveButton, _saveButton;
     // [SerializeField] TextMeshProUGUI _errorText, _saveButtonText;
 
     bool _isSaving;
@@ -38,16 +37,16 @@ public class SaveSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         TitleScreen.OnMusicStarted += TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete += TitleScreen_OnCreepComplete;
-        PlayerHealth.OnPlayerDeath += AutoSave;
-        RestAreaUI.OnRestAreaUsed += AutoSave;
+        RestAreaUI.OnRestUIActivated += AutoSave;
+        RestAreaUI.OnSaveConfirmed += ManualSave;
     }
 
     void OnDestroy()
     {
         TitleScreen.OnMusicStarted -= TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete -= TitleScreen_OnCreepComplete;
-        PlayerHealth.OnPlayerDeath -= AutoSave;
-        RestAreaUI.OnRestAreaUsed -= AutoSave;
+        RestAreaUI.OnRestUIActivated -= AutoSave;
+        RestAreaUI.OnSaveConfirmed -= ManualSave;
     }
 
     void TitleScreen_OnMusicStarted()
@@ -74,27 +73,6 @@ public class SaveSystem : MonoBehaviour
         {
             OnAutoSaveFound?.Invoke();
         }
-    }
-
-    public void OpenSaveMenu() // TODO? Move to Rest Area
-    {
-        // _saveMenu.SetActive(true);
-    }
-
-    public void CloseSaveMenu() // TODO Move to Rest Area
-    {
-        // _savePrompt.SetActive(false);
-        // _saveMenu.SetActive(false);
-    }
-
-    public void PromptSave() // TODO Move to Rest Area
-    {
-        // _savePrompt.SetActive(true);
-    }
-
-    public void CancelSave() // TODO Move to Rest Area
-    {
-        // _savePrompt.SetActive(false);
     }
 
     public void NewGamePlus() // UI Button on Title Screen
@@ -154,7 +132,9 @@ public class SaveSystem : MonoBehaviour
         
         dataStrings.Insert(dataStrings.Count, _stats.Money.ToString());
         
-        dataStrings.Insert(dataStrings.Count, _health.CurrentHealth.ToString());
+        bool isTutorial = SceneManager.GetActiveScene().buildIndex == 1;
+        dataStrings.Insert(dataStrings.Count, isTutorial.ToString());
+
         dataStrings.Insert(dataStrings.Count, _health.MaxHealth.ToString());
         dataStrings.Insert(dataStrings.Count, PlayerHealth.DungeonFloor.ToString());
 
@@ -169,12 +149,11 @@ public class SaveSystem : MonoBehaviour
         {
             File.WriteAllLines(savePath, dataStrings);
             
-            if(fileName == AUTOSAVENAME) { _isSaving = false; return; }
-// #if UNITY_WEBGL
-// {
-//             // _campaign.ReturnToTitle();
-// }
-// #endif
+            if(fileName == AUTOSAVENAME)
+            {
+                _isSaving = false;
+                return;
+            }
         }
         catch(Exception ex)
         {
@@ -183,14 +162,14 @@ public class SaveSystem : MonoBehaviour
             // _savePrompt.SetActive(false);
             // _animator.SetTrigger(SAVEFAILED_HASH);
         }
+
         SaveMaze();
+        OnSaveComplete?.Invoke();
         _isSaving = false;
     }
 
     public void SaveMaze()
     {
-        MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
-        if(!currentMaze) { return; }
 
         string saveMazePath;
 #if UNITY_WEBGL
@@ -207,6 +186,9 @@ public class SaveSystem : MonoBehaviour
 }
 #endif
         List<string> dataStrings = new ();
+
+        MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
+        if(!currentMaze) { return; }
 
         dataStrings.Insert(dataStrings.Count, currentMaze.AllMazeUnits.Count.ToString());
         foreach(MazeUnit unit in currentMaze.AllMazeUnits)
@@ -247,6 +229,9 @@ public class SaveSystem : MonoBehaviour
             }
         }
 
+        dataStrings.Insert(dataStrings.Count, _health.GetSpawnPosition().x.ToString());
+        dataStrings.Insert(dataStrings.Count, _health.GetSpawnPosition().z.ToString());
+
         File.WriteAllLines(saveMazePath, dataStrings);
     }
 
@@ -275,7 +260,9 @@ public class SaveSystem : MonoBehaviour
         _stats.LoadData(int.Parse(dataArray[0]), int.Parse(dataArray[1]), int.Parse(dataArray[2]), int.Parse(dataArray[3]), int.Parse(dataArray[4]), 
                         int.Parse(dataArray[5]), int.Parse(dataArray[6]), int.Parse(dataArray[7]), int.Parse(dataArray[8]), int.Parse(dataArray[9]));
 
-        _health.LoadData(int.Parse(dataArray[10]), int.Parse(dataArray[11]), int.Parse(dataArray[12]));
+        bool isTutorial = bool.Parse(dataArray[10]);
+
+        _health.LoadData(int.Parse(dataArray[11]), int.Parse(dataArray[12]));
 
         List<Trinket> savedTrinkets = new();
         List<int> trinketLevels = new();
@@ -295,7 +282,11 @@ public class SaveSystem : MonoBehaviour
 
         _inventory.LoadData(savedTrinkets, trinketLevels);
 
-        if(loadMaze && CheckMazeData())
+        if(isTutorial)
+        {
+            _sceneIndex = 1;
+        }
+        else if(loadMaze && CheckMazeData())
         {
             _sceneIndex = 3;
         }
@@ -330,7 +321,11 @@ public class SaveSystem : MonoBehaviour
 
     void TitleScreen_OnCreepComplete()
     {
-        if(_sceneIndex == 2)
+        if(_sceneIndex == 1)
+        {
+            SceneManager.LoadScene(_sceneIndex);
+        }
+        else if(_sceneIndex == 2)
         {
             StartCoroutine(NewSceneRoutine());
         }

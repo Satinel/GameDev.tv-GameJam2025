@@ -25,6 +25,7 @@ public class PlayerAnimator : MonoBehaviour
         Exit.OnExitEntered += Exit_OnExitEntered;
         ExitUI.OnExitResolved += ExitUI_OnExitResolved;
         RestArea.OnRestAreaEntered += RestArea_OnRestAreaEntered;
+        RestAreaUI.OnSavePrompted += RestArea_OnSavePrompted;
         RestAreaUI.OnRestAreaResolved += RestAreaUI_OnRestAreaResolved;
     }
 
@@ -46,6 +47,7 @@ public class PlayerAnimator : MonoBehaviour
         Exit.OnExitEntered -= Exit_OnExitEntered;
         ExitUI.OnExitResolved -= ExitUI_OnExitResolved;
         RestArea.OnRestAreaEntered -= RestArea_OnRestAreaEntered;
+        RestAreaUI.OnSavePrompted -= RestArea_OnSavePrompted;
         RestAreaUI.OnRestAreaResolved -= RestAreaUI_OnRestAreaResolved;
     }
 
@@ -212,6 +214,11 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     void RestArea_OnRestAreaEntered(Transform empty)
+    {
+        _eventStarted = true;
+    }
+
+    void RestArea_OnSavePrompted()
     {
         _eventStarted = true;
     }
