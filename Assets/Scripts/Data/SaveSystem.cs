@@ -21,8 +21,9 @@ public class SaveSystem : MonoBehaviour
     // static readonly int NOFILE_HASH = Animator.StringToHash("NoFile");
     // static readonly int SAVEFAILED_HASH = Animator.StringToHash("SaveFailed");
     const string WEBPATH = "/idbfs/FirstPersonScorpion/";
-    const string SAVENAME = "gameData.txt";
     const string AUTOSAVENAME = "autoSave.txt";
+    const string SAVENAME = "gameData.txt";
+    const string SAVEMAZENAME = "saveMaze.txt";
 
     void Awake()
     {
@@ -118,7 +119,7 @@ public class SaveSystem : MonoBehaviour
         string saveMazePath;
 #if UNITY_WEBGL
 {
-        saveMazePath = WEBPATH + "saveMaze.txt"; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
+        saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
         if(!Directory.Exists(saveMazePath))
         {
             Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
@@ -126,7 +127,7 @@ public class SaveSystem : MonoBehaviour
 }
 #else
 {
-        saveMazePath = Application.persistentDataPath + "/saveMaze.txt"; // Note the / is needed here but not in WEBGL
+        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
 }
 #endif
         List<string> dataStrings = new ();
@@ -180,11 +181,11 @@ public class SaveSystem : MonoBehaviour
         string[] dataArray;
 #if UNITY_WEBGL
 {
-        saveMazePath = WEBPATH + "saveMaze.txt";
+        saveMazePath = WEBPATH + SAVEMAZENAME;
 }
 #else
 {
-        saveMazePath = Application.persistentDataPath + "/saveMaze.txt"; // Note the / is needed here but not in WEBGL
+        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
 }
 #endif
         if(File.Exists(saveMazePath))
@@ -290,6 +291,7 @@ public class SaveSystem : MonoBehaviour
             // _savePrompt.SetActive(false);
             // _animator.SetTrigger(SAVEFAILED_HASH);
         }
+        SaveMaze();
         _isSaving = false;
     }
 
