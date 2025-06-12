@@ -20,8 +20,8 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
-        SaveSystem.OnAutoSaveFound += SaveSystem_OnAutoSaveFound;
-        SaveSystem.OnSaveDataFound += SaveSystem_OnSaveDataFound;
+        SaveSystem.OnSaveFound += SaveSystem_OnSaveFound;
+        SaveSystem.OnMazeDataFound += SaveSystem_OnMazeDataFound;
         SaveSystem.OnLoadStarted += SaveSystem_OnLoadStarted;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_startButton);
@@ -30,8 +30,8 @@ public class TitleScreen : MonoBehaviour
     void OnDestroy()
     {
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
-        SaveSystem.OnAutoSaveFound -= SaveSystem_OnAutoSaveFound;
-        SaveSystem.OnSaveDataFound -= SaveSystem_OnSaveDataFound;
+        SaveSystem.OnSaveFound -= SaveSystem_OnSaveFound;
+        SaveSystem.OnMazeDataFound -= SaveSystem_OnMazeDataFound;
         SaveSystem.OnLoadStarted -= SaveSystem_OnLoadStarted;
     }
 
@@ -48,12 +48,12 @@ public class TitleScreen : MonoBehaviour
         }
     }
 
-    void SaveSystem_OnAutoSaveFound()
+    void SaveSystem_OnSaveFound()
     {
         _newPlusButton.SetActive(true);
     }
 
-    void SaveSystem_OnSaveDataFound()
+    void SaveSystem_OnMazeDataFound()
     {
         _continueButton.SetActive(true);
     }

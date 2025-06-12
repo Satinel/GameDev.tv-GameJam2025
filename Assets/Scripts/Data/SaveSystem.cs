@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 public class SaveSystem : MonoBehaviour
 {
-    public static event Action OnSaveDataFound;
-    public static event Action OnAutoSaveFound;
+    public static event Action OnMazeDataFound;
+    public static event Action OnSaveFound;
     public static event Action OnLoadStarted;
     public static event Action OnMazeLoaded; // TODO Trigger animation of splash screen with tail mask
     public static event Action OnSaveComplete; // TODO Trigger animation of splash screen with tail mask
@@ -28,7 +28,7 @@ public class SaveSystem : MonoBehaviour
     // static readonly int NOFILE_HASH = Animator.StringToHash("NoFile");
     // static readonly int SAVEFAILED_HASH = Animator.StringToHash("SaveFailed");
     const string WEBPATH = "/idbfs/FirstPersonScorpion/";
-    const string AUTOSAVENAME = "autoSave.txt";
+    // const string AUTOSAVENAME = "autoSave.txt";
     const string SAVENAME = "gameData.txt";
     const string SAVEMAZENAME = "saveMaze.txt";
 
@@ -37,7 +37,7 @@ public class SaveSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         TitleScreen.OnMusicStarted += TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete += TitleScreen_OnCreepComplete;
-        RestAreaUI.OnRestUIActivated += AutoSave;
+        // RestAreaUI.OnRestUIActivated += AutoSave;
         RestAreaUI.OnSaveConfirmed += ManualSave;
     }
 
@@ -45,39 +45,39 @@ public class SaveSystem : MonoBehaviour
     {
         TitleScreen.OnMusicStarted -= TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete -= TitleScreen_OnCreepComplete;
-        RestAreaUI.OnRestUIActivated -= AutoSave;
+        // RestAreaUI.OnRestUIActivated -= AutoSave;
         RestAreaUI.OnSaveConfirmed -= ManualSave;
     }
 
     void TitleScreen_OnMusicStarted()
     {
         string path;
-        string autoPath;
+        // string autoPath;
 #if UNITY_WEBGL
 {
         path = WEBPATH + SAVENAME;
-        autoPath = WEBPATH + AUTOSAVENAME;
+        // autoPath = WEBPATH + AUTOSAVENAME;
 }
 #else
 {
         path = Application.persistentDataPath + "/" +  SAVENAME;
         path = Application.persistentDataPath + "/" +  SAVEMAZENAME;
-        autoPath = Application.persistentDataPath + "/" +  AUTOSAVENAME;
+        // autoPath = Application.persistentDataPath + "/" +  AUTOSAVENAME;
 }
 #endif
-        if(File.Exists(path) && CheckMazeData())
+        if(File.Exists(path))
         {
-            OnSaveDataFound?.Invoke();
+            OnSaveFound?.Invoke();
         }
-        if(File.Exists(autoPath))
+        if(CheckMazeData())
         {
-            OnAutoSaveFound?.Invoke();
+            OnMazeDataFound?.Invoke();
         }
     }
 
     public void NewGamePlus() // UI Button on Title Screen
     {
-        LoadDataFile(AUTOSAVENAME, false);
+        LoadDataFile(SAVENAME, false);
     }
 
     public void ContinueButton() // UI Button on Title Screen
@@ -85,10 +85,10 @@ public class SaveSystem : MonoBehaviour
         LoadDataFile(SAVENAME, true);
     }
 
-    public void AutoSave()
-    {
-        SaveDataFile(AUTOSAVENAME);
-    }
+    // public void AutoSave()
+    // {
+    //     SaveDataFile(AUTOSAVENAME);
+    // }
 
     public void ManualSave()
     {
@@ -149,11 +149,11 @@ public class SaveSystem : MonoBehaviour
         {
             File.WriteAllLines(savePath, dataStrings);
             
-            if(fileName == AUTOSAVENAME)
-            {
-                _isSaving = false;
-                return;
-            }
+            // if(fileName == AUTOSAVENAME)
+            // {
+            //     _isSaving = false;
+            //     return;
+            // }
         }
         catch(Exception ex)
         {

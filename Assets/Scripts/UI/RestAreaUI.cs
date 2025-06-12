@@ -4,7 +4,7 @@ using System;
 
 public class RestAreaUI : MonoBehaviour
 {
-    public static event Action OnRestUIActivated;
+    // public static event Action OnRestUIActivated;
     public static event Action OnRestAreaResolved;
     public static event Action OnRestAreaUsed; // TODO Repopulate map with enemies if you want
     public static event Action OnSaveConfirmed;
@@ -34,7 +34,7 @@ public class RestAreaUI : MonoBehaviour
         _restWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_exitButton);
-        OnRestUIActivated?.Invoke();
+        // OnRestUIActivated?.Invoke();
     }
 
     void OptionsMenu_OnOptionsClosed()
