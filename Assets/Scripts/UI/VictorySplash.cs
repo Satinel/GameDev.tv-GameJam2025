@@ -51,6 +51,7 @@ public class VictorySplash : MonoBehaviour
     public void LoadNewMaze()
     {
         FindFirstObjectByType<PlayerHealth>().IncreaseDungeonFloor();
+        FindFirstObjectByType<PlayerInventory>().LoseKey();
         _mainMenuButton.SetActive(false);
         _newMazeButton.SetActive(false);
         SceneManager.LoadScene(2);

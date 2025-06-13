@@ -112,9 +112,14 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void GetKey() // TODO FIX THIS !!!!!!
+    public void GetKey()
     {
         HasKey = true;
+    }
+
+    public void LoseKey()
+    {
+        HasKey = false;
     }
 
     public void AddWeapon(Equipable newWeapon)

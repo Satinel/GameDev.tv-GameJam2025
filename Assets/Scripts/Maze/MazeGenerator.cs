@@ -128,7 +128,9 @@ public class MazeGenerator : MonoBehaviour
         }
 
         BossEncounter = Instantiate(_bossEncounterPrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
-        BossEncounter.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        int xBoss = (int)(BossEncounter.transform.position.x / _scale);
+        int zBoss = (int)(BossEncounter.transform.position.z / _scale);
+        BossEncounter.SetCoordinates(xBoss, zBoss);
         BossEncounter.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
         if(playerInventory.HasKey)
         {
@@ -137,19 +139,29 @@ public class MazeGenerator : MonoBehaviour
         currentIndex += 3;
 
         RestArea = Instantiate(_restAreaPrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
-        RestArea.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        int xRest = (int)(RestArea.transform.position.x / _scale);
+        int zRest = (int)(RestArea.transform.position.z / _scale);
+        RestArea.SetCoordinates(xRest, zRest);
+        RestArea.SetCoordinates(int.Parse(dataArray[currentIndex / _scale]), int.Parse(dataArray[(currentIndex + 1) / _scale]));
+        RestArea.name = $"RestArea {xRest} {zRest}";
         RestArea.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
         currentIndex += 3;
 
         Store = Instantiate(_storePrefab, new(int.Parse(dataArray[currentIndex]), 0, int.Parse(dataArray[currentIndex + 1])), Quaternion.identity, _endsParent);
-        Store.SetCoordinates(int.Parse(dataArray[currentIndex]), int.Parse(dataArray[currentIndex + 1]));
+        int xStore = (int)(Store.transform.position.x / _scale);
+        int zStore = (int)(Store.transform.position.z / _scale);
+        Store.SetCoordinates(xStore, zStore);
+        Store.name = $"Store {xStore} {zStore}";
         Store.transform.Rotate(0, int.Parse(dataArray[currentIndex + 2]), 0);
         currentIndex += 3;
 
         for(int i = currentIndex + 1; i < currentIndex + (int.Parse(dataArray[currentIndex]) * 3); i += 3)
         {
             DeadEnd deadEnd = Instantiate(_deadEndPrefab, new(int.Parse(dataArray[i]), 0, int.Parse(dataArray[i + 1])), Quaternion.identity, _endsParent);
-            deadEnd.SetCoordinates(int.Parse(dataArray[i]), int.Parse(dataArray[i + 1]));
+            int xEnd = (int)(deadEnd.transform.position.x / _scale);
+            int zEnd = (int)(deadEnd.transform.position.z / _scale);
+            deadEnd.SetCoordinates(xEnd, zEnd);
+            deadEnd.name = $"End {xEnd} {zEnd}";
             
             deadEnd.transform.Rotate(0, int.Parse(dataArray[i + 2]), 0);
             _elites.Add(deadEnd);
@@ -160,15 +172,24 @@ public class MazeGenerator : MonoBehaviour
 
         for(int i = currentIndex + 1; i < currentIndex + (int.Parse(dataArray[currentIndex]) * 2); i += 2)
         {
-            RandomEncounter randomEnc = Instantiate(_randomEncounterPrefab, new(int.Parse(dataArray[i]), 0, int.Parse(dataArray[i + 1])), Quaternion.identity, _endsParent);
-            randomEnc.SetCoordinates(int.Parse(dataArray[i]), int.Parse(dataArray[i + 1]));
+            RandomEncounter randomEnc = Instantiate(_randomEncounterPrefab, new(int.Parse(dataArray[i]), 0, int.Parse(dataArray[i + 1])), Quaternion.identity, _encountersParent);
+            int xCor = (int)(randomEnc.transform.position.x / _scale);
+            int zCor = (int)(randomEnc.transform.position.z / _scale);
+            randomEnc.SetCoordinates(xCor, zCor);
+            randomEnc.name = $"Encounter {xCor} {zCor}";
             _randomEncounters.Add(randomEnc);
         }
 
         _playerHealth.gameObject.transform.position = new(float.Parse(dataArray[dataArray.Length - 2]), 0, float.Parse(dataArray[dataArray.Length - 1]));;
         _playerHealth.SetSpawnPoint();
 
-        Invoke(nameof(RevealDelay), 0.5f);
+        // foreach(MazeSpace space in _revealedSpaces)
+        // {
+        //     space.LoadRevealed();
+        // }
+
+        // OnMazeReady?.Invoke();
+        Invoke(nameof(RevealDelay), 2.5f);
     }
 
     void RevealDelay()

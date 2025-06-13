@@ -55,7 +55,7 @@ public class RestAreaUI : MonoBehaviour
     {
         PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
         playerHealth.transform.position = _spawnPoint;
-        playerHealth.SetSpawnPoint();
+        playerHealth.SetSpawnPoint(_spawnPoint);
         OnRestAreaUsed?.Invoke();
         CloseWindow();
     }

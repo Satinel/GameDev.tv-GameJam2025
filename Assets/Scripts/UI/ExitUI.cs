@@ -54,6 +54,7 @@ public class ExitUI : MonoBehaviour
 
         _exitButton.SetActive(false);
         _isLoading = true;
+        FindFirstObjectByType<PlayerInventory>().LoseKey();
         _animator.SetTrigger("Load");
     }
 

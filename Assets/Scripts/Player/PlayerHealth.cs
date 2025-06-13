@@ -143,9 +143,14 @@ public class PlayerHealth : MonoBehaviour
         _spawnPosition = transform.position;
     }
 
+    public void SetSpawnPoint(Vector3 spawnPosition)
+    {
+        _spawnPosition = spawnPosition;
+    }
+
     public Vector3 GetSpawnPosition()
     {
-        return transform.position;
+        return _spawnPosition;
     }
 
     void GameOverSplash_OnRespawn()
