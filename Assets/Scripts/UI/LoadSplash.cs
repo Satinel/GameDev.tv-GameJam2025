@@ -14,6 +14,8 @@ public class LoadSplash : MonoBehaviour
         SaveSystem.OnMazeLoaded += Uncover;
         RestArea.OnRestAreaEntered += RestArea_RestAreaEntered;
         RestAreaUI.OnRestAreaResolved += Uncover;
+        PlayerHealth.OnPlayerDeath += Cover;
+        GameOverSplash.OnRespawn += Uncover;
     }
 
     void OnDestroy()
@@ -22,6 +24,8 @@ public class LoadSplash : MonoBehaviour
         SaveSystem.OnMazeLoaded -= Uncover;
         RestArea.OnRestAreaEntered -= RestArea_RestAreaEntered;
         RestAreaUI.OnRestAreaResolved -= Uncover;
+        PlayerHealth.OnPlayerDeath -= Cover;
+        GameOverSplash.OnRespawn -= Uncover;
     }
 
     private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode _)
