@@ -6,7 +6,7 @@ public class GameUI : MonoBehaviour
 {
     [SerializeField] GameObject _map, _statsWindow, _combatLogWindow;
     [SerializeField] InventoryUI _inventoryWindow;
-    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton, _sprintDisplay;
+    [SerializeField] GameObject _mapButton, _statsButton, _combatLogButton, _inventoryButton, _sprintDisplay, _turnDisplay;
     [SerializeField] PlayerHealthSlider _playerHealthSlider;
     [SerializeField] TextMeshProUGUI _statsText, _moneyText;
     [SerializeField] TextMeshProUGUI _leftClawText, _leftAttack1Text, _leftAttack2Text;
@@ -222,6 +222,7 @@ public class GameUI : MonoBehaviour
         }
         _map.SetActive(false);
         _sprintDisplay.SetActive(false);
+        _turnDisplay.SetActive(false);
         _inventoryWindow.Close();
     }
 
@@ -241,6 +242,7 @@ public class GameUI : MonoBehaviour
         _combatLogButton.SetActive(true);
         _inventoryButton.SetActive(true);
         _sprintDisplay.SetActive(true);
+        _turnDisplay.SetActive(true);
     }
 
     void PlayerStats_OnTempStatsReset()
