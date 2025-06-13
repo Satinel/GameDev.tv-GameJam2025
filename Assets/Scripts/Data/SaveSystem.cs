@@ -10,7 +10,6 @@ public class SaveSystem : MonoBehaviour
     public static event Action OnMazeDataFound;
     public static event Action OnSaveFound;
     public static event Action OnLoadStarted;
-    public static event Action OnSaveComplete; // TODO Trigger animation of splash screen with tail mask
 
     [SerializeField] List<Trinket> _allTrinkets = new();
     [SerializeField] PlayerInventory _inventory;
@@ -163,7 +162,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         SaveMaze();
-        OnSaveComplete?.Invoke();
+
         _isSaving = false;
     }
 

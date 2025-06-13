@@ -6,7 +6,7 @@ public class RestAreaUI : MonoBehaviour
 {
     // public static event Action OnRestUIActivated;
     public static event Action OnRestAreaResolved;
-    public static event Action OnRestAreaUsed; // TODO Repopulate map with enemies if you want
+    public static event Action OnRestAreaUsed;
     public static event Action OnSaveConfirmed;
     public static event Action OnSavePrompted;
 
@@ -57,13 +57,14 @@ public class RestAreaUI : MonoBehaviour
         playerHealth.transform.position = _spawnPoint;
         playerHealth.SetSpawnPoint(_spawnPoint);
         OnRestAreaUsed?.Invoke();
-        CloseWindow();
+        _restWindow.SetActive(false);
+        OpenSaveMenu();
     }
 
     public void CloseWindow() // UI Button
     {
         _restWindow.SetActive(false);
-        OpenSaveMenu();
+        OnRestAreaResolved?.Invoke();
     }
 
     void OpenSaveMenu()
