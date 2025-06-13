@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -96,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        SaveSystem.OnMazeLoaded += SaveSystem_OnMazeLoaded;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
@@ -116,6 +115,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDisable()
     {
+        SaveSystem.OnMazeLoaded -= SaveSystem_OnMazeLoaded;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened -= OptionsMenu_OnOptionsOpened;
@@ -206,13 +206,9 @@ public class PlayerController : MonoBehaviour
 #endif
     }
 
-    void SceneManager_sceneLoaded(Scene scene, LoadSceneMode _)
+    void SaveSystem_OnMazeLoaded()
     {
-        if(scene.buildIndex != 0)
-        {
-            _isMainMenu = false;
-            HideCursor();
-        }
+        _isMainMenu = false;
     }
 
     void Enemy_OnFightStarted(Enemy enemy)
