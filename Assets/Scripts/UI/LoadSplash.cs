@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadSplash : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LoadSplash : MonoBehaviour
 
     void Awake()
     {
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         SaveSystem.OnMazeLoaded += Uncover;
         RestArea.OnRestAreaEntered += RestArea_RestAreaEntered;
         RestAreaUI.OnRestAreaResolved += Uncover;
@@ -16,7 +18,18 @@ public class LoadSplash : MonoBehaviour
 
     void OnDestroy()
     {
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         SaveSystem.OnMazeLoaded -= Uncover;
+        RestArea.OnRestAreaEntered -= RestArea_RestAreaEntered;
+        RestAreaUI.OnRestAreaResolved -= Uncover;
+    }
+
+    private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode _)
+    {
+        if(scene.buildIndex == 1)
+        {
+            Uncover();
+        }
     }
 
     void RestArea_RestAreaEntered(Transform _)
