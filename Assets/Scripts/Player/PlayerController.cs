@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        SaveSystem.OnMazeLoaded += SaveSystem_OnMazeLoaded;
+        MazeGenerator.OnMazeReady += MazeGenerator_OnMazeReady;
         Enemy.OnFightStarted += Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened += OptionsMenu_OnOptionsOpened;
@@ -117,8 +117,8 @@ public class PlayerController : MonoBehaviour
 
     void OnDisable()
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        SaveSystem.OnMazeLoaded -= SaveSystem_OnMazeLoaded;
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        MazeGenerator.OnMazeReady -= MazeGenerator_OnMazeReady;
         Enemy.OnFightStarted -= Enemy_OnFightStarted;
         PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         OptionsMenu.OnOptionsOpened -= OptionsMenu_OnOptionsOpened;
@@ -214,10 +214,11 @@ public class PlayerController : MonoBehaviour
         if(scene.buildIndex == 1)
         {
             _isMainMenu = false;
+            HideCursor();
         }
     }
 
-    void SaveSystem_OnMazeLoaded()
+    void MazeGenerator_OnMazeReady()
     {
         _isMainMenu = false;
     }

@@ -14,14 +14,14 @@ public class RestArea : MonoBehaviour
     void Start()
     {
         MazeGenerator.OnMazeUnitRevealed += MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnFightStarted += Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved += PlayerCombat_OnCombatResolved;
         Store.OnEnteredStore += Store_OnEnteredStore;
     }
 
     void OnDestroy()
     {
         MazeGenerator.OnMazeUnitRevealed -= MazeGenerator_OnMazeUnitRevealed;
-        Enemy.OnFightStarted -= Enemy_OnFightStarted;
+        PlayerCombat.OnCombatResolved -= PlayerCombat_OnCombatResolved;
         Store.OnEnteredStore -= Store_OnEnteredStore;
     }
 
@@ -33,7 +33,7 @@ public class RestArea : MonoBehaviour
         Reveal();
     }
 
-    void Enemy_OnFightStarted(Enemy _)
+    void PlayerCombat_OnCombatResolved()
     {
         _collider.enabled = true;
     }

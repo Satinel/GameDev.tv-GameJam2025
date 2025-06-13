@@ -11,7 +11,7 @@ public class LoadSplash : MonoBehaviour
     void Awake()
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        SaveSystem.OnMazeLoaded += Uncover;
+        MazeGenerator.OnMazeReady += Uncover;
         RestArea.OnRestAreaEntered += RestArea_RestAreaEntered;
         RestAreaUI.OnRestAreaResolved += Uncover;
         PlayerHealth.OnPlayerDeath += Cover;
@@ -20,8 +20,8 @@ public class LoadSplash : MonoBehaviour
 
     void OnDestroy()
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        SaveSystem.OnMazeLoaded -= Uncover;
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        MazeGenerator.OnMazeReady -= Uncover;
         RestArea.OnRestAreaEntered -= RestArea_RestAreaEntered;
         RestAreaUI.OnRestAreaResolved -= Uncover;
         PlayerHealth.OnPlayerDeath -= Cover;

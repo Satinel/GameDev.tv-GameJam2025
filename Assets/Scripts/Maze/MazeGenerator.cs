@@ -5,6 +5,7 @@ using UnityEngine;
 public class MazeGenerator : MonoBehaviour
 {
     public static event Action<Vector2> OnMazeUnitRevealed;
+    public static event Action OnMazeReady;
 
     [SerializeField] [Range(0, 100)] int _encounterChancePercentage = 20;
     [SerializeField] int _width = 30, _depth = 30;
@@ -43,6 +44,11 @@ public class MazeGenerator : MonoBehaviour
     public List<DeadEnd> Elites => _elites;
     public List<RandomEncounter> RandomEncounters => _randomEncounters;
 
+    void Awake()
+    {
+        _playerHealth = FindFirstObjectByType<PlayerHealth>();
+    }
+
     void OnEnable()
     {
         MazeSpace.OnAnySpaceEntered += MazeSpace_OnAnySpaceEntered;
@@ -57,9 +63,6 @@ public class MazeGenerator : MonoBehaviour
 
     void Start()
     {
-        _playerHealth = FindFirstObjectByType<PlayerHealth>();
-        // if(!_player) { return; }
-
         if(_isNewMap)
         {
             GenerateNewMap();
@@ -73,10 +76,12 @@ public class MazeGenerator : MonoBehaviour
         DrawMap();
         PopulateMap();
         FillDeadEnds();
+        OnMazeReady?.Invoke();
     }
 
     public void LoadMapData(string[] dataArray)
     {
+
         int currentIndex = int.Parse(dataArray[0]) * 3;
         _map = new byte[_width, _depth];
         for(int i = 1; i < currentIndex; i += 3)
@@ -105,22 +110,20 @@ public class MazeGenerator : MonoBehaviour
                 restA.SetCoordinates((int)space.x, (int)space.y);
                 restA.name = $"restArea {space.x} {space.y}";
                 RotateDeadEnd(restA.transform, space);
-                continue;
             }
 
-            if(space == _openSpaces[_openSpaces.Count - 1])
+            else if(CountSquareNeighbours((int)space.x, (int)space.y) == 1 && space != _openSpaces[_openSpaces.Count - 1] && space != _openSpaces[0])
+            {
+                _deadEnds.Add(space);
+            }
+
+            else if(space == _openSpaces[_openSpaces.Count - 1])
             {
                 if(!playerInventory.HasKey)
                 {    
                     Goal = Instantiate(_goalPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, transform);
                     Goal.SetCoordinates((int)space.x, (int)space.y);
                 }
-                return;
-            }
-
-            if(CountSquareNeighbours((int)space.x, (int)space.y) == 1)
-            {
-                _deadEnds.Add(space);
             }
         }
 
@@ -153,6 +156,7 @@ public class MazeGenerator : MonoBehaviour
         }
 
         currentIndex += int.Parse(dataArray[currentIndex]) * 3;
+        currentIndex++;
 
         for(int i = currentIndex + 1; i < currentIndex + (int.Parse(dataArray[currentIndex]) * 2); i += 2)
         {
@@ -164,10 +168,17 @@ public class MazeGenerator : MonoBehaviour
         _playerHealth.gameObject.transform.position = new(float.Parse(dataArray[dataArray.Length - 2]), 0, float.Parse(dataArray[dataArray.Length - 1]));;
         _playerHealth.SetSpawnPoint();
 
+        Invoke(nameof(RevealDelay), 0.5f);
+    }
+
+    void RevealDelay()
+    {
         foreach(MazeSpace space in _revealedSpaces)
         {
             space.LoadRevealed();
         }
+
+        OnMazeReady?.Invoke();
     }
 
     void InitializeMap()

@@ -10,7 +10,6 @@ public class SaveSystem : MonoBehaviour
     public static event Action OnMazeDataFound;
     public static event Action OnSaveFound;
     public static event Action OnLoadStarted;
-    public static event Action OnMazeLoaded; // TODO Trigger animation of splash screen with tail mask
     public static event Action OnSaveComplete; // TODO Trigger animation of splash screen with tail mask
 
     [SerializeField] List<Trinket> _allTrinkets = new();
@@ -338,8 +337,6 @@ public class SaveSystem : MonoBehaviour
     IEnumerator NewSceneRoutine()
     {
         yield return SceneManager.LoadSceneAsync(_sceneIndex);
-
-        OnMazeLoaded?.Invoke();
     }
 
     IEnumerator LoadMazeSceneRoutine()
@@ -347,8 +344,6 @@ public class SaveSystem : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(_sceneIndex);
 
         yield return SetupMazeRoutine();
-
-        OnMazeLoaded?.Invoke();
     }
 
     IEnumerator SetupMazeRoutine()

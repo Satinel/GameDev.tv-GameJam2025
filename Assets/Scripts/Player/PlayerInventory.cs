@@ -112,7 +112,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void GetKey()
+    public void GetKey() // TODO FIX THIS !!!!!!
     {
         HasKey = true;
     }

@@ -22,7 +22,6 @@ public class MazeSpace : MazeUnit
     public void LoadRevealed()
     {
         OnAnySpaceEntered?.Invoke(_coordinates);
-        _wasEntered = true;
         Reveal();
     }
 }
