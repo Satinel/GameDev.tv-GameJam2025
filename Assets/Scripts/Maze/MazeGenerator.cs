@@ -189,7 +189,7 @@ public class MazeGenerator : MonoBehaviour
         // }
 
         // OnMazeReady?.Invoke();
-        Invoke(nameof(RevealDelay), 2.5f);
+        Invoke(nameof(RevealDelay), 0.5f);
     }
 
     void RevealDelay()

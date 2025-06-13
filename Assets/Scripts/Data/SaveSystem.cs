@@ -255,8 +255,16 @@ public class SaveSystem : MonoBehaviour
             return;
         }
 
-        _stats.LoadData(int.Parse(dataArray[0]), int.Parse(dataArray[1]), int.Parse(dataArray[2]), int.Parse(dataArray[3]), int.Parse(dataArray[4]), 
-                        int.Parse(dataArray[5]), int.Parse(dataArray[6]), int.Parse(dataArray[7]), int.Parse(dataArray[8]), int.Parse(dataArray[9]));
+        if(loadMaze)
+        {
+            _stats.LoadData(int.Parse(dataArray[0]), int.Parse(dataArray[1]), int.Parse(dataArray[2]), int.Parse(dataArray[3]), int.Parse(dataArray[4]), 
+                            int.Parse(dataArray[5]), int.Parse(dataArray[6]), int.Parse(dataArray[7]), int.Parse(dataArray[8]), int.Parse(dataArray[9]));
+        }
+        else
+        {
+            _stats.LoadStats(int.Parse(dataArray[3]), int.Parse(dataArray[4]), 
+                             int.Parse(dataArray[5]), int.Parse(dataArray[6]), int.Parse(dataArray[7]), int.Parse(dataArray[8]), int.Parse(dataArray[9]));
+        }
 
         bool isTutorial = bool.Parse(dataArray[10]);
 

@@ -227,4 +227,17 @@ public class PlayerStats : MonoBehaviour
 
         OnExperienceGained?.Invoke(); // This doesn't need to be OnExperienceGained but it's a convenient one to update all stat UI and affect nothing else
     }
+
+    public void LoadStats(int strength, int accuracy, int fortitude, int evastion, int tenacity, int initiative, int money)
+    {
+        Strength = strength;
+        Accuracy = accuracy;
+        Fortitude = fortitude;
+        Evasion = evastion;
+        Tenacity = tenacity;
+        Initiative = initiative;
+        Money = money;
+
+        OnExperienceGained?.Invoke(); // This doesn't need to be OnExperienceGained but it's a convenient one to update all stat UI and affect nothing else
+    }
 }

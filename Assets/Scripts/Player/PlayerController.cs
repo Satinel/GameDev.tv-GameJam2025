@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Texture2D _customCursor;
 
     Vector2 _moveValue = Vector2.zero;
-    float _lookValue;
+    float _lookValue, _mouseLookValue;
     bool _isSprinting;
     bool _isMainMenu = true;
     bool _isFighting, _eventStarted, _optionsOpen, _inventoryOpen, _isRotating;
@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
     public void OnLook(InputValue value)
     {
         _lookValue = value.Get<Vector2>().x;
+    }
+
+    public void OnMouseLook(InputValue value)
+    {
+        _mouseLookValue = value.Get<Vector2>().x;
     }
 
     public void OnSprint(InputValue value)
@@ -165,7 +170,14 @@ public class PlayerController : MonoBehaviour
 #endif
         }
 
-        transform.Rotate(0, _lookValue * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
+        if(_mouseLookValue != 0)
+        {
+            transform.Rotate(0, _mouseLookValue * _lookSpeed * _mouseSensitivity * 0.001f, 0);
+        }
+        else
+        {
+            transform.Rotate(0, _lookValue * _lookSpeed * _mouseSensitivity * Time.deltaTime, 0);
+        }
     }
 
     void FixedUpdate()
