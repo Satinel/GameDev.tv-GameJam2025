@@ -76,6 +76,7 @@ public class MazeGenerator : MonoBehaviour
         DrawMap();
         PopulateMap();
         FillDeadEnds();
+        FindFirstObjectByType<RestAreaUI>().PromptSave();
         OnMazeReady?.Invoke();
     }
 
@@ -106,7 +107,6 @@ public class MazeGenerator : MonoBehaviour
             if(space == _openSpaces[0])
             {
                 RestArea restA = Instantiate(_restAreaPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _endsParent);
-                restA.DeactivateCollider();
                 restA.SetCoordinates((int)space.x, (int)space.y);
                 restA.name = $"restArea {space.x} {space.y}";
                 RotateDeadEnd(restA.transform, space);
@@ -312,7 +312,6 @@ public class MazeGenerator : MonoBehaviour
             if(space == _openSpaces[0])
             {
                 RestArea startRestArea = Instantiate(_restAreaPrefab, new(space.x * _scale, 0, space.y * _scale), Quaternion.identity, _endsParent);
-                startRestArea.DeactivateCollider();
                 startRestArea.SetCoordinates((int)space.x, (int)space.y);
                 startRestArea.name = $"restArea {space.x} {space.y}";
                 RotateDeadEnd(startRestArea.transform, space);
@@ -380,7 +379,6 @@ public class MazeGenerator : MonoBehaviour
             RotateDeadEnd(deadEnd.transform, end);
             _elites.Add(deadEnd);
         }
-        FindFirstObjectByType<RestAreaUI>().PromptSave();
     }
 
 

@@ -12,8 +12,6 @@ public class LoadSplash : MonoBehaviour
     {
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         MazeGenerator.OnMazeReady += Uncover;
-        RestArea.OnRestAreaEntered += RestArea_RestAreaEntered;
-        RestAreaUI.OnRestAreaResolved += Uncover;
         PlayerHealth.OnPlayerDeath += Cover;
         GameOverSplash.OnRespawn += Uncover;
     }
@@ -22,8 +20,6 @@ public class LoadSplash : MonoBehaviour
     {
         SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
         MazeGenerator.OnMazeReady -= Uncover;
-        RestArea.OnRestAreaEntered -= RestArea_RestAreaEntered;
-        RestAreaUI.OnRestAreaResolved -= Uncover;
         PlayerHealth.OnPlayerDeath -= Cover;
         GameOverSplash.OnRespawn -= Uncover;
     }
@@ -34,11 +30,6 @@ public class LoadSplash : MonoBehaviour
         {
             Uncover();
         }
-    }
-
-    void RestArea_RestAreaEntered(Transform _)
-    {
-        Cover();
     }
 
     void Cover()

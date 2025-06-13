@@ -61,9 +61,4 @@ public class RestArea : MonoBehaviour
     {
         _coordinates = new(x, z);
     }
-
-    public void DeactivateCollider()
-    {
-        _collider.enabled = false;
-    }
 }

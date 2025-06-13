@@ -73,18 +73,18 @@ public class RestAreaUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_saveButton);
     }
 
-    public void ConfirmSave()
+    public void ConfirmSave() // UI Button
     {
         OnSaveConfirmed?.Invoke();
         CloseSaveMenu();
     }
 
-    public void CancelSave()
+    public void CancelSave() // UI Button
     {
         CloseSaveMenu();
     }
 
-    public void CloseSaveMenu()
+    void CloseSaveMenu()
     {
         _saveMenu.SetActive(false);
         OnRestAreaResolved?.Invoke();
