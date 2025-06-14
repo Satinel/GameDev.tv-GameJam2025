@@ -10,6 +10,9 @@ public class SaveSystem : MonoBehaviour
     public static event Action OnMazeDataFound;
     public static event Action OnSaveFound;
     public static event Action OnLoadStarted;
+    public static event Action OnSaveStarted;
+    public static event Action<string> OnSaveFailed;
+    public static event Action OnSaveCompleted;
 
     [SerializeField] List<Trinket> _allTrinkets = new();
     [SerializeField] PlayerInventory _inventory;
@@ -98,6 +101,7 @@ public class SaveSystem : MonoBehaviour
         if(_isSaving) { return; }
 
         _isSaving = true;
+        OnSaveStarted?.Invoke();
 
         string savePath;
 
@@ -115,7 +119,7 @@ public class SaveSystem : MonoBehaviour
 }
 #endif
 
-        List<string> dataStrings = new ();
+        List<string> dataStrings = new();
 
         dataStrings.Insert(dataStrings.Count, _stats.Level.ToString());
         dataStrings.Insert(dataStrings.Count, _stats.CurrentXP.ToString());
@@ -155,7 +159,7 @@ public class SaveSystem : MonoBehaviour
         }
         catch(Exception ex)
         {
-            Debug.Log(ex);
+            OnSaveFailed?.Invoke(ex.ToString());
             // _errorText.text = $"Failed to Save: {ex}";
             // _savePrompt.SetActive(false);
             // _animator.SetTrigger(SAVEFAILED_HASH);
@@ -164,6 +168,7 @@ public class SaveSystem : MonoBehaviour
         SaveMaze();
 
         _isSaving = false;
+        OnSaveCompleted?.Invoke();
     }
 
     public void SaveMaze()
@@ -183,7 +188,7 @@ public class SaveSystem : MonoBehaviour
         saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
 }
 #endif
-        List<string> dataStrings = new ();
+        List<string> dataStrings = new();
 
         MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
         if(!currentMaze) { return; }
