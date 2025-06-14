@@ -15,14 +15,14 @@ public class ExitUI : MonoBehaviour
     void Start()
     {
         Exit.OnExitEntered += Exit_OnExitEntered;
-        BossEncounter.OnBossDefeated += BossEncounter_OnBossDefeated;
+        // BossEncounter.OnBossDefeated += BossEncounter_OnBossDefeated;
         OptionsMenu.OnOptionsClosed += OptionsMenu_OnOptionsClosed;
     }
 
     void OnDestroy()
     {
         Exit.OnExitEntered -= Exit_OnExitEntered;
-        BossEncounter.OnBossDefeated -= BossEncounter_OnBossDefeated;
+        // BossEncounter.OnBossDefeated -= BossEncounter_OnBossDefeated;
         OptionsMenu.OnOptionsClosed -= OptionsMenu_OnOptionsClosed;
     }
 
@@ -33,12 +33,12 @@ public class ExitUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_exitButton);
     }
 
-    void BossEncounter_OnBossDefeated()
-    {
-        _exitWindow.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_exitButton);
-    }
+    // void BossEncounter_OnBossDefeated()
+    // {
+    //     _exitWindow.SetActive(true);
+    //     EventSystem.current.SetSelectedGameObject(null);
+    //     EventSystem.current.SetSelectedGameObject(_exitButton);
+    // }
 
     void OptionsMenu_OnOptionsClosed()
     {

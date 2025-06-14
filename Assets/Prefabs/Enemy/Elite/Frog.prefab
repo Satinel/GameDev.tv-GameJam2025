@@ -1182,10 +1182,10 @@ MonoBehaviour:
   <Name>k__BackingField: Frog
   <IsBoss>k__BackingField: 0
   <IsElite>k__BackingField: 1
-  <Strength>k__BackingField: 8
-  <Accuracy>k__BackingField: 12
+  <Strength>k__BackingField: 7
+  <Accuracy>k__BackingField: 10
   <Fortitude>k__BackingField: 5
-  <Evasion>k__BackingField: 10
+  <Evasion>k__BackingField: 12
   Tenacity: 1
   <Initiative>k__BackingField: 12
   <LootChance>k__BackingField: 100
@@ -1560,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 48
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b
@@ -1660,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 32
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6643826125865587150, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b

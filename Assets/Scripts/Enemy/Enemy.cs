@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             Fortitude *= floor;
             Evasion *= floor;
             Tenacity *= floor;
-            Initiative *= floor;
+            Initiative += floor;
         }
 
         _health = _maxHealth;
@@ -106,6 +106,8 @@ public class Enemy : MonoBehaviour
     {
         _inBattle = false;
         _health = _maxHealth;
+        IsPoisoned = false;
+        PoisonDamage = 0;
     }
 
     void PlayerAbilityPoison_OnPoisonHit(int poisonDamage)

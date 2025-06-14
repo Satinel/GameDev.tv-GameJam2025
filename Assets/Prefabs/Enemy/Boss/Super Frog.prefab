@@ -1182,10 +1182,10 @@ MonoBehaviour:
   <Name>k__BackingField: Cane Toad
   <IsBoss>k__BackingField: 1
   <IsElite>k__BackingField: 0
-  <Strength>k__BackingField: 18
-  <Accuracy>k__BackingField: 22
+  <Strength>k__BackingField: 16
+  <Accuracy>k__BackingField: 18
   <Fortitude>k__BackingField: 15
-  <Evasion>k__BackingField: 20
+  <Evasion>k__BackingField: 21
   Tenacity: 10
   <Initiative>k__BackingField: 22
   <LootChance>k__BackingField: 100
@@ -1560,7 +1560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Damage>k__BackingField
-      value: 48
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 1088713998549080126, guid: e2acfde478e331346917320f59b61b87, type: 3}
       propertyPath: <Color1>k__BackingField.b

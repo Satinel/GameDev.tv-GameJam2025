@@ -5,44 +5,57 @@ using UnityEngine.SceneManagement;
 public class VictorySplash : MonoBehaviour
 {
     [SerializeField] GameObject _window, _mainMenuButton, _newMazeButton;
-    bool _victory, _loading;
+    bool _isLoading;
     PlayerController _playerController;
 
     void Start()
     {
         Enemy.OnEnemyKilled += Enemy_OnEnemyKilled;
+        OptionsMenu.OnOptionsClosed += MenuMenu_OnOptionsClosed;
     }
 
     void OnDestroy()
     {
         Enemy.OnEnemyKilled -= Enemy_OnEnemyKilled;
+        OptionsMenu.OnOptionsClosed -= MenuMenu_OnOptionsClosed;
     }
 
-    void Update()
-    {
-        if(!_victory) { return; }
-        if(_loading) { return; }
+    // void Update()
+    // {
+    //     if(!_victory) { return; }
+    //     if(_isLoading) { return; }
 
-        if(EventSystem.current != _mainMenuButton || EventSystem.current != _newMazeButton)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_mainMenuButton);
-        }
-    }
+    //     if(EventSystem.current != _mainMenuButton || EventSystem.current != _newMazeButton)
+    //     {
+    //         EventSystem.current.SetSelectedGameObject(null);
+    //         EventSystem.current.SetSelectedGameObject(_mainMenuButton);
+    //     }
+    // }
 
     void Enemy_OnEnemyKilled(Enemy enemy)
     {
         if(!enemy.IsBoss) { return; }
 
         _window.SetActive(true);
-        _victory = true;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_newMazeButton);
     }
 
+    void MenuMenu_OnOptionsClosed()
+    {
+        if(_window.activeSelf)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_newMazeButton);
+        }
+    }
+
     public void LoadMainMenu()
     {
-        _loading = true;
+        if(_isLoading) { return; }
+
+        _isLoading = true;
         _mainMenuButton.SetActive(false);
         _newMazeButton.SetActive(false);
         _playerController = FindFirstObjectByType<PlayerController>();
@@ -52,7 +65,9 @@ public class VictorySplash : MonoBehaviour
 
     public void LoadNewMaze()
     {
-        _loading = true;
+        if(_isLoading) { return; }
+
+        _isLoading = true;
         FindFirstObjectByType<PlayerHealth>().IncreaseDungeonFloor();
         FindFirstObjectByType<PlayerInventory>().LoseKey();
         _mainMenuButton.SetActive(false);
