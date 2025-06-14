@@ -43,6 +43,7 @@ public class CombatLog : MonoBehaviour
         PlayerInventory.OnTrinketAdded += PlayerInventory_OnTrinketAdded;
         PlayerInventory.OnTrinketLevelled += PlayerInventory_OnTrinketLevelled;
         RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
+        StopWatch.OnActivated += StopWatch_OnActivated;
     }
 
     void OnDestroy()
@@ -72,6 +73,7 @@ public class CombatLog : MonoBehaviour
         PlayerInventory.OnTrinketAdded -= PlayerInventory_OnTrinketAdded;
         PlayerInventory.OnTrinketLevelled -= PlayerInventory_OnTrinketLevelled;
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
+        StopWatch.OnActivated -= StopWatch_OnActivated;
     }
 
     void Update()
@@ -243,5 +245,11 @@ public class CombatLog : MonoBehaviour
         {
             _audioSource.PlayOneShot(_restAreaSFX);
         }
+    }
+
+    void StopWatch_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Increased SAFE By {amount.FormatLargeNumbers()}\n");
     }
 }

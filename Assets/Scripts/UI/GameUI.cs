@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -32,6 +31,7 @@ public class GameUI : MonoBehaviour
         PlayerController.OnStatsPressed += PlayerController_OnStatsPressed;
         PlayerStats.OnExperienceGained += PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased += PlayerStats_OnStatIncreased;
+        PlayerStats.OnSAFEIncreased += PlayerStats_OnSAFEIncreased;
         PlayerStats.OnMoneyChanged += PlayerStats_OnMoneyChanged;
         PlayerStats.OnTempStatChange += PlayerStats_OnTempStatChange;
         PlayerInventory.OnWeaponEquipped += PlayerInventory_OnWeaponEquipped;
@@ -50,6 +50,7 @@ public class GameUI : MonoBehaviour
         PlayerController.OnStatsPressed -= PlayerController_OnStatsPressed;
         PlayerStats.OnExperienceGained -= PlayerStats_OnExperienceGained;
         PlayerStats.OnStatIncreased -= PlayerStats_OnStatIncreased;
+        PlayerStats.OnSAFEIncreased -= PlayerStats_OnSAFEIncreased;
         PlayerStats.OnMoneyChanged -= PlayerStats_OnMoneyChanged;
         PlayerInventory.OnWeaponEquipped -= PlayerInventory_OnWeaponEquipped;
         PlayerStats.OnTempStatChange -= PlayerStats_OnTempStatChange;
@@ -164,6 +165,11 @@ public class GameUI : MonoBehaviour
     }
 
     void PlayerStats_OnStatIncreased(PlayerStats.Stats _, int __)
+    {
+        SetStatsText();
+    }
+
+    void PlayerStats_OnSAFEIncreased()
     {
         SetStatsText();
     }

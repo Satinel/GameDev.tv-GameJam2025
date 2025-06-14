@@ -8,11 +8,12 @@ using TMPro;
 public class PlayerCombat : MonoBehaviour
 {
     public static event Action OnCombatResolved;
-    public static event Action OnEnemyMiss;
+    public static event Action<int> OnEnemyMiss;
     public static event Action<Trinket> OnRerollUsed;
     public static event Action<int> OnPlayerDealtDamage;
     public static event Action<int> OnPlayerTurnStart;
     public static event Action<int, string> OnPlayerAbilityUsed;
+    public static event Action OnPlayerWinsInitiative;
 
     [SerializeField] float _defaultDelay = 2f;
 
@@ -159,6 +160,7 @@ public class PlayerCombat : MonoBehaviour
 
         if(playerRoll + _playerStats.Initiative >= enemyRoll + _currentEnemy.Initiative)
         {
+            OnPlayerWinsInitiative?.Invoke();
             StartPlayerTurn();
         }
         else
@@ -226,7 +228,7 @@ public class PlayerCombat : MonoBehaviour
             _audioSource.PlayOneShot(_defaultMiss);
             Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
             floatingText.position = new(floatingText.position.x, floatingText.position.y - 300);
-            OnEnemyMiss?.Invoke();
+            OnEnemyMiss?.Invoke(ability.Damage + _currentEnemy.Strength);
         }
         _currentEnemy.AttackCompleted();
     }

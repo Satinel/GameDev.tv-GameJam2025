@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     public static event Action OnTempStatsReset;
     public static event Action<int> OnMoneyChanged;
     public static event Action<int> OnBonusXPEarned;
+    public static event Action OnSAFEIncreased;
 
     [field:SerializeField] public int Strength { get; private set; } // Primarily about dealing damage
     [field:SerializeField] public int Accuracy { get; private set; } // Primarily about landing attacks
@@ -66,6 +67,7 @@ public class PlayerStats : MonoBehaviour
         KeenNose.OnActivated += KeenNose_OnActivated;
         PrehensileTongue.OnActivated += PrehensileTongue_OnActivated;
         CompoundEye.OnActivated += CompoundEye_OnActivated;
+        StopWatch.OnActivated += StopWatch_OnActivated;
     }
 
     void OnDisable()
@@ -76,6 +78,7 @@ public class PlayerStats : MonoBehaviour
         KeenNose.OnActivated -= KeenNose_OnActivated;
         PrehensileTongue.OnActivated -= PrehensileTongue_OnActivated;
         CompoundEye.OnActivated -= CompoundEye_OnActivated;
+        StopWatch.OnActivated -= StopWatch_OnActivated;
     }
 
     void LevelUpWindow_OnLevelStatPicked(Stats stat, int amount)
@@ -117,6 +120,20 @@ public class PlayerStats : MonoBehaviour
     void CompoundEye_OnActivated(CompoundEye eye)
     {
         RerollTrinket = eye;
+    }
+
+    void StopWatch_OnActivated(string _, int amount)
+    {
+        IncreaseSAFE(amount);
+    }
+
+    void IncreaseSAFE(int amount)
+    {
+        _tempBonusStrength += amount;
+        _tempBonusAccuracy += amount;
+        _tempBonusFortitude += amount;
+        _tempBonusEvasion += amount;
+        OnSAFEIncreased?.Invoke();
     }
 
     public void GainExperience(int amount)

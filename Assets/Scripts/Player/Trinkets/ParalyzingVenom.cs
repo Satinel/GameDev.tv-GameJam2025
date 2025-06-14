@@ -4,6 +4,7 @@ using System;
 public class ParalyzingVenom : Trinket
 {
     public static event Action<string, int> OnActivated;
+
     [SerializeField] int _debuffAmount;
 
     void Awake()

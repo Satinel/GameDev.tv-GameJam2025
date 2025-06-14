@@ -25,7 +25,7 @@ public class TacticalLens : Trinket
         _toolTipText = $"Increase Accuracy By {_buffAmount + Level} After Evading An Attack";
     }
 
-    void PlayerCombat_OnEnemyMiss()
+    void PlayerCombat_OnEnemyMiss(int _)
     {
         Activation();
     }
