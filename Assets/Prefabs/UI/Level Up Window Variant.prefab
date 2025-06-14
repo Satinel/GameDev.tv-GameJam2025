@@ -1114,7 +1114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: _descriptionText
-      value: Increases Hit Points (HP)
+      value: Gain 75 Hit Points (HP)
       objectReference: {fileID: 0}
     - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: _toolTipTextArea
@@ -1303,7 +1303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: _descriptionText
-      value: Increases Damage Given
+      value: Increases Damage Dealt
       objectReference: {fileID: 0}
     - target: {fileID: 2331128842482549398, guid: d224cc37c470a9e4aabe244c6b653f94, type: 3}
       propertyPath: _toolTipTextArea

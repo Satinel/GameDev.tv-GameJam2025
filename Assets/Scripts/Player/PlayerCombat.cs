@@ -24,9 +24,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject _closeResultsButton, _mainMenuButton;
     [SerializeField] TextMeshProUGUI _combatLog, _resultsText, _playerInitiative, _enemyInitiative;
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse; // TODO replace these with prefabs containing visual effects along with sounds
+    [SerializeField] AudioClip _defaultHit, _defaultMiss, _defaultUse, _poisonDamageSFX;
     [SerializeField] DamageSplash _damageSplashPrefab;
-    [SerializeField] Transform _missFloatingTextPrefab;
+    [SerializeField] Transform _missFloatingTextPrefab, _dodgeFloatingTextPrefab, _envenomatedFloatText;
 
     PlayerHealth _playerHealth;
     PlayerStats _playerStats;
@@ -226,7 +226,7 @@ public class PlayerCombat : MonoBehaviour
         {
             _combatLog.text += $"\nMiss!\n";
             _audioSource.PlayOneShot(_defaultMiss);
-            Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
+            Transform floatingText = Instantiate(_dodgeFloatingTextPrefab, transform);
             floatingText.position = new(floatingText.position.x, floatingText.position.y - 300);
             OnEnemyMiss?.Invoke();
         }
@@ -307,15 +307,15 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        _audioSource.PlayOneShot(_defaultHit); // Visual FX HERE
+        _audioSource.PlayOneShot(_poisonDamageSFX);
 
         bool enemyDead = _currentEnemy.TakeDamage(_currentEnemy.PoisonDamage, false);
 
         DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
         damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-200f, 200f), damageFX.transform.position.y + UnityEngine.Random.Range(0f, 200f));
-        damageFX.Setup(Color.yellow, Color.green, Color.red, _currentEnemy.PoisonDamage.FormatLargeNumbers()); // TODO Better colors
+        damageFX.Setup(Color.red, Color.yellow, Color.red, _currentEnemy.PoisonDamage.FormatLargeNumbers());
 
-        _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=green>Venom</color> Damage!\n";
+        _combatLog.text += $"\n{_currentEnemy.Name} Took\n{_currentEnemy.PoisonDamage} <color=yellow>Venom</color> Damage!\n";
 
         if(!enemyDead)
         {
@@ -409,7 +409,9 @@ public class PlayerCombat : MonoBehaviour
         }
         else
         {
-            _audioSource.PlayOneShot(_defaultUse); // Visual FX HERE
+            _audioSource.PlayOneShot(_defaultUse);
+            Transform floatingText = Instantiate(_envenomatedFloatText, transform);
+            floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
             _playerActing = false;
             SelectFirstInteractableButton();
         }

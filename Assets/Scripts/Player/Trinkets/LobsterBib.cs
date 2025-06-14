@@ -5,7 +5,7 @@ public class LobsterBib : Trinket
 {
     public static event Action<string, int> OnActivated;
 
-    [SerializeField] int _healAmount = 15;
+    [SerializeField] int _healAmount = 50;
 
     PlayerHealth _playerHealth;
 

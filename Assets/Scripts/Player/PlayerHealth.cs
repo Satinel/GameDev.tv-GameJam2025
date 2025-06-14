@@ -13,8 +13,8 @@ public class PlayerHealth : MonoBehaviour
 
     public static int DungeonFloor { get; private set; } = 1;
     [SerializeField] int _baseLevelIncrease = 25, _tenacityMultiplyer = 75;
+    [SerializeField] int _maxHealth = 125;
 
-    int _maxHealth = 125;
     int _currentHealth = 125;
     bool _canRevive, _hasRevived;
     Vector3 _spawnPosition = Vector3.zero;
@@ -53,7 +53,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        _maxHealth = _playerStats.Tenacity * _tenacityMultiplyer;
         _currentHealth = _maxHealth;
     }
 
@@ -69,12 +68,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if(stat != PlayerStats.Stats.Tenacity) { return; }
 
-        _maxHealth = _playerStats.Tenacity * _tenacityMultiplyer;
-        _currentHealth += amount * _tenacityMultiplyer;
-        if(_currentHealth > _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
+        _maxHealth += amount * _tenacityMultiplyer;
+        _currentHealth = Mathf.Min(_maxHealth, amount * _tenacityMultiplyer);
+
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
