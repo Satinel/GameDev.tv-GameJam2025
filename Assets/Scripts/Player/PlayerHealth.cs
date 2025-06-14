@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public static event Action<Trinket, int> OnPlayerRevive;
 
     public static int DungeonFloor { get; private set; } = 1;
-    [SerializeField] int _tenacityMultiplyer = 125;
+    [SerializeField] int _baseLevelIncrease = 25, _tenacityMultiplyer = 75;
 
     int _maxHealth = 125;
     int _currentHealth = 125;
@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnEnable()
     {
+        PlayerStats.OnLevelUp += PlayerStats_OnLevelUp;
         PlayerStats.OnStatIncreased += PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted += EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
@@ -42,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnDisable()
     {
+        PlayerStats.OnLevelUp -= PlayerStats_OnLevelUp;
         PlayerStats.OnStatIncreased -= PlayerStats_OnTenacityIncreased;
         Enemy.OnFightStarted -= EnemyStats_OnFightStarted;
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
@@ -53,6 +55,14 @@ public class PlayerHealth : MonoBehaviour
     {
         _maxHealth = _playerStats.Tenacity * _tenacityMultiplyer;
         _currentHealth = _maxHealth;
+    }
+
+    void PlayerStats_OnLevelUp(int level)
+    {
+        _maxHealth += _baseLevelIncrease;
+        _currentHealth += _baseLevelIncrease;
+
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
 
     void PlayerStats_OnTenacityIncreased(PlayerStats.Stats stat, int amount)
