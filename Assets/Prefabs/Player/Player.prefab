@@ -1505,7 +1505,6 @@ MonoBehaviour:
   _autoRotateSpeed: 85
   _mouseSensitivity: 1
   _customCursor: {fileID: 2800000, guid: 4faf19495fd333c4c9d52d6dc224cc07, type: 3}
-  _playerInput: {fileID: 8427840521243357608}
 --- !u!114 &8287712847053111603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1537,7 @@ MonoBehaviour:
   _weaponsParent: {fileID: 4906019442538837377}
   _unarmedLeft: {fileID: 8561436319350109281}
   _unarmedRight: {fileID: 3137806993205200348}
+  _testTrinkets: []
 --- !u!114 &4643666014486381817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1557,7 +1557,9 @@ MonoBehaviour:
   <Tenacity>k__BackingField: 1
   <Initiative>k__BackingField: 1
   <Money>k__BackingField: 0
+  <CriticalHitBonus>k__BackingField: 0
   _baseLevelXP: 25
+  RerollTrinket: {fileID: 0}
 --- !u!114 &5466138989926516346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,6 +1595,7 @@ MonoBehaviour:
   - {fileID: 6216607325764774101, guid: 1e57210b32860da409e8681389187d11, type: 3}
   - {fileID: 8173069060424587993, guid: c38b2ede9c10bda41aebb9b387e0e59c, type: 3}
   - {fileID: -3597358570822654794, guid: 9969e5bd147d6644280d957c8cf66733, type: 3}
+  - {fileID: 7424105224393371874, guid: aaaeb86c51b407e4c964fdbe31714b3d, type: 3}
   - {fileID: -9082045364081580512, guid: d2194eaa898f7cb49a4bbc4ca9934f0a, type: 3}
   - {fileID: 7954079750948677717, guid: 06849eadcb55a234f97ac9094858acec, type: 3}
   - {fileID: 3199549382215357561, guid: cefded5716913764dbc928f219fb2a7a, type: 3}
@@ -1605,6 +1608,7 @@ MonoBehaviour:
   - {fileID: -2067764475112987270, guid: b610a7b9f82b85947a25fe4b0eb2c389, type: 3}
   - {fileID: 5426738683328500236, guid: ecb97c6b3c4e07143bf62c08811a492d, type: 3}
   - {fileID: -8970973399201382796, guid: 3eadb53e8f270654da953d59b7a603a4, type: 3}
+  - {fileID: 8364230362798830623, guid: 6d5ff4f960edfc849a1ee353ef6d0186, type: 3}
   - {fileID: -7599161028642291572, guid: e06248088a3a7284bbde4fe17fef5e19, type: 3}
   _inventory: {fileID: 4907908710258672733}
   _stats: {fileID: 4643666014486381817}
