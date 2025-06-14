@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerAbilitySwapper : PlayerAbility
 {
+    public static event Action<int> OnGrabStateChanged;
+
     [SerializeField] int _accuracyBuff;
     [SerializeField] Equipable _swappedEquipment;
     [SerializeField] Equipable _baseEquipable;
@@ -41,6 +44,7 @@ public class PlayerAbilitySwapper : PlayerAbility
         base.Hit();
         _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff);
         _playerInventory.EquipWeapon(_swappedEquipment, _swappedEquipment.IsLeftSlot);
+        OnGrabStateChanged?.Invoke(_accuracyBuff);
     }
 
     public override void Miss()
@@ -49,6 +53,7 @@ public class PlayerAbilitySwapper : PlayerAbility
         {
             _playerStats.GainTempBonus(PlayerStats.Stats.Accuracy, _accuracyBuff);
             _playerInventory.EquipWeapon(_swappedEquipment, _swappedEquipment.IsLeftSlot);
+            OnGrabStateChanged?.Invoke(_accuracyBuff);
         }
     }
 }

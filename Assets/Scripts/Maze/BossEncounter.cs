@@ -10,6 +10,7 @@ public class BossEncounter : MonoBehaviour
     [SerializeField] GameObject _mapIcon, _door;
     [SerializeField] BoxCollider _collider;
     [SerializeField] Exit _exitPrefab;
+    [SerializeField] bool _isTutorial;
 
     Enemy _boss;
     bool _isRevealed;
@@ -23,11 +24,11 @@ public class BossEncounter : MonoBehaviour
 
     void OnEnable()
     {
-        if(_bossPrefabs.Length >= _floor)
+        if(_bossPrefabs.Length >= _floor && !_isTutorial)
         {
             _bossPrefab = _bossPrefabs[_floor - 1];
         }
-        else
+        else if(!_isTutorial)
         {
             _bossPrefab = _bossPrefabs[UnityEngine.Random.Range(0, _bossPrefabs.Length - 1)];
         }

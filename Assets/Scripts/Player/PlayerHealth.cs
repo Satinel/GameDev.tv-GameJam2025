@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
         if(stat != PlayerStats.Stats.Tenacity) { return; }
 
         _maxHealth += amount * _tenacityMultiplyer;
-        _currentHealth = Mathf.Min(_maxHealth, amount * _tenacityMultiplyer);
+        _currentHealth = Mathf.Min(_maxHealth, _currentHealth + (amount * _tenacityMultiplyer));
 
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }

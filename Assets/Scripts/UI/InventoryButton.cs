@@ -49,7 +49,7 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetTrinket(Trinket trinket, TextMeshProUGUI toolTip)
     {
         Trinket = trinket;
-        _buttonText.text = Trinket.Name;
+        _buttonText.text = Trinket.GetName();
         _toolTipTextArea = toolTip;
     }
 

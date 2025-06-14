@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sting
   <Adjective>k__BackingField: <color=Green>Player</color>
-  <HitChance>k__BackingField: 60
+  <HitChance>k__BackingField: 65
   <Damage>k__BackingField: 0
   <AlwaysHits>k__BackingField: 0
   <DealsDamage>k__BackingField: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   UseMessage: \nEnemy Envenomated!\n
   _sendUseMessage: 1
   _poisonDamage: 10
+  _hitChanceBuff: 15
 --- !u!1 &1050778114940919757
 GameObject:
   m_ObjectHideFlags: 0

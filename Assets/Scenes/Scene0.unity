@@ -5417,6 +5417,14 @@ PrefabInstance:
       propertyPath: _bossPrefab
       value: 
       objectReference: {fileID: 2365547937222488892, guid: bc16a43e924b948428652f6cd0ceda12, type: 3}
+    - target: {fileID: 1280366896334935162, guid: 74a2b8fc5b2fb2c499c933c82ee81434, type: 3}
+      propertyPath: _isTutorial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280366896334935162, guid: 74a2b8fc5b2fb2c499c933c82ee81434, type: 3}
+      propertyPath: _bossPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2672655268430434176, guid: 74a2b8fc5b2fb2c499c933c82ee81434, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24

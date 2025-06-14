@@ -29,4 +29,16 @@ public class Trinket : MonoBehaviour
     {
         // Each Trinket will call this under unique circumstances to do a unique thing
     }
+
+    public virtual string GetName()
+    {
+        if(Level > 0)
+        {
+            return $"{_startingName} (+{Level})";
+        }
+        else
+        {
+            return _startingName;
+        }
+    }
 }
