@@ -215,7 +215,7 @@ public class PlayerCombat : MonoBehaviour
 
                 DamageSplash damageFX = Instantiate(_damageSplashPrefab, transform);
                 damageFX.transform.position = new(damageFX.transform.position.x + UnityEngine.Random.Range(-300f, 300f), damageFX.transform.position.y + UnityEngine.Random.Range(-100f, 0f));
-                damageFX.Setup(ability.Color1, ability.Color2, ability.ColorFont, damageDealt.FormatLargeNumbers()); // TODO set colors through ability
+                damageFX.Setup(ability.Color1, ability.Color2, ability.ColorFont, damageDealt.FormatLargeNumbers());
             }
             else
             {

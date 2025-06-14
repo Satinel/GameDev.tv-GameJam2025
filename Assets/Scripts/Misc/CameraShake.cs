@@ -19,7 +19,7 @@ public class CameraShake : MonoBehaviour
         PlayerHealth.OnTakeDamage -= PlayerHealth_OnTakeDamage;
     }
 
-    void PlayerHealth_OnTakeDamage()
+    void PlayerHealth_OnTakeDamage() // TODO Options Menu to disable Screen Shake
     {
         if(_isShaking) { return; }
 

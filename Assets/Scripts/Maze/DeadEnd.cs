@@ -6,7 +6,7 @@ public class DeadEnd : MonoBehaviour
 {
     public static event Action OnAnyDeadEndEvent;
 
-    [SerializeField] List<Enemy> _enemies = new(); // TODO create stronger enemies for these special fights
+    [SerializeField] List<Enemy> _enemies = new();
     [SerializeField] GameObject _mapIcon;
 
     bool _isRevealed;
@@ -75,7 +75,6 @@ public class DeadEnd : MonoBehaviour
     {
         if(enemy == _enemy)
         {
-            // TODO Give special reward
             _enemy.EndBattle();
             gameObject.SetActive(false);
         }
