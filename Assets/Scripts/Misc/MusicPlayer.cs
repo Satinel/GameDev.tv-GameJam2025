@@ -3,8 +3,9 @@ using UnityEngine;
 public class MusicPlayer : MonoBehaviour
 {
     [SerializeField] AudioSource _mainAudioSource;
-    [SerializeField] AudioClip _dungeonClip, _regularBattleClip, _eliteBattleClip, _bossBattleClip, _victoryClip, _defeatClip;
+    [SerializeField] AudioClip _dungeonClip, _regularBattleClip, _eliteBattleClip, _bossBattleClip, _victoryClip, _defeatClip, _bossDefeatClip;
     [SerializeField] AudioClip _storeClip, _alternateBattleClip, _alternateEliteClip;
+    bool _bossDefeated;
 
     void OnEnable()
     {
@@ -63,11 +64,21 @@ public class MusicPlayer : MonoBehaviour
     void Enemy_OnEnemyKilled(Enemy enemy)
     {
         _mainAudioSource.Stop();
-        _mainAudioSource.PlayOneShot(_victoryClip);
+        if(enemy.IsBoss)
+        {
+            _mainAudioSource.PlayOneShot(_bossDefeatClip);
+            _bossDefeated = true;
+        }
+        else
+        {
+            _mainAudioSource.PlayOneShot(_victoryClip);
+        }
     }
 
     void PlayerCombat_OnCombatResolved()
     {
+        if(_bossDefeated) { return; }
+
         _mainAudioSource.Stop();
         _mainAudioSource.clip = _dungeonClip;
         _mainAudioSource.Play();

@@ -149,6 +149,7 @@ MonoBehaviour:
   _bossBattleClip: {fileID: 8300000, guid: 48c2ad49802287842ae81527ada62383, type: 3}
   _victoryClip: {fileID: 8300000, guid: 6394a61fde206b44ea4e2560e7b0fb53, type: 3}
   _defeatClip: {fileID: 8300000, guid: 32e2cc72cc2498742ae218afa44c2d07, type: 3}
+  _bossDefeatClip: {fileID: 8300000, guid: f550d93c720df2747a266a86e53dca3f, type: 3}
   _storeClip: {fileID: 8300000, guid: 365d5c8ecb5a61b45b778a4979e3508b, type: 3}
   _alternateBattleClip: {fileID: 8300000, guid: 98bdf04fcd884404387d72cde823652b, type: 3}
   _alternateEliteClip: {fileID: 8300000, guid: f596487cff3e2ac4b8bfb8473f6e2f0c, type: 3}
