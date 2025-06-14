@@ -5,6 +5,7 @@ public class BossEncounter : MonoBehaviour
 {
     public static event Action OnBossDefeated;
 
+    [SerializeField] Enemy[] _bossPrefabs;
     [SerializeField] Enemy _bossPrefab;
     [SerializeField] GameObject _mapIcon, _door;
     [SerializeField] BoxCollider _collider;
@@ -12,10 +13,24 @@ public class BossEncounter : MonoBehaviour
 
     Enemy _boss;
     bool _isRevealed;
+    int _floor;
     Vector2 _coordinates = new();
+
+    void Awake()
+    {
+        _floor = PlayerHealth.DungeonFloor;
+    }
 
     void OnEnable()
     {
+        if(_bossPrefabs.Length >= _floor)
+        {
+            _bossPrefab = _bossPrefabs[_floor - 1];
+        }
+        else
+        {
+            _bossPrefab = _bossPrefabs[UnityEngine.Random.Range(0, _bossPrefabs.Length - 1)];
+        }
         _boss = Instantiate(_bossPrefab, transform);
     }
 

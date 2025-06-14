@@ -69,6 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e101ff26e8b2d4bb2935813e770c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bossPrefabs:
+  - {fileID: 1966919089452940214, guid: 20b6355d433acce429e58923b9c5a717, type: 3}
+  - {fileID: -4639969856977895938, guid: 3c4d3a6d6e5c27741b3da52d3f11be20, type: 3}
+  - {fileID: 7680241156815145991, guid: 445ab4b20553ee942a6c586dc7fc5a2d, type: 3}
+  - {fileID: 3072797985729650234, guid: 8f277bdde39ddf94bb10f69b52c355c5, type: 3}
+  - {fileID: -7177620125098401147, guid: 28b057e4111bd4a44a026fce829a67d8, type: 3}
   _bossPrefab: {fileID: 1966919089452940214, guid: 20b6355d433acce429e58923b9c5a717, type: 3}
   _mapIcon: {fileID: 4010301159153291716}
   _door: {fileID: 163752961942903024}
