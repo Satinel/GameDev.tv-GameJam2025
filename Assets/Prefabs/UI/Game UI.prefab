@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 1200, y: 500}
+  m_SizeDelta: {x: 1400, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9007775572615186166
 CanvasRenderer:
@@ -65,14 +65,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You Have Defeated the Serpent Lord
+  m_text: 'You Have Defeated The Apex Predator
 
 
-    And Claimed This Tiny World
+    And Claimed Their Realm
 
 
-    May
-    Your Reign Be Eternal!'
+    Rule
+    Here Or Delve Deeper?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2058,7 +2058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9121359521971043788, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -250
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9121359521971043788, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2903,11 +2903,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 709f471f3dd135b49be4340b386ca5ef, type: 2}
     - target: {fileID: 5475461108587974908, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_text
-      value: NEW MAZE
+      value: ONWARD!
       objectReference: {fileID: 0}
     - target: {fileID: 5475461108587974908, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_fontSize
-      value: 59.65
+      value: 68.3
       objectReference: {fileID: 0}
     - target: {fileID: 7833359069089527361, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_Name
@@ -2975,7 +2975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9121359521971043788, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 250
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 9121359521971043788, guid: cdf9171d403f5b64d9c2935334a82fe5, type: 3}
       propertyPath: m_AnchoredPosition.y
