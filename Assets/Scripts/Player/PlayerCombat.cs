@@ -343,11 +343,47 @@ public class PlayerCombat : MonoBehaviour
 
     public void UseAttack(int index) // UI Button
     {
+        if(_playerActing) { return; }
         if(!_currentEnemy) { return; }
 
         _playerActing = true;
+        foreach(Button button in _buttons)
+        {
+            button.interactable = false;
+        }
 
         EventSystem.current.SetSelectedGameObject(null);
+
+        switch(index)
+        {
+            case 0:
+                _buttons[0].gameObject.SetActive(false);
+                _buttons[1].gameObject.SetActive(false);
+                break;
+            case 1:
+                _buttons[0].gameObject.SetActive(false);
+                _buttons[1].gameObject.SetActive(false);
+                break;
+            case 2:
+                _buttons[2].gameObject.SetActive(false);
+                _buttons[3].gameObject.SetActive(false);
+                break;
+            case 3:
+                _buttons[2].gameObject.SetActive(false);
+                _buttons[3].gameObject.SetActive(false);
+                break;
+            case 4:
+                _buttons[4].gameObject.SetActive(false);
+                _buttons[5].gameObject.SetActive(false);
+                break;
+            case 5:
+                _buttons[4].gameObject.SetActive(false);
+                _buttons[5].gameObject.SetActive(false);
+                break;
+            default:
+                break;
+        }
+
         _selectedAbility = _playerInventory.GetAbility(index);
         _combatLog.text += $"\nYou Used {_selectedAbility.Name}!\n";
 
@@ -408,7 +444,7 @@ public class PlayerCombat : MonoBehaviour
             if(!enemyDead)
             {
                 _playerActing = false;
-                SelectFirstInteractableButton();
+                RestoreButtonInteraction();
             }
         }
         else
@@ -417,7 +453,7 @@ public class PlayerCombat : MonoBehaviour
             Transform floatingText = Instantiate(_envenomatedFloatText, transform);
             floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
             _playerActing = false;
-            SelectFirstInteractableButton();
+            RestoreButtonInteraction();
         }
         _hasCriticalHit = false;
         _selectedAbility = null;
@@ -431,6 +467,18 @@ public class PlayerCombat : MonoBehaviour
         Transform floatingText = Instantiate(_missFloatingTextPrefab, transform);
         floatingText.position = new(floatingText.position.x, floatingText.position.y + 50);
         _playerActing = false;
+        RestoreButtonInteraction();
+    }
+
+    void RestoreButtonInteraction()
+    {
+        foreach(Button button in _buttons)
+        {
+            if(button.gameObject.activeSelf)
+            {
+                button.interactable = true;
+            }
+        }
         SelectFirstInteractableButton();
     }
 
@@ -440,7 +488,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach(Button button in _buttons)
         {
-            if(button.interactable)
+            if(button.gameObject.activeSelf && button.interactable)
             {
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
                 if(button == _endTurnButton && !_playerActing && _isPlayerTurn)
