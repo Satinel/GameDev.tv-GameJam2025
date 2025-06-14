@@ -620,12 +620,12 @@ MonoBehaviour:
   <Name>k__BackingField: Salamander
   <IsBoss>k__BackingField: 0
   <IsElite>k__BackingField: 0
-  <Strength>k__BackingField: 10
-  <Accuracy>k__BackingField: 3
-  <Fortitude>k__BackingField: 7
+  <Strength>k__BackingField: 9
+  <Accuracy>k__BackingField: 4
+  <Fortitude>k__BackingField: 6
   <Evasion>k__BackingField: 3
   Tenacity: 1
-  <Initiative>k__BackingField: 5
+  <Initiative>k__BackingField: 6
   <LootChance>k__BackingField: 15
   _maxHealth: 90
   _attacksPerTurn: 1
