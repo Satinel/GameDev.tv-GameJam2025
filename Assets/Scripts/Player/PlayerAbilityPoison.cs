@@ -43,7 +43,7 @@ public class PlayerAbilityPoison : PlayerAbility
         }
         else
         {
-            _hitChanceBuff -= _hitChanceBuff;
+            HitChance -= _hitChanceBuff;
         }
     }
 

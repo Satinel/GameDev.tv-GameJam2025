@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingName: Feather
-  _toolTipText: Evading An Attack Heals You For 50
-  _healAmount: 50
+  _toolTipText: Evading An Attack Heals You For 15
+  _healAmount: 15

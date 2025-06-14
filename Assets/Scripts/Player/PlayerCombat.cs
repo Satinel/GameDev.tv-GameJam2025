@@ -181,6 +181,10 @@ public class PlayerCombat : MonoBehaviour
         _results.SetActive(true);
         _combatLog.text += $"\nEarned {_currentEnemy.ExperienceValue} XP!\n\nFound {_currentEnemy.MoneyValue} BugBucks!\n";
         _resultsText.text = $"-RESULTS-\n\nEarned {_currentEnemy.ExperienceValue} XP!\nFound {_currentEnemy.MoneyValue} BugBucks!\n";
+        if(enemy.IsBoss)
+        {
+            CloseCombatMenu();
+        }
     }
 
     void PlayerInventory_OnTrinketAdded(Trinket trinket)

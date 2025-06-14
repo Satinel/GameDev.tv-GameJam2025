@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class VictorySplash : MonoBehaviour
 {
     [SerializeField] GameObject _window, _mainMenuButton, _newMazeButton;
-    bool _victory;
+    bool _victory, _loading;
     PlayerController _playerController;
 
     void Start()
@@ -21,8 +21,9 @@ public class VictorySplash : MonoBehaviour
     void Update()
     {
         if(!_victory) { return; }
+        if(_loading) { return; }
 
-        if(EventSystem.current != _mainMenuButton)
+        if(EventSystem.current != _mainMenuButton || EventSystem.current != _newMazeButton)
         {
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(_mainMenuButton);
@@ -36,11 +37,12 @@ public class VictorySplash : MonoBehaviour
         _window.SetActive(true);
         _victory = true;
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_mainMenuButton);
+        EventSystem.current.SetSelectedGameObject(_newMazeButton);
     }
 
     public void LoadMainMenu()
     {
+        _loading = true;
         _mainMenuButton.SetActive(false);
         _newMazeButton.SetActive(false);
         _playerController = FindFirstObjectByType<PlayerController>();
@@ -50,6 +52,7 @@ public class VictorySplash : MonoBehaviour
 
     public void LoadNewMaze()
     {
+        _loading = true;
         FindFirstObjectByType<PlayerHealth>().IncreaseDungeonFloor();
         FindFirstObjectByType<PlayerInventory>().LoseKey();
         _mainMenuButton.SetActive(false);

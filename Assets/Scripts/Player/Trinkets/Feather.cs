@@ -5,7 +5,7 @@ public class Feather : Trinket
 {
     public static event Action<string, int> OnActivated;
 
-    [SerializeField] int _healAmount = 50;
+    [SerializeField] int _healAmount = 15;
     PlayerHealth _playerHealth;
 
     void Awake()

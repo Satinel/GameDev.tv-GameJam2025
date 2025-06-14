@@ -16,9 +16,9 @@ public class SaveUI : MonoBehaviour
 
     void OnDestroy()
     {
-        SaveSystem.OnSaveStarted += SaveSystem_OnSaveStarted;
-        SaveSystem.OnSaveFailed += SaveSystem_OnSaveFailed;
-        SaveSystem.OnSaveCompleted += SaveSystem_OnSaveCompleted;
+        SaveSystem.OnSaveStarted -= SaveSystem_OnSaveStarted;
+        SaveSystem.OnSaveFailed -= SaveSystem_OnSaveFailed;
+        SaveSystem.OnSaveCompleted -= SaveSystem_OnSaveCompleted;
     }
 
     void SaveSystem_OnSaveStarted()

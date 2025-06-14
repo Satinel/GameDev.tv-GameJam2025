@@ -103,7 +103,14 @@ public class PlayerStats : MonoBehaviour
         _tempBonusFortitude = 0;
         _tempBonusEvasion = 0;
         OnTempStatsReset?.Invoke();
-        GainExperience(enemy.ExperienceValue);
+        if(!enemy.IsBoss)
+        {
+            GainExperience(enemy.ExperienceValue);
+        }
+        else
+        {
+            GainBossExperience(enemy.ExperienceValue);
+        }
         ChangeMoney(enemy.MoneyValue);
     }
 
@@ -148,6 +155,20 @@ public class PlayerStats : MonoBehaviour
         }
 
         CheckForLevelUp();
+
+        OnExperienceGained?.Invoke();
+    }
+
+    void GainBossExperience(int amount)
+    {
+        _experience += amount;
+
+        if(_xpBonusMultiplyer > 0)
+        {
+            int bonus = Mathf.FloorToInt(amount * _xpBonusMultiplyer);
+            _experience += bonus;
+            OnBonusXPEarned?.Invoke(bonus);
+        }
 
         OnExperienceGained?.Invoke();
     }
