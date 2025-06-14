@@ -44,6 +44,7 @@ public class CombatLog : MonoBehaviour
         PlayerInventory.OnTrinketLevelled += PlayerInventory_OnTrinketLevelled;
         RestAreaUI.OnRestAreaUsed += RestAreaUI_OnRestAreaUsed;
         StopWatch.OnActivated += StopWatch_OnActivated;
+        Feather.OnActivated += Feather_OnActivated;
     }
 
     void OnDestroy()
@@ -74,6 +75,7 @@ public class CombatLog : MonoBehaviour
         PlayerInventory.OnTrinketLevelled -= PlayerInventory_OnTrinketLevelled;
         RestAreaUI.OnRestAreaUsed -= RestAreaUI_OnRestAreaUsed;
         StopWatch.OnActivated -= StopWatch_OnActivated;
+        Feather.OnActivated -= Feather_OnActivated;
     }
 
     void Update()
@@ -250,6 +252,12 @@ public class CombatLog : MonoBehaviour
     void StopWatch_OnActivated(string name, int amount)
     {
         AddActivationToLog(name);
-        AddToLog($"Increased SAFE By {amount.FormatLargeNumbers()}\n");
+        AddToLog($"Increased SAFE By {amount.FormatLargeNumbers()}!\n");
+    }
+
+    void Feather_OnActivated(string name, int amount)
+    {
+        AddActivationToLog(name);
+        AddToLog($"Gained {amount} Health!\n");
     }
 }
