@@ -365,6 +365,17 @@
                 },
                 {
                     "name": "",
+                    "id": "153ee639-ff7f-46b8-bb83-c6701fcc1738",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Options",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f2e9ba44-c423-42a7-ad56-f20975884794",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
