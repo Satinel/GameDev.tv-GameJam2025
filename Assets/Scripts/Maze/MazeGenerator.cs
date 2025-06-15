@@ -179,8 +179,15 @@ public class MazeGenerator : MonoBehaviour
             randomEnc.name = $"Encounter {xCor} {zCor}";
             _randomEncounters.Add(randomEnc);
         }
-
+#if UNITY_WEBGL
+{
+        _playerHealth.gameObject.transform.position = new(float.Parse(dataArray[dataArray.Length - 3]), 0, float.Parse(dataArray[dataArray.Length - 2]));;
+}
+#else
+{
         _playerHealth.gameObject.transform.position = new(float.Parse(dataArray[dataArray.Length - 2]), 0, float.Parse(dataArray[dataArray.Length - 1]));;
+}
+#endif
         _playerHealth.SetSpawnPoint();
 
         // foreach(MazeSpace space in _revealedSpaces)
