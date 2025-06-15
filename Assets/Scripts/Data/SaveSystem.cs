@@ -26,6 +26,7 @@ public class SaveSystem : MonoBehaviour
     const string SAVENAME = "gameData.txt";
     const string SAVEMAZENAME = "saveMaze.txt";
     const string PPSAVE = "ppSave";
+    const string PPMAZE = "ppMaze";
 
     void Awake()
     {
@@ -171,30 +172,15 @@ public class SaveSystem : MonoBehaviour
             // _animator.SetTrigger(SAVEFAILED_HASH);
         }
 
-        SaveMaze();
 }
 #endif
-
+        SaveMaze();
         _isSaving = false;
         OnSaveCompleted?.Invoke();
     }
 
     public void SaveMaze()
     {
-#if UNITY_WEBGL
-{
-        // saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
-        // if(!Directory.Exists(saveMazePath))
-        // {
-        //     Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
-        // }
-}
-#else
-{
-        string saveMazePath;
-
-        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
-
         List<string> dataStrings = new();
 
         MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
@@ -241,7 +227,24 @@ public class SaveSystem : MonoBehaviour
 
         dataStrings.Insert(dataStrings.Count, _health.GetSpawnPosition().x.ToString());
         dataStrings.Insert(dataStrings.Count, _health.GetSpawnPosition().z.ToString());
-
+#if UNITY_WEBGL
+{
+        // saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
+        // if(!Directory.Exists(saveMazePath))
+        // {
+        //     Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
+        // }
+        string mazeString = string.Empty;
+        for(int i = 0; i < dataStrings.Count; i++)
+        {
+            mazeString += $"{dataStrings[i]}\n";
+        }
+        PlayerPrefs.SetString(PPMAZE, mazeString);
+}
+#else
+{
+        string saveMazePath;
+        saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
         File.WriteAllLines(saveMazePath, dataStrings);
 }
 #endif
@@ -325,8 +328,7 @@ public class SaveSystem : MonoBehaviour
     {
 #if UNITY_WEBGL
 {
-        return false;
-        // saveMazePath = WEBPATH + SAVEMAZENAME;
+        return PlayerPrefs.GetString(PPMAZE, string.Empty) != string.Empty;
 }
 #else
 {
@@ -375,19 +377,20 @@ public class SaveSystem : MonoBehaviour
 
     IEnumerator SetupMazeRoutine()
     {
-        string saveMazePath;
         string[] dataArray;
 
 #if UNITY_WEBGL
 {
-        saveMazePath = WEBPATH + SAVEMAZENAME;
+        // saveMazePath = WEBPATH + SAVEMAZENAME;
+        dataArray = PlayerPrefs.GetString(PPMAZE, string.Empty).Split('\n');
 }
 #else
 {
+        string saveMazePath;
         saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
+        dataArray = File.ReadAllLines(saveMazePath);
 }
 #endif
-        dataArray = File.ReadAllLines(saveMazePath);
 
         MazeGenerator mazeGenerator = FindFirstObjectByType<MazeGenerator>();
 
