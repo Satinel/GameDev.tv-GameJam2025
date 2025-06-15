@@ -18,27 +18,20 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] PlayerInventory _inventory;
     [SerializeField] PlayerStats _stats;
     [SerializeField] PlayerHealth _health;
-    
-    // [SerializeField] Animator _animator;
-    // [SerializeField] TextMeshProUGUI _errorText, _saveButtonText;
 
     bool _isSaving;
     int _sceneIndex = 2;
 
-    // static readonly int SAVED_HASH = Animator.StringToHash("Saved");
-    // static readonly int NOFILE_HASH = Animator.StringToHash("NoFile");
-    // static readonly int SAVEFAILED_HASH = Animator.StringToHash("SaveFailed");
     const string WEBPATH = "/idbfs/FirstPersonScorpion/";
-    // const string AUTOSAVENAME = "autoSave.txt";
     const string SAVENAME = "gameData.txt";
     const string SAVEMAZENAME = "saveMaze.txt";
+    const string PPSAVE = "ppSave";
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         TitleScreen.OnMusicStarted += TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete += TitleScreen_OnCreepComplete;
-        // RestAreaUI.OnRestUIActivated += AutoSave;
         RestAreaUI.OnSaveConfirmed += ManualSave;
     }
 
@@ -46,30 +39,31 @@ public class SaveSystem : MonoBehaviour
     {
         TitleScreen.OnMusicStarted -= TitleScreen_OnMusicStarted;
         TitleScreen.OnCreepComplete -= TitleScreen_OnCreepComplete;
-        // RestAreaUI.OnRestUIActivated -= AutoSave;
         RestAreaUI.OnSaveConfirmed -= ManualSave;
     }
 
     void TitleScreen_OnMusicStarted()
     {
-        string path;
-        // string autoPath;
 #if UNITY_WEBGL
 {
-        path = WEBPATH + SAVENAME;
-        // autoPath = WEBPATH + AUTOSAVENAME;
+        // path = WEBPATH + SAVENAME;
+        if(PlayerPrefs.GetString(PPSAVE, string.Empty) != string.Empty)
+        {
+            OnSaveFound?.Invoke();
+        }
 }
 #else
 {
+        string path;
         path = Application.persistentDataPath + "/" +  SAVENAME;
         path = Application.persistentDataPath + "/" +  SAVEMAZENAME;
-        // autoPath = Application.persistentDataPath + "/" +  AUTOSAVENAME;
-}
-#endif
+
         if(File.Exists(path))
         {
             OnSaveFound?.Invoke();
         }
+}
+#endif
         if(CheckMazeData())
         {
             OnMazeDataFound?.Invoke();
@@ -86,11 +80,6 @@ public class SaveSystem : MonoBehaviour
         LoadDataFile(SAVENAME, true);
     }
 
-    // public void AutoSave()
-    // {
-    //     SaveDataFile(AUTOSAVENAME);
-    // }
-
     public void ManualSave()
     {
         SaveDataFile(SAVENAME);
@@ -103,18 +92,17 @@ public class SaveSystem : MonoBehaviour
         _isSaving = true;
         OnSaveStarted?.Invoke();
 
-        string savePath;
-
 #if UNITY_WEBGL
 {
-        savePath = WEBPATH + fileName;
-        if(!Directory.Exists(savePath))
-        {
-            Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
-        }
+        // savePath = WEBPATH + fileName;
+        // if(!Directory.Exists(savePath))
+        // {
+        //     Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
+        // }
 }
 #else
 {
+        string savePath;
         savePath = Application.persistentDataPath + "/" +  fileName; // Note the / is needed here but not in WEBGL
 }
 #endif
@@ -146,7 +134,25 @@ public class SaveSystem : MonoBehaviour
             dataStrings.Insert(dataStrings.Count, trinket.StartingName.ToString());
             dataStrings.Insert(dataStrings.Count, (trinket.Level + 1).ToString());
         }
+#if UNITY_WEBGL
+{
+        string webSave = string.Empty;
+        for(int i = 0; i < dataStrings.Count; i++)
+        {
+           webSave += $"{dataStrings[i]}\n";
+        }
 
+        try
+        {
+            PlayerPrefs.SetString(PPSAVE, webSave);
+        }
+        catch(Exception e)
+        {
+            OnSaveFailed?.Invoke(e.ToString());
+        }
+}
+#else
+{
         try
         {
             File.WriteAllLines(savePath, dataStrings);
@@ -166,6 +172,8 @@ public class SaveSystem : MonoBehaviour
         }
 
         SaveMaze();
+}
+#endif
 
         _isSaving = false;
         OnSaveCompleted?.Invoke();
@@ -173,21 +181,20 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveMaze()
     {
-
-        string saveMazePath;
 #if UNITY_WEBGL
 {
-        saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
-        if(!Directory.Exists(saveMazePath))
-        {
-            Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
-        }
+        // saveMazePath = WEBPATH + SAVEMAZENAME; // Note that if the Unity Editor is set to WebGL build this will create a folder in the root of the drive it is on
+        // if(!Directory.Exists(saveMazePath))
+        // {
+        //     Directory.CreateDirectory("/idbfs/FirstPersonScorpion");
+        // }
 }
 #else
 {
+        string saveMazePath;
+
         saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
-}
-#endif
+
         List<string> dataStrings = new();
 
         MazeGenerator currentMaze = FindFirstObjectByType<MazeGenerator>();
@@ -236,21 +243,25 @@ public class SaveSystem : MonoBehaviour
         dataStrings.Insert(dataStrings.Count, _health.GetSpawnPosition().z.ToString());
 
         File.WriteAllLines(saveMazePath, dataStrings);
+}
+#endif
     }
 
     public void LoadDataFile(string fileName, bool loadMaze)
     {
-        string loadPath;
         string[] dataArray;
 #if UNITY_WEBGL
 {
-        loadPath = WEBPATH + fileName;
+        // loadPath = WEBPATH + fileName;
+        if(PlayerPrefs.GetString(PPSAVE, string.Empty) == string.Empty) { return; }
+
+        dataArray = PlayerPrefs.GetString(PPSAVE, string.Empty).Split('\n');
 }
 #else
 {
+        string loadPath;
         loadPath = Application.persistentDataPath + "/" +  fileName; // Note again the "/" is needed here but not in WEBGL
-}
-#endif
+
         if(File.Exists(loadPath))
         {
             dataArray = File.ReadAllLines(loadPath);
@@ -259,6 +270,8 @@ public class SaveSystem : MonoBehaviour
         {
             return;
         }
+}
+#endif
 
         if(loadMaze)
         {
@@ -310,16 +323,16 @@ public class SaveSystem : MonoBehaviour
 
     bool CheckMazeData()
     {
-        string saveMazePath;
 #if UNITY_WEBGL
 {
-        saveMazePath = WEBPATH + SAVEMAZENAME;
+        return false;
+        // saveMazePath = WEBPATH + SAVEMAZENAME;
 }
 #else
 {
+        string saveMazePath;
+
         saveMazePath = Application.persistentDataPath + "/" + SAVEMAZENAME; // Note the / is needed here but not in WEBGL
-}
-#endif
         if(File.Exists(saveMazePath))
         {
             return true;
@@ -328,6 +341,8 @@ public class SaveSystem : MonoBehaviour
         {
             return false;
         }
+}
+#endif
     }
 
     void TitleScreen_OnCreepComplete()
